@@ -21,18 +21,6 @@
 
 🤖 Statistics, Machine Learning<br><br><br>
 
-
-**Projects**
-
-<a href="https://github.com/duongngochongson/SQL-eCommerce-User-Behavior-Exploration">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=duongngochongson&repo=SQL-eCommerce-User-Behavior-Exploration&theme=light&bg_color=E6E6FA" />
-</a><br>  
-<a href="https://github.com/duongngochongson/Power-BI-Purchasing-Department-Performance-Visualization">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=duongngochongson&repo=Power-BI-Purchasing-Department-Performance-Visualization&theme=light&bg_color=E6E6FA" />
-</a><br>
-<a href="https://github.com/duongngochongson/Python-Retailer-RFM-Model-Analysis">
-  <img src="https://github-readme-stats.vercel.app/api/pin/?username=duongngochongson&repo=Python-Retailer-RFM-Model-Analysis&theme=light&bg_color=E6E6FA" />
-</a><br>  
 <br><br><br>
 
 **Education & Certificates**
