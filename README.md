@@ -19,9 +19,9 @@
 
 🔗 Python: Pandas, NumPy, MatPlotLib, Seaborn
 
-🤖 Statistics, Machine Learning<br><br><br>
+🤖 Statistics, Machine Learning<br><br>
 
-<br><br><br>
+<br>
 
 **Education & Certificates**
 
