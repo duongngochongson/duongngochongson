@@ -1,31 +1,38 @@
-***Hi there 👋***
+### Hi, I'm Son 👋
 
-*Welcome, My name is Son. I’m always curious about the world of numbers and the stories they tell under the surface! I also enjoy work together with teammates to uncover insights and find data-driven answers to business questions.*
+**Learning Experience Designer** · teacher · builder
 
-<div align="center">
+I design learning experiences in code, so each one works on a phone, can be measured, and can be reused.
 
-**Reach me:**
-[in/duongngochonson](https://www.linkedin.com/in/duongngochongson/) - duongngochongson@gmail.com
+I teach math and digital skills to students of all ages, in class and online. I also have a background in data analysis, so I start from the problem and check the results with numbers.
 
-</div>
+📫 [LinkedIn](https://www.linkedin.com/in/duongngochongson/) · duongngochongson@gmail.com
 
 ---
 
-**Technical Skills**
+**What I work on**
 
-🗄️ SQL: MySQL, PostgreSQL, Google BigQuery
+- Needs analysis and action mapping, including saying when training is not the answer
+- Branching scenarios with consequence-based feedback
+- Measurable objectives, alignment, Kirkpatrick evaluation
+- Accessibility (WCAG 2.2 AA), SCORM 1.2 / 2004, xAPI, cmi5
 
-📊 Power BI: DAX, Power Query, Data Modeling
+**Build:** React · TypeScript · Vite · Astro · Vercel · Claude Code<br>
+**Data:** SQL (BigQuery, PostgreSQL) · Python (Pandas) · Power BI
 
-🔗 Python: Pandas, NumPy, MatPlotLib, Seaborn
+---
 
-🤖 Statistics, Machine Learning<br><br>
+**Projects**
 
-<br>
+| | |
+|---|---|
+| **LXD Studio** 🚧 | My learning design projects. Each one is an e-learning module you can click through, plus a case study on why I designed it that way. Built in code, works on a phone, and can be uploaded to an LMS as SCORM or cmi5. First project in progress. |
+| **[Phiếu Học Tập](https://sonteach.vercel.app/)** | Made for my own students. Paste a few lines of text and get a progress card for parents or an end-of-term report card to print. Sized for a phone screen, because that's where parents read it. *(Vietnamese UI)* |
+| **[Data Analysis Portfolio](https://duongngochongson.github.io/data-analysis/)** | SQL on Google Analytics data in BigQuery, RFM customer segmentation in Python, and a vendor performance dashboard in Power BI. |
 
-**Education & Certificates**
+---
 
-FPT University, Can Tho campus (2020 - 2024) - Bachelor of Business Administration with a GPA of 8.2/10.<br>
-Related coursework: Applied Statistics for Business, Information System Overview, Market Research
+**Education**
 
-Unigap - Data Analyst Coaching 1 on 1 Program (September 2024)
+- **FPT University** · Bachelor of Business Administration · 2020–2024 · GPA 8.2/10
+- **Unigap** · Data Analyst 1-on-1 Coaching · 2024
