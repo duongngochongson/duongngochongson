@@ -4,7 +4,7 @@
 
 I design learning experiences in code, so each one works on a phone, can be measured, and can be reused.
 
-I teach math and digital skills to students of all ages, in class and online. I also have a background in data analysis, so I start from the problem and check the results with numbers.
+I teach math and digital skills to students of different ages, in class and online. I also have a background in data analysis and business administration, so I start from the problem and check the results with numbers.
 
 📫 [LinkedIn](https://www.linkedin.com/in/duongngochongson/) · duongngochongson@gmail.com
 
@@ -18,7 +18,7 @@ I teach math and digital skills to students of all ages, in class and online. I 
 - Accessibility (WCAG 2.2 AA), SCORM 1.2 / 2004, xAPI, cmi5
 
 **Build:** React · TypeScript · Vite · Astro · Vercel · Claude Code<br>
-**Data:** SQL (BigQuery, PostgreSQL) · Python (Pandas) · Power BI
+**Data:** SQL · Python (Pandas) · Power BI
 
 ---
 
