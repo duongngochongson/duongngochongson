@@ -26,9 +26,8 @@ I teach math and digital skills to students of all ages, in class and online. I 
 
 | | |
 |---|---|
-| **LXD Studio** 🚧 | A tool for building e-learning courses. Each course is one YAML file that exports to web, SCORM 1.2 / 2004, cmi5 or a single offline HTML file. Accessibility is built into every component. First case study in progress. |
+| **LXD Studio** 🚧 | My learning design projects. Each one is an e-learning module you can click through, plus a case study on why I designed it that way. Built in code, works on a phone, and can be uploaded to an LMS as SCORM or cmi5. First project in progress. |
 | **[Phiếu Học Tập](https://sonteach.vercel.app/)** | Made for my own students. Paste a few lines of text and get a progress card for parents or an end-of-term report card to print. Sized for a phone screen, because that's where parents read it. *(Vietnamese UI)* |
-| **[OPRPG](https://oprpg.vercel.app/)** | My to-do list, made into a pixel-art RPG with quests, levels and loot. React + TypeScript, data saved to Google Drive, unit tested. It's a personal app, so only I can log in. |
 | **[Data Analysis Portfolio](https://duongngochongson.github.io/data-analysis/)** | SQL on Google Analytics data in BigQuery, RFM customer segmentation in Python, and a vendor performance dashboard in Power BI. |
 
 ---
