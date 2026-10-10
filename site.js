@@ -5,18 +5,28 @@
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   };
 
-  // ---- pages: #home, #work, #work/<case-id>, #about ----
-  const pages = ['home', 'work', 'about'];
+  // ---- pages: #home, #portfolio, #portfolio/<project>, #about ----
+  // The portfolio list reuses the project cards from Home, so a project is added in one place.
+  const list = document.querySelector('[data-project-list]');
+  const listCopy = document.querySelector('[data-project-list-copy]');
+  if (list && listCopy) listCopy.append(...[...list.children].map(n => n.cloneNode(true)));
+
+  const baseTitle = document.title;
   function route() {
-    const [page, anchor] = (location.hash.slice(1) || 'home').split('/');
-    const current = pages.includes(page) ? page : 'home';
-    document.querySelectorAll('[data-page]').forEach(n => { n.hidden = n.dataset.page !== current; });
+    let key = location.hash.slice(1) || 'home';
+    if (key === 'work' || key.startsWith('work/')) {  // old links
+      history.replaceState(null, '', '#portfolio' + key.slice(4));
+      key = 'portfolio' + key.slice(4);
+    }
+    const target = document.querySelector(`[data-page="${CSS.escape(key)}"]`) ? key : 'home';
+    document.querySelectorAll('[data-page]').forEach(n => { n.hidden = n.dataset.page !== target; });
+    const section = target.split('/')[0];
     document.querySelectorAll('[data-nav]').forEach(a => {
-      if (a.dataset.nav === current) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+      if (a.dataset.nav === section) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     });
-    const target = anchor && document.getElementById(anchor);
-    if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
+    const page = document.querySelector(`[data-page="${CSS.escape(target)}"]`);
+    document.title = page.dataset.title ? `${page.dataset.title} — Son Duong` : baseTitle;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   window.addEventListener('hashchange', route);
 
@@ -53,8 +63,9 @@
   tick();
   setInterval(tick, 15000);
 
-  const savedLang = store.get('lang');
-  if (savedLang === 'vi') setLang('vi');
+  // Vietnamese only applies while its button is shown (it is hidden in index.html for now).
+  const viButton = document.querySelector('[data-lang="vi"]');
+  if (viButton && !viButton.hidden && store.get('lang') === 'vi') setLang('vi');
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
   route();
 })();

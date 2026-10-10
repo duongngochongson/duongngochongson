@@ -26,7 +26,8 @@
     <a class="brand" href="#home"><span class="brand-mark"></span><span class="brand-name">Son Duong</span></a>
     <div class="toggles">
       <div class="pill" role="group" aria-label="Language">
-        <button type="button" data-lang="vi" aria-pressed="false" title="Tiếng Việt">VI</button>
+        <!-- Vietnamese is off for now. To turn it back on, delete "hidden" below. -->
+        <button type="button" data-lang="vi" aria-pressed="false" title="Tiếng Việt" hidden>VI</button>
         <button type="button" data-lang="en" aria-pressed="true" title="English">EN</button>
       </div>
       <div class="pill" role="group" aria-label="Theme">
@@ -43,7 +44,7 @@
 
   <nav class="nav" aria-label="Pages">
     <a href="#home" data-nav="home"><span class="lbl"><span class="dot" style="background:var(--a2)"></span><span data-vi="Trang chủ">Home</span></span><span class="num">01</span></a>
-    <a href="#work" data-nav="work"><span class="lbl"><span class="dot" style="background:var(--a1)"></span><span data-vi="Dự án">Work</span></span><span class="num">02</span></a>
+    <a href="#portfolio" data-nav="portfolio"><span class="lbl"><span class="dot" style="background:var(--a1)"></span><span>Portfolio</span></span><span class="num">02</span></a>
     <a href="#about" data-nav="about"><span class="lbl"><span class="dot" style="background:var(--a3)"></span><span data-vi="Về mình">About</span></span><span class="num">03</span></a>
   </nav>
 
@@ -74,7 +75,12 @@
 <section class="page" data-page="home">
   <div class="eyebrow-row"><span data-vi="MỤC LỤC DỰ ÁN">INDEX OF WORK</span><span>2026</span></div>
 
-  <a class="proj" href="#work/hear-them-out">
+  <div class="block bg-t4 intro" style="padding:26px">
+    <p data-vi="Mỗi dự án dưới đây kể theo một mạch: vấn đề thật là gì, mình đã làm gì, và mục tiêu đo bằng gì. Cả hai đều là module chạy thật — bạn có thể mở ra và học thử ngay trên điện thoại.">Each project below runs the same way: what was actually wrong, what I did about it, and how success would be measured. Both are working modules — you can open them and take them, on a phone if you like.</p>
+  </div>
+
+  <div data-project-list>
+  <a class="proj" href="#portfolio/hear-them-out">
     <div class="thumb" style="background:var(--t2)" aria-hidden="true">
       <div class="s" style="left:18px;top:30px;width:84px;height:84px;border-radius:50%;background:var(--a1);opacity:.75"></div>
       <div class="s" style="left:72px;top:72px;width:46px;height:46px;border-radius:50%;background:var(--a2);opacity:.6"></div>
@@ -91,7 +97,7 @@
     </div>
   </a>
 
-  <a class="proj" href="#work/delivery-scenario">
+  <a class="proj" href="#portfolio/delivery-scenario">
     <div class="thumb" style="background:var(--t3)" aria-hidden="true">
       <div class="s" style="left:18px;top:26px;width:58px;height:58px;border-radius:9px;background:var(--a3);opacity:.7"></div>
       <div class="s" style="left:62px;top:84px;width:62px;height:30px;border-radius:999px;background:var(--a4);opacity:.6"></div>
@@ -107,6 +113,7 @@
       </div>
     </div>
   </a>
+  </div>
 
   <div class="block bg-t2" style="padding:26px">
     <div class="eyebrow" style="margin-bottom:20px" data-vi="CÁCH MÌNH LÀM">METHOD</div>
@@ -135,16 +142,16 @@
   </div>
 </section>
 
-<!-- ---------- WORK ---------- -->
-<section class="page" data-page="work" hidden>
-  <div class="eyebrow-row"><span data-vi="DỰ ÁN">WORK</span><span data-vi="HAI DỰ ÁN, KỂ ĐẦY ĐỦ">TWO PROJECTS, TOLD PROPERLY</span></div>
+<!-- ---------- PORTFOLIO: the list (cards are copied from Home by site.js) ---------- -->
+<section class="page" data-page="portfolio" hidden>
+  <div class="eyebrow-row"><span>PORTFOLIO</span><span data-vi="2 DỰ ÁN">2 PROJECTS</span></div>
+  <div data-project-list-copy></div>
+</section>
 
-  <div class="block bg-t2 intro" style="padding:26px">
-    <p data-vi="Mỗi dự án dưới đây kể theo một mạch: vấn đề thật là gì, mình đã làm gì, và mục tiêu đo bằng gì. Cả hai đều là module chạy thật — bạn có thể mở ra và học thử ngay trên điện thoại.">Each project below runs the same way: what was actually wrong, what I did about it, and how success would be measured. Both are working modules — you can open them and take them, on a phone if you like.</p>
-  </div>
-
-  <!-- Case 01 -->
-  <article class="case" id="hear-them-out">
+<!-- ---------- PORTFOLIO: one page per project ---------- -->
+<section class="page" data-page="portfolio/hear-them-out" data-title="Hear Them Out" hidden>
+  <div class="eyebrow-row back-row"><a class="back" href="#portfolio"><span class="arrow">←</span><span data-vi="Về portfolio">Back to portfolio</span></a><span>01 / 02</span></div>
+  <article class="case">
     <div class="hero" style="background:var(--t2)" aria-hidden="true">
       <div class="s" style="left:34px;top:44px;width:132px;height:132px;border-radius:50%;background:var(--a1);opacity:.75"></div>
       <div class="s" style="left:138px;top:116px;width:70px;height:70px;border-radius:50%;background:var(--a2);opacity:.6"></div>
@@ -187,9 +194,11 @@
     </div>
     <div class="cta-row"><a class="btn btn-primary" href="https://hear-them-out.vercel.app/" target="_blank" rel="noopener"><span data-vi="Học thử khoá học">Take the course</span> ↗</a></div>
   </article>
+</section>
 
-  <!-- Case 02 -->
-  <article class="case" id="delivery-scenario">
+<section class="page" data-page="portfolio/delivery-scenario" data-title="Not-Home Delivery Stop" hidden>
+  <div class="eyebrow-row back-row"><a class="back" href="#portfolio"><span class="arrow">←</span><span data-vi="Về portfolio">Back to portfolio</span></a><span>02 / 02</span></div>
+  <article class="case">
     <div class="hero" style="background:var(--t3)" aria-hidden="true">
       <div class="s" style="left:34px;top:40px;width:96px;height:96px;border-radius:14px;background:var(--a3);opacity:.7"></div>
       <div class="s" style="left:112px;top:132px;width:96px;height:46px;border-radius:999px;background:var(--a4);opacity:.6"></div>
