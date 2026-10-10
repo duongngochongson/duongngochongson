@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/fonts.css">
+</helmet>
+
+<sc-if value="{{ isColor }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;gap:18px">
+<sc-for list="{{ swatchGroups }}" as="g" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">{{ g.title }}</span>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<sc-for list="{{ g.items }}" as="s" hint-placeholder-count="4">
+<div style="flex:1 1 210px;min-width:0;border:1.5px solid #E3DACB;border-radius:12px;overflow:hidden;background:#FBF7EE">
+<div style="height:60px;background:{{ s.hex }};border-bottom:1.5px solid #E3DACB;display:flex;align-items:center;justify-content:center">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:{{ s.on }}">{{ s.sample }}</span>
+</div>
+<div style="padding:11px 13px;display:flex;flex-direction:column;gap:4px">
+<span style="font:500 16px/1.25 'IBM Plex Mono',monospace;color:#1F1A12">{{ s.token }}</span>
+<span style="font:500 16px/1.25 'IBM Plex Mono',monospace;color:#5E5446">{{ s.hex }}</span>
+<span style="font:400 16px/1.35 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ s.use }}</span>
+<span style="font:500 16px/1.3 'IBM Plex Mono',monospace;color:#8A5300">{{ s.contrast }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isType }}">
+<div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;overflow:hidden;display:flex;flex-direction:column">
+<sc-for list="{{ typeSteps }}" as="t" hint-placeholder-count="8">
+<div style="padding:16px 18px;border-bottom:1px solid #E3DACB;display:flex;flex-wrap:wrap;gap:10px 20px;align-items:baseline">
+<span style="flex:1 1 160px;font:500 16px/1.3 'IBM Plex Mono',monospace;color:#8A5300">{{ t.token }}<br><span style="color:#5E5446">{{ t.spec }}</span></span>
+<span style="flex:999 1 240px;min-width:0;font:{{ t.font }};letter-spacing:{{ t.track }};color:#1F1A12;text-transform:{{ t.caps }};">{{ t.sample }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isSpace }}">
+<div style="display:flex;flex-direction:column;gap:18px">
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">Space, on a 4px base</span>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<sc-for list="{{ spaceSteps }}" as="s" hint-placeholder-count="12">
+<div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
+<span style="display:block;height:24px;width:{{ s.w }};background:#F2A93B;border-radius:3px"></span>
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">{{ s.n }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">Radius</span>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<sc-for list="{{ radii }}" as="r" hint-placeholder-count="9">
+<div style="display:flex;flex-direction:column;gap:7px;align-items:center">
+<span style="display:block;width:76px;height:52px;background:#F4EFE4;border:1.5px solid #8C8170;border-radius:{{ r.px }}"></span>
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">{{ r.name }} {{ r.px }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">Shadow</span>
+<div style="display:flex;flex-wrap:wrap;gap:18px;background:#F4EFE4;border-radius:12px;padding:22px">
+<sc-for list="{{ shadows }}" as="s" hint-placeholder-count="4">
+<div style="flex:1 1 150px;min-width:0;background:#FBF7EE;border-radius:16px;padding:16px;box-shadow:{{ s.css }};display:flex;flex-direction:column;gap:4px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#1F1A12">{{ s.name }}</span>
+<span style="font:400 16px/1.35 'IBM Plex Sans',sans-serif;color:#3D352A">{{ s.use }}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isLogo }}">
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<sc-for list="{{ tones }}" as="t" hint-placeholder-count="4">
+<div style="flex:1 1 220px;min-width:0;border:1.5px solid #E3DACB;border-radius:12px;overflow:hidden">
+<div style="background:{{ t.bg }};padding:26px 20px;display:flex;flex-direction:column;gap:18px;align-items:flex-start">
+<dc-import name="Logo" variant="lockup" tone="{{ t.tone }}" size="30" hint-size="110px,30px"></dc-import>
+<dc-import name="Logo" variant="symbol" tone="{{ t.tone }}" size="30" hint-size="30px,30px"></dc-import>
+</div>
+<div style="padding:11px 14px;background:#FBF7EE;display:flex;flex-direction:column;gap:3px">
+<span style="font:500 16px/1.25 'IBM Plex Mono',monospace;color:#1F1A12">{{ t.tone }}</span>
+<span style="font:400 16px/1.35 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ t.use }}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isIcons }}">
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px">
+<sc-for list="{{ icons }}" as="i" hint-placeholder-count="24">
+<div style="border:1.5px solid #E3DACB;border-radius:10px;background:#FBF7EE;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center">
+<dc-import name="Icon" icon="{{ i.name }}" size="24" color="#1F1A12" hint-size="24px,24px"></dc-import>
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446;word-break:break-word">{{ i.name }}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCharacters }}">
+<div style="display:flex;flex-direction:column;gap:18px">
+<sc-for list="{{ people }}" as="p" hint-placeholder-count="4">
+<div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline">
+<span style="font:600 20px/1.2 'Archivo',sans-serif;color:#1F1A12">{{ p.name }}</span>
+<span style="font:500 16px/1.3 'IBM Plex Mono',monospace;color:#5E5446">{{ p.who }}</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<sc-for list="{{ p.moods }}" as="m" hint-placeholder-count="4">
+<figure style="margin:0;display:flex;flex-direction:column;align-items:center;gap:7px;width:92px">
+<sc-if value="{{ m.hasFace }}"><img src="{{ m.src }}" alt="{{ m.alt }}" style="display:block;width:72px;height:72px;border-radius:999px;background:#F4EFE4;object-fit:cover"></sc-if>
+<sc-if value="{{ m.noFace }}"><span role="img" aria-label="{{ m.alt }}" style="display:flex;align-items:center;justify-content:center;width:72px;height:72px;border-radius:999px;background:#F4EFE4;border:1.5px dashed #8C8170;font:500 16px/1 'IBM Plex Mono',monospace;color:#5E5446">?</span></sc-if>
+<figcaption style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446;text-align:center;word-break:break-word">{{ m.mood }}</figcaption>
+</figure>
+</sc-for>
+</div>
+<sc-if value="{{ p.hasGap }}">
+<p style="margin:0;background:#F4EFE4;border-left:4px solid #F2A93B;border-radius:4px 10px 10px 4px;padding:11px 14px;font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ p.gap }}</p>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ isComponents }}">
+<div style="display:flex;flex-direction:column;gap:14px">
+
+<div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">Button · on paper</span>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+<span style="min-height:56px;display:flex;align-items:center;gap:10px;padding:14px 22px;background:#1F1A12;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:#FBF7EE">Continue<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></span>
+<span style="min-height:48px;display:flex;align-items:center;padding:12px 18px;border:1.5px solid #8C8170;border-radius:12px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#1F1A12">Skip the tour</span>
+<span style="min-height:44px;display:flex;align-items:center;padding:10px 16px;background:#E3DACB;border-radius:12px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#5E5446">Save entry</span>
+</div>
+</div>
+
+<div style="border-radius:16px;background:#1F1A12;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#F2A93B">Son's message and his button</span>
+<div style="max-width:560px;background:#1F1A12;border:1.5px dashed #8C8170;border-radius:18px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start">
+<span style="flex:none;width:44px;height:44px;border-radius:999px;background:#FBF7EE;display:flex;align-items:center;justify-content:center;font:600 17px/1 'Archivo',sans-serif;color:#1F1A12">S</span>
+<div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#CFC4B1">Son · Your guide</span>
+<span style="font:500 16px/24px 'IBM Plex Sans',sans-serif;color:#FBF7EE;">Sofia can't hear me, only you.</span>
+<span style="align-self:flex-start;min-height:44px;display:flex;align-items:center;gap:9px;padding:10px 18px;background:#3A3125;border:1.5px solid #F2A93B;border-radius:999px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#FBF7EE">Next<dc-import name="Icon" icon="arrowRight" size="18" color="#F2A93B" hint-size="18px,18px"></dc-import></span>
+</div>
+</div>
+</div>
+
+<div style="border-radius:16px;background:#1F1A12;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#F2A93B">The conversation</span>
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="align-self:flex-start;max-width:520px;display:flex;gap:10px;align-items:flex-end">
+<img src="assets/faces/sofia-annoyed.svg" alt="Sofia, annoyed" style="flex:none;width:44px;height:44px;border-radius:999px;background:#FBF7EE">
+<div style="display:flex;flex-direction:column;gap:5px;min-width:0">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#CFC4B1">Sofia · annoyed</span>
+<span style="background:#FBF7EE;border-radius:18px 18px 18px 4px;padding:13px 16px;font:500 20px/28px 'Archivo',sans-serif;color:#1F1A12;">Yesterday someone was on the phone right next to me for half an hour.</span>
+</div>
+</div>
+<div style="align-self:flex-end;max-width:420px;display:flex;flex-direction:column;gap:5px;align-items:flex-end">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#CFC4B1">You</span>
+<span style="background:#FAEBD1;border-radius:18px 18px 4px 18px;padding:13px 16px;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:#1F1A12;">I'm listening. Tell me what happened, from the start.</span>
+</div>
+<span style="align-self:center;padding:7px 14px;border:1px solid #4A4235;border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#CFC4B1">Call ended</span>
+</div>
+</div>
+
+<div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;padding:16px 18px;display:flex;flex-direction:column;gap:14px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">Zone tag, floor tape and the result mark</span>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<sc-for list="{{ zoneTags }}" as="z" hint-placeholder-count="4">
+<span style="display:flex;align-items:center;gap:8px;padding:7px 11px;border:1.5px solid {{ z.color }};border-radius:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:{{ z.color }}"><dc-import name="Icon" icon="{{ z.icon }}" size="18" color="{{ z.color }}" hint-size="18px,18px"></dc-import>{{ z.name }}</span>
+</sc-for>
+</div>
+<dc-import name="CozySign" kind="floorTape" zone="focus" hint-size="100%,50px"></dc-import>
+<div style="display:flex;flex-wrap:wrap;gap:16px">
+<span style="display:flex;align-items:center;gap:8px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#2F7A4B"><dc-import name="Icon" icon="right" size="20" color="#2F7A4B" hint-size="20px,20px"></dc-import>Right</span>
+<span style="display:flex;align-items:center;gap:8px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#B03A48"><dc-import name="Icon" icon="notyet" size="20" color="#B03A48" hint-size="20px,20px"></dc-import>Not yet</span>
+<span style="display:flex;align-items:center;gap:8px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#2F7A4B"><dc-import name="Icon" icon="right" size="20" color="#2F7A4B" hint-size="20px,20px"></dc-import>Met</span>
+</div>
+</div>
+
+<div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">A Cozy Desk field, and a row of the log</span>
+<label style="display:flex;flex-direction:column;gap:7px;max-width:380px">
+<span style="font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#1F1A12">Issue type</span>
+<span style="min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1.5px solid #8C8170;border-radius:10px;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:#1F1A12">Noise or calls<dc-import name="Icon" icon="chevronDown" size="18" color="#5E5446" hint-size="18px,18px"></dc-import></span>
+</label>
+<div style="border:1px solid #E3DACB;border-radius:10px;overflow:hidden">
+<div style="display:flex;flex-wrap:wrap;gap:6px 16px;padding:12px 14px;background:#F4EFE4;font:500 16px/1.3 'IBM Plex Mono',monospace;color:#1F1A12"><span>#0418</span><span>Sofia</span><span>Noise or calls</span><span style="color:#2F5A9E">Focus</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px 16px;padding:12px 14px;font:500 16px/1.3 'IBM Plex Mono',monospace;color:#3D352A"><span>Owner</span><span style="color:#B03A48">(empty)</span><span>To-do</span><span style="color:#B03A48">(empty)</span><span>Status</span><span>Open</span></div>
+</div>
+</div>
+
+<div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">The floor plan</span>
+<dc-import name="FloorPlan" deskLabel="Sofia's desk" hereLabel="Front desk" hint-size="100%,300px"></dc-import>
+</div>
+
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:820,&quot;height&quot;:600},&quot;part&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;color&quot;,&quot;type&quot;,&quot;space&quot;,&quot;logo&quot;,&quot;icons&quot;,&quot;characters&quot;,&quot;components&quot;],&quot;default&quot;:&quot;color&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const FACE_MOODS = {
+  Sofia: ['neutral', 'annoyed', 'telling', 'serious', 'calmer', 'hurt', 'doubtful', 'let-down', 'set-on-acting', 'satisfied'],
+  Omar: ['neutral', 'tired'],
+  Dan: ['neutral', 'doubtful', 'sorry']
+};
+class Component extends DCLogic {
+  renderVals() {
+    const part = this.props.part || 'color';
+    const face = (person, mood) => ({
+      mood, hasFace: true, noFace: false,
+      src: 'assets/faces/' + person.toLowerCase() + '-' + mood + '.svg',
+      alt: person + ', ' + mood
+    });
+    return {
+      isColor: part === 'color', isType: part === 'type', isSpace: part === 'space',
+      isLogo: part === 'logo', isIcons: part === 'icons', isCharacters: part === 'characters',
+      isComponents: part === 'components',
+
+      swatchGroups: [
+        { title: 'Ground and paper', items: [
+          { token: '--cz-night', hex: '#1F1A12', on: '#FBF7EE', sample: 'Paper on it', use: 'The ground of every screen, the top bar, Son\u2019s box', contrast: '16.2:1' },
+          { token: '--cz-night-deep', hex: '#120F0A', on: '#FBF7EE', sample: 'Paper on it', use: 'The phone\u2019s screen, the call bar', contrast: '17.9:1' },
+          { token: '--cz-night-surface', hex: '#2A2318', on: '#FBF7EE', sample: 'Paper on it', use: 'The phone\u2019s bezel, the desk computer, panels', contrast: '14.5:1' },
+          { token: '--cz-night-raised', hex: '#3A3125', on: '#FBF7EE', sample: 'Paper on it', use: 'Call controls, Son\u2019s button, hover on dark', contrast: '11.9:1' },
+          { token: '--cz-night-line', hex: '#4A4235', on: '#FBF7EE', sample: 'Lines', use: 'Lines and chip borders on dark', contrast: 'Decoration' },
+          { token: '--cz-paper', hex: '#FBF7EE', on: '#1F1A12', sample: 'Ink on it', use: 'Every light box: bubbles, cards, forms, job aids', contrast: '16.2:1' },
+          { token: '--cz-desk', hex: '#F4EFE4', on: '#1F1A12', sample: 'Ink on it', use: 'Quiet areas inside paper: table headers, a chosen option', contrast: '15.1:1' },
+          { token: '--cz-line', hex: '#E3DACB', on: '#1F1A12', sample: 'Dividers', use: 'Dividers on paper', contrast: 'Decoration only' },
+          { token: '--cz-line-strong', hex: '#8C8170', on: '#FBF7EE', sample: 'Borders', use: 'Every control border; Son\u2019s dashed outline', contrast: '3.6:1 on paper' }
+        ] },
+        { title: 'Ink and text', items: [
+          { token: '--cz-ink', hex: '#1F1A12', on: '#FBF7EE', sample: 'Text', use: 'Text on paper, primary buttons, the logo on light', contrast: '16.2:1 on paper' },
+          { token: '--cz-ink-body', hex: '#3D352A', on: '#FBF7EE', sample: 'Long text', use: 'Long text on paper: details, reasons', contrast: '11.3:1 on paper' },
+          { token: '--cz-ink-soft', hex: '#5E5446', on: '#FBF7EE', sample: 'Helper', use: 'Helper text, placeholders, table labels', contrast: '6.9:1 on paper' },
+          { token: '--cz-night-thought', hex: '#E8DFD0', on: '#1F1A12', sample: 'Long text', use: 'Long text on the dark ground: leads', contrast: '13.1:1 on the ground' },
+          { token: '--cz-night-soft', hex: '#CFC4B1', on: '#1F1A12', sample: 'Secondary', use: 'Name tags, labels, captions, call states', contrast: '10.0:1 on the ground' }
+        ] },
+        { title: 'The lamp', items: [
+          { token: '--cz-lamp', hex: '#F2A93B', on: '#1F1A12', sample: 'Never text on light', use: 'The light: the focus ring, progress, Son\u2019s button, rings', contrast: '1.9:1 on paper, 8.7:1 on the ground' },
+          { token: '--cz-amber-ink', hex: '#8A5300', on: '#FBF7EE', sample: 'Amber to read', use: 'Eyebrows, job aid keys, Noted, a due date', contrast: '5.9:1 on paper' },
+          { token: 'The learner\u2019s bubble', hex: '#FAEBD1', on: '#1F1A12', sample: 'Ink on it', use: 'The learner\u2019s lines, at the right', contrast: '14.7:1' }
+        ] },
+        { title: 'Feedback, always with an icon and a word', items: [
+          { token: '--cz-right', hex: '#2F7A4B', on: '#FBF7EE', sample: 'Right', use: 'Right, Met and done ticks on light', contrast: '4.9:1 on paper' },
+          { token: '--cz-right-night', hex: '#8FD6A8', on: '#1F1A12', sample: 'Right', use: 'Right and Met on the dark ground', contrast: '10.2:1 on the ground' },
+          { token: '--cz-notyet', hex: '#B03A48', on: '#FBF7EE', sample: 'Not yet', use: 'Not yet, errors and "(empty)" on light', contrast: '5.5:1 on paper' },
+          { token: '--cz-notyet-night', hex: '#F4A3A0', on: '#1F1A12', sample: 'Not yet', use: 'Not yet on the dark ground', contrast: '8.7:1 on the ground' }
+        ] },
+        { title: 'Zones, for wayfinding only, always with the icon and the name', items: [
+          { token: 'Focus', hex: '#2F5A9E', on: '#FBF7EE', sample: 'Silent work', use: 'Tint #E9EDF3 · icon focus', contrast: 'Paper on it 6.4:1' },
+          { token: 'Flex', hex: '#A3501A', on: '#FBF7EE', sample: 'Desk work, calls', use: 'Tint #F6ECE5 · icon flex', contrast: 'Paper on it 5.3:1' },
+          { token: 'Private', hex: '#6A4A8C', on: '#FBF7EE', sample: 'Rooms', use: 'Tint #EFEAF3 · icon private', contrast: 'Paper on it 6.6:1' },
+          { token: 'Kitchen', hex: '#6B5B4B', on: '#FBF7EE', sample: 'Shared', use: 'Tint #F0ECE7 · icon kitchen', contrast: 'Paper on it 6.1:1' }
+        ] }
+      ],
+
+      typeSteps: [
+        { token: 'display', spec: 'Archivo 700 · 64 / 68 · -0.02em', font: "700 clamp(36px,6vw,64px)/68px 'Archivo',sans-serif", track: '-0.02em', caps: 'none', sample: 'Welcome to Cozy' },
+        { token: 'h1', spec: 'Archivo 700 · 40 / 44 · -0.02em', font: "700 40px/44px 'Archivo',sans-serif", track: '-0.02em', caps: 'none', sample: 'Hear Them Out' },
+        { token: 'h2', spec: 'Archivo 600 · 28 / 34 · -0.01em', font: "600 28px/34px 'Archivo',sans-serif", track: '-0.01em', caps: 'none', sample: 'Part 2 · After the call' },
+        { token: 'h3', spec: 'Archivo 600 · 24 / 29', font: "600 24px/29px 'Archivo',sans-serif", track: 'normal', caps: 'none', sample: 'What do you say first?' },
+        { token: 'h4', spec: 'Archivo 600 · 20 / 26', font: "600 20px/26px 'Archivo',sans-serif", track: 'normal', caps: 'none', sample: 'About this course' },
+        { token: 'member', spec: 'Archivo 500 · 20 / 28', font: "500 20px/28px 'Archivo',sans-serif", track: 'normal', caps: 'none', sample: 'I\u2019m working from home today so I can actually get something done.' },
+        { token: 'button-l', spec: 'Archivo 600 · 20 / 24', font: "600 20px/24px 'Archivo',sans-serif", track: 'normal', caps: 'none', sample: 'Continue to the computer' },
+        { token: 'body-l', spec: 'IBM Plex Sans 400 · 18 / 27', font: "400 18px/27px 'IBM Plex Sans',sans-serif", track: 'normal', caps: 'none', sample: 'I\u2019m listening. Tell me what happened, from the start.' },
+        { token: 'body', spec: 'IBM Plex Sans 400 · 16 / 24', font: "400 16px/24px 'IBM Plex Sans',sans-serif", track: 'normal', caps: 'none', sample: 'Tap Note on any line worth keeping: who called, what happened, what they need.' },
+        { token: 'label', spec: 'IBM Plex Sans 600 · 16 / 24', font: "600 16px/24px 'IBM Plex Sans',sans-serif", track: 'normal', caps: 'none', sample: 'Zone or area' },
+        { token: 'system', spec: 'IBM Plex Mono 500 · 16 / 22', font: "500 16px/22px 'IBM Plex Mono',monospace", track: 'normal', caps: 'none', sample: 'Son · Your guide' },
+        { token: 'timer', spec: 'IBM Plex Mono 500 · 22 / 28', font: "500 22px/28px 'IBM Plex Mono',monospace", track: 'normal', caps: 'none', sample: '04:12' },
+        { token: 'sign-caps', spec: 'IBM Plex Mono 500 · 16 / 16 · 0.08em', font: "500 16px/16px 'IBM Plex Mono',monospace", track: '0.08em', caps: 'uppercase', sample: 'Focus · Silent work' }
+      ],
+
+      spaceSteps: [4, 8, 12, 16, 20, 24, 32, 40, 48, 56, 64, 88].map(n => ({ n: n + 'px', w: n + 'px' })),
+      radii: [['tag', '6px'], ['control', '10px'], ['button', '12px'], ['button-l', '14px'], ['card', '16px'], ['bubble', '18px'], ['sheet', '20px'], ['phone', '44px'], ['pill', '999px']].map(r => ({ name: r[0], px: r[1] })),
+      shadows: [
+        { name: 'raise', css: '0 18px 40px -18px rgba(31,26,18,0.35)', use: 'Paper boxes, bubbles, job aid cards' },
+        { name: 'pop', css: '0 20px 40px -16px rgba(31,26,18,0.4)', use: 'Decision cards, the Cozy Desk window' },
+        { name: 'phone', css: '0 30px 60px -20px rgba(0,0,0,0.6)', use: 'The phone face down, the survey card' },
+        { name: 'sheet', css: '0 -10px 40px rgba(0,0,0,0.4)', use: 'Side panels and bottom sheets' }
+      ],
+
+      tones: [
+        { tone: 'light', bg: '#FBF7EE', use: 'On paper and desk. Ink letters, the lamp disc.' },
+        { tone: 'dark', bg: '#1F1A12', use: 'On the dark ground. Paper letters, the lamp disc.' },
+        { tone: 'ink', bg: '#FBF7EE', use: 'One color on light. The disc is cut out.' },
+        { tone: 'paper', bg: '#1F1A12', use: 'One color on dark. The disc is cut out.' }
+      ],
+
+      icons: ['focus', 'flex', 'private', 'kitchen', 'desk', 'meeting', 'wifi', 'mug', 'fridge', 'cleaning', 'phone', 'hangup', 'speaker', 'speakerOff', 'notes', 'note', 'info', 'thought', 'right', 'notyet', 'check', 'rewind', 'forward', 'play', 'pause', 'star', 'download', 'close', 'chevronLeft', 'chevronRight', 'chevronDown', 'arrowLeft', 'arrowRight', 'calendar', 'member', 'search', 'alarm', 'captions', 'alert', 'cases', 'monitor', 'mobile', 'headphones', 'plus'].map(name => ({ name })),
+
+      people: [
+        { name: 'Sofia', who: 'Hot desk member for 8 months · the only voice in the call', moods: FACE_MOODS.Sofia.map(m => face('sofia', m)), hasGap: false, gap: '' },
+        { name: 'Son', who: 'Son · Your guide · text only', moods: ['smiling', 'thinking', 'concerned', 'pleased'].map(m => face('son', m)), hasGap: false, gap: '' },
+        { name: 'Omar', who: 'Hot desk member in Flex · the caller in the AI practice', moods: FACE_MOODS.Omar.map(m => face('omar', m)), hasGap: false, gap: '' },
+        { name: 'Dan', who: 'The new member who made the long call · the private talk', moods: FACE_MOODS.Dan.map(m => face('dan', m)), hasGap: false, gap: '' }
+      ],
+
+      zoneTags: [
+        { name: 'Focus', color: '#2F5A9E', icon: 'focus' },
+        { name: 'Flex', color: '#A3501A', icon: 'flex' },
+        { name: 'Private', color: '#6A4A8C', icon: 'private' },
+        { name: 'Kitchen', color: '#6B5B4B', icon: 'kitchen' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

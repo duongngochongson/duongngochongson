@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/fonts.css">
+</helmet>
+<div style="background:#FBF7EE;border:1.5px solid #E3DACB;border-radius:16px;padding:clamp(16px,2.5vw,24px);display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
+<dc-import name="Logo" variant="lockup" tone="light" size="22" hint-size="80px,22px"></dc-import>
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">Member survey, a week later</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ cells }}" as="c" hint-placeholder-count="4">
+<div style="border:1.5px solid #E3DACB;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
+<div style="background:#F4EFE4;padding:11px 16px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;border-bottom:1.5px solid #E3DACB">
+<span style="display:flex;align-items:center;gap:7px;padding:4px 10px;border:1.5px solid {{ c.talkColor }};border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:{{ c.talkColor }}">Talk: {{ c.talk }}</span>
+<span style="display:flex;align-items:center;gap:7px;padding:4px 10px;border:1.5px solid {{ c.resolveColor }};border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:{{ c.resolveColor }}">Resolve: {{ c.resolve }}</span>
+<span style="margin-left:auto;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">{{ c.note }}</span>
+</div>
+<div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
+<span style="display:flex;gap:3px">
+<sc-for list="{{ c.stars }}" as="s" hint-placeholder-count="5">
+<dc-import name="Icon" icon="star" size="22" color="{{ s.color }}" fill="{{ s.fill }}" hint-size="22px,22px"></dc-import>
+</sc-for>
+</span>
+<span style="font:600 18px/1.2 'Archivo',sans-serif;color:#1F1A12">{{ c.score }} · {{ c.word }}</span>
+</div>
+<p style="margin:0;font:500 19px/1.45 'Archivo',sans-serif;color:#1F1A12;">{{ c.quote }}</p>
+</div>
+</div>
+</sc-for>
+</div>
+
+<p style="margin:0;background:#F4EFE4;border-left:4px solid #B03A48;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Two hang-ups give 1/5: "They hung up on me, and nobody called back." Sharing the name adds: "A few days later, Dan asks the front desk who reported him."</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:640}}">
+const stars = n => Array.from({ length: 5 }, (_, i) => ({
+  color: i < n ? '#F2A93B' : '#8C8170',
+  fill: i < n ? '#F2A93B' : 'none'
+}));
+class Component extends DCLogic {
+  renderVals() {
+    const G = '#2F7A4B', R = '#B03A48';
+    return {
+      cells: [
+        { talk: 'right', resolve: 'right', talkColor: G, resolveColor: G, score: '5 out of 5', word: 'Very satisfied', stars: stars(5), quote: '"They listened, fixed it, and called back when they said they would."', note: 'after Part 2' },
+        { talk: 'not yet', resolve: 'right', talkColor: R, resolveColor: G, score: '3 out of 5', word: 'Neutral', stars: stars(3), quote: '"They fixed it, but I never felt they cared."', note: '' },
+        { talk: 'right', resolve: 'not yet', talkColor: G, resolveColor: R, score: '2 out of 5', word: 'Dissatisfied', stars: stars(2), quote: '"They were nice about it, but nothing changed."', note: '' },
+        { talk: 'not yet', resolve: 'not yet', talkColor: R, resolveColor: R, score: '1 out of 5', word: 'Very dissatisfied', stars: stars(1), quote: '"They explained the rules to me, and that was it. I\u2019ve started looking at other spaces."', note: '' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

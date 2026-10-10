@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/fonts.css">
+</helmet>
+<div style="background:#FBF7EE;border:1.5px solid #E3DACB;border-radius:16px;padding:clamp(16px,2.5vw,24px);display:flex;flex-direction:column;gap:16px">
+
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:#1F1A12;border-radius:12px;padding:14px 18px">
+<span style="font:500 16px/1.3 'IBM Plex Mono',monospace;color:#CFC4B1">Member satisfaction</span>
+<span style="font:700 22px/1.1 'Archivo',sans-serif;color:#FBF7EE">3.2 / 5</span>
+<span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#E8DFD0">Three causes, only one of them a skill gap</span>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:stretch">
+<div style="flex:1 1 260px;min-width:0;background:#F4EFE4;border:1.5px solid #E3DACB;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">Cause · Data</span>
+<span style="font:600 17px/1.3 'Archivo',sans-serif;color:#1F1A12;">The zone and kitchen rules are clear but sit in the handbook</span>
+</div>
+<div style="flex:none;align-self:center;display:flex;align-items:center;padding:0 2px"><dc-import name="Icon" icon="arrowRight" size="26" color="#F2A93B" hint-size="26px,26px"></dc-import></div>
+<div style="flex:1 1 260px;min-width:0;background:#FBF7EE;border:2px solid #1F1A12;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">Information where the behavior happens</span>
+<span style="display:flex;gap:10px;align-items:flex-start"><span style="flex:none;padding-top:2px"><dc-import name="Icon" icon="focus" size="20" color="#2F5A9E" hint-size="20px,20px"></dc-import></span><span style="font:600 17px/1.3 'Archivo',sans-serif;color:#1F1A12;">Signs in the space, and Cozy in 60 seconds</span></span>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:stretch">
+<div style="flex:1 1 260px;min-width:0;background:#F4EFE4;border:1.5px solid #E3DACB;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">Cause · Data, Instruments</span>
+<span style="font:600 17px/1.3 'Archivo',sans-serif;color:#1F1A12;">Each shift handles outages its own way; the backup switch is manual</span>
+</div>
+<div style="flex:none;align-self:center;display:flex;align-items:center;padding:0 2px"><dc-import name="Icon" icon="arrowRight" size="26" color="#F2A93B" hint-size="26px,26px"></dc-import></div>
+<div style="flex:1 1 260px;min-width:0;background:#FBF7EE;border:2px solid #1F1A12;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">A procedure and a tool</span>
+<span style="display:flex;gap:10px;align-items:flex-start"><span style="flex:none;padding-top:2px"><dc-import name="Icon" icon="wifi" size="20" color="#1F1A12" hint-size="20px,20px"></dc-import></span><span style="font:600 17px/1.3 'Archivo',sans-serif;color:#1F1A12;">The Wi-Fi Down card; an automatic switch to the backup line</span></span>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:stretch">
+<div style="flex:1 1 260px;min-width:0;background:#F4EFE4;border:1.5px solid #E3DACB;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">Cause · Data, Instruments, Incentives; Knowledge</span>
+<span style="font:600 17px/1.3 'Archivo',sans-serif;color:#1F1A12;">Follow-up depends on memory; staff handle upset members by habit</span>
+</div>
+<div style="flex:none;align-self:center;display:flex;align-items:center;padding:0 2px"><dc-import name="Icon" icon="arrowRight" size="26" color="#F2A93B" hint-size="26px,26px"></dc-import></div>
+<div style="flex:1 1 260px;min-width:0;background:#FBF7EE;border:2px solid #1F1A12;border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">A process change and training</span>
+<span style="display:flex;gap:10px;align-items:flex-start"><span style="flex:none;padding-top:2px"><dc-import name="Icon" icon="cases" size="20" color="#1F1A12" hint-size="20px,20px"></dc-import></span><span style="font:600 17px/1.3 'Archivo',sans-serif;color:#1F1A12;">The log workflow; Hear Them Out</span></span>
+</div>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:#F4EFE4;border-left:4px solid #F2A93B;border-radius:4px 12px 12px 4px;padding:14px 18px">
+<span style="font:500 16px/1.3 'IBM Plex Mono',monospace;color:#8A5300">Target in two quarters</span>
+<span style="font:700 22px/1.1 'Archivo',sans-serif;color:#1F1A12">4.0 / 5</span>
+<span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A">and 3.8 for how Cozy handles complaints</span>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:560}}"></script>
+</body>
+</html>

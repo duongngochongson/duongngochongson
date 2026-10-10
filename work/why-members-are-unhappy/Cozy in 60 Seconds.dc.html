@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cozy in 60 seconds · Why Members Are Unhappy · Son Duong</title>
+<script src="./vendor/react.production.min.js"></script>
+<script src="./vendor/react-dom.production.min.js"></script>
+<script src="./support.js"></script>
+<script src="./doc-anchor.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#1F1A12;-webkit-font-smoothing:antialiased}
+a{color:#1F1A12}
+a:hover{color:#8A5300}
+button{font-family:inherit}
+</style>
+<script src="doc-zoom.js"></script>
+</helmet>
+<div style="--cz-night:#1F1A12;--cz-night-surface:#2A2318;--cz-night-soft:#CFC4B1;--cz-night-thought:#E8DFD0;--cz-night-line:#4A4235;--cz-paper:#FBF7EE;--cz-desk:#F4EFE4;--cz-line:#E3DACB;--cz-line-strong:#8C8170;--cz-ink:#1F1A12;--cz-ink-body:#3D352A;--cz-ink-soft:#5E5446;--cz-lamp:#F2A93B;--cz-amber-ink:#8A5300;--cz-right:#2F7A4B;--cz-notyet:#B03A48;--cz-focus:#2F5A9E;--cz-flex:#A3501A;--cz-private:#6A4A8C;--cz-kitchen:#6B5B4B;background:var(--cz-night);min-height:100vh;padding:clamp(0px,3vw,40px);display:flex;justify-content:center;font-family:'IBM Plex Sans',sans-serif">
+<article style="width:100%;max-width:1240px;background:var(--cz-paper);border-radius:16px">
+
+<dc-import name="DocHeader" project="Why Members Are Unhappy" doc-type="Cozy in 60 seconds" doc-title="Cozy in 60 seconds" subtitle="A short guide for new members, in the Cozy app on their first day." date="October 2026" author="Son Duong" hint-size="100%,340px"></dc-import>
+
+<div style="padding:clamp(24px,4vw,48px) clamp(20px,4vw,56px) clamp(32px,5vw,64px);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,40px);align-items:flex-start">
+
+<div style="flex:1 1 300px;min-width:0;max-width:520px;display:flex;flex-direction:column;gap:18px">
+<p style="margin:0;font:400 18px/28px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">In about a minute, a member learns the three zones, where to take a call, how the kitchen works, and the signs they will meet in the space, so they know them on the floor. It is one screen at a time, phone first, and it moves on only when the member taps.</p>
+<div style="display:flex;flex-direction:column;gap:10px;background:var(--cz-desk);border-left:4px solid var(--cz-lamp);border-radius:4px 12px 12px 4px;padding:18px 20px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">The four rules it follows</span>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Place it where the behavior happens. Say exactly what to do, with the alternative right next to it. Use one system of icon, word and color. Show it from day one.</p>
+</div>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft);">Tap through the eight screens. Nothing runs on a timer.</p>
+<button type="button" onClick="{{ restart }}" style="align-self:flex-start;min-height:44px;display:flex;align-items:center;gap:10px;padding:10px 18px;background:none;border:1.5px solid var(--cz-line-strong);border-radius:12px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink);cursor:pointer" style-hover="background:var(--cz-desk)">Start again<dc-import name="Icon" icon="rewind" size="18" color="#1F1A12" hint-size="18px,18px"></dc-import></button>
+</div>
+
+<div style="flex:1 1 360px;min-width:0;display:flex;justify-content:center">
+<div style="width:100%;max-width:392px;background:var(--cz-night-surface);border-radius:44px;padding:12px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)">
+<div style="background:var(--cz-paper);border-radius:34px;overflow:hidden;display:flex;flex-direction:column;min-height:640px">
+
+<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px 10px">
+<span style="display:flex;align-items:center;gap:9px"><dc-import name="Logo" variant="symbol" tone="light" size="22" hint-size="22px,22px"></dc-import><span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:var(--cz-ink)">Cozy</span></span>
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:var(--cz-ink-soft);white-space:nowrap">{{ step }} of 8</span>
+</div>
+<div style="display:flex;gap:4px;padding:0 18px 12px">
+<sc-for list="{{ segs }}" as="s" hint-placeholder-count="8">
+<span style="flex:1;height:4px;border-radius:999px;background:{{ s.bg }}"></span>
+</sc-for>
+</div>
+
+<div style="flex:1;padding:6px 18px 20px;display:flex;flex-direction:column;gap:18px">
+
+<sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;justify-content:center;align-items:flex-start">
+<dc-import name="Logo" variant="symbol" tone="light" size="64" hint-size="64px,64px"></dc-import>
+<h2 style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">Welcome to Cozy, {{ name }}.</h2>
+<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Here's the space in 60 seconds: where to work, where to call, and how the kitchen works.</p>
+</div>
+<button type="button" onClick="{{ next }}" style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Start<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
+</sc-if>
+
+<sc-if value="{{ s2 }}">
+<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">How do you work most days?</h2>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft)">No wrong answer.</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ workChoices }}" as="c" hint-placeholder-count="3">
+<button type="button" onClick="{{ c.onClick }}" style="min-height:56px;display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--cz-paper);border:1.5px solid var(--cz-line-strong);border-radius:14px;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink);text-align:left;cursor:pointer" style-hover="border-color:var(--cz-amber-ink);background:var(--cz-desk)"><dc-import name="Icon" icon="{{ c.icon }}" size="22" color="{{ c.color }}" hint-size="22px,22px"></dc-import>{{ c.label }}</button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ s3 }}">
+<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">The zones</h2>
+<dc-import name="FloorPlan" hereLabel="You are here" focusTag="{{ focusTag }}" flexTag="{{ flexTag }}" hint-size="100%,300px"></dc-import>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ zoneRows }}" as="z" hint-placeholder-count="3">
+<li style="display:flex;gap:12px;align-items:flex-start">
+<span style="flex:none;padding-top:2px"><dc-import name="Icon" icon="{{ z.icon }}" size="22" color="{{ z.color }}" hint-size="22px,22px"></dc-import></span>
+<span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);"><b style="font-weight:600;color:{{ z.color }}">{{ z.name }}</b> {{ z.text }}</span>
+</li>
+</sc-for>
+</ul>
+<button type="button" onClick="{{ next }}" style="margin-top:auto;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Next<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
+</sc-if>
+
+<sc-if value="{{ s4 }}">
+<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">Taking a call?</h2>
+<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Calls and meetings go in Flex. Need a door? Book a Private room by the hour.</p>
+<p style="margin:0;font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">You'll see these signs in the space:</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);"><b style="font-weight:600;color:var(--cz-ink)">The Focus sign,</b> where Focus starts:</span>
+<dc-import name="CozySign" kind="focusSign" hint-size="100%,280px"></dc-import>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);"><b style="font-weight:600;color:var(--cz-ink)">The floor tape,</b> along each zone's edge:</span>
+<dc-import name="CozySign" kind="floorTape" zone="focus" hint-size="100%,50px"></dc-import>
+<dc-import name="CozySign" kind="floorTape" zone="flex" hint-size="100%,50px"></dc-import>
+</div>
+<div style="display:flex;flex-direction:column;gap:10px">
+<span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);"><b style="font-weight:600;color:var(--cz-ink)">The desk card,</b> on desks at the edge of Focus:</span>
+<dc-import name="CozySign" kind="deskCard" hint-size="100%,180px"></dc-import>
+</div>
+<button type="button" onClick="{{ next }}" style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Next<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
+</sc-if>
+
+<sc-if value="{{ s5 }}">
+<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">The kitchen</h2>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px">
+<sc-for list="{{ kitchenRows }}" as="k" hint-placeholder-count="4">
+<li style="display:flex;gap:12px;align-items:flex-start">
+<span style="flex:none;padding-top:2px"><dc-import name="Icon" icon="{{ k.icon }}" size="22" color="#6B5B4B" hint-size="22px,22px"></dc-import></span>
+<span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">{{ k.text }}</span>
+</li>
+</sc-for>
+</ul>
+<dc-import name="CozySign" kind="fridgeLabel" hint-size="100%,110px"></dc-import>
+<dc-import name="CozySign" kind="shelfLabel" hint-size="100%,50px"></dc-import>
+<button type="button" onClick="{{ next }}" style="margin-top:auto;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Next<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
+</sc-if>
+
+<sc-if value="{{ s6 }}">
+<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">Questions? Ask at the front desk.</h2>
+<div style="display:flex;gap:12px;align-items:flex-start">
+<span style="flex:none;padding-top:3px"><dc-import name="Icon" icon="desk" size="22" color="#1F1A12" hint-size="22px,22px"></dc-import></span>
+<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Something not right? Tell us at the front desk. We'll note it and get back to you on the day we say.</p>
+</div>
+<div style="display:flex;gap:12px;align-items:flex-start">
+<span style="flex:none;padding-top:3px"><dc-import name="Icon" icon="wifi" size="22" color="#1F1A12" hint-size="22px,22px"></dc-import></span>
+<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Wi-Fi down? We'll tell you within 10 minutes, and update you every 15 minutes until it's back.</p>
+</div>
+<button type="button" onClick="{{ next }}" style="margin-top:auto;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Next<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
+</sc-if>
+
+<sc-if value="{{ s7 }}">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">Quick check · {{ qStep }} of 2</span>
+<p style="margin:0;font:500 20px/28px 'Archivo',sans-serif;color:var(--cz-ink);">{{ qText }}</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ qChoices }}" as="c" hint-placeholder-count="3">
+<button type="button" onClick="{{ c.onClick }}" style="min-height:56px;display:flex;align-items:flex-start;gap:12px;padding:14px 18px;background:{{ c.bg }};border:1.5px solid {{ c.border }};border-radius:14px;font:400 17px/25px 'IBM Plex Sans',sans-serif;color:var(--cz-ink);text-align:left;cursor:pointer" style-hover="border-color:var(--cz-amber-ink)">{{ c.label }}</button>
+</sc-for>
+</div>
+<sc-if value="{{ qAnswered }}">
+<div style="display:flex;gap:12px;align-items:flex-start;background:var(--cz-desk);border-left:4px solid {{ qColor }};border-radius:4px 12px 12px 4px;padding:14px 16px">
+<span style="flex:none;padding-top:2px"><dc-import name="Icon" icon="{{ qIcon }}" size="20" color="{{ qColor }}" hint-size="20px,20px"></dc-import></span>
+<span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);"><b style="font-weight:600;color:{{ qColor }}">{{ qWord }}</b> {{ qFeedback }}</span>
+</div>
+</sc-if>
+<sc-if value="{{ qRight }}">
+<button type="button" onClick="{{ next }}" style="margin-top:auto;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Next<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
+</sc-if>
+</sc-if>
+
+<sc-if value="{{ s8 }}">
+<div style="flex:1;display:flex;flex-direction:column;gap:18px;justify-content:center;align-items:flex-start">
+<dc-import name="Logo" variant="lockup" tone="light" size="34" hint-size="124px,34px"></dc-import>
+<h2 style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">That's Cozy. Welcome in, {{ name }}.</h2>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft);">Cozy in 60 seconds stays in the app's menu, to open again any time.</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:12px">
+<button type="button" onClick="{{ restart }}" style="flex:1 1 150px;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Done</button>
+<button type="button" onClick="{{ seeMap }}" style="flex:1 1 150px;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:none;border:1.5px solid var(--cz-line-strong);border-radius:14px;font:600 17px/24px 'Archivo',sans-serif;color:var(--cz-ink);cursor:pointer">See the map again</button>
+</div>
+</sc-if>
+
+</div>
+</div>
+</div>
+</div>
+
+</div>
+<dc-import name="DocFooter" doc-title="Cozy in 60 seconds" doc-type="Cozy in 60 seconds" date="October 2026" hint-size="100%,170px"></dc-import>
+</article>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;memberName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Alex&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+const QUESTIONS = [
+  {
+    text: '"Your phone rings while you\u2019re at a desk in Focus. What do you do?"',
+    choices: [
+      { label: '"Take the call in Flex."', right: true, fb: 'Calls go in Flex, so Focus stays quiet for everyone.' },
+      { label: '"Answer it quietly at the desk."', right: false, fb: 'Focus is silent, even for quiet calls. Take it to Flex.' },
+      { label: '"Step into the kitchen to take it."', right: false, fb: 'The kitchen is shared. Calls go in Flex, or in a Private room if you need a door.' }
+    ]
+  },
+  {
+    text: '"It\u2019s Friday afternoon. Your lunch is in the fridge with no label. What happens at 6 pm?"',
+    choices: [
+      { label: '"It goes in the clear-out."', right: true, fb: 'Add your name and the date, and it stays.' },
+      { label: '"It stays until I take it."', right: false, fb: 'Food without a name and date goes at the Friday clear-out. Add a label, and it stays.' }
+    ]
+  }
+];
+const ZONE_ROWS = [
+  { name: 'Focus', icon: 'focus', color: '#2F5A9E', text: '"Silent work. No calls, no meetings."' },
+  { name: 'Flex', icon: 'flex', color: '#A3501A', text: '"Desk work, calls and meetings."' },
+  { name: 'Private', icon: 'private', color: '#6A4A8C', text: '"Rooms with a door. Hot desk members can book one by the hour. Dedicated members have their own."' }
+];
+const KITCHEN = [
+  { icon: 'fridge', text: '"Put your name and the date on your food."' },
+  { icon: 'cleaning', text: '"Every Friday at 6 pm, we clear the fridge. Food without a name and date goes. Labeled food that\u2019s still in date stays."' },
+  { icon: 'kitchen', text: '"Anything on the Help yourself shelf is free for anyone to take. After an event, we\u2019ll message you when there are leftovers on it."' },
+  { icon: 'mug', text: '"Used a cup? Wash it and put it back."' }
+];
+
+class Component extends DCLogic {
+  state = { i: 0, work: '', qi: 0, picked: -1 };
+
+  go = n => this.setState({ i: n, picked: -1 });
+
+  next = () => {
+    const { i, qi, picked } = this.state;
+    if (i === 6) {
+      const q = QUESTIONS[qi];
+      const ok = picked > -1 && q.choices[picked].right;
+      if (ok && qi < QUESTIONS.length - 1) { this.setState({ qi: qi + 1, picked: -1 }); return; }
+      if (ok) { this.setState({ i: 7, picked: -1 }); return; }
+      return;
+    }
+    this.setState({ i: Math.min(i + 1, 7), picked: -1 });
+  };
+
+  pickWork = w => () => this.setState({ work: w, i: 2 });
+  pickAnswer = n => () => this.setState({ picked: n });
+  restart = () => this.setState({ i: 0, work: '', qi: 0, picked: -1 });
+  seeMap = () => this.setState({ i: 2, picked: -1 });
+
+  renderVals() {
+    const { i, work, qi, picked } = this.state;
+    const q = QUESTIONS[qi];
+    const chosen = picked > -1 ? q.choices[picked] : null;
+    const right = !!(chosen && chosen.right);
+    return {
+      name: this.props.memberName ?? 'Alex',
+      step: i + 1,
+      segs: Array.from({ length: 8 }, (_, n) => ({ bg: n <= i ? '#F2A93B' : '#E3DACB' })),
+      s1: i === 0, s2: i === 1, s3: i === 2, s4: i === 3, s5: i === 4, s6: i === 5, s7: i === 6, s8: i === 7,
+      next: this.next,
+      restart: this.restart,
+      seeMap: this.seeMap,
+      workChoices: [
+        { label: '"On calls a lot"', icon: 'flex', color: '#A3501A', onClick: this.pickWork('calls') },
+        { label: '"Deep focus, quiet please"', icon: 'focus', color: '#2F5A9E', onClick: this.pickWork('focus') },
+        { label: '"A bit of both"', icon: 'meeting', color: '#5E5446', onClick: this.pickWork('both') }
+      ],
+      focusTag: work === 'focus' || work === 'both' ? 'For your focus' : '',
+      flexTag: work === 'calls' || work === 'both' ? 'For your calls' : '',
+      zoneRows: ZONE_ROWS,
+      kitchenRows: KITCHEN,
+      qStep: qi + 1,
+      qText: q.text,
+      qChoices: q.choices.map((c, n) => ({
+        label: c.label,
+        onClick: this.pickAnswer(n),
+        border: picked === n ? (c.right ? '#2F7A4B' : '#B03A48') : '#8C8170',
+        bg: picked === n ? '#F4EFE4' : '#FBF7EE'
+      })),
+      qAnswered: picked > -1,
+      qRight: right,
+      qWord: right ? 'Right.' : 'Not yet.',
+      qIcon: right ? 'right' : 'notyet',
+      qColor: right ? '#2F7A4B' : '#B03A48',
+      qFeedback: chosen ? chosen.fb : ''
+    };
+  }
+}
+</script>
+</body>
+</html>

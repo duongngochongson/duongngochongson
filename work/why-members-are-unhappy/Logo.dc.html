@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<sc-if value="{{ isWordmark }}" hint-placeholder-val="{{ true }}">
+<svg viewBox="3.8 46 216 73" role="img" aria-label="cozy" style="display:block;flex:none;height:{{ wmH }};width:{{ wmW }};overflow:visible">
+<path style="fill:{{ letter }}" d="M29.5 101.2Q21.1 101.2 15.4 98.3Q9.7 95.3 6.8 89.2Q3.8 83 3.8 73.7Q3.8 64.2 6.8 58.1Q9.7 52.1 15.5 49.1Q21.2 46.1 29.5 46.1Q34.9 46.1 39.3 47.4Q43.6 48.7 46.8 51.4Q50 54.1 51.7 58Q53.3 62 53.3 67.4L39.4 67.4Q39.4 63.8 38.3 61.5Q37.2 59.2 35 58Q32.7 56.8 29.3 56.8Q25.3 56.8 22.8 58.6Q20.3 60.4 19.1 63.9Q17.9 67.4 17.9 72.6L17.9 74.9Q17.9 80 19.2 83.5Q20.4 87 23 88.8Q25.6 90.5 29.8 90.5Q33.2 90.5 35.5 89.3Q37.7 88.1 38.9 85.7Q40.1 83.3 40.1 79.9L53.3 79.9Q53.3 85 51.7 89Q50 93 46.9 95.7Q43.7 98.4 39.3 99.8Q34.9 101.2 29.5 101.2Z"></path>
+<circle cx="84.5" cy="73.7" r="21.5" style="fill:{{ disc }}"></circle>
+<g transform="translate(-3 0)">
+<path style="fill:{{ letter }}" d="M165.7 100L118.9 100L118.9 94.1L144.6 58.1L120.5 58.1L120.5 47.4L164.7 47.4L164.7 53.1L138.9 89.2L165.7 89.2Z"></path>
+<path style="fill:{{ letter }}" d="M182.5 118.8Q178.8 118.8 176.3 118.3Q173.9 117.7 173.2 117.5L173.2 108.1L179.3 108.1Q181.8 108.1 183.8 107Q185.8 105.8 187.3 104Q188.8 102.1 189.5 100L168.9 47.4L183.6 47.4L192.6 71.7Q193.2 73.4 193.9 76Q194.7 78.5 195.5 81.3Q196.3 84 196.8 86.1L197.3 86.1Q197.7 84.7 198.2 82.8Q198.7 80.9 199.3 78.9Q199.8 76.9 200.3 75Q200.9 73.2 201.3 71.8L208.8 47.4L222.8 47.4L204.9 97.5Q203.4 101.9 201.4 105.8Q199.5 109.6 196.9 112.5Q194.3 115.5 190.8 117.2Q187.2 118.8 182.5 118.8Z"></path>
+</g>
+</svg>
+</sc-if>
+<sc-if value="{{ isSymbol }}">
+<svg viewBox="0 0 100 100" role="img" aria-label="Cozy" style="display:block;flex:none;width:{{ symH }};height:{{ symH }}">
+<path style="fill:{{ square }};fill-rule:evenodd" d="M24 0H76A24 24 0 0 1 100 24V76A24 24 0 0 1 76 100H24A24 24 0 0 1 0 76V24A24 24 0 0 1 24 0Z M68 17a15 15 0 1 0 0 30a15 15 0 1 0 0-30Z"></path>
+<circle cx="68" cy="32" r="15.6" style="fill:{{ sqDisc }}"></circle>
+</svg>
+</sc-if>
+<sc-if value="{{ isLockup }}">
+<div role="img" aria-label="Cozy" style="display:flex;align-items:flex-start;gap:{{ gap }}">
+<svg viewBox="0 0 100 100" aria-hidden="true" style="display:block;flex:none;width:{{ symH }};height:{{ symH }}">
+<path style="fill:{{ square }};fill-rule:evenodd" d="M24 0H76A24 24 0 0 1 100 24V76A24 24 0 0 1 76 100H24A24 24 0 0 1 0 76V24A24 24 0 0 1 24 0Z M68 17a15 15 0 1 0 0 30a15 15 0 1 0 0-30Z"></path>
+<circle cx="68" cy="32" r="15.6" style="fill:{{ sqDisc }}"></circle>
+</svg>
+<svg viewBox="3.8 46 216 73" aria-hidden="true" style="display:block;flex:none;height:{{ lkH }};width:{{ lkW }};margin-top:{{ lkTop }};overflow:visible">
+<path style="fill:{{ letter }}" d="M29.5 101.2Q21.1 101.2 15.4 98.3Q9.7 95.3 6.8 89.2Q3.8 83 3.8 73.7Q3.8 64.2 6.8 58.1Q9.7 52.1 15.5 49.1Q21.2 46.1 29.5 46.1Q34.9 46.1 39.3 47.4Q43.6 48.7 46.8 51.4Q50 54.1 51.7 58Q53.3 62 53.3 67.4L39.4 67.4Q39.4 63.8 38.3 61.5Q37.2 59.2 35 58Q32.7 56.8 29.3 56.8Q25.3 56.8 22.8 58.6Q20.3 60.4 19.1 63.9Q17.9 67.4 17.9 72.6L17.9 74.9Q17.9 80 19.2 83.5Q20.4 87 23 88.8Q25.6 90.5 29.8 90.5Q33.2 90.5 35.5 89.3Q37.7 88.1 38.9 85.7Q40.1 83.3 40.1 79.9L53.3 79.9Q53.3 85 51.7 89Q50 93 46.9 95.7Q43.7 98.4 39.3 99.8Q34.9 101.2 29.5 101.2Z"></path>
+<circle cx="84.5" cy="73.7" r="21.5" style="fill:{{ disc }}"></circle>
+<g transform="translate(-3 0)">
+<path style="fill:{{ letter }}" d="M165.7 100L118.9 100L118.9 94.1L144.6 58.1L120.5 58.1L120.5 47.4L164.7 47.4L164.7 53.1L138.9 89.2L165.7 89.2Z"></path>
+<path style="fill:{{ letter }}" d="M182.5 118.8Q178.8 118.8 176.3 118.3Q173.9 117.7 173.2 117.5L173.2 108.1L179.3 108.1Q181.8 108.1 183.8 107Q185.8 105.8 187.3 104Q188.8 102.1 189.5 100L168.9 47.4L183.6 47.4L192.6 71.7Q193.2 73.4 193.9 76Q194.7 78.5 195.5 81.3Q196.3 84 196.8 86.1L197.3 86.1Q197.7 84.7 198.2 82.8Q198.7 80.9 199.3 78.9Q199.8 76.9 200.3 75Q200.9 73.2 201.3 71.8L208.8 47.4L222.8 47.4L204.9 97.5Q203.4 101.9 201.4 105.8Q199.5 109.6 196.9 112.5Q194.3 115.5 190.8 117.2Q187.2 118.8 182.5 118.8Z"></path>
+</g>
+</svg>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:360,&quot;height&quot;:140},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;wordmark&quot;,&quot;symbol&quot;,&quot;lockup&quot;],&quot;default&quot;:&quot;lockup&quot;,&quot;tsType&quot;:&quot;'wordmark'|'symbol'|'lockup'&quot;},&quot;tone&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;,&quot;ink&quot;,&quot;paper&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;'light'|'dark'|'ink'|'paper'&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:48,&quot;min&quot;:12,&quot;max&quot;:400,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+const TONES = {
+  light: { letter:'#1F1A12', disc:'#F2A93B', square:'#1F1A12', sqDisc:'#F2A93B' },
+  dark:  { letter:'#FFFCF5', disc:'#F2A93B', square:'#3A3125', sqDisc:'#F2A93B' },
+  ink:   { letter:'#1F1A12', disc:'#1F1A12', square:'#1F1A12', sqDisc:'transparent' },
+  paper: { letter:'#FFFCF5', disc:'#FFFCF5', square:'#FFFCF5', sqDisc:'transparent' },
+  // portfolio: the light symbol on the dark ground, so it doesn't sink into the night header (lamp stays amber)
+  lit:   { letter:'#FFFCF5', disc:'#F2A93B', square:'#FFFCF5', sqDisc:'#F2A93B' }
+};
+class Component extends DCLogic {
+  renderVals() {
+    const v = this.props.variant || 'wordmark';
+    const s = Number(this.props.size ?? 48);
+    const t = { ...(TONES[this.props.tone] || TONES.light) };
+    if (this.props.letterColor) t.letter = this.props.letterColor;
+    if (this.props.discColor) { t.disc = this.props.discColor; t.sqDisc = this.props.discColor; }
+    const r = 216 / 73, lk = s * 0.8, px = n => n.toFixed(2) + 'px';
+    return {
+      ...t,
+      isWordmark: v === 'wordmark', isSymbol: v === 'symbol', isLockup: v === 'lockup',
+      wmH: px(s), wmW: px(s * r), symH: px(s),
+      lkH: px(lk), lkW: px(lk * r), lkTop: px(s * 0.196), gap: px(s * 0.3)
+    };
+  }
+}
+</script>
+</body>
+</html>

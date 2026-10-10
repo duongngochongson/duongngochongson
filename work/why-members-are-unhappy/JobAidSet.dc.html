@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/fonts.css">
+</helmet>
+<div style="display:flex;flex-wrap:wrap;gap:20px;align-items:stretch;width:100%">
+<sc-for list="{{ cards }}" as="c" hint-placeholder-count="4">
+<div style="flex:1 1 340px;min-width:0;max-width:{{ c.max }};display:flex">
+<dc-import name="JobAidCard" number="{{ c.number }}" title="{{ c.title }}" icon="{{ c.icon }}" iconColor="{{ c.iconColor }}" variant="{{ c.variant }}" rows="{{ c.rows }}" use="{{ c.use }}" foot="{{ c.foot }}" footTitle="{{ c.footTitle }}" hint-size="100%,520px"></dc-import>
+</div>
+</sc-for>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:720},&quot;which&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;all&quot;,&quot;123&quot;,&quot;01&quot;,&quot;02&quot;,&quot;03&quot;,&quot;04&quot;],&quot;default&quot;:&quot;all&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const CARDS = {
+  '01': {
+    number: '01', title: 'HEARD card', icon: 'desk', iconColor: '#1F1A12', variant: 'rows', max: '440px', use: '', foot: [], footTitle: '',
+    rows: [
+      { key: 'H', lead: 'Hear: ', text: 'Let them tell it ("What happened? Take me through it."), and let them finish ("Go on, I\u2019m listening.").' },
+      { key: 'E', lead: 'Empathize: ', text: 'Name the feeling ("That sounds exhausting"), and say their need back in your own words ("So you need somewhere you can rely on"), before any rule or fix.' },
+      { key: 'A', lead: 'Apologize: ', text: 'Say exactly what Cozy got wrong ("We missed your message, and that\u2019s on us"). Names stay private on both sides ("I can\u2019t share names, the same way I\u2019d never share yours").' },
+      { key: 'R', lead: 'Resolve: ', text: 'Offer an option that fits the need. Agree on one next step with an owner and a day.' },
+      { key: 'D', lead: 'Diagnose: ', text: 'Keep the case open until the member says it worked. Log what happened, where and when; the weekly review uses the log to find the cause, not only to fix this case.' }
+    ]
+  },
+  '02': {
+    number: '02', title: 'Options card', icon: 'focus', iconColor: '#2F5A9E', variant: 'rows', max: '440px', use: '', foot: [], footTitle: '',
+    rows: [
+      { key: '1', lead: 'A Focus desk, with the zone map: ', text: 'fits when the member needs reliable quiet and sits outside Focus.' },
+      { key: '2', lead: 'A private talk with the other member, keeping the reporter\u2019s name out: ', text: 'fits when the other member broke a zone rule.' },
+      { key: '3', lead: 'Pausing the plan from the end of the month: ', text: 'fits when the member needs a break.' },
+      { key: '4', lead: 'Passed on: ', text: 'money questions and Wi-Fi outages over 30 minutes go to the head of operations. Safety and harassment go to the incident process.' }
+    ]
+  },
+  '03': {
+    number: '03', title: 'The log card', icon: 'cases', iconColor: '#1F1A12', variant: 'rows', max: '440px', use: '', foot: [], footTitle: '',
+    rows: [
+      { key: '1', lead: '', text: 'Log every case right after the call, from your note.' },
+      { key: '2', lead: '', text: 'What happened says what, where and when, and what the member needs.' },
+      { key: '3', lead: '', text: 'Every case has an owner, and every promise goes in the to-do list with its day.' },
+      { key: '4', lead: '', text: 'At shift change, go through every open case with the next shift.' },
+      { key: '5', lead: '', text: 'Close a case when the member says the fix worked; if not, add a new to-do with its day.' }
+    ]
+  },
+  '04': {
+    number: '04', title: 'Wi-Fi Down', icon: 'wifi', iconColor: '#1F1A12', variant: 'steps', max: '720px',
+    use: 'members say the Wi-Fi is down. Read a step, do it, then go to the next. Every shift does it the same way.',
+    footTitle: 'What to say (fill in the times)',
+    rows: [
+      { key: '1', lead: 'Check the scope', when: 'In 1 minute', do: 'Is it one device or the whole space? It\u2019s the whole space when 2 or more members report it, or the wired network is down too.', avoid: 'Fixing one laptop while the whole network is down' },
+      { key: '2', lead: 'Tell everyone', when: 'Within 10 minutes', do: 'Send the first notice now, before you know the cause. Say when the next update comes. Offer everyone here a drink at the front desk, as a thank-you for waiting.', avoid: 'Waiting for the cause, or promising a fix time' },
+      { key: '3', lead: 'Get it back', when: 'Right away', do: 'Switch to the backup line. Still down? Restart the router. Still down? Call the provider.', avoid: 'Restarting again and again, or calling the provider late' },
+      { key: '4', lead: 'Update', when: 'Every 15 minutes', do: 'Send an update, even when nothing is new. Each one says when the next comes.', avoid: 'Staying silent because there\u2019s nothing new' },
+      { key: '5', lead: 'Call the head of operations', when: 'At 30 minutes', do: 'Still down after 30 minutes: call the head of operations.', avoid: 'Going on alone' },
+      { key: '6', lead: 'Thank everyone', when: 'Back online', do: 'Send the back-online message. Down 30 minutes or more? Everyone here also gets 1 free hour in a Private room or a meeting room, to use within 30 days. Log each free hour under the member\u2019s name.', avoid: 'Deciding by feel: everyone here gets the same, on every shift' },
+      { key: '7', lead: 'Log it', when: 'When it\u2019s over', do: 'When it started, when the first notice went out, the cause, when it ended, and the compensation.', avoid: 'Leaving out the first-notice time or the cause' }
+    ],
+    foot: [
+      { key: 'First notice', text: '"The Wi-Fi is down across the space, and we\u2019re working on it now. Sorry for the trouble. Next update at [time]. While you wait, grab a drink on us at the front desk."' },
+      { key: 'Update', text: '"Update at [time]: the Wi-Fi is still down. We\u2019ve switched to the backup line and called our provider. Next update at [time]."' },
+      { key: 'Update, nothing new', text: '"Still down at [time], and we\u2019re still on it. Next update at [time]."' },
+      { key: 'Back online', text: '"The Wi-Fi is back. Thanks for waiting with us."' },
+      { key: 'Back online, after 30 minutes or more', text: '"The Wi-Fi is back. It was down for [minutes] minutes, so everyone here during the outage gets 1 free hour in a Private room or a meeting room, to use within 30 days. Book it at the front desk."' }
+    ]
+  }
+};
+class Component extends DCLogic {
+  renderVals() {
+    const which = String(this.props.which ?? 'all');
+    const keys = which === 'all' ? ['01', '02', '03', '04']
+      : which === '123' ? ['01', '02', '03']
+      : which.split(',').map(s => s.trim());
+    return { cards: keys.map(k => CARDS[k]).filter(Boolean) };
+  }
+}
+</script>
+</body>
+</html>

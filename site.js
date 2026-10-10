@@ -4,6 +4,7 @@
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   };
+  const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---- the Portfolio page shows the same project cards as Home (without Home's block), so a project is added in one place ----
   const projects = document.querySelector('[data-projects] .proj-list');
@@ -16,15 +17,16 @@
   }
 
   // ---- pages: #home, #portfolio, #portfolio/<project>, #about ----
+  // Old addresses keep working: #work… became #portfolio…, and Hear Them Out is now part of Why Members Are Unhappy.
+  const aliases = { 'portfolio/hear-them-out': 'portfolio/why-members-are-unhappy' };
   const baseTitle = document.title;
   const dialog = document.querySelector('dialog.doc');
   function route(e) {
     if (dialog && dialog.open) dialog.close();
     let key = location.hash.slice(1) || 'home';
-    if (key === 'work' || key.startsWith('work/')) {  // old links
-      key = 'portfolio' + key.slice(4);
-      history.replaceState(null, '', '#' + key);
-    }
+    if (key === 'work' || key.startsWith('work/')) key = 'portfolio' + key.slice(4);
+    if (aliases[key]) key = aliases[key];
+    if ('#' + key !== location.hash && location.hash) history.replaceState(null, '', '#' + key);
     const target = document.querySelector(`[data-page="${CSS.escape(key)}"]`) ? key : 'home';
     document.querySelectorAll('[data-page]').forEach(n => { n.hidden = n.dataset.page !== target; });
     const section = target.split('/')[0];
@@ -41,23 +43,105 @@
   }
   window.addEventListener('hashchange', route);
 
-  // ---- document pop-up: a button with data-doc="x" opens <template id="x"> ----
+  // ---- pop-up: documents in a frame (data-frame), pictures (data-image), templates (data-doc) ----
   if (dialog) {
     const title = dialog.querySelector('[data-doc-title]');
     const kicker = dialog.querySelector('[data-doc-kicker]');
     const body = dialog.querySelector('[data-doc-body]');
-    document.addEventListener('click', e => {
-      const btn = e.target.closest('[data-doc]');
-      if (!btn) return;
+    const newTab = dialog.querySelector('[data-doc-newtab]');
+    const vi = () => root.lang === 'vi';
+
+    function open({ heading, label, wide, tabHref }) {
+      title.textContent = heading || '';
+      kicker.textContent = label || '';
+      dialog.classList.toggle('doc-wide', !!wide);
+      newTab.hidden = !tabHref;
+      if (tabHref) newTab.href = tabHref;
+      body.scrollTop = 0;
+      if (!dialog.open) dialog.showModal();
+    }
+
+    // A document from work/ (same site): links inside it are kept tidy, so the pop-up behaves like one page.
+    function wireFrame(frame) {
+      let doc, win;
+      try { doc = frame.contentDocument; win = frame.contentWindow; } catch (e) { return; }
+      if (!doc || !win) return;
+      frame.classList.add('is-ready');
+      const name = (doc.title || '').split(' · ')[0].trim();
+      if (name) title.textContent = name;
+      newTab.href = win.location.href;
+      doc.addEventListener('click', e => {
+        const a = e.target.closest && e.target.closest('a[href]');
+        if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const url = new URL(a.getAttribute('href'), win.location.href);
+        if (url.origin !== location.origin) {  // sources and the live course: a new tab, never inside the pop-up
+          e.preventDefault();
+          window.open(url.href, '_blank', 'noopener');
+        } else if (url.pathname === win.location.pathname && url.hash) {  // contents links: scroll, no history entry
+          e.preventDefault();
+          const to = doc.getElementById(decodeURIComponent(url.hash.slice(1)));
+          if (to) to.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
+        } else {  // another document of the project: replace, so browser Back still leaves the project page
+          e.preventDefault();
+          win.location.replace(url.href);
+        }
+      }, true);
+      doc.addEventListener('keydown', e => {  // Escape closes the pop-up, unless the document's own figure viewer is open
+        if (e.key === 'Escape' && !doc.querySelector('[aria-modal="true"]')) { e.preventDefault(); dialog.close(); }
+      }, true);
+    }
+
+    function openFrame(link) {
+      const href = link.href;
+      open({ heading: link.dataset.title || link.textContent.trim(), label: link.dataset.kicker, wide: true, tabHref: href });
+      const loading = document.createElement('div');
+      loading.className = 'doc-loading';
+      loading.textContent = vi() ? 'Đang mở tài liệu…' : 'Opening the document…';
+      const frame = document.createElement('iframe');
+      frame.className = 'doc-frame';
+      frame.title = link.dataset.title || 'Document';
+      frame.addEventListener('load', () => wireFrame(frame));
+      frame.src = href;
+      body.replaceChildren(loading, frame);
+    }
+
+    function openImage(btn) {
+      const img = btn.querySelector('img');
+      const src = new URL(btn.dataset.image, location.href).href;
+      open({ heading: btn.dataset.title, label: btn.dataset.kicker, wide: true, tabHref: src });
+      const wrap = document.createElement('div');
+      wrap.className = 'doc-picture';
+      const big = document.createElement('img');
+      big.src = src;
+      big.alt = img ? img.alt : '';
+      wrap.append(big);
+      body.replaceChildren(wrap);
+    }
+
+    function openTemplate(btn) {
       const tpl = document.getElementById(btn.dataset.doc);
       if (!tpl) return;
-      const vi = root.lang === 'vi';
-      title.textContent = (vi && tpl.dataset.titleVi) || tpl.dataset.title || btn.textContent.trim();
-      kicker.textContent = (vi && tpl.dataset.kickerVi) || tpl.dataset.kicker || '';
+      open({
+        heading: (vi() && tpl.dataset.titleVi) || tpl.dataset.title || btn.textContent.trim(),
+        label: (vi() && tpl.dataset.kickerVi) || tpl.dataset.kicker || ''
+      });
       body.replaceChildren(tpl.content.cloneNode(true));
-      if (vi) body.querySelectorAll('[data-vi]').forEach(n => { n.innerHTML = n.dataset.vi; });
-      body.scrollTop = 0;
-      dialog.showModal();
+      if (vi()) body.querySelectorAll('[data-vi]').forEach(n => { n.innerHTML = n.dataset.vi; });
+    }
+
+    document.addEventListener('click', e => {
+      const el = e.target.closest('[data-frame], [data-image], [data-doc]');
+      if (!el) return;
+      if (el.matches('[data-frame]')) {
+        // Ctrl/Cmd/Shift-click and middle-click keep the link's own new-tab behaviour.
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        openFrame(el);
+      } else if (el.matches('[data-image]')) {
+        openImage(el);
+      } else {
+        openTemplate(el);
+      }
     });
     dialog.querySelector('[data-doc-close]').addEventListener('click', () => dialog.close());
     // A click on the dimmed area around the box closes it, but only if the press started there too
@@ -72,7 +156,11 @@
       if (pressedOutside && outside(e)) dialog.close();
       pressedOutside = false;
     });
-    dialog.addEventListener('close', () => body.replaceChildren());
+    dialog.addEventListener('close', () => {
+      body.replaceChildren();
+      dialog.classList.remove('doc-wide');
+      newTab.hidden = true;
+    });
   }
 
   // ---- language: English is in the markup, Vietnamese in data-vi ----

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Son Duong — Learning Experience Designer</title>
-<meta name="description" content="Son Duong designs engaging, effective learning experiences that help people build skills and navigate change — learning design with a data-driven approach.">
+<meta name="description" content="Son Duong is a learning experience designer from Vietnam. This site has his portfolio and his career journey so far.">
 <meta property="og:title" content="Son Duong — Learning Experience Designer">
 <meta property="og:description" content="Hello, nice to meet you here, I'm Son.">
 <meta name="theme-color" content="#ffffff">
@@ -17,10 +17,41 @@
   try { if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<!-- Project artwork, drawn once and reused by the cards and the project pages (<use href="#art-...">). -->
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false">
+  <!-- Cozy: the brand lockup (symbol + wordmark), paths from the Cozy logo -->
+  <symbol id="art-cozy" viewBox="0 0 240 148">
+    <svg x="46.6" y="54" width="40" height="40" viewBox="0 0 100 100">
+      <path fill="var(--cz-square)" fill-rule="evenodd" d="M24 0H76A24 24 0 0 1 100 24V76A24 24 0 0 1 76 100H24A24 24 0 0 1 0 76V24A24 24 0 0 1 24 0Z M68 17a15 15 0 1 0 0 30a15 15 0 1 0 0-30Z"/>
+      <circle cx="68" cy="32" r="15.6" fill="var(--cz-disc)"/>
+    </svg>
+    <svg x="98.6" y="61.8" width="94.7" height="32" viewBox="3.8 46 216 73" overflow="visible">
+      <path fill="var(--cz-letter)" d="M29.5 101.2Q21.1 101.2 15.4 98.3Q9.7 95.3 6.8 89.2Q3.8 83 3.8 73.7Q3.8 64.2 6.8 58.1Q9.7 52.1 15.5 49.1Q21.2 46.1 29.5 46.1Q34.9 46.1 39.3 47.4Q43.6 48.7 46.8 51.4Q50 54.1 51.7 58Q53.3 62 53.3 67.4L39.4 67.4Q39.4 63.8 38.3 61.5Q37.2 59.2 35 58Q32.7 56.8 29.3 56.8Q25.3 56.8 22.8 58.6Q20.3 60.4 19.1 63.9Q17.9 67.4 17.9 72.6L17.9 74.9Q17.9 80 19.2 83.5Q20.4 87 23 88.8Q25.6 90.5 29.8 90.5Q33.2 90.5 35.5 89.3Q37.7 88.1 38.9 85.7Q40.1 83.3 40.1 79.9L53.3 79.9Q53.3 85 51.7 89Q50 93 46.9 95.7Q43.7 98.4 39.3 99.8Q34.9 101.2 29.5 101.2Z"/>
+      <circle cx="84.5" cy="73.7" r="21.5" fill="var(--cz-disc)"/>
+      <g transform="translate(-3 0)">
+        <path fill="var(--cz-letter)" d="M165.7 100L118.9 100L118.9 94.1L144.6 58.1L120.5 58.1L120.5 47.4L164.7 47.4L164.7 53.1L138.9 89.2L165.7 89.2Z"/>
+        <path fill="var(--cz-letter)" d="M182.5 118.8Q178.8 118.8 176.3 118.3Q173.9 117.7 173.2 117.5L173.2 108.1L179.3 108.1Q181.8 108.1 183.8 107Q185.8 105.8 187.3 104Q188.8 102.1 189.5 100L168.9 47.4L183.6 47.4L192.6 71.7Q193.2 73.4 193.9 76Q194.7 78.5 195.5 81.3Q196.3 84 196.8 86.1L197.3 86.1Q197.7 84.7 198.2 82.8Q198.7 80.9 199.3 78.9Q199.8 76.9 200.3 75Q200.9 73.2 201.3 71.8L208.8 47.4L222.8 47.4L204.9 97.5Q203.4 101.9 201.4 105.8Q199.5 109.6 196.9 112.5Q194.3 115.5 190.8 117.2Q187.2 118.8 182.5 118.8Z"/>
+      </g>
+    </svg>
+  </symbol>
+  <!-- Not-Home Delivery Stop: one-colour icon, a van at a house whose door stays shut, and a "?" (is anyone home?) -->
+  <symbol id="art-delivery" viewBox="0 0 240 148">
+    <g transform="translate(-11 6)" fill="var(--art-tone)">
+      <path fill-rule="evenodd" d="M48 44H120a8 8 0 0 1 8 8V58H150a8 8 0 0 1 6.4 3.2L170 79.4a10 10 0 0 1 2 6V96a4 4 0 0 1-4 4H163A15 15 0 0 0 133 100H79A15 15 0 0 0 49 100H44a4 4 0 0 1-4-4V52a8 8 0 0 1 8-8Z M137 66H149.5a3 3 0 0 1 2.4 1.2L159 77H137Z"/>
+      <path fill-rule="evenodd" d="M53 100a11 11 0 1 0 22 0a11 11 0 1 0-22 0Z M60 100a4 4 0 1 0 8 0a4 4 0 1 0-8 0Z"/>
+      <path fill-rule="evenodd" d="M137 100a11 11 0 1 0 22 0a11 11 0 1 0-22 0Z M144 100a4 4 0 1 0 8 0a4 4 0 1 0-8 0Z"/>
+      <path d="M186 72L204 56L222 72V100H209V82H199V100H186Z"/>
+      <path d="M198.6 31a5.6 5.6 0 1 1 7.8 5.2c-1.6.7-2.4 1.9-2.4 3.6V42" fill="none" stroke="var(--art-tone)" stroke-width="3.6" stroke-linecap="round"/>
+      <circle cx="204" cy="48" r="2.3"/>
+    </g>
+  </symbol>
+</svg>
+
 <div class="site">
 
 <!-- ============ SIDEBAR ============ -->
@@ -63,10 +94,10 @@
 <!-- ---------- HOME ---------- -->
 <section class="page" data-page="home">
   <div class="block bg-t4 intro">
-    <p data-vi="Mình giúp mọi người xây kỹ năng và đi qua thay đổi: một bên là learning design, một bên là thói quen nhìn vào dữ liệu. Mỗi dự án ở đây bắt đầu từ một vấn đề kinh doanh và con số cần thay đổi. Trang web này giới thiệu ngắn gọn cách mình làm việc.">I help people build skills and navigate change: learning design on one side, a data habit on the other. Each project here starts from a business problem and the number it should move. This site is a short tour of how I work.</p>
+    <p data-vi="Mình là Son Duong, đến từ Việt Nam. Mình đam mê việc học và việc thiết kế trải nghiệm học tập, và mình muốn giúp mọi người xây kỹ năng và đi qua những thay đổi. Trang web này có portfolio của mình và hành trình sự nghiệp của mình cho đến bây giờ.">My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and about designing learning experiences, and I want to help people build skills and navigate change. This site has my portfolio and my career journey so far.</p>
     <div class="guide">
-      <a class="guide-item" href="#portfolio"><span class="dot" style="background:var(--a1)"></span><span><span class="guide-t">Portfolio</span><span class="guide-d" data-vi="Hai dự án mình thiết kế và tự lập trình. Đọc vì sao mỗi dự án được làm như vậy, rồi tự học thử.">Two projects I designed and built. Read why each one works the way it does, then try it yourself.</span></span></a>
-      <a class="guide-item" href="#about"><span class="dot" style="background:var(--a3)"></span><span><span class="guide-t" data-vi="Về mình">About me</span><span class="guide-d" data-vi="Nền tảng của mình (dạy học, dữ liệu, kinh doanh), cách mình làm việc, và CV.">My background in teaching, data and business, how I like to work, and my CV.</span></span></a>
+      <a class="guide-item" href="#portfolio"><span class="dot" style="background:var(--a1)"></span><span class="guide-t">Portfolio</span><span class="guide-go" aria-hidden="true">↗</span></a>
+      <a class="guide-item" href="#about"><span class="dot" style="background:var(--a3)"></span><span class="guide-t" data-vi="Về mình">About me</span><span class="guide-go" aria-hidden="true">↗</span></a>
     </div>
   </div>
 
@@ -74,34 +105,26 @@
   <div class="block bg-t2" data-projects>
     <h2 class="eyebrow" data-vi="DỰ ÁN">PROJECTS</h2>
     <div class="proj-list">
-      <a class="proj" href="#portfolio/hear-them-out" aria-labelledby="proj-hto">
-        <div class="thumb" style="background:var(--t2)" aria-hidden="true">
-          <div class="s" style="left:18px;top:30px;width:84px;height:84px;border-radius:50%;background:var(--a1);opacity:.75"></div>
-          <div class="s" style="left:72px;top:72px;width:46px;height:46px;border-radius:50%;background:var(--a2);opacity:.6"></div>
-          <div class="s stripes" style="right:14px;top:22px;width:44px;height:68px;border-radius:9px"></div>
-        </div>
+      <a class="proj" href="#portfolio/why-members-are-unhappy" aria-labelledby="proj-wmu">
+        <div class="thumb art-tile art-cozy" aria-hidden="true"><svg viewBox="0 0 240 148"><use href="#art-cozy"/></svg></div>
         <div class="proj-body">
-          <h3 id="proj-hto" data-vi="Hear Them Out: cuộc gọi khiếu nại">Hear Them Out: the complaint call</h3>
+          <h3 id="proj-wmu" data-vi="Why Members Are Unhappy">Why Members Are Unhappy</h3>
           <dl class="prs">
-            <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd data-vi="Thành viên chấm cách xử lý khiếu nại 2,7/5; chỉ một nửa khiếu nại trong sổ có bước tiếp theo.">Members rate complaint handling 2.7/5; only half of logged complaints have a next step.</dd></div>
-            <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd data-vi="Một cuộc gọi thời gian thực với 5 quyết định theo HEARD, rồi ghi case vào một công cụ mô phỏng.">A real-time call with five HEARD decisions, then logging the case in a simulated tool.</dd></div>
-            <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd class="strong" data-vi="Điểm khiếu nại 2,7 → 3,8 trong hai quý.">Complaint score 2.7 → 3.8 within two quarters.</dd></div>
+            <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd data-vi="Tại Cozy, một công ty coworking hư cấu, điểm hài lòng của thành viên giảm từ 4,1 xuống 3,2 trên 5 trong một năm. Cách xử lý khiếu nại bị chấm thấp nhất: 2,7.">At Cozy, a fictional coworking business, member satisfaction fell from 4.1 to 3.2 out of 5 in one year. Members gave complaint handling the lowest score: 2.7.</dd></div>
+            <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd data-vi="Mình phân tích nhu cầu và tìm ra ba nguyên nhân, chỉ một là thiếu kỹ năng. Vì vậy mình làm ba giải pháp: biển báo và hướng dẫn ngày đầu cho thành viên, checklist mất Wi-Fi cho nhân viên, và Hear Them Out, khoá học phân nhánh cho lễ tân.">I ran a needs analysis and found three causes. Only one was a skill gap, so I made three fixes: signs and a first-day guide for members, an outage checklist for staff, and Hear Them Out, a branching course for the front desk.</dd></div>
+            <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd data-vi="Nâng điểm hài lòng từ 3,2 lên 4,0, và điểm xử lý khiếu nại từ 2,7 lên 3,8, trong hai quý.">Raise member satisfaction from 3.2 to 4.0, and the complaint-handling score from 2.7 to 3.8, within two quarters.</dd></div>
           </dl>
         </div>
       </a>
 
       <a class="proj" href="#portfolio/delivery-scenario" aria-labelledby="proj-ds">
-        <div class="thumb" style="background:var(--t3)" aria-hidden="true">
-          <div class="s" style="left:18px;top:26px;width:58px;height:58px;border-radius:9px;background:var(--a3);opacity:.7"></div>
-          <div class="s" style="left:62px;top:84px;width:62px;height:30px;border-radius:999px;background:var(--a4);opacity:.6"></div>
-          <div class="s stripes" style="right:12px;top:40px;width:62px;height:62px;border-radius:50%"></div>
-        </div>
+        <div class="thumb art-tile art-delivery" aria-hidden="true"><svg viewBox="0 0 240 148"><use href="#art-delivery"/></svg></div>
         <div class="proj-body">
           <h3 id="proj-ds" data-vi="Giao hàng khi khách vắng nhà">Not-Home Delivery Stop</h3>
           <dl class="prs">
-            <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd data-vi="Chỉ 45% điểm giao vắng nhà thành công ngay lần đầu; tài xế bỏ qua cuộc gọi để giữ tốc độ.">Only 45% of not-home stops succeed first time; drivers skip the call to keep their stop rate.</dd></div>
-            <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd data-vi="Module 7 slide: sắp xếp, phân loại, cuộc gọi có giọng nói, khách hàng AI, tìm chỗ an toàn và tình huống phân nhánh.">A 7-slide module: ordering, sorting, a voiced call, an AI customer, a hotspot and a branching stop.</dd></div>
-            <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd class="strong" data-vi="Giao thành công lần đầu 45% → 65%; khiếu nại mất hàng ≤ 0,5%.">First-attempt success 45% → 65%; missing-parcel claims ≤ 0.5%.</dd></div>
+            <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd data-vi="Ở một công ty giao hàng hư cấu, khi khách vắng nhà chỉ 45% đơn được giao thành công ngay lần đầu. Tài xế bỏ qua cuộc gọi để giữ tốc độ, và không chắc đơn cần ký nhận hay kiểm tra tuổi được xử lý thế nào.">At a fictional parcel company, only 45% of parcels reach the customer on the first try when nobody is home. Drivers skip the phone call to keep their pace, and they are unsure what signature and age-check parcels allow.</dd></div>
+            <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd data-vi="Mình xác định bốn việc tài xế phải làm đúng, rồi làm một module 7 slide luyện từng việc: sắp thứ tự các bước, phân loại đơn, gọi điện cho khách, tìm chỗ để hàng an toàn, và hai điểm giao phân nhánh.">I mapped the four things drivers must get right, then built a seven-slide module that practises each one: ordering the steps, sorting parcels, calling the customer, finding a safe place and two branching stops.</dd></div>
+            <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd data-vi="Nâng tỉ lệ giao thành công lần đầu khi khách vắng nhà từ 45% lên 65% trong ba tháng, và giữ khiếu nại mất hàng ở mức 0,5% trở xuống.">Raise first-try success on not-home stops from 45% to 65% within three months, and keep missing-parcel claims at or below 0.5%.</dd></div>
           </dl>
         </div>
       </a>
@@ -110,71 +133,121 @@
 
   <div class="block bg-surface">
     <h2 class="eyebrow" data-vi="CÔNG NGHỆ">TECH LITERACY</h2>
-    <div class="chips chips-row"><span>React</span><span>TypeScript</span><span>Vite</span><span>SCORM · xAPI · cmi5</span><span>SQL</span><span>Python</span><span>Power BI</span></div>
+    <div class="chips chips-row"><span>Action mapping</span><span data-vi="Tình huống phân nhánh">Branching scenarios</span><span>Vibe-coded e-learning</span><span>LMS · SCORM &amp; xAPI</span><span data-vi="Phân tích dữ liệu">Data analysis</span></div>
   </div>
 </section>
 
 <!-- ---------- PORTFOLIO: the list ---------- -->
 <section class="page" data-page="portfolio" data-title="Portfolio" hidden>
-  <div class="eyebrow-row"><h2>PORTFOLIO</h2></div>
+  <h2 class="sr-only">Portfolio</h2>
   <div data-projects-copy></div>
 </section>
 
 <!-- ---------- PORTFOLIO: one page per project ----------
-     Each project page: back link, hero, title, overview, the course button, facts, then full-width sections.
-     A section can have a "doc" button: it opens the <template> with the same id (bottom of this file) in a pop-up. -->
-<section class="page" data-page="portfolio/hear-them-out" data-title="Hear Them Out" hidden>
+     The same template for every project: the hero (All projects + title on the left, the project art on the right),
+     the overview, the main button, the facts, then full-width sections: The problem, What the analysis found,
+     The fixes, the course or module itself, How it was built and tested, The goal.
+     Document buttons are links (a new tab with Ctrl/Cmd-click); a plain click opens them in the pop-up. -->
+<section class="page" data-page="portfolio/why-members-are-unhappy" data-title="Why Members Are Unhappy" hidden>
   <article class="case">
     <div class="hero" style="background:var(--t2)">
-      <div class="hero-art" aria-hidden="true">
-        <div class="s" style="left:34px;top:44px;width:132px;height:132px;border-radius:50%;background:var(--a1);opacity:.75"></div>
-        <div class="s" style="left:138px;top:116px;width:70px;height:70px;border-radius:50%;background:var(--a2);opacity:.6"></div>
-        <div class="s" style="left:224px;top:52px;width:58px;height:29px;border-radius:999px 999px 0 0;background:var(--a4);opacity:.55"></div>
-      </div>
       <div class="hero-head">
         <a class="back" href="#portfolio"><span class="arrow">←</span><span data-vi="Tất cả dự án">All projects</span></a>
-        <h2 data-vi="Hear Them Out: cuộc gọi khiếu nại">Hear Them Out: the complaint call</h2>
+        <h2 data-vi="Why Members Are Unhappy">Why Members Are Unhappy</h2>
       </div>
+      <div class="hero-art art-cozy" aria-hidden="true"><svg viewBox="46 53.5 148 41"><use href="#art-cozy" width="240" height="148"/></svg></div>
     </div>
-    <p class="sum" data-vi="Một khoá học ngắn cho quản lý cộng đồng ở quầy lễ tân của Cozy — một chuỗi coworking hư cấu. Người học nhận cuộc gọi khiếu nại từ Sofia, một thành viên, và xử lý theo HEARD (Hear, Empathize, Apologize, Resolve, Diagnose); sau đó ghi case lại để ca sau làm tiếp và Sofia được gọi lại đúng ngày đã hứa.">A short course for community managers at the front desk of Cozy, a fictional coworking space. The learner takes a complaint call from Sofia, a member, using HEARD — Hear, Empathize, Apologize, Resolve, Diagnose — then logs the case so the next shift can act on it and Sofia hears back on the day she was promised.</p>
-    <div class="cta-row"><a class="btn btn-primary" href="https://hear-them-out.vercel.app/" target="_blank" rel="noopener"><span data-vi="Học thử khoá học">Take the course</span> ↗</a></div>
+    <p class="sum" data-vi="Cozy, một công ty coworking hư cấu, thấy điểm hài lòng của thành viên giảm từ 4,1 xuống 3,2 trên 5 trong một năm, và &quot;cách Cozy xử lý khiếu nại&quot; thành điểm thấp nhất, 2,7. Mình phân tích nhu cầu và tìm ra ba nguyên nhân, chỉ một là thiếu kỹ năng. Vì vậy giải pháp gồm biển báo và hướng dẫn ngày đầu cho thành viên, checklist mất Wi-Fi cho nhân viên, và cho cuộc gọi khiếu nại: quản lý sửa quy trình ghi log, cùng Hear Them Out, khoá học phân nhánh cho lễ tân.">Cozy, a fictional coworking business, saw member satisfaction fall from 4.1 to 3.2 out of 5 in one year, and “How Cozy handles complaints” became its lowest score, at 2.7. I ran the needs analysis and traced the drop to three causes. Only one was a skill gap. So the fixes are signs and a first-day guide for members, an outage checklist for staff, and, for complaint calls, a change to the log for managers plus Hear Them Out, a branching course for the front desk.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://hear-them-out.vercel.app/" target="_blank" rel="noopener"><span data-vi="Học thử khoá học">Take the course</span> ↗</a>
+      <a class="doc-btn" href="work/why-members-are-unhappy/Case%20Study.dc.html" target="_blank" rel="noopener" data-frame data-title="Case study" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Đọc case study">Read the case study</span></a>
+    </div>
     <div class="facts">
-      <div class="card"><div class="lab" data-vi="VAI TRÒ">ROLE</div><div class="val" data-vi="Thiết kế + lập trình">Design + build</div></div>
-      <div class="card"><div class="lab" data-vi="HÌNH THỨC">FORMAT</div><div class="val" data-vi="Cuộc gọi phân nhánh + công cụ mô phỏng">Branching call + simulated tool</div></div>
-      <div class="card"><div class="lab" data-vi="NGƯỜI HỌC">LEARNERS</div><div class="val" data-vi="Quản lý cộng đồng ở quầy lễ tân">Front-desk community managers</div></div>
-      <div class="card"><div class="lab" data-vi="CÔNG CỤ">TOOLS</div><div class="val">React · XState · Motion · Gemini</div></div>
+      <div class="card"><div class="lab" data-vi="VAI TRÒ">ROLE</div><div class="val" data-vi="Phân tích, thiết kế, lập trình">Analysis, design and build</div></div>
+      <div class="card"><div class="lab" data-vi="SẢN PHẨM">DELIVERABLES</div><div class="val" data-vi="Case study, khoá học, job aid, hướng dẫn">Case study, course, job aids, guide</div></div>
+      <div class="card"><div class="lab" data-vi="NGƯỜI HỌC">LEARNERS</div><div class="val" data-vi="Lễ tân và thành viên mới">Front-desk staff and new members</div></div>
+      <div class="card"><div class="lab" data-vi="CÔNG CỤ">TOOLS</div><div class="val">React · XState · Claude · Gemini</div></div>
     </div>
 
     <section class="cs">
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-sq" style="background:var(--a1)"></span><h3 class="lab" data-vi="VẤN ĐỀ">THE PROBLEM</h3></div>
-        <button type="button" class="doc-btn" data-doc="doc-hto-design"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Tài liệu thiết kế">Design document</span></button>
-      </div>
-      <p data-vi="Thành viên chấm Cozy 2,7/5 cho cách xử lý khiếu nại — điểm thấp nhất trong khảo sát. Khi nghe máy, quản lý giải thích nội quy trước khi hỏi chuyện gì đã xảy ra, xin lỗi chung chung và kết thúc bằng &quot;bên mình sẽ xem lại&quot; — không có phương án, không có ngày. Chỉ khoảng một nửa khiếu nại trong sổ có bước tiếp theo, và có người chờ hàng tuần.">Members give Cozy 2.7 out of 5 for how it handles complaints — the lowest score in the member survey. On the phone, managers explain the rules before asking what happened, apologise in general terms and end with “we'll look into it”: no options, no date. About half of the logged complaints have a next step, and some members wait weeks.</p>
-    </section>
-
-    <section class="cs">
-      <div class="cs-head">
-        <div class="cs-title"><span class="glyph g-ci" style="background:var(--a2)"></span><h3 class="lab" data-vi="MÌNH ĐÃ LÀM">WHAT I DID</h3></div>
-        <button type="button" class="doc-btn" data-doc="doc-hto-action-map"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Sơ đồ hành động">Action map</span></button>
-      </div>
-      <div class="bul">
-        <div><span class="b"></span><span data-vi="Lập action map và phân loại rào cản; lỗi quy trình (case không có người phụ trách, không có ngày theo dõi) chuyển cho quản lý, không nhét vào khoá học.">Built an action map and sorted the barriers by type; process gaps — no owner, no follow-up date — went to managers instead of into the course.</span></div>
-        <div><span class="b"></span><span data-vi="Biến HEARD thành 5 quyết định trong một cuộc gọi thời gian thực. Mỗi lựa chọn sai là một &quot;suýt đúng&quot;: một phần đúng đặt cạnh một thói quen quen thuộc.">Turned HEARD into five decisions inside one real-time call. Every weaker option is a near miss: something right next to one familiar habit.</span></div>
-        <div><span class="b"></span><span data-vi="Cho thấy hậu quả: tâm trạng Sofia thay đổi theo từng câu, và một tuần sau cô chấm 1, 2, 3 hay 5 sao — kèm debrief và tua lại đúng chỗ rẽ.">Made consequences visible: Sofia's mood shifts line by line, and a week later her survey says 1, 2, 3 or 5 out of 5 — with a debrief and a rewind to where it turned.</span></div>
-        <div><span class="b"></span><span data-vi="Phần 2 chuyển sang Cozy Desk: ghi case từ chính ghi chú cuộc gọi, bàn giao lúc đổi ca, gọi lại đúng ngày đã hứa.">Part 2 moves to Cozy Desk: log the case from your own call note, hand it over at shift change, call back on the day you promised.</span></div>
-        <div><span class="b"></span><span data-vi="Ba bài luyện sau khoá: một cuộc gọi mới với thành viên do AI đóng, cuộc nói chuyện riêng, và bài viết log được AI chấm.">Three practices afterwards: a new call with an AI-played member, the private talk, and a write-up checked by an AI grader.</span></div>
-      </div>
-    </section>
-
-    <section class="cs">
-      <div class="cs-head">
-        <div class="cs-title"><span class="glyph g-di" style="background:var(--a3)"></span><h3 class="lab" data-vi="MỤC TIÊU & SẢN PHẨM">THE GOAL & THE BUILD</h3></div>
       </div>
       <div class="stats">
-        <div class="card"><div class="stat">2.7 → 3.8</div><div class="stat-l" data-vi="điểm khiếu nại mục tiêu, trong hai quý">target complaint score, over two quarters</div></div>
-        <div class="card"><div class="stat">5 + 9</div><div class="stat-l" data-vi="quyết định và trường log được chấm ở lần đầu">decisions and log fields scored on the first try</div></div>
-        <div class="card"><div class="stat">320px</div><div class="stat-l" data-vi="chạy trên điện thoại, chạm một lần, phụ đề cho mọi âm thanh">works on a phone: single taps, captions for every sound</div></div>
+        <div class="card"><div class="stat">4.1 → 3.2</div><div class="stat-l" data-vi="điểm hài lòng của thành viên, trong một năm">member satisfaction, in one year</div></div>
+        <div class="card"><div class="stat">2.7 / 5</div><div class="stat-l" data-vi="cách Cozy xử lý khiếu nại, điểm thấp nhất">how Cozy handles complaints, the lowest score</div></div>
+        <div class="card"><div class="stat">1 in 2</div><div class="stat-l" data-vi="khiếu nại trong log có bước tiếp theo">logged complaints that have a next step</div></div>
+      </div>
+      <p data-vi="Trong một cuộc gọi khiếu nại, lễ tân giải thích nội quy trước khi hỏi chuyện gì đã xảy ra, xin lỗi chung chung và kết thúc bằng &quot;bên mình sẽ xem lại&quot;: không có phương án, không có ngày. Có thành viên chờ hàng tuần mới được trả lời.">On a complaint call, front-desk staff explained the rules before asking what happened, said sorry in general terms and ended with “we'll look into it”: no options and no date. Some members waited weeks for a reply.</p>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-ci" style="background:var(--a2)"></span><h3 class="lab" data-vi="PHÂN TÍCH TÌM RA GÌ">WHAT THE ANALYSIS FOUND</h3></div>
+        <a class="doc-btn" href="work/why-members-are-unhappy/Case%20Study.dc.html#s4" target="_blank" rel="noopener" data-frame data-title="Case study" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Case study</span></a>
+      </div>
+      <p data-vi="Mình dùng khảo sát thành viên, log sự cố và mất mạng, phỏng vấn các ca trực và một buổi đi quanh không gian, rồi phân loại nguyên nhân theo mô hình của Gilbert. Có ba nguyên nhân, và chỉ một là thiếu kỹ năng.">I used the member survey, the issue and outage logs, shift interviews and a walk-through of the space, and sorted the causes with Gilbert's model. There were three causes, and only one was a skill gap.</p>
+      <div class="rows">
+        <div class="row-item"><p class="row-cause" data-vi="Nội quy khu làm việc và bếp nằm trong sổ tay, xa nơi thành viên làm việc.">The zone and kitchen rules sat in a handbook, far from where members work.</p><span class="tag" data-vi="THÔNG TIN">INFORMATION</span><p class="row-fix" data-vi="Biển báo ngay trong không gian, và Cozy in 60 seconds vào ngày đầu của thành viên mới.">Signs in the space, and Cozy in 60 seconds on a new member's first day.</p></div>
+        <div class="row-item"><p class="row-cause" data-vi="Mỗi ca xử lý mất Wi-Fi một kiểu, và việc chuyển sang đường mạng dự phòng làm bằng tay.">Each shift handled Wi-Fi outages its own way, and the switch to the backup line was manual.</p><span class="tag" data-vi="QUY TRÌNH + CÔNG CỤ">PROCEDURE + TOOL</span><p class="row-fix" data-vi="Thẻ Wi-Fi Down, và tự động chuyển sang đường dự phòng.">The Wi-Fi Down card, and an automatic switch to the backup line.</p></div>
+        <div class="row-item"><p class="row-cause" data-vi="Việc theo dõi khiếu nại dựa vào trí nhớ, và lễ tân xử lý thành viên đang bực theo thói quen.">Follow-up depended on memory, and staff handled upset members by habit.</p><span class="tag" data-vi="QUY TRÌNH + KỸ NĂNG">PROCESS + SKILL</span><p class="row-fix" data-vi="Log bắt buộc có người phụ trách và ngày theo dõi, và khoá học Hear Them Out.">An owner and a follow-up date required in the log, and the course Hear Them Out.</p></div>
+      </div>
+      <p class="note" data-vi="Chỉ đào tạo khi đáng: hai trong ba nguyên nhân được giải bằng thông tin và công cụ, không cần khoá học.">Training only where it pays: two of the three causes are fixed with information and tools, not a course.</p>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-di" style="background:var(--a3)"></span><h3 class="lab" data-vi="CÁC GIẢI PHÁP">THE FIXES</h3></div>
+        <div class="doc-btns">
+          <a class="doc-btn" href="work/why-members-are-unhappy/Cozy%20in%2060%20Seconds.dc.html" target="_blank" rel="noopener" data-frame data-title="Cozy in 60 seconds" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Cozy in 60 seconds</span></a>
+          <a class="doc-btn" href="work/why-members-are-unhappy/Job%20Aids.dc.html" target="_blank" rel="noopener" data-frame data-title="Job aids" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Job aids</span></a>
+        </div>
+      </div>
+      <div class="tiles">
+        <div class="tile"><span class="glyph g-ci" style="background:var(--a2)"></span><h4>Cozy in 60 seconds</h4><div class="lab" data-vi="CHO THÀNH VIÊN MỚI">FOR NEW MEMBERS</div><p data-vi="Hướng dẫn 8 màn hình trong app Cozy: các khu làm việc, chỗ để gọi điện, cách dùng bếp và các biển báo sẽ gặp. Kèm biển báo đặt ngay nơi áp dụng nội quy.">An eight-screen guide in the Cozy app: the zones, where to take a call, how the kitchen works and the signs they will see. The signs go up where each rule applies.</p></div>
+        <div class="tile"><span class="glyph g-sq" style="background:var(--a1)"></span><h4>Wi-Fi Down card</h4><div class="lab" data-vi="CHO LỄ TÂN">FOR FRONT-DESK STAFF</div><p data-vi="Checklist một trang kiểu đọc rồi làm: báo lần đầu trong 10 phút, cập nhật mỗi 15 phút, và một quy tắc đền bù giống nhau cho mọi ca.">A one-page READ-DO checklist: a first notice within 10 minutes, an update every 15 minutes, and one compensation rule for every shift.</p></div>
+        <div class="tile"><span class="glyph g-di" style="background:var(--a3)"></span><h4>Hear Them Out</h4><div class="lab" data-vi="CHO LỄ TÂN">FOR FRONT-DESK STAFF</div><p data-vi="Khoá học phân nhánh 20 phút về cuộc gọi khiếu nại. Song song, quản lý bắt buộc log có người phụ trách và ngày theo dõi.">A 20-minute branching course on complaint calls. At the same time, managers make the owner and the follow-up date required in the log.</p></div>
+      </div>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-pi" style="background:var(--a4)"></span><h3 class="lab" data-vi="KHOÁ HỌC: HEAR THEM OUT">THE COURSE: HEAR THEM OUT</h3></div>
+        <div class="doc-btns">
+          <a class="doc-btn" href="work/why-members-are-unhappy/Design%20Document.dc.html" target="_blank" rel="noopener" data-frame data-title="Design document" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Tài liệu thiết kế">Design document</span></a>
+          <a class="doc-btn" href="work/why-members-are-unhappy/Storyboard.dc.html" target="_blank" rel="noopener" data-frame data-title="Storyboard" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Storyboard</span></a>
+        </div>
+      </div>
+      <div class="shots">
+        <button type="button" class="shot" data-image="assets/projects/wmu-call.webp" data-title="The call" data-kicker="HEAR THEM OUT"><img src="assets/projects/wmu-call.webp" alt="Decision 1 of the call: Sofia's phone, her opening lines, and three replies to choose from, with Son's guide bar." width="1440" height="900" loading="lazy"><span class="shot-cap" data-vi="Cuộc gọi: năm quyết định theo HEARD">The call: five HEARD decisions</span></button>
+        <button type="button" class="shot" data-image="assets/projects/wmu-log.webp" data-title="The log in Cozy Desk" data-kicker="HEAR THEM OUT"><img src="assets/projects/wmu-log.webp" alt="The log entry in Cozy Desk, filled in from the learner's call note." width="1440" height="900" loading="lazy"><span class="shot-cap" data-vi="Ghi case vào Cozy Desk từ ghi chú">The log in Cozy Desk, from the note</span></button>
+        <button type="button" class="shot" data-image="assets/projects/wmu-debrief.webp" data-title="The debrief" data-kicker="HEAR THEM OUT"><img src="assets/projects/wmu-debrief.webp" alt="The debrief after a weak choice, with a button to rewind to that decision." width="1440" height="900" loading="lazy"><span class="shot-cap" data-vi="Debrief và tua lại chỗ rẽ">The debrief, with a rewind</span></button>
+      </div>
+      <div class="bul">
+        <div><span class="b"></span><span data-vi="Khoá học bắt đầu bằng cuộc gọi, không phải nội quy: người học nhận cuộc gọi khiếu nại của Sofia theo thời gian thực và đưa ra 5 quyết định, mỗi quyết định một bước của HEARD (Hear, Empathize, Apologize, Resolve, Diagnose).">It starts with the call, not the rules: the learner takes Sofia's complaint in real time and makes five decisions, one per step of HEARD (Hear, Empathize, Apologize, Resolve, Diagnose).</span></div>
+        <div><span class="b"></span><span data-vi="Mỗi lựa chọn yếu là một thói quen có thật từ phỏng vấn các ca trực, như giải thích nội quy trước khi hỏi, hay hứa sửa mà không có ngày.">Every weaker option is a real habit from the shift interviews, like explaining the rule before asking, or promising a fix with no day.</span></div>
+        <div><span class="b"></span><span data-vi="Tâm trạng Sofia thay đổi theo từng câu. Một tuần sau, khảo sát của cô cho 1, 2, 3 hoặc 5 sao, và phần debrief tua lại đúng chỗ cuộc gọi rẽ hướng.">Sofia's mood shifts line by line. A week later her survey says 1, 2, 3 or 5 out of 5, and a debrief rewinds to where the call turned.</span></div>
+        <div><span class="b"></span><span data-vi="Ở phần 2, người học ghi case vào Cozy Desk từ chính ghi chú cuộc gọi, rồi theo case tới cuộc gọi lại đúng ngày đã hứa.">In Part 2 the learner logs the case in Cozy Desk from their own call note, then follows it through to the call back on the day they promised.</span></div>
+        <div><span class="b"></span><span data-vi="Sau khoá có ba bài luyện: một cuộc gọi mới với thành viên do AI đóng và một AI khác chấm, cuộc nói chuyện riêng với người gây ồn, và một log để viết, được AI kiểm tra.">Three practices follow: a new call with an AI-played member and a separate AI grader, the private talk with the member who made the noise, and a log entry to write, checked by an AI.</span></div>
+      </div>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-sq" style="background:var(--a2)"></span><h3 class="lab" data-vi="LÀM VÀ KIỂM TRA THẾ NÀO">HOW IT WAS BUILT AND TESTED</h3></div>
+        <a class="doc-btn" href="work/why-members-are-unhappy/Style%20Guide.dc.html" target="_blank" rel="noopener" data-frame data-title="Style guide" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Style guide</span></a>
+      </div>
+      <p data-vi="Mình viết bản phân tích, tài liệu thiết kế và storyboard cùng Claude, và làm thiết kế cùng thương hiệu Cozy trong Claude Design. Khoá học là một web app mình làm bằng Claude Code với React, XState và Zod, chạy trên Vercel. Giọng Sofia làm bằng Gemini text-to-speech. Một bài test so từng câu với storyboard, từng chữ một. Test trình duyệt chạy trên máy bàn, laptop 1280 × 720 và điện thoại 375 px có cảm ứng, và một buổi review chuyên môn cùng một cognitive walkthrough đã đi qua khoá học dưới góc nhìn của Jane, một lễ tân ba năm kinh nghiệm, và của một nhân viên mới.">I wrote the analysis, the design document and the storyboard with Claude, and made the designs and the Cozy brand in Claude Design. The course is a web app I built with Claude Code in React, XState and Zod, hosted on Vercel, and Sofia's voice is made with Gemini text-to-speech. A test checks every line against the storyboard, word for word. Browser tests run on a desktop, a 1280 × 720 laptop and a 375-pixel phone with touch, and an expert review and a cognitive walkthrough went through the course as Jane, a community manager with three years at Cozy, and as a new hire.</p>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-di" style="background:var(--a1)"></span><h3 class="lab" data-vi="MỤC TIÊU">THE GOAL</h3></div>
+      </div>
+      <div class="stats">
+        <div class="card"><div class="stat">3.2 → 4.0</div><div class="stat-l" data-vi="điểm hài lòng chung, trong hai quý">overall member satisfaction, within two quarters</div></div>
+        <div class="card"><div class="stat">2.7 → 3.8</div><div class="stat-l" data-vi="cách Cozy xử lý khiếu nại">how Cozy handles complaints</div></div>
+        <div class="card"><div class="stat">50% → 90%</div><div class="stat-l" data-vi="khiếu nại có bước tiếp theo kèm ngày, kiểm tra mỗi tuần">complaints with a dated next step, checked every week</div></div>
       </div>
       <p class="note" data-vi="Cozy là khách hàng hư cấu: các con số là mục tiêu thiết kế từ phân tích nhu cầu, không phải kết quả đo được.">Cozy is a fictional client: the numbers are design goals from the needs analysis, not measured results.</p>
     </section>
@@ -184,21 +257,20 @@
 <section class="page" data-page="portfolio/delivery-scenario" data-title="Not-Home Delivery Stop" hidden>
   <article class="case">
     <div class="hero" style="background:var(--t3)">
-      <div class="hero-art" aria-hidden="true">
-        <div class="s" style="left:34px;top:40px;width:96px;height:96px;border-radius:14px;background:var(--a3);opacity:.7"></div>
-        <div class="s" style="left:112px;top:132px;width:96px;height:46px;border-radius:999px;background:var(--a4);opacity:.6"></div>
-        <div class="s" style="left:206px;top:60px;width:66px;height:66px;border-radius:50%;background:var(--a1);opacity:.5"></div>
-      </div>
       <div class="hero-head">
         <a class="back" href="#portfolio"><span class="arrow">←</span><span data-vi="Tất cả dự án">All projects</span></a>
         <h2 data-vi="Giao hàng khi khách vắng nhà">Not-Home Delivery Stop</h2>
       </div>
+      <div class="hero-art art-delivery" aria-hidden="true"><svg viewBox="27 30 186 89"><use href="#art-delivery" width="240" height="148"/></svg></div>
     </div>
-    <p class="sum" data-vi="Module eLearning 7 slide cho tài xế giao hàng nội thành: làm gì khi gõ cửa mà không ai ra. Chạy được trên web và đóng gói SCORM 1.2 để đưa lên LMS.">A 7-slide eLearning module for city-route drivers: what to do when nobody answers the door. It runs on the web and ships as a SCORM 1.2 package for an LMS.</p>
-    <div class="cta-row"><a class="btn btn-primary" href="https://delivery-scenario.vercel.app/" target="_blank" rel="noopener"><span data-vi="Mở module">Open the module</span> ↗</a></div>
+    <p class="sum" data-vi="Một module eLearning 7 slide cho tài xế giao hàng nội thành, về việc cần làm khi gõ cửa mà không ai ra. Công ty giao hàng là hư cấu. Mình xác định những việc tài xế phải làm trên đường, rồi làm một bài luyện cho từng việc. Module chạy trên web và được đóng gói SCORM 1.2 để đưa lên LMS.">A seven-slide e-learning module for city-route drivers, about what to do when nobody answers the door. The parcel company is fictional. I mapped what drivers need to do on the job, then built one practice for each action. The module runs on the web and ships as a SCORM 1.2 package for an LMS.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://delivery-scenario.vercel.app/" target="_blank" rel="noopener"><span data-vi="Mở module">Open the module</span> ↗</a>
+      <a class="doc-btn" href="work/not-home-delivery-stop/design-pages/diagrams.html#action-map-heading" target="_blank" rel="noopener" data-frame data-title="Action map" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Xem action map">See the action map</span></a>
+    </div>
     <div class="facts">
-      <div class="card"><div class="lab" data-vi="VAI TRÒ">ROLE</div><div class="val" data-vi="Thiết kế + lập trình">Design + build</div></div>
-      <div class="card"><div class="lab" data-vi="HÌNH THỨC">FORMAT</div><div class="val" data-vi="Module tình huống 7 slide">7-slide scenario module</div></div>
+      <div class="card"><div class="lab" data-vi="VAI TRÒ">ROLE</div><div class="val" data-vi="Phân tích, thiết kế, lập trình">Analysis, design and build</div></div>
+      <div class="card"><div class="lab" data-vi="SẢN PHẨM">DELIVERABLES</div><div class="val" data-vi="Module 7 slide, gói SCORM 1.2">Seven-slide module, SCORM 1.2 package</div></div>
       <div class="card"><div class="lab" data-vi="NGƯỜI HỌC">LEARNERS</div><div class="val" data-vi="Tài xế giao hàng nội thành">City-route delivery drivers</div></div>
       <div class="card"><div class="lab" data-vi="CÔNG CỤ">TOOLS</div><div class="val">React · XState · Zod · Piper TTS</div></div>
     </div>
@@ -206,33 +278,76 @@
     <section class="cs">
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-sq" style="background:var(--a1)"></span><h3 class="lab" data-vi="VẤN ĐỀ">THE PROBLEM</h3></div>
-        <button type="button" class="doc-btn" data-doc="doc-ds-design"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Tài liệu thiết kế">Design document</span></button>
-      </div>
-      <p data-vi="Ở những điểm giao mà khách vắng nhà, chưa đến một nửa đơn được giao thành công ngay lần đầu. Tài xế bỏ qua cuộc gọi để giữ tốc độ giao, không chắc đơn SIG và AGE được phép xử lý thế nào, và chiều theo những yêu cầu sai quy định — như để đơn cần ký nhận ngay trước cửa.">On not-home stops, fewer than half of parcels get delivered on the first attempt. Drivers skip the call to protect their stop rate, aren't sure what SIG and AGE parcels allow, and give in to requests outside the rules — like leaving a parcel that needs a signature at the door.</p>
-    </section>
-
-    <section class="cs">
-      <div class="cs-head">
-        <div class="cs-title"><span class="glyph g-ci" style="background:var(--a2)"></span><h3 class="lab" data-vi="MÌNH ĐÃ LÀM">WHAT I DID</h3></div>
-        <button type="button" class="doc-btn" data-doc="doc-ds-action-map"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Sơ đồ hành động">Action map</span></button>
-      </div>
-      <div class="bul">
-        <div><span class="b"></span><span data-vi="Lập action map với 4 hành động trong công việc; hai rào cản được giải ngoài đào tạo — hiện mã xử lý ngay trên màn hình đến nơi, và tính giao cho hàng xóm là thành công trên bảng điểm tài xế.">Action-mapped four on-the-job actions; two barriers were fixed outside training — the handling code on the arrival screen, and neighbour handovers counted as success on the driver scorecard.</span></div>
-        <div><span class="b"></span><span data-vi="Mỗi hành động có bài luyện riêng: kéo thả sắp thứ tự, phân loại đơn, cuộc gọi có giọng nói, tìm chỗ để hàng an toàn, và hai điểm giao phân nhánh.">Gave each action its own practice: drag to order, sort the parcels, a voiced phone call, a hotspot to find the safe place, and a branching run of two stops.</span></div>
-        <div><span class="b"></span><span data-vi="Thêm cuộc gọi tự gõ với khách hàng do AI đóng, và một AI chấm riêng trích đúng lời người học để đối chiếu với 3 bước gọi.">Added a free-text call with an AI customer, and a separate AI grader that quotes the learner's own words against the three call moves.</span></div>
-        <div><span class="b"></span><span data-vi="Giữ 4 job aid làm nguồn duy nhất, để thẻ, cách chấm, prompt AI và sơ đồ không bao giờ lệch nhau.">Kept the four job aids as the single source, so the cards, the scoring, the AI prompts and the diagrams can't drift apart.</span></div>
-        <div><span class="b"></span><span data-vi="Tiếp cận từ đầu: mọi thao tác kéo thả đều có cách dùng bàn phím và chạm, mọi câu thoại có phụ đề, kiểm tra axe trên từng slide ở 4 độ rộng màn hình.">Accessible from the start: keyboard and tap alternatives to every drag, captions on every line, axe checks on every slide at four screen widths.</span></div>
-      </div>
-    </section>
-
-    <section class="cs">
-      <div class="cs-head">
-        <div class="cs-title"><span class="glyph g-di" style="background:var(--a3)"></span><h3 class="lab" data-vi="MỤC TIÊU & SẢN PHẨM">THE GOAL & THE BUILD</h3></div>
       </div>
       <div class="stats">
-        <div class="card"><div class="stat">45% → 65%</div><div class="stat-l" data-vi="mục tiêu giao thành công lần đầu, trong ba tháng">target first-attempt success, within three months</div></div>
-        <div class="card"><div class="stat">7</div><div class="stat-l" data-vi="dạng tương tác, mỗi slide một dạng">interaction types, one per slide</div></div>
-        <div class="card"><div class="stat">SCORM 1.2</div><div class="stat-l" data-vi="gói LMS có lưu tiến độ và đạt/chưa đạt, cùng bản web">LMS package with resume and pass/fail, plus the web version</div></div>
+        <div class="card"><div class="stat">45%</div><div class="stat-l" data-vi="điểm giao vắng nhà thành công ngay lần đầu">of not-home stops succeed on the first try</div></div>
+        <div class="card"><div class="stat">7</div><div class="stat-l" data-vi="rào cản phía sau, trên bốn việc của tài xế">barriers behind it, across four driver actions</div></div>
+        <div class="card"><div class="stat">2 of 7</div><div class="stat-l" data-vi="rào cản cần giải ngoài đào tạo">barriers that need a fix outside training</div></div>
+      </div>
+      <p data-vi="Tài xế bỏ qua cuộc gọi để giữ tốc độ giao, không chắc thứ tự các bước, và không chắc đơn SIG (cần ký) và AGE (kiểm tra tuổi) được phép xử lý thế nào. Trên điện thoại, họ chiều theo những yêu cầu sai quy định, như để đơn cần ký nhận ngay trước cửa. Ở hiện trường, họ chọn sai chỗ khuất, và ảnh chụp thường thiếu số nhà.">Drivers skip the call to protect their stop rate, aren't sure of the order of the steps, and aren't sure what SIG (signature) and AGE (age-check) parcels allow. On the phone they give in to requests outside the rules, like leaving a parcel that needs a signature at the door. At the house they misjudge hidden spots, and their photos often miss the house number.</p>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-ci" style="background:var(--a2)"></span><h3 class="lab" data-vi="PHÂN TÍCH TÌM RA GÌ">WHAT THE ANALYSIS FOUND</h3></div>
+        <a class="doc-btn" href="work/not-home-delivery-stop/design-pages/diagrams.html#action-map-heading" target="_blank" rel="noopener" data-frame data-title="Action map" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span>Action map</span></a>
+      </div>
+      <p data-vi="Action map nối mục tiêu với bốn việc tài xế làm trên đường. Mỗi việc có rào cản của nó, một bài luyện, và lượng thông tin tối thiểu cần có.">The action map links the goal to four things drivers do on the job. Each action has its barriers, a practice and the minimum information it needs.</p>
+      <div class="rows">
+        <div class="row-item"><p class="row-cause" data-vi="Làm đúng chuỗi bước khi khách vắng nhà, kể cả cuộc gọi, trước khi chọn phương án.">Follow the not-home sequence, including the call, before choosing an option.</p><span class="tag" data-vi="ĐỘNG LỰC + KIẾN THỨC">MOTIVATION + KNOWLEDGE</span><p class="row-fix" data-vi="Sắp thứ tự các bước (slide 1) và job aid (slide 2). Bảng điểm tài xế tính giao cho hàng xóm là thành công.">Put the steps in order (slide 1) and the job aids (slide 2). The driver scorecard counts a neighbour handover as a success.</p></div>
+        <div class="row-item"><p class="row-cause" data-vi="Chọn phương án được phép theo mã xử lý và ghi chú của khách.">Choose an option the handling code and the customer's notes allow.</p><span class="tag" data-vi="KIẾN THỨC + MÔI TRƯỜNG">KNOWLEDGE + ENVIRONMENT</span><p class="row-fix" data-vi="Phân loại đơn (slide 3) và hai điểm giao (slide 7). Màn hình đến nơi hiện mã xử lý và ghi chú.">Sort the parcels (slide 3) and handle two stops (slide 7). The arrival screen shows the handling code and the stop notes.</p></div>
+        <div class="row-item"><p class="row-cause" data-vi="Gọi cho khách và thống nhất một phương án được phép trong hai phút.">Call the customer and agree on a permitted option within two minutes.</p><span class="tag" data-vi="KỸ NĂNG">SKILL</span><p class="row-fix" data-vi="Cuộc gọi có giọng nói (slide 4) và cuộc gọi tự gõ với khách hàng AI (slide 5).">A voiced phone call (slide 4) and a typed call with an AI customer (slide 5).</p></div>
+        <div class="row-item"><p class="row-cause" data-vi="Để hàng ở chỗ đạt cả bốn quy tắc an toàn và chụp ảnh thấy rõ số nhà.">Leave the parcel in a spot that meets all four safe-place rules, with a photo that shows the house number.</p><span class="tag" data-vi="KỸ NĂNG + KIẾN THỨC">SKILL + KNOWLEDGE</span><p class="row-fix" data-vi="Tìm chỗ an toàn (slide 6) và hai điểm giao (slide 7).">Find the safe place (slide 6) and handle two stops (slide 7).</p></div>
+      </div>
+      <p class="note" data-vi="Chỉ đào tạo khi đáng: hai rào cản được chuyển cho bộ phận vận hành, không đưa vào khoá học.">Training only where it pays: two barriers go to operations instead of into the course.</p>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-di" style="background:var(--a3)"></span><h3 class="lab" data-vi="CÁC GIẢI PHÁP">THE FIXES</h3></div>
+      </div>
+      <div class="tiles">
+        <div class="tile"><span class="glyph g-ci" style="background:var(--a2)"></span><h4 data-vi="Module">The module</h4><div class="lab" data-vi="CHO TÀI XẾ">FOR DRIVERS</div><p data-vi="Bảy slide, mỗi việc trên đường có một bài luyện riêng, kết thúc bằng hai điểm giao phân nhánh và trang kết quả.">Seven slides, with one practice for each action on the job, ending in two branching stops and a results screen.</p></div>
+        <div class="tile"><span class="glyph g-sq" style="background:var(--a1)"></span><h4 data-vi="Bốn job aid">Four job aids</h4><div class="lab" data-vi="CHO TÀI XẾ">FOR DRIVERS</div><p data-vi="Chuỗi bước, các mã xử lý, chỗ để hàng an toàn và các bước gọi điện. Mở được ở mọi slide.">The sequence, the handling codes, the safe place and the call moves. They open from every slide.</p></div>
+        <div class="tile"><span class="glyph g-di" style="background:var(--a3)"></span><h4 data-vi="Hai thay đổi vận hành">Two operations changes</h4><div class="lab" data-vi="CHO QUẢN LÝ">FOR MANAGERS</div><p data-vi="Màn hình đến nơi hiện mã xử lý và ghi chú, và bảng điểm tài xế tính giao cho hàng xóm hoặc điểm nhận là thành công.">The arrival screen shows the handling code and the stop notes, and the driver scorecard counts neighbour and pickup-point handovers as successes.</p></div>
+      </div>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-pi" style="background:var(--a4)"></span><h3 class="lab">THE MODULE: NOT-HOME DELIVERY STOP</h3></div>
+        <a class="doc-btn" href="work/not-home-delivery-stop/design-pages/diagrams.html#branching-heading" target="_blank" rel="noopener" data-frame data-title="Branching map" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Sơ đồ phân nhánh">Branching map</span></a>
+      </div>
+      <div class="shots">
+        <button type="button" class="shot" data-image="assets/projects/ds-sequence.webp" data-title="Put the steps in order" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-sequence.webp" alt="Slide 1: the six steps of a not-home stop, to drag into order." width="1440" height="900" loading="lazy"><span class="shot-cap" data-vi="Slide 1: sắp thứ tự các bước">Slide 1: put the steps in order</span></button>
+        <button type="button" class="shot" data-image="assets/projects/ds-call.webp" data-title="Take the call" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-call.webp" alt="Slide 4: the phone call with Ms. Rivera, with captions and a Play button on each line." width="1440" height="900" loading="lazy"><span class="shot-cap" data-vi="Slide 4: cuộc gọi, có phụ đề">Slide 4: take the call, with captions</span></button>
+        <button type="button" class="shot" data-image="assets/projects/ds-safe-place.webp" data-title="Find the safe place" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-safe-place.webp" alt="Slide 6: a drawing of a house with numbered spots to choose the safe place." width="1440" height="900" loading="lazy"><span class="shot-cap" data-vi="Slide 6: tìm chỗ an toàn">Slide 6: find the safe place</span></button>
+      </div>
+      <div class="bul">
+        <div><span class="b"></span><span data-vi="Mỗi việc có bài luyện riêng: kéo thả sắp thứ tự, phân loại đơn, cuộc gọi có giọng nói, chọn chỗ an toàn trên hình, và hai điểm giao phân nhánh.">Each action has its own practice: drag the steps into order, sort parcels into bins, take a voiced phone call, pick the safe place on a drawing, and run two branching stops.</span></div>
+        <div><span class="b"></span><span data-vi="Ở slide 5, người học tự gõ cuộc gọi với ông Hayes, một khách hàng do AI đóng, và một AI chấm riêng trích đúng lời người học để đối chiếu với ba bước gọi.">In slide 5 the learner types the call to Mr. Hayes, an AI customer, and a separate AI grader quotes the learner's own words against the three call moves.</span></div>
+        <div><span class="b"></span><span data-vi="Bốn job aid là nguồn duy nhất: thẻ, cách chấm, prompt AI và sơ đồ đều đọc từ đó, nên không bao giờ lệch nhau.">The four job aids are the single source: the cards, the scoring, the AI prompts and the diagrams all read from them, so they can't drift apart.</span></div>
+        <div><span class="b"></span><span data-vi="Mọi thao tác kéo thả đều có cách dùng bàn phím và chạm, mọi câu thoại có phụ đề, và axe kiểm tra từng slide ở bốn độ rộng màn hình.">Every drag has a keyboard and a tap alternative, every line has captions, and axe checks every slide at four screen widths.</span></div>
+        <div><span class="b"></span><span data-vi="Đạt khi được 80/100 điểm và không vi phạm quy định nào. Gói SCORM 1.2 lưu tiến độ và kết quả vào LMS.">It passes at 80 of 100 points with no policy violation, and the SCORM 1.2 package saves the progress and the result in the LMS.</span></div>
+      </div>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-sq" style="background:var(--a2)"></span><h3 class="lab" data-vi="LÀM VÀ KIỂM TRA THẾ NÀO">HOW IT WAS BUILT AND TESTED</h3></div>
+        <a class="doc-btn" href="work/not-home-delivery-stop/design-pages/style-guide.html" target="_blank" rel="noopener" data-frame data-title="Style guide" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span>Style guide</span></a>
+      </div>
+      <p data-vi="Module làm bằng React và Vite, XState cho logic từng slide và Zod để kiểm tra nội dung. Giọng trong cuộc gọi làm bằng Piper text-to-speech, với phụ đề canh theo âm thanh thật. Unit test bao phủ engine, test trình duyệt bấm qua mọi slide, và axe-core kiểm tra khả năng tiếp cận ở mọi slide và trạng thái tại 360, 600, 840 và 1280 px. Gói SCORM được test trong một LMS giả lập.">The module is built in React with Vite, with XState for each slide's logic and Zod to check the content. The voices in the call are made with Piper text-to-speech, with captions timed from the real audio. Unit tests cover the engine, browser tests click through every slide, and axe-core checks accessibility on every slide and state at 360, 600, 840 and 1280 pixels. The SCORM package is tested in a stand-in LMS.</p>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-di" style="background:var(--a1)"></span><h3 class="lab" data-vi="MỤC TIÊU">THE GOAL</h3></div>
+      </div>
+      <div class="stats">
+        <div class="card"><div class="stat">45% → 65%</div><div class="stat-l" data-vi="giao thành công lần đầu khi khách vắng nhà, trong ba tháng">first-try success on not-home stops, within three months</div></div>
+        <div class="card"><div class="stat">≤ 0.5%</div><div class="stat-l" data-vi="khiếu nại mất hàng ở các điểm giao đó">missing-parcel claims on those stops</div></div>
+        <div class="card"><div class="stat">80 / 100</div><div class="stat-l" data-vi="điểm để đạt, không vi phạm quy định">to pass the module, with no policy violation</div></div>
       </div>
       <p class="note" data-vi="Khách hàng hư cấu: các con số là mục tiêu thiết kế, không phải kết quả đo được.">Fictional client: the numbers are design goals, not measured results.</p>
     </section>
@@ -241,7 +356,7 @@
 
 <!-- ---------- ABOUT ---------- -->
 <section class="page" data-page="about" data-title="About me" hidden>
-  <div class="eyebrow-row"><h2 data-vi="VỀ MÌNH">ABOUT ME</h2><span data-vi="SON DUONG · TP.HCM">SON DUONG · HO CHI MINH CITY</span></div>
+  <h2 class="sr-only" data-vi="Về mình">About me</h2>
 
   <div class="block bg-t3 about-hero">
     <h2 data-vi="Mình đứng lớp, và thiết kế như một người phải đứng trước cả lớp.">I teach, and I design like someone who has to stand in front of the room.</h2>
@@ -304,38 +419,29 @@
 </main>
 </div>
 
-<!-- ============ DOCUMENT POP-UP ============
-     One dialog for every document. A section's doc button (data-doc="x") opens <template id="x">:
-     its data-title is the heading, and its content is the body. Put text, images (<img>), or a PDF
-     (<iframe class="doc-frame" src="docs/file.pdf">) inside a template. -->
+<!-- ============ POP-UP ============
+     One dialog for documents, pictures and placeholders:
+     - a link with data-frame opens its href (a page in work/) in a frame, wide; Ctrl/Cmd-click still opens a new tab;
+     - a button with data-image opens that picture, wide;
+     - a button with data-doc="x" opens <template id="x"> (its data-title is the heading, its content the body). -->
 <dialog class="doc" aria-labelledby="doc-title">
   <div class="doc-inner">
     <div class="doc-top">
-      <div><div class="lab" data-doc-kicker></div><h2 id="doc-title" data-doc-title></h2></div>
-      <button type="button" class="doc-close" data-doc-close aria-label="Close">×</button>
+      <div class="doc-heading"><div class="lab" data-doc-kicker></div><h2 id="doc-title" data-doc-title></h2></div>
+      <div class="doc-actions">
+        <a class="doc-newtab" data-doc-newtab href="#" target="_blank" rel="noopener" hidden><span class="doc-newtab-text" data-vi="Mở tab mới">Open in new tab</span> ↗</a>
+        <button type="button" class="doc-close" data-doc-close aria-label="Close" autofocus>×</button>
+      </div>
     </div>
     <div class="doc-body" data-doc-body></div>
   </div>
 </dialog>
 
-<!-- Placeholders: replace the content of each template when the document is ready. -->
-<template id="doc-hto-design" data-title="Design document" data-title-vi="Tài liệu thiết kế" data-kicker="HEAR THEM OUT">
-  <p class="doc-empty" data-vi="Tài liệu đang được hoàn thiện.">This document is on its way.</p>
-</template>
-<template id="doc-hto-action-map" data-title="Action map" data-title-vi="Sơ đồ hành động" data-kicker="HEAR THEM OUT">
-  <p class="doc-empty" data-vi="Tài liệu đang được hoàn thiện.">This document is on its way.</p>
-</template>
-<template id="doc-ds-design" data-title="Design document" data-title-vi="Tài liệu thiết kế" data-kicker="NOT-HOME DELIVERY STOP">
-  <p class="doc-empty" data-vi="Tài liệu đang được hoàn thiện.">This document is on its way.</p>
-</template>
 <!-- CV: put the PDF at assets/Son-Duong-CV.pdf, then replace the placeholder below with:
        <iframe class="doc-frame" src="assets/Son-Duong-CV.pdf" title="Son Duong CV"></iframe>
        <p><a class="btn btn-primary" href="assets/Son-Duong-CV.pdf" download>Download PDF</a></p> -->
 <template id="doc-cv" data-title="CV" data-kicker="SON DUONG">
   <p class="doc-empty" data-vi="CV đang được cập nhật.">My CV is on its way.</p>
-</template>
-<template id="doc-ds-action-map" data-title="Action map" data-title-vi="Sơ đồ hành động" data-kicker="NOT-HOME DELIVERY STOP">
-  <p class="doc-empty" data-vi="Tài liệu đang được hoàn thiện.">This document is on its way.</p>
 </template>
 
 <script src="site.js"></script>

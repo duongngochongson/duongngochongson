@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/fonts.css">
+</helmet>
+<div style="background:#FBF7EE;border:1.5px solid #E3DACB;border-radius:16px;padding:clamp(16px,2.5vw,24px);display:flex;flex-direction:column;gap:16px">
+
+<div style="background:#1F1A12;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#F2A93B">Goal</span>
+<span style="font:600 18px/1.4 'Archivo',sans-serif;color:#FBF7EE;">Within the next two quarters, raise members' rating of how Cozy handles their complaints from 2.7 to 3.8 out of 5.</span>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ actions }}" as="a" hint-placeholder-count="5">
+<div style="border:1.5px solid #E3DACB;border-radius:12px;overflow:hidden">
+<div style="background:#F4EFE4;padding:12px 16px;display:flex;gap:12px;align-items:flex-start;border-bottom:1.5px solid #E3DACB">
+<span style="flex:none;min-width:34px;height:30px;display:flex;align-items:center;justify-content:center;background:#1F1A12;border-radius:8px;font:500 16px/1 'IBM Plex Mono',monospace;color:#F2A93B">{{ a.id }}</span>
+<span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#1F1A12;"><b style="font-weight:600">{{ a.lead }}</b>{{ a.text }}</span>
+</div>
+<div style="display:flex;flex-wrap:wrap">
+<div style="flex:1 1 240px;min-width:0;padding:14px 16px;display:flex;flex-direction:column;gap:6px;border-right:1px solid #E3DACB">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">Practice</span>
+<span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ a.practice }}</span>
+</div>
+<div style="flex:1 1 240px;min-width:0;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">Minimum information</span>
+<span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ a.info }}</span>
+</div>
+</div>
+<sc-if value="{{ a.hasOps }}">
+<div style="background:#FBF7EE;border-top:1px dashed #8C8170;padding:12px 16px;display:flex;gap:10px;align-items:flex-start">
+<span style="flex:none;padding:3px 9px;border:1.5px solid #8A5300;border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">→ Ops</span>
+<span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#5E5446;">{{ a.ops }}</span>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+
+<div style="background:#2A2318;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
+<span style="padding:4px 10px;border:1.5px solid #F2A93B;border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#F2A93B">→ Ops</span>
+<span style="font:600 18px/1.3 'Archivo',sans-serif;color:#FBF7EE">Changes for managers, not lessons</span>
+</div>
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ ops }}" as="o" hint-placeholder-count="4">
+<li style="display:flex;gap:12px;align-items:flex-start">
+<span style="flex:none;margin-top:9px;width:7px;height:7px;border-radius:999px;background:#F2A93B"></span>
+<span style="font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#E8DFD0;"><b style="font-weight:600;color:#FBF7EE">{{ o.lead }}</b>{{ o.text }}</span>
+</li>
+</sc-for>
+</ul>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      actions: [
+        { id: 'A1', lead: 'Hear and empathize: ', text: 'before you explain any rule, let the member finish, show you understand how they feel, and ask open questions until you know exactly what happened and what they need', practice: 'Decisions 1 and 2 in the call, and the line that lets her finish. Her note: what happened and what she needs, which the log uses later', info: 'HEARD card: Hear and Empathize, with example lines', hasOps: false, ops: '' },
+        { id: 'A2', lead: 'Apologize: ', text: 'say sorry for what Cozy got wrong, and keep the other member\u2019s name private', practice: 'Decision 3: the member asks who it was', info: 'HEARD card: Apologize, with a line for keeping the name private', hasOps: false, ops: '' },
+        { id: 'A3', lead: 'Resolve: ', text: 'offer the options that fit the need and agree on one next step with a follow-up date. Pass money, Wi-Fi and safety issues to the right person', practice: 'Decision 4, and the next step, the owner and the to-do days in the log. In Practice, Omar, who needs a Focus desk and the zone map', info: 'Options card: each option and when it fits; who handles money, Wi-Fi and safety. HEARD card: Resolve', hasOps: true, ops: 'Not sure what they are allowed to offer (environment): options list' },
+        { id: 'A4', lead: 'Log and hand over: ', text: 'log each case right after the call (issue, next step, owner, and a to-do with a day for each promise), and go through open cases with the next shift', practice: 'Decision 5: the case status. The log in Cozy Desk, from the learner\u2019s own note, after a short tour. At shift change, the case on the open cases list with its to-dos, shown as the handover. Writing the entries, in a practice', info: 'Log card: log fields; an owner for every case and a day for every promise; handover goes through every open case. HEARD card: Diagnose', hasOps: true, ops: 'The log does not ask for a date or owner, and there is no handover step (environment): required fields, handover step' },
+        { id: 'A5', lead: 'Follow up: ', text: 'call the member back on the follow-up date, and close the case when the member says the fix worked', practice: 'The reminder and the call back in the fast forward, then closing the case', info: 'Log card: when a case can close', hasOps: true, ops: 'Nothing reminds them on the date (environment): reminder. Missed follow-ups and cases left open go unnoticed (environment): weekly review' }
+      ],
+      ops: [
+        { lead: 'Staff are not sure what they can offer (A3). ', text: 'Confirm the options on the options card' },
+        { lead: 'The log does not ask for a date or owner, and there is no handover step (A4). ', text: 'Make the date and owner required, and add a handover step that goes through open cases in the log' },
+        { lead: 'Nothing reminds staff to call back (A5). ', text: 'Add a reminder on the follow-up date' },
+        { lead: 'Missed follow-ups and cases left open go unnoticed (A5). ', text: 'Every week, check the log: no follow-up is missed, every open case has a next date, and finished cases are closed. The same check tracks progress toward 9 in 10' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

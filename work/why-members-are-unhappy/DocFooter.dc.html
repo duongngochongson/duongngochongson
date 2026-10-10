@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/fonts.css">
+</helmet>
+<footer style="background:#1F1A12;color:#CFC4B1;border-radius:0 0 16px 16px;padding:28px clamp(20px,4vw,56px);display:flex;flex-direction:column;gap:20px">
+<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<dc-import name="Logo" variant="symbol" tone="lit" size="26" hint-size="26px,26px"></dc-import>
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace">{{ line }}</span>
+</div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:200},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Why Members Are Unhappy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;type&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Case study&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;date&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;October 2026&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const PIECES = [
+  ['Case study', 'Case%20Study.dc.html'],
+  ['Design document', 'Design%20Document.dc.html'],
+  ['Storyboard', 'Storyboard.dc.html'],
+  ['Style guide', 'Style%20Guide.dc.html'],
+  ['Job aids', 'Job%20Aids.dc.html'],
+  ['Cozy in 60 seconds', 'Cozy%20in%2060%20Seconds.dc.html']
+];
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const title = p.docTitle ?? p.title ?? 'Why Members Are Unhappy';
+    const type = p.docType ?? p.type ?? 'Case study';
+    const date = p.date ?? 'October 2026';
+    return {
+      line: title + ' · ' + type + ' · ' + date,
+      links: PIECES.filter(l => l[0].toLowerCase() !== type.toLowerCase())
+        .map(l => ({ label: l[0], href: l[1] }))
+    };
+  }
+}
+</script>
+</body>
+</html>
