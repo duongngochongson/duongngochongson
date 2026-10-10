@@ -1,9 +1,9 @@
 /* Son Duong — personal site. Tokens mirror the Claude Design handoff (2a: 1c layout, 1b aesthetic). */
 :root {
-  --bg: #ffffff; --surface: #faf8f5; --card: #ffffff;
-  --ink: #1a1815; --muted: rgba(26,24,21,.62); --faint: rgba(26,24,21,.64);
-  --line: rgba(26,24,21,.1);
-  --t1: oklch(.96 .035 150); --t2: oklch(.96 .04 55); --t3: oklch(.96 .035 240); --t4: oklch(.96 .035 310);
+  --bg: #ffffff; --surface: #f6f3ee; --card: #ffffff;
+  --ink: #1a1815; --muted: rgba(26,24,21,.7); --faint: rgba(26,24,21,.72);
+  --line: rgba(26,24,21,.14);
+  --t1: oklch(.945 .045 150); --t2: oklch(.945 .05 55); --t3: oklch(.945 .045 240); --t4: oklch(.945 .045 310);
   --a1: oklch(.74 .15 55); --a2: oklch(.72 .15 150); --a3: oklch(.7 .15 240); --a4: oklch(.72 .15 310);
   --sA: rgba(255,255,255,.8); --sB: rgba(255,255,255,.3);
   /* darker accents for small text and the focus ring, so they reach 4.5:1 on white */
@@ -38,6 +38,10 @@ a { color: #b4562a; } a:hover { color: #8d3f1c; }
 h1, h2, h3, h4, p, dl, dd { margin: 0; }
 button { font: inherit; }
 :focus-visible { outline: 2px solid var(--a3-ink); outline-offset: 2px; }
+/* Every paragraph is justified, site-wide. Hyphenation keeps the gaps even in narrow columns. */
+p, .prs dd, .bul > div > span:last-child, .withme > div > span:last-child, .path .d, .guide-d {
+  text-align: justify; -webkit-hyphens: auto; hyphens: auto;
+}
 .page:focus { outline: none; }
 
 .site {
@@ -133,6 +137,8 @@ button { font: inherit; }
   transition: transform .3s, box-shadow .3s, background .35s;
 }
 .proj:hover { transform: translateY(-4px); box-shadow: 0 14px 30px var(--shadow); color: inherit; }
+[data-page="portfolio"] .proj-list { gap: 12px; margin-bottom: 12px; }
+[data-page="portfolio"] .proj { background: var(--surface); border-radius: 22px; }
 .thumb { flex: 1 1 170px; min-width: 170px; max-width: 240px; position: relative; height: 148px; border-radius: 14px; overflow: hidden; }
 .thumb .s, .hero .s, .wide .s { position: absolute; }
 .stripes { background: repeating-linear-gradient(135deg, var(--sA) 0 6px, var(--sB) 6px 12px); }
@@ -169,10 +175,21 @@ button { font: inherit; }
 .back:hover .arrow { transform: translateX(-3px); }
 
 .case { container: case / inline-size; background: var(--surface); border-radius: 22px; padding: 22px; margin-bottom: 12px; transition: background .35s; }
-.hero { position: relative; height: 230px; border-radius: 16px; overflow: hidden; margin-bottom: 24px; }
-.screen { position: absolute; right: 28px; top: 34px; width: 150px; height: 160px; border-radius: 12px; display: flex; align-items: flex-end; padding: 12px; box-sizing: border-box; }
-.screen span { font: 400 10px/1.4 var(--mono); color: var(--faint); }
-.case h2 { font: 700 28px/1.3 var(--serif); letter-spacing: -.012em; margin: 0 0 12px; text-wrap: balance; }
+.hero {
+  position: relative; min-height: 230px; border-radius: 16px; overflow: hidden; margin-bottom: 24px;
+  display: flex; align-items: center; justify-content: flex-end; padding: 26px 28px; box-sizing: border-box;
+}
+.hero-art { position: absolute; inset: 0; }
+.hero-head { position: relative; max-width: min(56%, 480px); display: flex; flex-direction: column; align-items: flex-end; gap: 14px; text-align: right; }
+.hero .back { background: var(--card); }
+.case .hero-head h2 { font: 700 24px/1.32 var(--serif); letter-spacing: .03em; text-transform: uppercase; text-wrap: balance; }
+@container case (max-width: 700px) { .hero-art { transform: scale(.8); transform-origin: top left; } }
+@container case (max-width: 560px) {
+  .hero { min-height: 290px; align-items: flex-end; padding: 20px; }
+  .hero-art { transform: scale(.62); transform-origin: top left; }
+  .hero-head { max-width: 100%; }
+  .case .hero-head h2 { font-size: 21px; }
+}
 .case .sum { font: 400 14.5px/1.7 var(--sans); color: var(--muted); }
 .cta-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0 22px; }
 .facts { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; margin-bottom: 12px; }
@@ -196,7 +213,7 @@ button { font: inherit; }
 @container case (max-width: 660px) { .stat { font-size: 22px; } }
 @container case (max-width: 560px) { .stats { grid-template-columns: minmax(0,1fr); } }
 @container case (max-width: 560px) { .facts { grid-template-columns: repeat(2, minmax(0,1fr)); } }
-@container case (max-width: 500px) { .screen { display: none; } }
+
 .cs .stats .card { background: var(--surface); border-radius: 12px; padding: 16px; }
 .stat { font: 700 26px/1.1 var(--serif); margin-bottom: 6px; }
 .stat-l { font: 400 12px/1.5 var(--sans); color: var(--muted); }

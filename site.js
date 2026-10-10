@@ -5,12 +5,11 @@
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   };
 
-  // ---- the Portfolio page shows the same Projects block as Home, so a project is added in one place ----
-  const projects = document.querySelector('[data-projects]');
+  // ---- the Portfolio page shows the same project cards as Home (without Home's block), so a project is added in one place ----
+  const projects = document.querySelector('[data-projects] .proj-list');
   const projectsCopy = document.querySelector('[data-projects-copy]');
   if (projects && projectsCopy) {
     const copy = projects.cloneNode(true);
-    copy.removeAttribute('data-projects');
     copy.querySelectorAll('[id]').forEach(n => { n.id += '-list'; });
     copy.querySelectorAll('[aria-labelledby]').forEach(n => { n.setAttribute('aria-labelledby', n.getAttribute('aria-labelledby') + '-list'); });
     projectsCopy.replaceWith(copy);
