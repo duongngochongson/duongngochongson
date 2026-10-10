@@ -88,7 +88,10 @@ button { font: inherit; }
   background: var(--card); box-shadow: 0 0 0 3px var(--card); transition: box-shadow .35s;
 }
 .contact-links { display: flex; flex-direction: column; gap: 6px; min-width: 0; font: 400 10px/1.6 var(--mono); letter-spacing: .02em; }
-.contact .mail { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--a1); align-self: flex-start; overflow-wrap: anywhere; }
+.contact .mail {
+  color: var(--ink); align-self: flex-start; overflow-wrap: anywhere;
+  text-decoration: underline 1px var(--a1); text-underline-offset: 4px;
+}
 .contact .row { display: flex; gap: 2px 12px; flex-wrap: wrap; }
 .contact .row a { color: var(--muted); text-decoration: none; }
 .contact .row a:hover { color: var(--ink); }
@@ -110,7 +113,7 @@ button { font: inherit; }
 
 /* home */
 .intro { --pad: 26px; }
-.intro p { font: 400 15px/1.7 var(--sans); color: var(--ink); text-wrap: pretty; }
+.intro p { font: 400 15px/1.7 var(--sans); color: var(--ink); text-wrap: pretty; max-width: 68ch; }
 .guide { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 18px; }
 .guide-item {
   display: flex; gap: 12px; align-items: flex-start; text-decoration: none; color: var(--ink);
@@ -120,7 +123,7 @@ button { font: inherit; }
 .guide-item:hover { color: var(--ink); transform: translateY(-2px); box-shadow: 0 8px 20px var(--shadow); }
 .guide-item .dot { margin-top: 6px; }
 .guide-t { display: block; font: 700 14px/1.4 var(--serif); margin-bottom: 3px; }
-.guide-d { display: block; font: 400 12.5px/1.55 var(--sans); color: var(--muted); }
+.guide-d { display: block; font: 400 12.5px/1.55 var(--sans); color: var(--muted); text-wrap: pretty; }
 
 /* project cards (Home and Portfolio) */
 .proj-list { display: grid; gap: 10px; }
