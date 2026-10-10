@@ -8,7 +8,10 @@
 <meta property="og:title" content="Son Duong — Learning Experience Designer">
 <meta property="og:description" content="Hello, nice to meet you here, I'm Son.">
 <meta name="theme-color" content="#ffffff">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='8' fill='%23e5934d'/%3E%3C/svg%3E">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <script>
   // Light by default. Dark only when the visitor picked it before (applied before paint, so no flash).
   try { if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}
@@ -23,7 +26,7 @@
 <!-- ============ SIDEBAR ============ -->
 <aside class="side">
   <div class="side-top">
-    <a class="brand" href="#home"><span class="brand-mark"></span><span class="brand-name">Son Duong</span></a>
+    <a class="brand" href="#home"><span class="brand-name">Son Duong</span></a>
     <div class="toggles">
       <div class="pill" role="group" aria-label="Language">
         <!-- Vietnamese is off for now. To turn it back on, delete "hidden" below. -->
@@ -42,13 +45,13 @@
   <nav class="nav" aria-label="Pages">
     <a href="#home" data-nav="home"><span class="dot" style="background:var(--a2)"></span><span data-vi="Trang chủ">Home</span></a>
     <a href="#portfolio" data-nav="portfolio"><span class="dot" style="background:var(--a1)"></span><span>Portfolio</span></a>
-    <a href="#about" data-nav="about"><span class="dot" style="background:var(--a3)"></span><span data-vi="Về mình">About</span></a>
+    <a href="#about" data-nav="about"><span class="dot" style="background:var(--a3)"></span><span data-vi="Về mình">About me</span></a>
   </nav>
 
   <div class="contact">
-    <img class="avatar" src="assets/portrait.jpg" alt="Son Duong" width="64" height="64">
+    <img class="avatar" src="assets/portrait.jpg" alt="Son Duong" width="128" height="128">
     <div class="contact-links">
-      <a class="mail" href="mailto:duongngochongson@gmail.com">duongngochongson@gmail.com</a>
+      <a class="mail" href="mailto:duongngochongson@gmail.com">duongngochongson<wbr>@gmail.com</a>
       <div class="row"><a href="https://www.linkedin.com/in/duongngochongson/" target="_blank" rel="noopener">LINKEDIN ↗</a><a href="https://github.com/duongngochongson" target="_blank" rel="noopener">GITHUB ↗</a></div>
     </div>
   </div>
@@ -60,7 +63,11 @@
 <!-- ---------- HOME ---------- -->
 <section class="page" data-page="home">
   <div class="block bg-t4 intro">
-    <p data-vi="Mình giúp mọi người xây kỹ năng và đi qua thay đổi. Một bên là learning design, một bên là thói quen nhìn vào dữ liệu.">I help people build skills and navigate change. Learning design on one side, a data habit on the other.</p>
+    <p data-vi="Mình giúp mọi người xây kỹ năng và đi qua thay đổi: một bên là learning design, một bên là thói quen nhìn vào dữ liệu. Mình thiết kế khoá học bằng code, để mỗi khoá chạy được trên điện thoại và đo được hiệu quả. Trang này là một vòng ngắn để xem mình làm việc thế nào.">I help people build skills and navigate change: learning design on one side, a data habit on the other. I build my courses in code, so each one works on a phone and its results can be measured. This site is a short tour of how I work.</p>
+    <div class="guide">
+      <a class="guide-item" href="#portfolio"><span class="dot" style="background:var(--a1)"></span><span><span class="guide-t">Portfolio</span><span class="guide-d" data-vi="Hai module học mình thiết kế và tự lập trình. Mở ra học thử, rồi đọc vì sao mỗi cái được làm như vậy.">Two learning modules I designed and built. Open them, try them, and read why each one works the way it does.</span></span></a>
+      <a class="guide-item" href="#about"><span class="dot" style="background:var(--a3)"></span><span><span class="guide-t" data-vi="Về mình">About me</span><span class="guide-d" data-vi="Mình đến từ đâu (dạy học, dữ liệu, kinh doanh), cách mình làm việc, và CV.">Where I come from (teaching, data and business), how I like to work, and my CV.</span></span></a>
+    </div>
   </div>
 
   <!-- Projects: the Portfolio page shows a copy of this block (site.js), so a project is added here only. -->
@@ -227,12 +234,13 @@
 </section>
 
 <!-- ---------- ABOUT ---------- -->
-<section class="page" data-page="about" data-title="About" hidden>
-  <div class="eyebrow-row"><h2 data-vi="VỀ MÌNH">ABOUT</h2><span data-vi="SON DUONG · TP.HCM">SON DUONG · HO CHI MINH CITY</span></div>
+<section class="page" data-page="about" data-title="About me" hidden>
+  <div class="eyebrow-row"><h2 data-vi="VỀ MÌNH">ABOUT ME</h2><span data-vi="SON DUONG · TP.HCM">SON DUONG · HO CHI MINH CITY</span></div>
 
   <div class="block bg-t3 about-hero">
     <h2 data-vi="Mình đứng lớp, và thiết kế như một người phải đứng trước cả lớp.">I teach, and I design like someone who has to stand in front of the room.</h2>
     <p data-vi="Dạy học cho mình một bài học không bỏ được: bạn biết ngay trong mười phút đầu là buổi học có đang hiệu quả hay không. Mình mang thói quen đó sang thiết kế học tập — và vì mình cũng đi lên từ dữ liệu và quản trị kinh doanh, mình bắt đầu từ vấn đề và kiểm tra kết quả bằng con số.">Teaching taught me something I never shook off: you know within ten minutes whether a session is working. I bring that instinct to learning design — and because I also come from data and business, I start from the problem and check the result with numbers.</p>
+    <div class="cta-row"><button type="button" class="btn btn-primary" data-doc="doc-cv"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Xem CV của mình">View my CV</span></button></div>
   </div>
 
   <div class="grid2">
@@ -313,6 +321,12 @@
 </template>
 <template id="doc-ds-design" data-title="Design document" data-title-vi="Tài liệu thiết kế" data-kicker="NOT-HOME DELIVERY STOP">
   <p class="doc-empty" data-vi="Tài liệu đang được hoàn thiện.">This document is on its way.</p>
+</template>
+<!-- CV: put the PDF at assets/Son-Duong-CV.pdf, then replace the placeholder below with:
+       <iframe class="doc-frame" src="assets/Son-Duong-CV.pdf" title="Son Duong CV"></iframe>
+       <p><a class="btn btn-primary" href="assets/Son-Duong-CV.pdf" download>Download PDF</a></p> -->
+<template id="doc-cv" data-title="CV" data-kicker="SON DUONG">
+  <p class="doc-empty" data-vi="CV đang được cập nhật.">My CV is on its way.</p>
 </template>
 <template id="doc-ds-action-map" data-title="Action map" data-title-vi="Sơ đồ hành động" data-kicker="NOT-HOME DELIVERY STOP">
   <p class="doc-empty" data-vi="Tài liệu đang được hoàn thiện.">This document is on its way.</p>
