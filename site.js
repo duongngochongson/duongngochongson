@@ -43,20 +43,17 @@
   }
   window.addEventListener('hashchange', route);
 
-  // ---- pop-up: documents in a frame (data-frame), pictures (data-image), templates (data-doc) ----
+  // ---- pop-up: documents in a frame (data-frame, the only place they open), pictures (data-image), templates (data-doc) ----
   if (dialog) {
     const title = dialog.querySelector('[data-doc-title]');
     const kicker = dialog.querySelector('[data-doc-kicker]');
     const body = dialog.querySelector('[data-doc-body]');
-    const newTab = dialog.querySelector('[data-doc-newtab]');
     const vi = () => root.lang === 'vi';
 
-    function open({ heading, label, wide, tabHref }) {
+    function open({ heading, label, wide }) {
       title.textContent = heading || '';
       kicker.textContent = label || '';
       dialog.classList.toggle('doc-wide', !!wide);
-      newTab.hidden = !tabHref;
-      if (tabHref) newTab.href = tabHref;
       body.scrollTop = 0;
       if (!dialog.open) dialog.showModal();
     }
@@ -69,12 +66,11 @@
       frame.classList.add('is-ready');
       const name = (doc.title || '').split(' · ')[0].trim();
       if (name) title.textContent = name;
-      newTab.href = win.location.href;
       doc.addEventListener('click', e => {
         const a = e.target.closest && e.target.closest('a[href]');
         if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         const url = new URL(a.getAttribute('href'), win.location.href);
-        if (url.origin !== location.origin) {  // sources and the live course: a new tab, never inside the pop-up
+        if (url.origin !== location.origin) {  // sources and the live course: a new tab, never inside the pop-up (documents never leave it)
           e.preventDefault();
           window.open(url.href, '_blank', 'noopener');
         } else if (url.pathname === win.location.pathname && url.hash) {  // contents links: scroll, no history entry
@@ -91,15 +87,15 @@
       }, true);
     }
 
-    function openFrame(link) {
-      const href = link.href;
-      open({ heading: link.dataset.title || link.textContent.trim(), label: link.dataset.kicker, wide: true, tabHref: href });
+    function openFrame(btn) {
+      const href = new URL(btn.dataset.frame, location.href).href;
+      open({ heading: btn.dataset.title || btn.textContent.trim(), label: btn.dataset.kicker, wide: true });
       const loading = document.createElement('div');
       loading.className = 'doc-loading';
       loading.textContent = vi() ? 'Đang mở tài liệu…' : 'Opening the document…';
       const frame = document.createElement('iframe');
       frame.className = 'doc-frame';
-      frame.title = link.dataset.title || 'Document';
+      frame.title = btn.dataset.title || 'Document';
       frame.addEventListener('load', () => wireFrame(frame));
       frame.src = href;
       body.replaceChildren(loading, frame);
@@ -108,7 +104,7 @@
     function openImage(btn) {
       const img = btn.querySelector('img');
       const src = new URL(btn.dataset.image, location.href).href;
-      open({ heading: btn.dataset.title, label: btn.dataset.kicker, wide: true, tabHref: src });
+      open({ heading: btn.dataset.title, label: btn.dataset.kicker, wide: true });
       const wrap = document.createElement('div');
       wrap.className = 'doc-picture';
       const big = document.createElement('img');
@@ -133,9 +129,6 @@
       const el = e.target.closest('[data-frame], [data-image], [data-doc]');
       if (!el) return;
       if (el.matches('[data-frame]')) {
-        // Ctrl/Cmd/Shift-click and middle-click keep the link's own new-tab behaviour.
-        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        e.preventDefault();
         openFrame(el);
       } else if (el.matches('[data-image]')) {
         openImage(el);
@@ -159,7 +152,6 @@
     dialog.addEventListener('close', () => {
       body.replaceChildren();
       dialog.classList.remove('doc-wide');
-      newTab.hidden = true;
     });
   }
 

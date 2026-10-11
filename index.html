@@ -39,15 +39,21 @@
       </g>
     </svg>
   </symbol>
-  <!-- Not-Home Delivery Stop: one-colour icon, a van at a house whose door stays shut, and a "?" (is anyone home?) -->
+  <!-- Not-Home Delivery Stop: a line-drawn van with a round badge: a house and a small "?" (is anyone home?).
+       The badge's drawing takes the colour of what sits behind it (--art-bg). -->
   <symbol id="art-delivery" viewBox="0 0 240 148">
-    <g transform="translate(-11 6)" fill="var(--art-tone)">
-      <path fill-rule="evenodd" d="M48 44H120a8 8 0 0 1 8 8V58H150a8 8 0 0 1 6.4 3.2L170 79.4a10 10 0 0 1 2 6V96a4 4 0 0 1-4 4H163A15 15 0 0 0 133 100H79A15 15 0 0 0 49 100H44a4 4 0 0 1-4-4V52a8 8 0 0 1 8-8Z M137 66H149.5a3 3 0 0 1 2.4 1.2L159 77H137Z"/>
-      <path fill-rule="evenodd" d="M53 100a11 11 0 1 0 22 0a11 11 0 1 0-22 0Z M60 100a4 4 0 1 0 8 0a4 4 0 1 0-8 0Z"/>
-      <path fill-rule="evenodd" d="M137 100a11 11 0 1 0 22 0a11 11 0 1 0-22 0Z M144 100a4 4 0 1 0 8 0a4 4 0 1 0-8 0Z"/>
-      <path d="M186 72L204 56L222 72V100H209V82H199V100H186Z"/>
-      <path d="M198.6 31a5.6 5.6 0 1 1 7.8 5.2c-1.6.7-2.4 1.9-2.4 3.6V42" fill="none" stroke="var(--art-tone)" stroke-width="3.6" stroke-linecap="round"/>
-      <circle cx="204" cy="48" r="2.3"/>
+    <g transform="translate(-7.5 4.5)">
+      <g fill="none" stroke="var(--art-tone)" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M72 102a8 8 0 0 1-8-8V60a8 8 0 0 1 8-8h52a8 8 0 0 1 8 8v42H105"/>
+        <path d="M132 68h21a6 6 0 0 1 4.8 2.4l10 13.4a8 8 0 0 1 1.6 4.8V97a5 5 0 0 1-5 5"/>
+        <circle cx="89" cy="104" r="9.5"/><circle cx="148" cy="104" r="9.5"/>
+      </g>
+      <circle cx="174" cy="42" r="19" fill="var(--art-tone)"/>
+      <g fill="none" stroke="var(--art-bg)" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M159 44l8.5-7 8.5 7M162 41.5V51h11V41.5" stroke-width="3"/>
+        <path d="M178.4 36.6a3 3 0 1 1 4.3 2.7c-.9.4-1.5 1.1-1.5 2.1v.7" stroke-width="2.4"/>
+      </g>
+      <circle cx="181.2" cy="46.6" r="1.45" fill="var(--art-bg)"/>
     </g>
   </symbol>
 </svg>
@@ -145,9 +151,9 @@
 
 <!-- ---------- PORTFOLIO: one page per project ----------
      The same template for every project: the hero (All projects + title on the left, the project art on the right),
-     the overview, the main button, the facts, then full-width sections: The problem, What the analysis found,
+     the overview, the main buttons, then full-width sections: The problem, What the analysis found,
      The fixes, the course or module itself, How it was built and tested, The goal.
-     Document buttons are links (a new tab with Ctrl/Cmd-click); a plain click opens them in the pop-up. -->
+     Document buttons open the documents in the pop-up, and only there. -->
 <section class="page" data-page="portfolio/why-members-are-unhappy" data-title="Why Members Are Unhappy" hidden>
   <article class="case">
     <div class="hero" style="background:var(--t2)">
@@ -160,13 +166,7 @@
     <p class="sum" data-vi="Cozy, một công ty coworking hư cấu, thấy điểm hài lòng của thành viên giảm từ 4,1 xuống 3,2 trên 5 trong một năm, và &quot;cách Cozy xử lý khiếu nại&quot; thành điểm thấp nhất, 2,7. Mình phân tích nhu cầu và tìm ra ba nguyên nhân, chỉ một là thiếu kỹ năng. Vì vậy giải pháp gồm biển báo và hướng dẫn ngày đầu cho thành viên, checklist mất Wi-Fi cho nhân viên, và cho cuộc gọi khiếu nại: quản lý sửa quy trình ghi log, cùng Hear Them Out, khoá học phân nhánh cho lễ tân.">Cozy, a fictional coworking business, saw member satisfaction fall from 4.1 to 3.2 out of 5 in one year, and “How Cozy handles complaints” became its lowest score, at 2.7. I ran the needs analysis and traced the drop to three causes. Only one was a skill gap. So the fixes are signs and a first-day guide for members, an outage checklist for staff, and, for complaint calls, a change to the log for managers plus Hear Them Out, a branching course for the front desk.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://hear-them-out.vercel.app/" target="_blank" rel="noopener"><span data-vi="Học thử khoá học">Take the course</span> ↗</a>
-      <a class="doc-btn" href="work/why-members-are-unhappy/Case%20Study.dc.html" target="_blank" rel="noopener" data-frame data-title="Case study" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Đọc case study">Read the case study</span></a>
-    </div>
-    <div class="facts">
-      <div class="card"><div class="lab" data-vi="VAI TRÒ">ROLE</div><div class="val" data-vi="Phân tích, thiết kế, lập trình">Analysis, design and build</div></div>
-      <div class="card"><div class="lab" data-vi="SẢN PHẨM">DELIVERABLES</div><div class="val" data-vi="Case study, khoá học, job aid, hướng dẫn">Case study, course, job aids, guide</div></div>
-      <div class="card"><div class="lab" data-vi="NGƯỜI HỌC">LEARNERS</div><div class="val" data-vi="Lễ tân và thành viên mới">Front-desk staff and new members</div></div>
-      <div class="card"><div class="lab" data-vi="CÔNG CỤ">TOOLS</div><div class="val">React · XState · Claude · Gemini</div></div>
+      <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Case%20Study.dc.html" data-title="Case study" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Đọc case study">Read the case study</span></button>
     </div>
 
     <section class="cs">
@@ -184,7 +184,10 @@
     <section class="cs">
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-ci" style="background:var(--a2)"></span><h3 class="lab" data-vi="PHÂN TÍCH TÌM RA GÌ">WHAT THE ANALYSIS FOUND</h3></div>
-        <a class="doc-btn" href="work/why-members-are-unhappy/Case%20Study.dc.html#s4" target="_blank" rel="noopener" data-frame data-title="Case study" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Case study</span></a>
+        <div class="doc-btns">
+          <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Case%20Study.dc.html#s4" data-title="Case study" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Toàn bộ case study">Full case study</span><span class="go" aria-hidden="true">↗</span></button>
+          <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Diagrams.html#action-map" data-title="Diagrams" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Toàn bộ action map">Full action map</span><span class="go" aria-hidden="true">↗</span></button>
+        </div>
       </div>
       <p data-vi="Mình dùng khảo sát thành viên, log sự cố và mất mạng, phỏng vấn các ca trực và một buổi đi quanh không gian, rồi phân loại nguyên nhân theo mô hình của Gilbert. Có ba nguyên nhân, và chỉ một là thiếu kỹ năng.">I used the member survey, the issue and outage logs, shift interviews and a walk-through of the space, and sorted the causes with Gilbert's model. There were three causes, and only one was a skill gap.</p>
       <div class="rows">
@@ -199,8 +202,8 @@
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-di" style="background:var(--a3)"></span><h3 class="lab" data-vi="CÁC GIẢI PHÁP">THE FIXES</h3></div>
         <div class="doc-btns">
-          <a class="doc-btn" href="work/why-members-are-unhappy/Cozy%20in%2060%20Seconds.dc.html" target="_blank" rel="noopener" data-frame data-title="Cozy in 60 seconds" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Cozy in 60 seconds</span></a>
-          <a class="doc-btn" href="work/why-members-are-unhappy/Job%20Aids.dc.html" target="_blank" rel="noopener" data-frame data-title="Job aids" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Job aids</span></a>
+          <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Cozy%20in%2060%20Seconds.dc.html" data-title="Cozy in 60 seconds" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Toàn bộ hướng dẫn ngày đầu">Full first-day guide</span><span class="go" aria-hidden="true">↗</span></button>
+          <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Job%20Aids.dc.html" data-title="Job aids" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Tất cả job aid">All job aids</span><span class="go" aria-hidden="true">↗</span></button>
         </div>
       </div>
       <div class="tiles">
@@ -214,8 +217,9 @@
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-pi" style="background:var(--a4)"></span><h3 class="lab" data-vi="KHOÁ HỌC: HEAR THEM OUT">THE COURSE: HEAR THEM OUT</h3></div>
         <div class="doc-btns">
-          <a class="doc-btn" href="work/why-members-are-unhappy/Design%20Document.dc.html" target="_blank" rel="noopener" data-frame data-title="Design document" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Tài liệu thiết kế">Design document</span></a>
-          <a class="doc-btn" href="work/why-members-are-unhappy/Storyboard.dc.html" target="_blank" rel="noopener" data-frame data-title="Storyboard" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Storyboard</span></a>
+          <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Design%20Document.dc.html" data-title="Design document" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Toàn bộ tài liệu thiết kế">Full design document</span><span class="go" aria-hidden="true">↗</span></button>
+          <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Storyboard.dc.html" data-title="Storyboard" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Toàn bộ storyboard">Full storyboard</span><span class="go" aria-hidden="true">↗</span></button>
+          <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Diagrams.html#branch-map" data-title="Diagrams" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Toàn bộ sơ đồ phân nhánh">Full branching map</span><span class="go" aria-hidden="true">↗</span></button>
         </div>
       </div>
       <div class="shots">
@@ -235,7 +239,7 @@
     <section class="cs">
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-sq" style="background:var(--a2)"></span><h3 class="lab" data-vi="LÀM VÀ KIỂM TRA THẾ NÀO">HOW IT WAS BUILT AND TESTED</h3></div>
-        <a class="doc-btn" href="work/why-members-are-unhappy/Style%20Guide.dc.html" target="_blank" rel="noopener" data-frame data-title="Style guide" data-kicker="WHY MEMBERS ARE UNHAPPY"><span class="doc-ico" aria-hidden="true"></span><span>Style guide</span></a>
+        <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Style%20Guide.dc.html" data-title="Style guide" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Toàn bộ style guide">Full style guide</span><span class="go" aria-hidden="true">↗</span></button>
       </div>
       <p data-vi="Mình viết bản phân tích, tài liệu thiết kế và storyboard cùng Claude, và làm thiết kế cùng thương hiệu Cozy trong Claude Design. Khoá học là một web app mình làm bằng Claude Code với React, XState và Zod, chạy trên Vercel. Giọng Sofia làm bằng Gemini text-to-speech. Một bài test so từng câu với storyboard, từng chữ một. Test trình duyệt chạy trên máy bàn, laptop 1280 × 720 và điện thoại 375 px có cảm ứng, và một buổi review chuyên môn cùng một cognitive walkthrough đã đi qua khoá học dưới góc nhìn của Jane, một lễ tân ba năm kinh nghiệm, và của một nhân viên mới.">I wrote the analysis, the design document and the storyboard with Claude, and made the designs and the Cozy brand in Claude Design. The course is a web app I built with Claude Code in React, XState and Zod, hosted on Vercel, and Sofia's voice is made with Gemini text-to-speech. A test checks every line against the storyboard, word for word. Browser tests run on a desktop, a 1280 × 720 laptop and a 375-pixel phone with touch, and an expert review and a cognitive walkthrough went through the course as Jane, a community manager with three years at Cozy, and as a new hire.</p>
     </section>
@@ -261,18 +265,12 @@
         <a class="back" href="#portfolio"><span class="arrow">←</span><span data-vi="Tất cả dự án">All projects</span></a>
         <h2 data-vi="Giao hàng khi khách vắng nhà">Not-Home Delivery Stop</h2>
       </div>
-      <div class="hero-art art-delivery" aria-hidden="true"><svg viewBox="27 30 186 89"><use href="#art-delivery" width="240" height="148"/></svg></div>
+      <div class="hero-art art-delivery" aria-hidden="true"><svg viewBox="52 25 136 98"><use href="#art-delivery" width="240" height="148"/></svg></div>
     </div>
     <p class="sum" data-vi="Một module eLearning 7 slide cho tài xế giao hàng nội thành, về việc cần làm khi gõ cửa mà không ai ra. Công ty giao hàng là hư cấu. Mình xác định những việc tài xế phải làm trên đường, rồi làm một bài luyện cho từng việc. Module chạy trên web và được đóng gói SCORM 1.2 để đưa lên LMS.">A seven-slide e-learning module for city-route drivers, about what to do when nobody answers the door. The parcel company is fictional. I mapped what drivers need to do on the job, then built one practice for each action. The module runs on the web and ships as a SCORM 1.2 package for an LMS.</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://delivery-scenario.vercel.app/" target="_blank" rel="noopener"><span data-vi="Mở module">Open the module</span> ↗</a>
-      <a class="doc-btn" href="work/not-home-delivery-stop/design-pages/diagrams.html#action-map-heading" target="_blank" rel="noopener" data-frame data-title="Action map" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Xem action map">See the action map</span></a>
-    </div>
-    <div class="facts">
-      <div class="card"><div class="lab" data-vi="VAI TRÒ">ROLE</div><div class="val" data-vi="Phân tích, thiết kế, lập trình">Analysis, design and build</div></div>
-      <div class="card"><div class="lab" data-vi="SẢN PHẨM">DELIVERABLES</div><div class="val" data-vi="Module 7 slide, gói SCORM 1.2">Seven-slide module, SCORM 1.2 package</div></div>
-      <div class="card"><div class="lab" data-vi="NGƯỜI HỌC">LEARNERS</div><div class="val" data-vi="Tài xế giao hàng nội thành">City-route delivery drivers</div></div>
-      <div class="card"><div class="lab" data-vi="CÔNG CỤ">TOOLS</div><div class="val">React · XState · Zod · Piper TTS</div></div>
+      <button type="button" class="doc-btn" data-frame="work/not-home-delivery-stop/Diagrams.html#action-map" data-title="Diagrams" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Xem action map">See the action map</span></button>
     </div>
 
     <section class="cs">
@@ -290,7 +288,7 @@
     <section class="cs">
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-ci" style="background:var(--a2)"></span><h3 class="lab" data-vi="PHÂN TÍCH TÌM RA GÌ">WHAT THE ANALYSIS FOUND</h3></div>
-        <a class="doc-btn" href="work/not-home-delivery-stop/design-pages/diagrams.html#action-map-heading" target="_blank" rel="noopener" data-frame data-title="Action map" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span>Action map</span></a>
+        <button type="button" class="doc-btn" data-frame="work/not-home-delivery-stop/Diagrams.html#action-map" data-title="Diagrams" data-kicker="NOT-HOME DELIVERY STOP"><span data-vi="Toàn bộ action map">Full action map</span><span class="go" aria-hidden="true">↗</span></button>
       </div>
       <p data-vi="Action map nối mục tiêu với bốn việc tài xế làm trên đường. Mỗi việc có rào cản của nó, một bài luyện, và lượng thông tin tối thiểu cần có.">The action map links the goal to four things drivers do on the job. Each action has its barriers, a practice and the minimum information it needs.</p>
       <div class="rows">
@@ -316,7 +314,7 @@
     <section class="cs">
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-pi" style="background:var(--a4)"></span><h3 class="lab">THE MODULE: NOT-HOME DELIVERY STOP</h3></div>
-        <a class="doc-btn" href="work/not-home-delivery-stop/design-pages/diagrams.html#branching-heading" target="_blank" rel="noopener" data-frame data-title="Branching map" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Sơ đồ phân nhánh">Branching map</span></a>
+        <button type="button" class="doc-btn" data-frame="work/not-home-delivery-stop/Diagrams.html#branching" data-title="Diagrams" data-kicker="NOT-HOME DELIVERY STOP"><span data-vi="Toàn bộ sơ đồ phân nhánh">Full branching map</span><span class="go" aria-hidden="true">↗</span></button>
       </div>
       <div class="shots">
         <button type="button" class="shot" data-image="assets/projects/ds-sequence.webp" data-title="Put the steps in order" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-sequence.webp" alt="Slide 1: the six steps of a not-home stop, to drag into order." width="1440" height="900" loading="lazy"><span class="shot-cap" data-vi="Slide 1: sắp thứ tự các bước">Slide 1: put the steps in order</span></button>
@@ -335,7 +333,7 @@
     <section class="cs">
       <div class="cs-head">
         <div class="cs-title"><span class="glyph g-sq" style="background:var(--a2)"></span><h3 class="lab" data-vi="LÀM VÀ KIỂM TRA THẾ NÀO">HOW IT WAS BUILT AND TESTED</h3></div>
-        <a class="doc-btn" href="work/not-home-delivery-stop/design-pages/style-guide.html" target="_blank" rel="noopener" data-frame data-title="Style guide" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span>Style guide</span></a>
+        <button type="button" class="doc-btn" data-frame="work/not-home-delivery-stop/design-pages/style-guide.html" data-title="Style guide" data-kicker="NOT-HOME DELIVERY STOP"><span data-vi="Toàn bộ style guide">Full style guide</span><span class="go" aria-hidden="true">↗</span></button>
       </div>
       <p data-vi="Module làm bằng React và Vite, XState cho logic từng slide và Zod để kiểm tra nội dung. Giọng trong cuộc gọi làm bằng Piper text-to-speech, với phụ đề canh theo âm thanh thật. Unit test bao phủ engine, test trình duyệt bấm qua mọi slide, và axe-core kiểm tra khả năng tiếp cận ở mọi slide và trạng thái tại 360, 600, 840 và 1280 px. Gói SCORM được test trong một LMS giả lập.">The module is built in React with Vite, with XState for each slide's logic and Zod to check the content. The voices in the call are made with Piper text-to-speech, with captions timed from the real audio. Unit tests cover the engine, browser tests click through every slide, and axe-core checks accessibility on every slide and state at 360, 600, 840 and 1280 pixels. The SCORM package is tested in a stand-in LMS.</p>
     </section>
@@ -421,17 +419,14 @@
 
 <!-- ============ POP-UP ============
      One dialog for documents, pictures and placeholders:
-     - a link with data-frame opens its href (a page in work/) in a frame, wide; Ctrl/Cmd-click still opens a new tab;
+     - a button with data-frame opens that page (a document in work/) in a frame, wide; documents open only here;
      - a button with data-image opens that picture, wide;
      - a button with data-doc="x" opens <template id="x"> (its data-title is the heading, its content the body). -->
 <dialog class="doc" aria-labelledby="doc-title">
   <div class="doc-inner">
     <div class="doc-top">
       <div class="doc-heading"><div class="lab" data-doc-kicker></div><h2 id="doc-title" data-doc-title></h2></div>
-      <div class="doc-actions">
-        <a class="doc-newtab" data-doc-newtab href="#" target="_blank" rel="noopener" hidden><span class="doc-newtab-text" data-vi="Mở tab mới">Open in new tab</span> ↗</a>
-        <button type="button" class="doc-close" data-doc-close aria-label="Close" autofocus>×</button>
-      </div>
+      <button type="button" class="doc-close" data-doc-close aria-label="Close" autofocus>×</button>
     </div>
     <div class="doc-body" data-doc-body></div>
   </div>

@@ -1,0 +1,59 @@
+/* Diagrams: the boxes (.n) and the lines between them (drawn by dg.js), on top of frame.css. */
+
+/* legend: what each kind of box means */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 0 0 18px; padding: 0; list-style: none; font: 500 13px/1.3 'IBM Plex Mono', monospace; color: var(--soft); }
+.legend li { display: inline-flex; align-items: center; gap: 8px; }
+.sw { flex: none; width: 22px; height: 14px; border-radius: 4px; background: var(--paper); border: 1.5px solid var(--line-strong); }
+.sw-line { flex: none; width: 24px; height: 0; border-top: 2px solid var(--wire); }
+.sw-line.dash { border-top-style: dashed; }
+
+/* ---------- the diagram: boxes (.n) and the lines between them (drawn by dg.js) ---------- */
+.dg { position: relative; }
+.dg-wires { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+.dg-wires path { fill: none; stroke: var(--wire); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.dg-wires .dash { stroke-dasharray: 5 5; }
+.dg-wires .good { stroke: var(--good); }
+.dg-wires .weak { stroke: var(--weak); }
+.dg-wires .key { stroke: var(--key); }
+.dg-wires .bold { stroke-width: 2.5; }
+.dg-wires .head { fill: var(--wire); stroke: none; }
+.dg-wires .head.good { fill: var(--good); } .dg-wires .head.weak { fill: var(--weak); } .dg-wires .head.key { fill: var(--key); }
+
+.n {
+  position: relative; z-index: 1; min-width: 0;
+  background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px;
+  font: 400 15px/1.45 'IBM Plex Sans', sans-serif; color: var(--body);
+}
+.n .k { display: block; margin-bottom: 4px; font: 500 12.5px/1.3 'IBM Plex Mono', monospace; letter-spacing: .02em; color: var(--key); }
+.n b, .n .t { font-weight: 600; color: var(--ink); }
+.n p { margin: 0; }
+.n, .n p, .n li { text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+.n p + p { margin-top: 6px; }
+.n--sm { padding: 8px 12px; font-size: 14px; border-radius: 10px; }
+.n--ink { background: var(--night); border-color: var(--night); color: var(--night-text); }
+.n--ink .k { color: var(--accent); }
+.n--ink b, .n--ink .t { color: var(--paper); }
+.n--key { border: 2px solid var(--ink); }
+.n--tint { background: var(--key-tint); border-color: transparent; }
+.n--alt { background: var(--alt-tint); border-color: transparent; }
+.n--alt .k { color: var(--alt); }
+.n--plain { background: transparent; border-color: var(--line-strong); }
+.n--ops { background: transparent; border: 1.5px dashed var(--line-strong); }
+.n--good { background: var(--good-tint); border-color: transparent; }
+.n--good .k { color: var(--good); }
+.n--weak { background: var(--weak-tint); border-color: transparent; }
+.n--weak .k { color: var(--weak); }
+.n--end { border-radius: 999px; padding-left: 18px; padding-right: 18px; }
+
+/* small pills inside boxes */
+.pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line-strong); font: 500 12px/1.4 'IBM Plex Mono', monospace; color: var(--soft); white-space: nowrap; vertical-align: 1px; }
+.pill--key { border-color: var(--key); color: var(--key); }
+.pill--good { border-color: var(--good); color: var(--good); }
+.pill--weak { border-color: var(--weak); color: var(--weak); }
+.pill--ink { background: var(--night); border-color: var(--night); color: var(--paper); }
+.letter { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 7px; border: 1.5px solid currentColor; font: 600 13px/1 'IBM Plex Mono', monospace; vertical-align: -6px; margin-right: 6px; }
+
+/* a column label above a column of boxes */
+.col-label { font: 500 12.5px/1.3 'IBM Plex Mono', monospace; letter-spacing: .02em; color: var(--soft); text-transform: none; }
+
+@media print { body { background: none; padding: 0; } .doc-head, .doc-foot { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }

@@ -1,0 +1,129 @@
+/* The document frame of the portfolio: every project document uses it (the Cozy documents are drawn
+   by their own runtime with the same values). A dark header with the project's mark, a paper body with
+   the contents on the left (a box that opens on a phone), numbered sections, figures with mono captions,
+   and a dark footer. Diagrams add dg.css and dg.js on top. */
+
+:root {
+  --night: #1F1A12; --night-line: #4A4235; --night-text: #E8DFD0; --night-soft: #CFC4B1;
+  --paper: #FBF7EE; --desk: #F4EFE4; --desk-deep: #E9E2D4; --line: #E3DACB; --line-strong: #8C8170;
+  --ink: #1F1A12; --body: #3D352A; --soft: #5E5446;
+  --accent: #F2A93B;                        /* the rule under the header, the eyebrow */
+  --key: #8A5300; --key-tint: #FBEBCB;      /* labels, links, and the tint that marks a level */
+  --alt: #2F5A9E; --alt-tint: #E3EAF5;
+  --good: #2F7A4B; --good-tint: #E2EFE5;
+  --weak: #B03A48; --weak-tint: #F6E1E1;
+  --wire: #8C8170;
+  --tone-ink: #8A5300; --tone-tint: #FBEFDB; --tone-line: #F0D5A4;
+}
+/* a section's colour: its icon, its number in the contents, its rule */
+.tone-amber  { --tone-ink: #8A5300; --tone-tint: #FBEFDB; --tone-line: #F0D5A4; }
+.tone-blue   { --tone-ink: #2F5A9E; --tone-tint: #E9EFF8; --tone-line: #C3D2EA; }
+.tone-green  { --tone-ink: #2F7A4B; --tone-tint: #E6F2EA; --tone-line: #BFDFCB; }
+.tone-red    { --tone-ink: #B03A48; --tone-tint: #FBEAEC; --tone-line: #EFC6CB; }
+.tone-purple { --tone-ink: #6A4A8C; --tone-tint: #F1EAF8; --tone-line: #D6C8E7; }
+.tone-brown  { --tone-ink: #6B5B4B; --tone-tint: #F1EBE3; --tone-line: #DCD0C2; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; background: var(--night); padding: clamp(0px, 3vw, 40px); font: 400 18px/28px 'IBM Plex Sans', sans-serif; color: var(--body); -webkit-font-smoothing: antialiased; }
+a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: var(--key); }
+:focus-visible { outline: 2px solid #2F5A9E; outline-offset: 2px; }
+.doc { max-width: 1240px; margin: 0 auto; background: var(--paper); border-radius: 16px; }
+
+/* ---------- header and footer ---------- */
+.doc-head {
+  background: var(--night); color: var(--paper); border-radius: 16px 16px 0 0;
+  padding: clamp(28px, 4vw, 52px) clamp(20px, 4vw, 56px) clamp(26px, 3.5vw, 40px);
+  display: flex; flex-direction: column; gap: clamp(22px, 3vw, 32px);
+}
+.doc-mark { display: block; height: 34px; width: auto; align-self: flex-start; }
+.doc-titles { display: flex; flex-direction: column; gap: 18px; }
+.doc-eyebrow { font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--accent); letter-spacing: .02em; }
+.doc-head h1 { margin: 0; font: 700 clamp(36px, 6vw, 60px)/1.03 'Archivo', sans-serif; letter-spacing: -0.03em; color: var(--paper); }
+.doc-sub { margin: 0; font: 400 clamp(17px, 2vw, 20px)/1.5 'IBM Plex Sans', sans-serif; color: var(--night-text); text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
+.doc-meta { display: flex; flex-wrap: wrap; gap: 0 24px; padding-top: 18px; border-top: 1px solid var(--night-line); font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--night-soft); }
+.doc-meta span { white-space: nowrap; }
+.doc-rule { height: 4px; background: var(--accent); }
+.doc-foot {
+  background: var(--night); color: var(--night-soft); border-radius: 0 0 16px 16px;
+  padding: 28px clamp(20px, 4vw, 56px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
+  font: 500 16px/22px 'IBM Plex Mono', monospace;
+}
+.doc-foot .doc-mark { height: 26px; }
+@media (max-width: 600px) { .doc, .doc-head, .doc-foot { border-radius: 0; } }
+
+/* ---------- body: the contents on the left, the reading column on the right ---------- */
+.doc-layout { display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(24px, 3vw, 40px); padding: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 56px) clamp(32px, 5vw, 64px); }
+.doc-toc { flex: 1 1 220px; max-width: 260px; min-width: 200px; position: sticky; top: 16px; align-self: flex-start; z-index: 5; max-height: calc(100vh - 32px); overflow: auto; }
+.doc-main { flex: 999 1 490px; min-width: 0; max-width: 760px; display: flex; flex-direction: column; gap: clamp(28px, 3.5vw, 40px); }
+.doc-layout--wide .doc-main { max-width: none; }   /* a document of wide figures: the column takes the room there is */
+
+.toc-side { display: flex; flex-direction: column; gap: 14px; padding: 0 0 0 2px; }
+.toc-title { font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--key); letter-spacing: .02em; }
+.doc-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.toc-side ol { border-left: 1.5px solid var(--line); }
+.toc-side a {
+  display: flex; align-items: baseline; gap: 10px; padding: 7px 10px 7px 12px; margin-left: -1.5px; min-height: 36px;
+  border-left: 3px solid transparent; font: 400 16px/21px 'IBM Plex Sans', sans-serif; color: var(--soft); text-decoration: none;
+}
+.toc-side a:hover { color: var(--ink); background: var(--desk); }
+.toc-side a[aria-current="true"] { border-left-color: var(--tone-ink); color: var(--ink); font-weight: 600; }
+.toc-num { flex: none; font: 500 15px/21px 'IBM Plex Mono', monospace; color: var(--tone-ink); }
+.toc-dot { flex: none; width: 6px; height: 6px; margin-top: 7px; border-radius: 999px; background: var(--line); }
+.toc-box { display: none; background: var(--paper); border: 1.5px solid var(--line); border-radius: 10px; overflow: hidden; }
+.toc-box summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 12px 16px; cursor: pointer;
+  font: 600 16px/24px 'IBM Plex Sans', sans-serif; color: var(--ink); background: var(--desk); list-style: none;
+}
+.toc-box summary::-webkit-details-marker { display: none; }
+.toc-box summary span { font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--key); }
+.toc-box ol { padding: 8px; }
+.toc-box a { display: flex; align-items: baseline; gap: 10px; padding: 10px 12px; border-radius: 8px; min-height: 44px; font: 400 16px/22px 'IBM Plex Sans', sans-serif; color: var(--body); text-decoration: none; }
+.toc-box a:hover { background: var(--desk); }
+@media (max-width: 859.98px) {
+  .doc-toc { flex-basis: 100%; max-width: none; min-width: 0; position: static; max-height: none; overflow: visible; }
+  .toc-side { display: none; }
+  .toc-box { display: block; }
+}
+
+/* ---------- sections ---------- */
+.doc-sec { scroll-margin-top: 24px; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.doc-sec + .doc-sec { margin-top: clamp(16px, 3vw, 32px); }
+.sec-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.sec-ico { flex: none; width: 44px; height: 44px; border-radius: 13px; background: var(--tone-tint); border: 1.5px solid var(--tone-line); display: flex; align-items: center; justify-content: center; color: var(--tone-ink); }
+.sec-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.sec-head h2 { margin: 0; display: flex; gap: 12px; align-items: baseline; font: 600 clamp(24px, 3vw, 30px)/1.2 'Archivo', sans-serif; letter-spacing: -0.01em; color: var(--ink); }
+.sec-n { flex: none; font: 500 18px/1 'IBM Plex Mono', monospace; color: var(--tone-ink); }
+.sec-line { flex: 1 1 40px; min-width: 20px; height: 2px; border-radius: 2px; background: var(--tone-line); }
+.doc-sec h3 { margin: 8px 0 0; font: 600 21px/1.3 'Archivo', sans-serif; letter-spacing: -0.005em; color: var(--ink); }
+.doc-sec p, .doc-sec li { margin: 0; }
+/* paragraphs and bullet lists of the text are justified; the words inside figures are not */
+.doc-sec > p, .doc-sec > ul > li, .callout p, .table-wrap td { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
+.doc-sec > ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.doc-sec > ul > li { display: flex; gap: 12px; }
+.doc-sec > ul > li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 11px; border-radius: 999px; background: var(--tone-ink); }
+.doc-sec > ul.plain > li::before { content: none; }
+code { font: 600 0.9em/1 'IBM Plex Mono', monospace; color: var(--key); }
+b, strong { font-weight: 600; color: var(--ink); }
+
+/* a callout: a paper note with a coloured edge */
+.callout { background: var(--desk); border-left: 4px solid var(--tone-ink); border-radius: 4px 12px 12px 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+.callout .k { font: 500 15px/1.3 'IBM Plex Mono', monospace; color: var(--tone-ink); }
+
+/* tables */
+.table-wrap { border: 1.5px solid var(--line); border-radius: 16px; background: var(--paper); overflow-x: auto; overscroll-behavior-x: contain; }
+.table-wrap table { width: 100%; border-collapse: collapse; text-align: left; }
+.table-wrap th { padding: 14px 16px; font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--ink); vertical-align: bottom; background: var(--desk); border-bottom: 1.5px solid var(--line); }
+.table-wrap td { padding: 14px 16px; font: 400 16px/24px 'IBM Plex Sans', sans-serif; color: var(--body); vertical-align: top; border-bottom: 1px solid var(--line); }
+.table-wrap tr:last-child td { border-bottom: 0; }
+
+/* figures: a panel and a mono caption */
+.fig { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.fig-panel { background: var(--desk); border: 1.5px solid var(--line); border-radius: 16px; padding: clamp(16px, 2.5vw, 28px); overflow-x: auto; container-type: inline-size; }
+.fig-panel > img { display: block; width: 100%; height: auto; border-radius: 10px; }
+.fig figcaption { display: flex; gap: 10px; font: 500 17px/1.35 'IBM Plex Mono', monospace; color: var(--soft); }
+.fig figcaption b { color: var(--key); font-weight: 600; flex: none; }
+
+@media print { body { background: none; padding: 0; } .doc-toc { display: none; } .doc-head, .doc-foot { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }

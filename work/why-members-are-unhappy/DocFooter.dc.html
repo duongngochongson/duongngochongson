@@ -17,7 +17,7 @@
 </div>
 </footer>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:200},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Why Members Are Unhappy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;type&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Case study&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;date&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;October 2026&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:200},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Why Members Are Unhappy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;type&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Case study&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 const PIECES = [
   ['Case study', 'Case%20Study.dc.html'],
   ['Design document', 'Design%20Document.dc.html'],
@@ -31,9 +31,8 @@ class Component extends DCLogic {
     const p = this.props;
     const title = p.docTitle ?? p.title ?? 'Why Members Are Unhappy';
     const type = p.docType ?? p.type ?? 'Case study';
-    const date = p.date ?? 'October 2026';
     return {
-      line: title + ' · ' + type + ' · ' + date,
+      line: title + ' · ' + type,
       links: PIECES.filter(l => l[0].toLowerCase() !== type.toLowerCase())
         .map(l => ({ label: l[0], href: l[1] }))
     };

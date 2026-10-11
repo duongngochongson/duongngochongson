@@ -26,7 +26,7 @@
 </header>
 <div style="height:4px;background:#F2A93B"></div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:420},&quot;project&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Why Members Are Unhappy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;type&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Case study&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Why Members Are Unhappy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;subtitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;date&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;October 2026&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;author&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Son Duong&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:900,&quot;height&quot;:420},&quot;project&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Why Members Are Unhappy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;type&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Case study&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Why Members Are Unhappy&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;subtitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;author&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Son Duong&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   state = { mins: 0, secs: 0, figs: 0 };
 
@@ -59,7 +59,6 @@ class Component extends DCLogic {
       type: p.docType ?? p.type ?? 'Case study',
       title: p.docTitle ?? p.title ?? 'Why Members Are Unhappy',
       subtitle: p.subtitle ?? '',
-      date: p.date ?? 'October 2026',
       author: p.author ?? 'Son Duong'
     };
   }
