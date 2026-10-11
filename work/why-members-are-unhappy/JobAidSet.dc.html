@@ -51,21 +51,21 @@ const CARDS = {
   },
   '04': {
     number: '04', title: 'Wi-Fi Down', icon: 'wifi', iconColor: '#1F1A12', variant: 'steps', max: '720px',
-    use: 'members say the Wi-Fi is down. Read a step, do it, then go to the next. Every shift does it the same way.',
+    use: 'members say the Wi-Fi is down. Read a step and do it before you go on to the next, so that every shift handles an outage the same way.',
     footTitle: 'What to say (fill in the times)',
     rows: [
       { key: '1', lead: 'Check the scope', when: 'In 1 minute', do: 'Is it one device or the whole space? It\u2019s the whole space when 2 or more members report it, or the wired network is down too.', avoid: 'Fixing one laptop while the whole network is down' },
-      { key: '2', lead: 'Tell everyone', when: 'Within 10 minutes', do: 'Send the first notice now, before you know the cause. Say when the next update comes. Offer everyone here a drink at the front desk, as a thank-you for waiting.', avoid: 'Waiting for the cause, or promising a fix time' },
-      { key: '3', lead: 'Get it back', when: 'Right away', do: 'Switch to the backup line. Still down? Restart the router. Still down? Call the provider.', avoid: 'Restarting again and again, or calling the provider late' },
-      { key: '4', lead: 'Update', when: 'Every 15 minutes', do: 'Send an update, even when nothing is new. Each one says when the next comes.', avoid: 'Staying silent because there\u2019s nothing new' },
-      { key: '5', lead: 'Call the head of operations', when: 'At 30 minutes', do: 'Still down after 30 minutes: call the head of operations.', avoid: 'Going on alone' },
-      { key: '6', lead: 'Thank everyone', when: 'Back online', do: 'Send the back-online message. Down 30 minutes or more? Everyone here also gets 1 free hour in a Private room or a meeting room, to use within 30 days. Log each free hour under the member\u2019s name.', avoid: 'Deciding by feel: everyone here gets the same, on every shift' },
-      { key: '7', lead: 'Log it', when: 'When it\u2019s over', do: 'When it started, when the first notice went out, the cause, when it ended, and the compensation.', avoid: 'Leaving out the first-notice time or the cause' }
+      { key: '2', lead: 'Tell everyone', when: 'Within 10 minutes', do: 'Send the first notice now, before you know the cause. Say when the next update comes. Offer everyone here a drink at the front desk, as a thank-you for waiting.', avoid: 'Waiting for the cause, or promising a time for the fix' },
+      { key: '3', lead: 'Get the Wi-Fi back', when: 'Right away', do: 'Switch to the backup line. If the Wi-Fi is still down, restart the router. If it is still down after that, call the internet provider.', avoid: 'Restarting the router again and again, or calling the provider late' },
+      { key: '4', lead: 'Send updates', when: 'Every 15 minutes', do: 'Send an update, even when nothing is new. Each update says when the next one will come.', avoid: 'Staying silent because there\u2019s nothing new' },
+      { key: '5', lead: 'Call the head of operations', when: 'At 30 minutes', do: 'If the Wi-Fi is still down after 30 minutes, call the head of operations.', avoid: 'Handling a long outage alone, without telling the head of operations' },
+      { key: '6', lead: 'Thank everyone', when: 'Back online', do: 'Send the back-online message. If the Wi-Fi was down for 30 minutes or more, everyone here also gets 1 free hour in a Private room or a meeting room, to use within 30 days. Log each free hour under the member\u2019s name.', avoid: 'Giving some members more than others, or giving more on one shift than on another' },
+      { key: '7', lead: 'Log the outage', when: 'When it\u2019s over', do: 'In the outage log, write when the outage started, when the first notice went out, what caused it, when it ended and what everyone was given.', avoid: 'Leaving out the first-notice time or the cause' }
     ],
     foot: [
       { key: 'First notice', text: '"The Wi-Fi is down across the space, and we\u2019re working on it now. Sorry for the trouble. Next update at [time]. While you wait, grab a drink on us at the front desk."' },
       { key: 'Update', text: '"Update at [time]: the Wi-Fi is still down. We\u2019ve switched to the backup line and called our provider. Next update at [time]."' },
-      { key: 'Update, nothing new', text: '"Still down at [time], and we\u2019re still on it. Next update at [time]."' },
+      { key: 'Update, when nothing is new', text: '"Still down at [time], and we\u2019re still on it. Next update at [time]."' },
       { key: 'Back online', text: '"The Wi-Fi is back. Thanks for waiting with us."' },
       { key: 'Back online, after 30 minutes or more', text: '"The Wi-Fi is back. It was down for [minutes] minutes, so everyone here during the outage gets 1 free hour in a Private room or a meeting room, to use within 30 days. Book it at the front desk."' }
     ]

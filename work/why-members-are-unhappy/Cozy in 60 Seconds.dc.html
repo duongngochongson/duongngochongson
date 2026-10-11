@@ -26,17 +26,19 @@ button{font-family:inherit}
 <div style="--cz-night:#1F1A12;--cz-night-surface:#2A2318;--cz-night-soft:#CFC4B1;--cz-night-thought:#E8DFD0;--cz-night-line:#4A4235;--cz-paper:#FBF7EE;--cz-desk:#F4EFE4;--cz-line:#E3DACB;--cz-line-strong:#8C8170;--cz-ink:#1F1A12;--cz-ink-body:#3D352A;--cz-ink-soft:#5E5446;--cz-lamp:#F2A93B;--cz-amber-ink:#8A5300;--cz-right:#2F7A4B;--cz-notyet:#B03A48;--cz-focus:#2F5A9E;--cz-flex:#A3501A;--cz-private:#6A4A8C;--cz-kitchen:#6B5B4B;background:var(--cz-night);min-height:100vh;padding:clamp(0px,3vw,40px);display:flex;justify-content:center;font-family:'IBM Plex Sans',sans-serif">
 <article style="width:100%;max-width:1240px;background:var(--cz-paper);border-radius:16px">
 
-<dc-import name="DocHeader" project="Why Members Are Unhappy" doc-type="Cozy in 60 seconds" doc-title="Cozy in 60 seconds" subtitle="A short guide for new members, in the Cozy app on their first day." author="Son Duong" hint-size="100%,340px"></dc-import>
+<dc-import name="DocHeader" project="Why Members Are Unhappy" doc-type="Cozy in 60 seconds" doc-title="Cozy in 60 seconds" subtitle="A short guide that new members see in the Cozy app on their first day." author="Son Duong" hint-size="100%,340px"></dc-import>
 
 <div style="padding:clamp(24px,4vw,48px) clamp(20px,4vw,56px) clamp(32px,5vw,64px);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,40px);align-items:flex-start">
 
 <div style="flex:1 1 300px;min-width:0;max-width:520px;display:flex;flex-direction:column;gap:18px">
-<p style="margin:0;font:400 18px/28px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">In about a minute, a member learns the three zones, where to take a call, how the kitchen works, and the signs they will meet in the space, so they know them on the floor. It is one screen at a time, phone first, and it moves on only when the member taps.</p>
+<dc-import name="DocCallout" tone="amber" label="Note" icon="info" text="Cozy is a business with three coworking spaces, where members rent desks and rooms on monthly plans. Each space has three zones. Focus is a silent zone, Flex is for desk work, calls and meetings, and Private has closed rooms. Cozy and its data are fictional and were created for this portfolio. The data is based on real public sources: surveys of coworking members, public reviews of coworking spaces and studies of how businesses handle complaints." hint-size="100%,200px"></dc-import>
+<p style="margin:0;font:400 18px/28px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Cozy in 60 seconds is a guide of eight short screens in the Cozy app, made for a phone. In about a minute, a new member learns the three zones, where to take a call, how the kitchen works and the signs they will see in the space, so they recognize the signs later. The guide shows one screen at a time and moves on when the member taps.</p>
+<p style="margin:0;font:400 18px/28px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">The guide and the signs are Cozy's fix for two problems that members wrote about in the member survey: noise and phone calls in Focus, and the shared kitchen and fridge. Members were unsure which zone they were in, what its rules were and when the fridge was cleared. Focus and Flex looked the same, and the rules were written in the handbook that members get when they join. The signs put the rules where members work, and the guide shows them on a new member's first day. The guide starts by asking how the member works, and the zone map then marks the zone that suits them: Focus for deep work, or Flex for calls.</p>
 <div style="display:flex;flex-direction:column;gap:10px;background:var(--cz-desk);border-left:4px solid var(--cz-lamp);border-radius:4px 12px 12px 4px;padding:18px 20px">
-<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">The four rules it follows</span>
-<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Place it where the behavior happens. Say exactly what to do, with the alternative right next to it. Use one system of icon, word and color. Show it from day one.</p>
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">The four rules behind the guide and the signs</span>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Each sign is placed where the behavior happens, such as the Focus sign where Focus starts. Each sign and screen says what to do, and next to that what to do instead, such as "Calls and meetings in Flex". Every sign and screen uses the same icon, word and color for each zone. Members see the rules on their first day, in this guide.</p>
 </div>
-<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft);">Tap through the eight screens. Nothing runs on a timer.</p>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft);">Tap through the eight screens to try the guide. Each screen stays in place until you tap to go on, so you can read at your own pace.</p>
 <button type="button" onClick="{{ restart }}" style="align-self:flex-start;min-height:44px;display:flex;align-items:center;gap:10px;padding:10px 18px;background:none;border:1.5px solid var(--cz-line-strong);border-radius:12px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink);cursor:pointer" style-hover="background:var(--cz-desk)">Start again<dc-import name="Icon" icon="rewind" size="18" color="#1F1A12" hint-size="18px,18px"></dc-import></button>
 </div>
 
@@ -67,7 +69,7 @@ button{font-family:inherit}
 
 <sc-if value="{{ s2 }}">
 <h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">How do you work most days?</h2>
-<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft)">No wrong answer.</p>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft)">Pick the answer closest to how you work.</p>
 <div style="display:flex;flex-direction:column;gap:12px">
 <sc-for list="{{ workChoices }}" as="c" hint-placeholder-count="3">
 <button type="button" onClick="{{ c.onClick }}" style="min-height:56px;display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--cz-paper);border:1.5px solid var(--cz-line-strong);border-radius:14px;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink);text-align:left;cursor:pointer" style-hover="border-color:var(--cz-amber-ink);background:var(--cz-desk)"><dc-import name="Icon" icon="{{ c.icon }}" size="22" color="{{ c.color }}" hint-size="22px,22px"></dc-import>{{ c.label }}</button>
@@ -181,31 +183,31 @@ button{font-family:inherit}
 <script type="text/x-dc" data-dc-script data-props="{&quot;memberName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Alex&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Content&quot;}}">
 const QUESTIONS = [
   {
-    text: '"Your phone rings while you\u2019re at a desk in Focus. What do you do?"',
+    text: 'Your phone rings while you\u2019re at a desk in Focus. What do you do?',
     choices: [
-      { label: '"Take the call in Flex."', right: true, fb: 'Calls go in Flex, so Focus stays quiet for everyone.' },
-      { label: '"Answer it quietly at the desk."', right: false, fb: 'Focus is silent, even for quiet calls. Take it to Flex.' },
-      { label: '"Step into the kitchen to take it."', right: false, fb: 'The kitchen is shared. Calls go in Flex, or in a Private room if you need a door.' }
+      { label: 'Take the call in Flex.', right: true, fb: 'Calls go in Flex, so Focus stays quiet for everyone.' },
+      { label: 'Answer it quietly at the desk.', right: false, fb: 'Focus is silent, even for quiet calls. Take it to Flex.' },
+      { label: 'Step into the kitchen to take it.', right: false, fb: 'The kitchen is shared. Calls go in Flex, or in a Private room if you need a door.' }
     ]
   },
   {
-    text: '"It\u2019s Friday afternoon. Your lunch is in the fridge with no label. What happens at 6 pm?"',
+    text: 'It\u2019s Friday afternoon. Your lunch is in the fridge with no label. What happens at 6 pm?',
     choices: [
-      { label: '"It goes in the clear-out."', right: true, fb: 'Add your name and the date, and it stays.' },
-      { label: '"It stays until I take it."', right: false, fb: 'Food without a name and date goes at the Friday clear-out. Add a label, and it stays.' }
+      { label: 'It goes in the clear-out.', right: true, fb: 'Add your name and the date, and it stays.' },
+      { label: 'It stays until I take it.', right: false, fb: 'Food without a name and date goes at the Friday clear-out. Add a label, and it stays.' }
     ]
   }
 ];
 const ZONE_ROWS = [
-  { name: 'Focus', icon: 'focus', color: '#2F5A9E', text: '"Silent work. No calls, no meetings."' },
-  { name: 'Flex', icon: 'flex', color: '#A3501A', text: '"Desk work, calls and meetings."' },
-  { name: 'Private', icon: 'private', color: '#6A4A8C', text: '"Rooms with a door. Hot desk members can book one by the hour. Dedicated members have their own."' }
+  { name: 'Focus', icon: 'focus', color: '#2F5A9E', text: 'Silent work. No calls, no meetings.' },
+  { name: 'Flex', icon: 'flex', color: '#A3501A', text: 'Desk work, calls and meetings.' },
+  { name: 'Private', icon: 'private', color: '#6A4A8C', text: 'Rooms with a door. On a hot desk plan, you can book one by the hour. On a dedicated plan, you have your own.' }
 ];
 const KITCHEN = [
-  { icon: 'fridge', text: '"Put your name and the date on your food."' },
-  { icon: 'cleaning', text: '"Every Friday at 6 pm, we clear the fridge. Food without a name and date goes. Labeled food that\u2019s still in date stays."' },
-  { icon: 'kitchen', text: '"Anything on the Help yourself shelf is free for anyone to take. After an event, we\u2019ll message you when there are leftovers on it."' },
-  { icon: 'mug', text: '"Used a cup? Wash it and put it back."' }
+  { icon: 'fridge', text: 'Put your name and the date on your food.' },
+  { icon: 'cleaning', text: 'Every Friday at 6 pm, we clear the fridge. Food without a name and date goes. Labeled food that hasn\u2019t expired stays.' },
+  { icon: 'kitchen', text: 'Anything on the Help yourself shelf is free for anyone to take. After an event, we\u2019ll message you when there are leftovers on it.' },
+  { icon: 'mug', text: 'Used a cup? Wash it and put it back.' }
 ];
 
 class Component extends DCLogic {
@@ -244,9 +246,9 @@ class Component extends DCLogic {
       restart: this.restart,
       seeMap: this.seeMap,
       workChoices: [
-        { label: '"On calls a lot"', icon: 'flex', color: '#A3501A', onClick: this.pickWork('calls') },
-        { label: '"Deep focus, quiet please"', icon: 'focus', color: '#2F5A9E', onClick: this.pickWork('focus') },
-        { label: '"A bit of both"', icon: 'meeting', color: '#5E5446', onClick: this.pickWork('both') }
+        { label: 'On calls a lot', icon: 'flex', color: '#A3501A', onClick: this.pickWork('calls') },
+        { label: 'Deep focus, quiet please', icon: 'focus', color: '#2F5A9E', onClick: this.pickWork('focus') },
+        { label: 'A bit of both', icon: 'meeting', color: '#5E5446', onClick: this.pickWork('both') }
       ],
       focusTag: work === 'focus' || work === 'both' ? 'For your focus' : '',
       flexTag: work === 'calls' || work === 'both' ? 'For your calls' : '',

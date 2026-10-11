@@ -202,14 +202,14 @@
 <span style="min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;border:1.5px solid #8C8170;border-radius:10px;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:#1F1A12">Noise or calls<dc-import name="Icon" icon="chevronDown" size="18" color="#5E5446" hint-size="18px,18px"></dc-import></span>
 </label>
 <div style="border:1px solid #E3DACB;border-radius:10px;overflow:hidden">
-<div style="display:flex;flex-wrap:wrap;gap:6px 16px;padding:12px 14px;background:#F4EFE4;font:500 16px/1.3 'IBM Plex Mono',monospace;color:#1F1A12"><span>#0418</span><span>Sofia</span><span>Noise or calls</span><span style="color:#2F5A9E">Focus</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:6px 16px;padding:12px 14px;background:#F4EFE4;font:500 16px/1.3 'IBM Plex Mono',monospace;color:#1F1A12"><span>2 weeks ago</span><span>Sofia</span><span>Note left at the front desk: calls in Focus in the mornings</span><span style="color:#2F5A9E">Focus</span></div>
 <div style="display:flex;flex-wrap:wrap;gap:6px 16px;padding:12px 14px;font:500 16px/1.3 'IBM Plex Mono',monospace;color:#3D352A"><span>Owner</span><span style="color:#B03A48">(empty)</span><span>To-do</span><span style="color:#B03A48">(empty)</span><span>Status</span><span>Open</span></div>
 </div>
 </div>
 
 <div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
 <span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">The floor plan</span>
-<dc-import name="FloorPlan" deskLabel="Sofia's desk" hereLabel="Front desk" hint-size="100%,300px"></dc-import>
+<dc-import name="FloorPlan" deskLabel="Sofia's desk" hereLabel="You are here" hint-size="100%,300px"></dc-import>
 </div>
 
 </div>
@@ -238,12 +238,12 @@ class Component extends DCLogic {
         { title: 'Ground and paper', items: [
           { token: '--cz-night', hex: '#1F1A12', on: '#FBF7EE', sample: 'Paper on it', use: 'The ground of every screen, the top bar, Son\u2019s box', contrast: '16.2:1' },
           { token: '--cz-night-deep', hex: '#120F0A', on: '#FBF7EE', sample: 'Paper on it', use: 'The phone\u2019s screen, the call bar', contrast: '17.9:1' },
-          { token: '--cz-night-surface', hex: '#2A2318', on: '#FBF7EE', sample: 'Paper on it', use: 'The phone\u2019s bezel, the desk computer, panels', contrast: '14.5:1' },
+          { token: '--cz-night-surface', hex: '#2A2318', on: '#FBF7EE', sample: 'Paper on it', use: 'The phone\u2019s frame, the desk computer, panels', contrast: '14.5:1' },
           { token: '--cz-night-raised', hex: '#3A3125', on: '#FBF7EE', sample: 'Paper on it', use: 'Call controls, Son\u2019s button, hover on dark', contrast: '11.9:1' },
           { token: '--cz-night-line', hex: '#4A4235', on: '#FBF7EE', sample: 'Lines', use: 'Lines and chip borders on dark', contrast: 'Decoration' },
           { token: '--cz-paper', hex: '#FBF7EE', on: '#1F1A12', sample: 'Ink on it', use: 'Every light box: bubbles, cards, forms, job aids', contrast: '16.2:1' },
           { token: '--cz-desk', hex: '#F4EFE4', on: '#1F1A12', sample: 'Ink on it', use: 'Quiet areas inside paper: table headers, a chosen option', contrast: '15.1:1' },
-          { token: '--cz-line', hex: '#E3DACB', on: '#1F1A12', sample: 'Dividers', use: 'Dividers on paper', contrast: 'Decoration only' },
+          { token: '--cz-line', hex: '#E3DACB', on: '#1F1A12', sample: 'Dividers', use: 'Dividers on paper', contrast: 'Decoration' },
           { token: '--cz-line-strong', hex: '#8C8170', on: '#FBF7EE', sample: 'Borders', use: 'Every control border; Son\u2019s dashed outline', contrast: '3.6:1 on paper' }
         ] },
         { title: 'Ink and text', items: [
@@ -254,21 +254,21 @@ class Component extends DCLogic {
           { token: '--cz-night-soft', hex: '#CFC4B1', on: '#1F1A12', sample: 'Secondary', use: 'Name tags, labels, captions, call states', contrast: '10.0:1 on the ground' }
         ] },
         { title: 'The lamp', items: [
-          { token: '--cz-lamp', hex: '#F2A93B', on: '#1F1A12', sample: 'Never text on light', use: 'The light: the focus ring, progress, Son\u2019s button, rings', contrast: '1.9:1 on paper, 8.7:1 on the ground' },
+          { token: '--cz-lamp', hex: '#F2A93B', on: '#1F1A12', sample: 'Not for text on light', use: 'The light: the focus ring, progress, Son\u2019s button, rings', contrast: '1.9:1 on paper, 8.7:1 on the ground' },
           { token: '--cz-amber-ink', hex: '#8A5300', on: '#FBF7EE', sample: 'Amber to read', use: 'Eyebrows, job aid keys, Noted, a due date', contrast: '5.9:1 on paper' },
           { token: 'The learner\u2019s bubble', hex: '#FAEBD1', on: '#1F1A12', sample: 'Ink on it', use: 'The learner\u2019s lines, at the right', contrast: '14.7:1' }
         ] },
-        { title: 'Feedback, always with an icon and a word', items: [
+        { title: 'Feedback, shown with an icon and a word', items: [
           { token: '--cz-right', hex: '#2F7A4B', on: '#FBF7EE', sample: 'Right', use: 'Right, Met and done ticks on light', contrast: '4.9:1 on paper' },
           { token: '--cz-right-night', hex: '#8FD6A8', on: '#1F1A12', sample: 'Right', use: 'Right and Met on the dark ground', contrast: '10.2:1 on the ground' },
           { token: '--cz-notyet', hex: '#B03A48', on: '#FBF7EE', sample: 'Not yet', use: 'Not yet, errors and "(empty)" on light', contrast: '5.5:1 on paper' },
           { token: '--cz-notyet-night', hex: '#F4A3A0', on: '#1F1A12', sample: 'Not yet', use: 'Not yet on the dark ground', contrast: '8.7:1 on the ground' }
         ] },
-        { title: 'Zones, for wayfinding only, always with the icon and the name', items: [
+        { title: 'Zones, for wayfinding, shown with the zone’s icon and name', items: [
           { token: 'Focus', hex: '#2F5A9E', on: '#FBF7EE', sample: 'Silent work', use: 'Tint #E9EDF3 · icon focus', contrast: 'Paper on it 6.4:1' },
           { token: 'Flex', hex: '#A3501A', on: '#FBF7EE', sample: 'Desk work, calls', use: 'Tint #F6ECE5 · icon flex', contrast: 'Paper on it 5.3:1' },
-          { token: 'Private', hex: '#6A4A8C', on: '#FBF7EE', sample: 'Rooms', use: 'Tint #EFEAF3 · icon private', contrast: 'Paper on it 6.6:1' },
-          { token: 'Kitchen', hex: '#6B5B4B', on: '#FBF7EE', sample: 'Shared', use: 'Tint #F0ECE7 · icon kitchen', contrast: 'Paper on it 6.1:1' }
+          { token: 'Private', hex: '#6A4A8C', on: '#FBF7EE', sample: 'Closed rooms', use: 'Tint #EFEAF3 · icon private', contrast: 'Paper on it 6.6:1' },
+          { token: 'Kitchen', hex: '#6B5B4B', on: '#FBF7EE', sample: 'Shared kitchen', use: 'Tint #F0ECE7 · icon kitchen', contrast: 'Paper on it 6.1:1' }
         ] }
       ],
 
@@ -281,7 +281,7 @@ class Component extends DCLogic {
         { token: 'member', spec: 'Archivo 500 · 20 / 28', font: "500 20px/28px 'Archivo',sans-serif", track: 'normal', caps: 'none', sample: 'I\u2019m working from home today so I can actually get something done.' },
         { token: 'button-l', spec: 'Archivo 600 · 20 / 24', font: "600 20px/24px 'Archivo',sans-serif", track: 'normal', caps: 'none', sample: 'Continue to the computer' },
         { token: 'body-l', spec: 'IBM Plex Sans 400 · 18 / 27', font: "400 18px/27px 'IBM Plex Sans',sans-serif", track: 'normal', caps: 'none', sample: 'I\u2019m listening. Tell me what happened, from the start.' },
-        { token: 'body', spec: 'IBM Plex Sans 400 · 16 / 24', font: "400 16px/24px 'IBM Plex Sans',sans-serif", track: 'normal', caps: 'none', sample: 'Tap Note on any line worth keeping: who called, what happened, what they need.' },
+        { token: 'body', spec: 'IBM Plex Sans 400 · 16 / 24', font: "400 16px/24px 'IBM Plex Sans',sans-serif", track: 'normal', caps: 'none', sample: 'Tap Note on any line worth keeping: who called, what happened, what they need, and anything you promise.' },
         { token: 'label', spec: 'IBM Plex Sans 600 · 16 / 24', font: "600 16px/24px 'IBM Plex Sans',sans-serif", track: 'normal', caps: 'none', sample: 'Zone or area' },
         { token: 'system', spec: 'IBM Plex Mono 500 · 16 / 22', font: "500 16px/22px 'IBM Plex Mono',monospace", track: 'normal', caps: 'none', sample: 'Son · Your guide' },
         { token: 'timer', spec: 'IBM Plex Mono 500 · 22 / 28', font: "500 22px/28px 'IBM Plex Mono',monospace", track: 'normal', caps: 'none', sample: '04:12' },
@@ -298,19 +298,19 @@ class Component extends DCLogic {
       ],
 
       tones: [
-        { tone: 'light', bg: '#FBF7EE', use: 'On paper and desk. Ink letters, the lamp disc.' },
-        { tone: 'dark', bg: '#1F1A12', use: 'On the dark ground. Paper letters, the lamp disc.' },
-        { tone: 'ink', bg: '#FBF7EE', use: 'One color on light. The disc is cut out.' },
-        { tone: 'paper', bg: '#1F1A12', use: 'One color on dark. The disc is cut out.' }
+        { tone: 'light', bg: '#FBF7EE', use: 'For paper and desk: ink letters and the amber lamp disc.' },
+        { tone: 'dark', bg: '#1F1A12', use: 'For the dark ground: paper letters and the amber lamp disc.' },
+        { tone: 'ink', bg: '#FBF7EE', use: 'One color, for light grounds. The disc is cut out.' },
+        { tone: 'paper', bg: '#1F1A12', use: 'One color, for dark grounds. The disc is cut out.' }
       ],
 
       icons: ['focus', 'flex', 'private', 'kitchen', 'desk', 'meeting', 'wifi', 'mug', 'fridge', 'cleaning', 'phone', 'hangup', 'speaker', 'speakerOff', 'notes', 'note', 'info', 'thought', 'right', 'notyet', 'check', 'rewind', 'forward', 'play', 'pause', 'star', 'download', 'close', 'chevronLeft', 'chevronRight', 'chevronDown', 'arrowLeft', 'arrowRight', 'calendar', 'member', 'search', 'alarm', 'captions', 'alert', 'cases', 'monitor', 'mobile', 'headphones', 'plus'].map(name => ({ name })),
 
       people: [
-        { name: 'Sofia', who: 'Hot desk member for 8 months · the only voice in the call', moods: FACE_MOODS.Sofia.map(m => face('sofia', m)), hasGap: false, gap: '' },
-        { name: 'Son', who: 'Son · Your guide · text only', moods: ['smiling', 'thinking', 'concerned', 'pleased'].map(m => face('son', m)), hasGap: false, gap: '' },
-        { name: 'Omar', who: 'Hot desk member in Flex · the caller in the AI practice', moods: FACE_MOODS.Omar.map(m => face('omar', m)), hasGap: false, gap: '' },
-        { name: 'Dan', who: 'The new member who made the long call · the private talk', moods: FACE_MOODS.Dan.map(m => face('dan', m)), hasGap: false, gap: '' }
+        { name: 'Sofia', who: 'Hot desk member for 8 months · her lines are spoken', moods: FACE_MOODS.Sofia.map(m => face('sofia', m)), hasGap: false, gap: '' },
+        { name: 'Son', who: 'Son · Your guide · his lines are text', moods: ['smiling', 'thinking', 'concerned', 'pleased'].map(m => face('son', m)), hasGap: false, gap: '' },
+        { name: 'Omar', who: 'Hot desk member in Flex · the caller in the practice call', moods: FACE_MOODS.Omar.map(m => face('omar', m)), hasGap: false, gap: '' },
+        { name: 'Dan', who: 'The new member who made the long call in Focus · in the private talk practice', moods: FACE_MOODS.Dan.map(m => face('dan', m)), hasGap: false, gap: '' }
       ],
 
       zoneTags: [

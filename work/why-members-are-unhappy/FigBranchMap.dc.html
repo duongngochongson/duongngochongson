@@ -15,7 +15,7 @@
 <span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446"><span style="width:12px;height:12px;border-radius:999px;background:#F2A93B"></span>Tap to say or note</span>
 <span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446"><span style="width:12px;height:12px;border-radius:3px;background:#1F1A12"></span>Decision</span>
 <span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#2F7A4B"><dc-import name="Icon" icon="right" size="17" color="#2F7A4B" hint-size="17px,17px"></dc-import>Best</span>
-<span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#B03A48"><dc-import name="Icon" icon="notyet" size="17" color="#B03A48" hint-size="17px,17px"></dc-import>Weak</span>
+<span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#B03A48"><dc-import name="Icon" icon="notyet" size="17" color="#B03A48" hint-size="17px,17px"></dc-import>Weaker</span>
 </div>
 
 <ol style="margin:0;padding:0 0 0 22px;list-style:none;display:flex;flex-direction:column;gap:12px;border-left:2px solid #E3DACB">
@@ -56,7 +56,7 @@
 </sc-for>
 </ol>
 
-<p style="margin:0;background:#F4EFE4;border-left:4px solid #F2A93B;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Talk is right when decisions 1 to 3 all use the best option. Resolve is right when decisions 4 and 5 both use the best option. The two axes give Sofia's survey answer a week later.</p>
+<p style="margin:0;background:#F4EFE4;border-left:4px solid #F2A93B;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Each decision counts toward one of two axes. The talk axis is about how the call felt to Sofia, and it is right when decisions 1 to 3 all use the best option. The resolve axis is about whether her problem was solved, and it is right when decisions 4 and 5 both use the best option. Together, the two axes give Sofia's answer in the member survey a week later. In the lines, [name] is the learner's first name, and [call date] and [call time] are the date and time when the learner starts the note. [day 1] is the next working day after the call, and [day 2] is the working day after that.</p>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:900}}">
@@ -66,15 +66,15 @@ class Component extends DCLogic {
   renderVals() {
     return {
       beats: [
-        say('First note, while the phone rings', '"Sofia · [call date] · [call time]"'),
+        say('First note, before the phone rings', '"Sofia · [call date] · [call time]"'),
         say('Greeting', '"Cozy front desk, [name] speaking."'),
-        dec('1', 'H', 'Hear', 'Talk', '"I\u2019m listening. Tell me what happened, from the start."', ['A closed question that doubts where it happened', 'The rule, then a question that blames her']),
+        dec('1', 'H', 'Hear', 'Talk', '"I\u2019m listening. Tell me what happened, from the start."', ['A yes-or-no question that doubts it happened in Focus', 'The rule, then a question that blames her for sitting in the wrong zone']),
         say('Let her finish', '"Mm-hm. Go on, I\u2019m listening."'),
-        dec('2', 'E', 'Empathize', 'Talk', 'Names the feeling and says her need back', ['"I understand" with a fix that puts the work on her', 'Reassurance that brushes the feeling off']),
-        dec('3', 'A', 'Apologize', 'Talk', 'Nobody followed up on her note, so it happened again; names kept private', ['The right apology with the name', 'Names kept private with a general apology']),
-        dec('4', 'R', 'Resolve', 'Resolve', 'A private talk by [day 1], a call back on [day 2]', ['A talk with the member "soon", with no day and no call back', 'A reminder to everyone, with a call back on [day 2]']),
+        dec('2', 'E', 'Empathize', 'Talk', 'Names her feeling and says her need back', ['"I understand", then a fix that puts the work on her', 'Reassurance that brushes her feeling aside']),
+        dec('3', 'A', 'Apologize', 'Talk', 'Says nobody followed up on her note, so it happened again, and keeps names private', ['The right apology, but it names Dan', 'A general apology that keeps names private']),
+        dec('4', 'R', 'Resolve', 'Resolve', 'A private talk with the member by [day 1], and a call back on [day 2]', ['A talk with the member "soon", with no day and no call back', 'A reminder to every member, with a call back on [day 2]']),
         say('Goodbye', '"Thanks for telling us, Sofia."'),
-        dec('5', 'D', 'Diagnose', 'Resolve', 'Open until Sofia says the fix worked', ['Closed before she confirms'])
+        dec('5', 'D', 'Diagnose', 'Resolve', 'The case stays open until Sofia says the fix worked', ['The case is closed before she confirms'])
       ]
     };
   }
