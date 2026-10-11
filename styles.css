@@ -186,11 +186,9 @@ p, dd, li, .stat-l, .bul > div > span:last-child, .path .d {
 .used-sec > summary::-webkit-details-marker { display: none; }
 .used-sec[open] > summary { margin-bottom: 8px; }
 .used-sec .cs-title h3 { margin: 0; }
-.used-toggle { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 500 11px/1 var(--mono); letter-spacing: .06em; color: var(--muted); }
-.used-toggle .chev { display: inline-block; font-size: 14px; transform: translateY(-3px); transition: transform .3s; }
+.used-toggle { margin-left: auto; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); display: inline-flex; align-items: center; justify-content: center; color: var(--muted); transition: background .25s, color .25s; }
+.used-toggle .chev { display: inline-block; font: 400 16px/1 var(--mono); transform: translateY(-3px); transition: transform .3s; }
 .used-sec[open] .used-toggle .chev { transform: translateY(2px) rotate(180deg); }
-.used-sec .used-hide, .used-sec[open] .used-show { display: none; }
-.used-sec[open] .used-hide { display: inline; }
 .used-sec > summary:hover .used-toggle { color: var(--ink); }
 .used-sec[open] > .used { animation: used-in .35s ease-out; }
 @keyframes used-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
@@ -369,7 +367,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .about-hero { padding: 30px 26px; }
 .about-hero h2 { font: 700 30px/1.32 var(--serif); letter-spacing: -.012em; margin: 0 0 14px; }
 /* the hello: a hand that waves once when the page opens */
-.wave { display: inline-block; font-size: 44px; line-height: 1; margin-bottom: 16px; transform-origin: 70% 75%; animation: wave 1.8s ease-in-out .3s 1; }
+.wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: wave 1.8s ease-in-out .3s 1; }
 @keyframes wave { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-8deg); } 45% { transform: rotate(14deg); } 60% { transform: rotate(-4deg); } 75% { transform: rotate(10deg); } }
 @media (prefers-reduced-motion: reduce) { .wave { animation: none; } }
 .about-hero p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
