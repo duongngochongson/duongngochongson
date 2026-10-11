@@ -1,4 +1,4 @@
-/* Son Duong — personal site. Tokens mirror the Claude Design handoff (2a: 1c layout, 1b aesthetic). */
+/* Son Duong: personal site. Tokens mirror the Claude Design handoff (2a: 1c layout, 1b aesthetic). */
 :root {
   --bg: #ffffff; --surface: #f6f3ee; --card: #ffffff;
   --ink: #1a1815; --muted: rgba(26,24,21,.7); --faint: rgba(26,24,21,.72);
@@ -172,12 +172,29 @@ p, dd, li, .stat-l, .bul > div > span:last-child, .path .d {
 }
 .chips-row::-webkit-scrollbar { display: none; }
 .chips-row span { flex: none; font-size: 11px; padding: 6px 11px; }
+/* Home: View my CV, under Skillset, in the middle */
+.cv-row { display: flex; justify-content: center; margin: 4px 0 16px; }
+.cv-row .btn { min-height: 44px; box-sizing: border-box; }
 .chips-label { font: 400 9.5px var(--mono); letter-spacing: .08em; color: var(--faint); }
 /* Used in this project: a label, then its chips */
 .used { display: grid; gap: 14px; }
 .used-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 8px 16px; align-items: baseline; }
 .used-row .chips-label { padding-top: 2px; }
 .cs .chips span { background: var(--surface); }
+/* Used in this project: folded until its header is pressed */
+.used-sec > summary { list-style: none; cursor: pointer; min-height: 44px; margin: -6px 0; touch-action: manipulation; }
+.used-sec > summary::-webkit-details-marker { display: none; }
+.used-sec[open] > summary { margin-bottom: 8px; }
+.used-sec .cs-title h3 { margin: 0; }
+.used-toggle { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font: 500 11px/1 var(--mono); letter-spacing: .06em; color: var(--muted); }
+.used-toggle .chev { display: inline-block; font-size: 14px; transform: translateY(-3px); transition: transform .3s; }
+.used-sec[open] .used-toggle .chev { transform: translateY(2px) rotate(180deg); }
+.used-sec .used-hide, .used-sec[open] .used-show { display: none; }
+.used-sec[open] .used-hide { display: inline; }
+.used-sec > summary:hover .used-toggle { color: var(--ink); }
+.used-sec[open] > .used { animation: used-in .35s ease-out; }
+@keyframes used-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .used-sec[open] > .used { animation: none; } }
 @container case (max-width: 560px) { .used-row { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- project pages ---------- */
@@ -350,9 +367,12 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 
 /* ---------- about ---------- */
 .about-hero { padding: 30px 26px; }
-.about-hero h2 { font: 700 30px/1.32 var(--serif); letter-spacing: -.012em; margin: 0 0 18px; }
+.about-hero h2 { font: 700 30px/1.32 var(--serif); letter-spacing: -.012em; margin: 0 0 14px; }
+/* the hello: a hand that waves once when the page opens */
+.wave { display: inline-block; font-size: 44px; line-height: 1; margin-bottom: 16px; transform-origin: 70% 75%; animation: wave 1.8s ease-in-out .3s 1; }
+@keyframes wave { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-8deg); } 45% { transform: rotate(14deg); } 60% { transform: rotate(-4deg); } 75% { transform: rotate(10deg); } }
+@media (prefers-reduced-motion: reduce) { .wave { animation: none; } }
 .about-hero p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
-.about-hero .cta-row { margin: 22px 0 0; }
 .wide { position: relative; height: 220px; border-radius: 22px; overflow: hidden; margin-bottom: 12px; transition: background .35s; }
 .path { display: grid; gap: 10px; }
 .path .card { padding: 18px 20px; display: grid; grid-template-columns: 22px 92px minmax(0,1fr); gap: 14px; align-items: start; }

@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Son Duong — Learning Experience Designer</title>
+<title>Son Duong · Learning Experience Designer</title>
 <meta name="description" content="Son Duong is a learning experience designer from Vietnam. This site has his portfolio and his career journey so far.">
-<meta property="og:title" content="Son Duong — Learning Experience Designer">
+<meta property="og:title" content="Son Duong · Learning Experience Designer">
 <meta property="og:description" content="Hello, nice to meet you here, I'm Son.">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
@@ -117,6 +117,7 @@
     <h2 class="eyebrow" data-vi="KỸ NĂNG">SKILLSET</h2>
     <div class="chips chips-row"><span>Action mapping</span><span data-vi="Tình huống phân nhánh">Branching scenarios</span><span>Vibe-coded e-learning</span><span>LMS · SCORM &amp; xAPI</span><span data-vi="Phân tích dữ liệu">Data analysis</span></div>
   </div>
+  <div class="cv-row"><button type="button" class="btn btn-primary" data-doc="doc-cv"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Xem CV của mình">View my CV</span></button></div>
 </section>
 
 <!-- ---------- PORTFOLIO: the list ---------- -->
@@ -184,6 +185,18 @@
 
     <section class="cs">
       <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-di" style="background:var(--a1)"></span><h3 class="lab" data-vi="MỤC TIÊU">THE GOAL</h3></div>
+      </div>
+      <div class="stats">
+        <div class="card"><div class="stat">3.2 → 4.0</div><div class="stat-l" data-vi="điểm hài lòng chung, trong hai quý">overall member satisfaction, within two quarters</div></div>
+        <div class="card"><div class="stat">2.7 → 3.8</div><div class="stat-l" data-vi="cách Cozy xử lý khiếu nại">how Cozy handles complaints</div></div>
+        <div class="card"><div class="stat">50% → 90%</div><div class="stat-l" data-vi="khiếu nại có bước tiếp theo kèm ngày, kiểm tra mỗi tuần">complaints with a dated next step, checked every week</div></div>
+      </div>
+      <p class="note" data-vi="Cozy là khách hàng hư cấu: các con số là mục tiêu thiết kế từ phân tích nhu cầu, không phải kết quả đo được.">Cozy is a fictional client: the numbers are design goals from the needs analysis, not measured results.</p>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
         <div class="cs-title"><span class="glyph g-ci" style="background:var(--a2)"></span><h3 class="lab" data-vi="PHÂN TÍCH TÌM RA GÌ">WHAT THE ANALYSIS FOUND</h3></div>
         <div class="doc-btns">
           <button type="button" class="doc-btn" data-frame="work/why-members-are-unhappy/Case%20Study.dc.html#s4" data-title="Case study" data-kicker="WHY MEMBERS ARE UNHAPPY"><span data-vi="Toàn bộ case study">Full case study</span><span class="go" aria-hidden="true">↗</span></button>
@@ -245,10 +258,11 @@
       <p data-vi="Mình viết bản phân tích, tài liệu thiết kế và storyboard cùng Claude, và làm thiết kế cùng thương hiệu Cozy trong Claude Design. Khoá học là một web app mình làm bằng Claude Code với React, XState và Zod, chạy trên Vercel. Giọng Sofia làm bằng Gemini text-to-speech. Một bài test so từng câu với storyboard, từng chữ một. Test trình duyệt chạy trên máy bàn, laptop 1280 × 720 và điện thoại 375 px có cảm ứng, và một buổi review chuyên môn cùng một cognitive walkthrough đã đi qua khoá học dưới góc nhìn của Jane, một lễ tân ba năm kinh nghiệm, và của một nhân viên mới.">I wrote the analysis, the design document and the storyboard with Claude, and made the designs and the Cozy brand in Claude Design. The course is a web app I built with Claude Code in React, XState and Zod, hosted on Vercel, and Sofia's voice is made with Gemini text-to-speech. A test checks every line against the storyboard, word for word. Browser tests run on a desktop, a 1280 × 720 laptop and a 375-pixel phone with touch, and an expert review and a cognitive walkthrough went through the course as Jane, a community manager with three years at Cozy, and as a new hire.</p>
     </section>
 
-    <section class="cs">
-      <div class="cs-head">
-        <div class="cs-title"><span class="glyph g-ci" style="background:var(--a4)"></span><h3 class="lab" data-vi="DÙNG TRONG DỰ ÁN NÀY">USED IN THIS PROJECT</h3></div>
-      </div>
+    <details class="cs used-sec">
+      <summary class="cs-head">
+        <span class="cs-title"><span class="glyph g-ci" style="background:var(--a4)"></span><h3 class="lab" data-vi="DÙNG TRONG DỰ ÁN NÀY">USED IN THIS PROJECT</h3></span>
+        <span class="used-toggle" aria-hidden="true"><span class="used-show" data-vi="Xem">Show</span><span class="used-hide" data-vi="Ẩn">Hide</span><span class="chev">⌄</span></span>
+      </summary>
       <div class="used">
         <div class="used-row"><div class="chips-label" data-vi="THIẾT KẾ HỌC TẬP">LEARNING DESIGN</div><div class="chips"><span>Needs analysis</span><span>Gilbert’s six boxes</span><span>Action mapping</span><span>Branching scenarios</span><span>HEARD</span><span>Job aids</span><span>WCAG 2.2 AA</span></div></div>
         <div class="used-row"><div class="chips-label" data-vi="THIẾT KẾ VÀ VIẾT">DESIGN AND WRITING</div><div class="chips"><span>Claude</span><span>Claude Design</span></div></div>
@@ -256,19 +270,7 @@
         <div class="used-row"><div class="chips-label" data-vi="AI VÀ ÂM THANH, HÌNH ẢNH">AI AND MEDIA</div><div class="chips"><span>Gemini</span><span>Gemini text-to-speech</span><span>DiceBear Open Peeps</span><span>ffmpeg</span></div></div>
         <div class="used-row"><div class="chips-label" data-vi="KIỂM THỬ">TESTING</div><div class="chips"><span>Vitest</span><span>Testing Library</span><span>Playwright</span></div></div>
       </div>
-    </section>
-
-    <section class="cs">
-      <div class="cs-head">
-        <div class="cs-title"><span class="glyph g-di" style="background:var(--a1)"></span><h3 class="lab" data-vi="MỤC TIÊU">THE GOAL</h3></div>
-      </div>
-      <div class="stats">
-        <div class="card"><div class="stat">3.2 → 4.0</div><div class="stat-l" data-vi="điểm hài lòng chung, trong hai quý">overall member satisfaction, within two quarters</div></div>
-        <div class="card"><div class="stat">2.7 → 3.8</div><div class="stat-l" data-vi="cách Cozy xử lý khiếu nại">how Cozy handles complaints</div></div>
-        <div class="card"><div class="stat">50% → 90%</div><div class="stat-l" data-vi="khiếu nại có bước tiếp theo kèm ngày, kiểm tra mỗi tuần">complaints with a dated next step, checked every week</div></div>
-      </div>
-      <p class="note" data-vi="Cozy là khách hàng hư cấu: các con số là mục tiêu thiết kế từ phân tích nhu cầu, không phải kết quả đo được.">Cozy is a fictional client: the numbers are design goals from the needs analysis, not measured results.</p>
-    </section>
+    </details>
   </article>
 </section>
 
@@ -297,6 +299,18 @@
         <div class="card"><div class="stat">2 of 7</div><div class="stat-l" data-vi="rào cản cần giải ngoài đào tạo">barriers that need a fix outside training</div></div>
       </div>
       <p data-vi="Tài xế bỏ qua cuộc gọi để giữ tốc độ giao, không chắc thứ tự các bước, và không chắc đơn SIG (cần ký) và AGE (kiểm tra tuổi) được phép xử lý thế nào. Trên điện thoại, họ chiều theo những yêu cầu sai quy định, như để đơn cần ký nhận ngay trước cửa. Ở hiện trường, họ chọn sai chỗ khuất, và ảnh chụp thường thiếu số nhà.">Drivers skip the call to protect their stop rate, aren't sure of the order of the steps, and aren't sure what SIG (signature) and AGE (age-check) parcels allow. On the phone they give in to requests outside the rules, like leaving a parcel that needs a signature at the door. At the house they misjudge hidden spots, and their photos often miss the house number.</p>
+    </section>
+
+    <section class="cs">
+      <div class="cs-head">
+        <div class="cs-title"><span class="glyph g-di" style="background:var(--a1)"></span><h3 class="lab" data-vi="MỤC TIÊU">THE GOAL</h3></div>
+      </div>
+      <div class="stats">
+        <div class="card"><div class="stat">45% → 65%</div><div class="stat-l" data-vi="giao thành công lần đầu khi khách vắng nhà, trong ba tháng">first-try success on not-home stops, within three months</div></div>
+        <div class="card"><div class="stat">≤ 0.5%</div><div class="stat-l" data-vi="khiếu nại mất hàng ở các điểm giao đó">missing-parcel claims on those stops</div></div>
+        <div class="card"><div class="stat">80 / 100</div><div class="stat-l" data-vi="điểm để đạt, không vi phạm quy định">to pass the module, with no policy violation</div></div>
+      </div>
+      <p class="note" data-vi="Khách hàng hư cấu: các con số là mục tiêu thiết kế, không phải kết quả đo được.">Fictional client: the numbers are design goals, not measured results.</p>
     </section>
 
     <section class="cs">
@@ -352,29 +366,18 @@
       <p data-vi="Module làm bằng React và Vite, XState cho logic từng slide và Zod để kiểm tra nội dung. Giọng trong cuộc gọi làm bằng Piper text-to-speech, với phụ đề canh theo âm thanh thật. Unit test bao phủ engine, test trình duyệt bấm qua mọi slide, và axe-core kiểm tra khả năng tiếp cận ở mọi slide và trạng thái tại 360, 600, 840 và 1280 px. Gói SCORM được test trong một LMS giả lập.">The module is built in React with Vite, with XState for each slide's logic and Zod to check the content. The voices in the call are made with Piper text-to-speech, with captions timed from the real audio. Unit tests cover the engine, browser tests click through every slide, and axe-core checks accessibility on every slide and state at 360, 600, 840 and 1280 pixels. The SCORM package is tested in a stand-in LMS.</p>
     </section>
 
-    <section class="cs">
-      <div class="cs-head">
-        <div class="cs-title"><span class="glyph g-ci" style="background:var(--a4)"></span><h3 class="lab" data-vi="DÙNG TRONG DỰ ÁN NÀY">USED IN THIS PROJECT</h3></div>
-      </div>
+    <details class="cs used-sec">
+      <summary class="cs-head">
+        <span class="cs-title"><span class="glyph g-ci" style="background:var(--a4)"></span><h3 class="lab" data-vi="DÙNG TRONG DỰ ÁN NÀY">USED IN THIS PROJECT</h3></span>
+        <span class="used-toggle" aria-hidden="true"><span class="used-show" data-vi="Xem">Show</span><span class="used-hide" data-vi="Ẩn">Hide</span><span class="chev">⌄</span></span>
+      </summary>
       <div class="used">
         <div class="used-row"><div class="chips-label" data-vi="THIẾT KẾ HỌC TẬP">LEARNING DESIGN</div><div class="chips"><span>Action mapping</span><span>Branching scenarios</span><span>Job aids</span><span>SCORM 1.2</span><span>WCAG 2.2</span></div></div>
         <div class="used-row"><div class="chips-label" data-vi="LẬP TRÌNH">BUILD</div><div class="chips"><span>React</span><span>Vite</span><span>XState</span><span>Zod</span><span>Lucide icons</span><span>Vercel</span></div></div>
         <div class="used-row"><div class="chips-label" data-vi="AI VÀ ÂM THANH, HÌNH ẢNH">AI AND MEDIA</div><div class="chips"><span>Gemini</span><span>Piper text-to-speech</span></div></div>
         <div class="used-row"><div class="chips-label" data-vi="KIỂM THỬ">TESTING</div><div class="chips"><span>Vitest</span><span>Playwright</span><span>axe-core</span><span>scorm-again</span></div></div>
       </div>
-    </section>
-
-    <section class="cs">
-      <div class="cs-head">
-        <div class="cs-title"><span class="glyph g-di" style="background:var(--a1)"></span><h3 class="lab" data-vi="MỤC TIÊU">THE GOAL</h3></div>
-      </div>
-      <div class="stats">
-        <div class="card"><div class="stat">45% → 65%</div><div class="stat-l" data-vi="giao thành công lần đầu khi khách vắng nhà, trong ba tháng">first-try success on not-home stops, within three months</div></div>
-        <div class="card"><div class="stat">≤ 0.5%</div><div class="stat-l" data-vi="khiếu nại mất hàng ở các điểm giao đó">missing-parcel claims on those stops</div></div>
-        <div class="card"><div class="stat">80 / 100</div><div class="stat-l" data-vi="điểm để đạt, không vi phạm quy định">to pass the module, with no policy violation</div></div>
-      </div>
-      <p class="note" data-vi="Khách hàng hư cấu: các con số là mục tiêu thiết kế, không phải kết quả đo được.">Fictional client: the numbers are design goals, not measured results.</p>
-    </section>
+    </details>
   </article>
 </section>
 
@@ -383,9 +386,9 @@
   <h2 class="sr-only" data-vi="Về mình">About me</h2>
 
   <div class="block bg-t3 about-hero">
-    <h2 data-vi="Mình đứng lớp, và thiết kế như một người phải đứng trước cả lớp.">I teach, and I design like someone who has to stand in front of the room.</h2>
-    <p data-vi="Dạy học cho mình một bài học không bỏ được: bạn biết ngay trong mười phút đầu là buổi học có đang hiệu quả hay không. Mình mang thói quen đó sang thiết kế học tập — và vì mình cũng đi lên từ dữ liệu và quản trị kinh doanh, mình bắt đầu từ vấn đề và kiểm tra kết quả bằng con số.">Teaching taught me something I never shook off: you know within ten minutes whether a session is working. I bring that instinct to learning design — and because I also come from data and business, I start from the problem and check the result with numbers.</p>
-    <div class="cta-row"><button type="button" class="btn btn-primary" data-doc="doc-cv"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Xem CV của mình">View my CV</span></button></div>
+    <span class="wave" role="img" aria-label="A waving hand">👋</span>
+    <h2 data-vi="Chào bạn, rất vui được gặp bạn ở đây">Hi, welcome here</h2>
+    <p data-vi="Mình rất vui vì bạn đã ghé phần này của trang. Đây là hành trình của riêng mình: những điều mình thích làm, và điều đã đưa mình đến với nghề thiết kế học tập.">I’m glad you found this part of the site. This page is about my own journey: what I like to do, and what drives me to become a learning designer.</p>
   </div>
 
   <div class="wide bg-t4" aria-hidden="true">
@@ -401,7 +404,7 @@
       <div class="card"><span class="dot" style="background:var(--a1)"></span><span class="y" data-vi="HIỆN TẠI">NOW</span><div><div class="t">Learning Experience Designer</div><div class="d" data-vi="Thiết kế học tập bằng code: module chạy trên điện thoại, đo được, dùng lại được, và đưa lên LMS dưới dạng SCORM hoặc cmi5.">Designing learning in code: modules that work on a phone, can be measured and reused, and upload to an LMS as SCORM or cmi5.</div></div></div>
       <div class="card"><span class="dot" style="background:var(--a2)"></span><span class="y" data-vi="HIỆN TẠI">NOW</span><div><div class="t" data-vi="Giáo viên">Teacher</div><div class="d" data-vi="Dạy toán và kỹ năng số cho học sinh nhiều lứa tuổi, cả trên lớp lẫn online.">Teaching math and digital skills to students of different ages, in class and online.</div></div></div>
       <div class="card"><span class="dot" style="background:var(--a3)"></span><span class="y">2024</span><div><div class="t" data-vi="Data Analyst · Unigap">Data Analyst coaching · Unigap</div><div class="d" data-vi="Kèm 1-1: SQL trên dữ liệu Google Analytics trong BigQuery, phân khúc khách hàng RFM bằng Python, dashboard nhà cung cấp trên Power BI.">One-to-one coaching: SQL on Google Analytics data in BigQuery, RFM segmentation in Python, a vendor dashboard in Power BI.</div></div></div>
-      <div class="card"><span class="dot" style="background:var(--a4)"></span><span class="y">2020 — 2024</span><div><div class="t" data-vi="Cử nhân Quản trị Kinh doanh · ĐH FPT">BBA · FPT University</div><div class="d" data-vi="Quản trị kinh doanh, GPA 8,2/10.">Bachelor of Business Administration, GPA 8.2/10.</div></div></div>
+      <div class="card"><span class="dot" style="background:var(--a4)"></span><span class="y" data-vi="2020 đến 2024">2020 to 2024</span><div><div class="t" data-vi="Cử nhân Quản trị Kinh doanh · ĐH FPT">BBA · FPT University</div><div class="d" data-vi="Quản trị kinh doanh, GPA 8,2/10.">Bachelor of Business Administration, GPA 8.2/10.</div></div></div>
     </div>
   </div>
 </section>

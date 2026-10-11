@@ -36,7 +36,7 @@
       if (a.dataset.nav === section) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
     });
     const page = document.querySelector(`[data-page="${CSS.escape(target)}"]`);
-    document.title = page.dataset.title ? `${page.dataset.title} — Son Duong` : baseTitle;
+    document.title = page.dataset.title ? `${page.dataset.title} · Son Duong` : baseTitle;
     window.scrollTo(0, 0);  // smooth via CSS scroll-behavior, instant with reduced motion
     if (e) {  // on navigation (not first load), put keyboard and screen reader focus on the new page
       page.tabIndex = -1;
