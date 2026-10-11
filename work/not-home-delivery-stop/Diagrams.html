@@ -107,7 +107,7 @@
         </div>
       </div>
         </div>
-        <div class="n n--ops am-ops" data-from="ds-am-goal" data-wire="dash"><span class="k">→ Ops · Changes for operations, not lessons</span><ul class="am-ops-list"><li><span class="pill pill--key">A1</span><span>Count neighbor and pickup-point handovers as first-attempt successes on the driver scorecard.</span></li><li><span class="pill pill--key">A2</span><span>Show the handling code and stop notes on the arrival screen.</span></li></ul></div>
+        <div class="n n--ops am-ops" data-from="ds-am-goal" data-wire="dash"><span class="k">→ Ops · Changes for operations</span><ul class="am-ops-list"><li><span class="pill pill--key">A1</span><span>Count neighbor and pickup-point handovers as first-attempt successes on the driver scorecard.</span></li><li><span class="pill pill--key">A2</span><span>Show the handling code and stop notes on the arrival screen.</span></li></ul></div>
       </div>
     </div>
     <figcaption><b>Figure 1</b>The action map, from the goal to each action’s barriers, practice and information, with the changes for operations</figcaption>
@@ -134,7 +134,7 @@
 
 <section class="doc-sec tone-blue" id="module-path">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-route"/></svg></span><h2><span class="sec-n">2</span>The path through the module</h2><span class="sec-line"></span></header>
-  <p>Seven slides in a row, each practising one or two of the actions in the action map. The scored slides add up to 100 points. The results screen shows the score against the pass rule, Try again reopens only the slides that lost points, and the SCORM package keeps the progress and the best score in the LMS.</p>
+  <p>The module has seven slides in a row, and each one practices one or two of the actions in the action map. The scored slides add up to 100 points. The results screen shows the score against the pass rule, Try again reopens the slides that lost points, and the SCORM package keeps the progress and the best score in the LMS.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -143,7 +143,7 @@
         <li><span class="sw" style="border:2px solid var(--ink)"></span>Results and pass rule</li>
         <li><span class="sw" style="background:transparent;border-style:dashed"></span>After the results, not scored</li>
         <li><span class="sw" style="background:var(--night);border-color:var(--night)"></span>LMS</li>
-        <li><span class="pill pill--key">Points</span><span class="pill">A1</span>Action practised</li>
+        <li><span class="pill pill--key">Points</span><span class="pill">A1</span>Action practiced</li>
       </ul>
       <div class="dg mp">
         <div class="n mp-slide" id="ds-module-path-s1"><span class="k">Slide 1 · Put the steps in order</span><p>Drag and drop: the six steps of a not-home stop, in order.</p><span class="mp-pills"><span class="pill pill--key">10 points</span><span class="pill">A1</span></span></div>
@@ -155,7 +155,7 @@
         <div class="n mp-slide" id="ds-module-path-s6" data-from="ds-module-path-s5"><span class="k">Slide 6 · Find the safe place</span><p>A hotspot: choose where to leave the parcel.</p><span class="mp-pills"><span class="pill pill--key">10 points</span><span class="pill">A4</span></span></div>
         <div class="n mp-slide" id="ds-module-path-s7" data-from="ds-module-path-s6"><span class="k">Slide 7 · Handle two stops</span><p>Branching: two stops, points along a path that ends in success.</p><span class="mp-pills"><span class="pill pill--key">40 points</span><span class="pill">A2</span><span class="pill">A4</span></span></div>
         <div class="n n--key mp-results" id="ds-module-path-results" data-from="ds-module-path-s7"><span class="k">Results screen</span><p>The score out of 100 against the pass rule, what led to slide 7’s ending, and what Try again opens.</p><span class="mp-pills"><span class="pill pill--ink">Pass: 80 or more, and no violation</span></span></div>
-        <div class="n n--ops mp-retry" id="ds-module-path-retry" data-from="ds-module-path-results" data-wire="dash"><span class="k">Try again · a new round</span><p>A new round opens again only the slides that lost points, then goes back to slide 7 and the results. Slides 2 and 5 never reopen.</p></div>
+        <div class="n n--ops mp-retry" id="ds-module-path-retry" data-from="ds-module-path-results" data-wire="dash"><span class="k">Try again · a new round</span><p>A new round opens again the slides that lost points, then goes back to slide 7 and the results. Slides 2 and 5 never reopen.</p></div>
         <div class="n n--ops mp-ready" id="ds-module-path-ready" data-from="ds-module-path-results" data-wire="dash"><span class="k">Before you finish · not scored</span><p>Two quick questions about the next shift: how ready they feel, and which part they would still like help with.</p></div>
         <div class="n n--ink mp-lms" id="ds-module-path-lms" data-from="ds-module-path-results"><span class="k">LMS · SCORM 1.2</span><p>Saves the progress and the slide on screen, and reports the best score, which never goes down. The status turns to passed once the module is passed.</p></div>
       </div>
@@ -221,7 +221,7 @@
           <div class="n n--key br-dec" id="ds-branching-s2d3" data-from="ds-branching-best5" data-wire="good"><span class="k">Decision 3 · What do you do?</span>On your way back to the van, Mrs. Lim at number 14 comes out: “I can sign for Ms. Rivera. I often do.”</div>
           <div class="br-opts"><div class="n n--sm n--weak br-c" data-from="ds-branching-s2d3"><span class="k">Choice <span class="pill pill--weak">0 · violation</span></span>Let Mrs. Lim sign, and note number 14 in the status</div><div class="n n--sm n--weak br-c" data-from="ds-branching-s2d3"><span class="k">Choice <span class="pill pill--weak">0 · violation</span></span>Take it to the pickup point, but set the status to “Delivered” so the stop counts</div><div id="ds-branching-best6" class="n n--sm n--good br-c" data-from="ds-branching-s2d3"><span class="k">Best <span class="pill pill--good">+10 · success</span></span>Thank her, take it to the pickup point, and send the status with the pickup point’s address</div></div>
           <div class="br-ends" id="ds-branching-e2" data-from="ds-branching-best6" data-wire="good"><span class="col-label">How stop 2 can end</span><div class="n n--sm n--end n--good br-e"><span class="k">Ending · Success</span>Signed for at the pickup point, with the customer told where it is.</div><div class="n n--sm n--end n--plain br-e"><span class="k">Ending · Returned</span>The stop counts as a failed first attempt.</div><div class="n n--sm n--end n--weak br-e"><span class="k">Ending · Violation</span>Handed over or reported outside policy, so a claim is likely.</div></div></div>
-        <div class="n n--ink br-score"><span class="k">How slide 7 scores</span>The points of the choices taken, 40 at most, but only when both stops end in success; a returned or violation ending scores 0. The slide’s ending is the worse of the two stops: a violation, then returned, then success.</div>
+        <div class="n n--ink br-score"><span class="k">How slide 7 scores</span>The points of the choices taken, 40 at most, if both stops end in success; a returned or violation ending scores 0. The slide’s ending is the worse of the two stops: a violation, then returned, then success.</div>
       </div>
     </div>
     <figcaption><b>Figure 3</b>The two stops of slide 7: each decision, its choices with their points, and the endings</figcaption>
@@ -245,7 +245,7 @@
 
 <section class="doc-sec tone-green" id="ai-chat">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-chat"/></svg></span><h2><span class="sec-n">4</span>The AI call on slide 5</h2><span class="sec-line"></span></header>
-  <p>On slide 5 the driver phones Mr. Hayes about an AGE parcel and types what they say. One AI plays Mr. Hayes; a separate AI grader, which never sees his prompt, scores the whole call against the three call moves. The slide is practice only, and it can always be finished: if the AI does not work, it switches to a self-check.</p>
+  <p>On slide 5 the driver phones Mr. Hayes about an AGE parcel and types what they say. One AI plays Mr. Hayes; a separate AI grader, which never sees his prompt, scores the whole call against the three call moves. The slide gives practice and no points, and it can always be finished: if the AI does not work, it switches to a self-check.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -269,7 +269,7 @@
         <div class="n n--sm ac-a" id="ds-ai-chat-ask" data-from="ds-ai-chat-r2" data-wire="arrow"><span class="k">Learner · Get feedback</span>The whole call goes to the grader.</div>
         <div class="n n--sm n--ink ac-c" id="ds-ai-chat-grade" data-from="ds-ai-chat-ask" data-wire="arrow"><span class="k">AI grader · reads the whole call</span>Each call move: <b>Met</b> or <b>Not yet</b>, with a quote of the learner’s own words and one tip.</div>
         <div class="n n--sm n--plain ac-card" id="ds-ai-chat-card" data-from="ds-ai-chat-grade" data-wire="dash"><span class="k">Job aid · Call moves</span><ol class="ac-moves"><li>Say who you are and what is happening</li><li>Explain the options allowed for the parcel</li><li>Confirm the plan and the proof step. AGE: the customer brings photo ID to the pickup point.</li></ol></div>
-        <div class="n n--good ac-out" id="ds-ai-chat-out" data-from="ds-ai-chat-grade" data-wire="good"><span class="k">Outcome · 0 points, practice only</span>The feedback, then the model call and Continue. AI scoring can vary, so it does not count toward the score.</div>
+        <div class="n n--good ac-out" id="ds-ai-chat-out" data-from="ds-ai-chat-grade" data-wire="good"><span class="k">Outcome · 0 points, for practice</span>The feedback, then the model call and Continue. AI scoring can vary, so it does not count toward the score.</div>
         <div class="n n--sm ac-retry" data-from="ds-ai-chat-out"><span class="k">Try again · up to 3 tries</span>A new call. After the third, a short message, the model call and Continue.</div>
         <div class="n n--sm n--ops ac-fall"><span class="k">When the AI does not work</span>Out of quota, a timeout, an error, or an answer that does not fit: a friendly message, then a self-check. The learner reads the model call, marks the call moves they made, and goes on.</div>
       </div>

@@ -252,26 +252,28 @@ p, dd, li, .stat-l, .bul > div > span:last-child, .path .d {
 .cs > * + * { margin-top: 14px; }
 .cs > .cs-head + * { margin-top: 0; }
 .rows { display: grid; gap: 8px; }
-.row-item {
-  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 16px; align-items: center;
-  background: var(--surface); border-radius: 12px; padding: 14px 16px; transition: background .35s;
-}
+/* a row: its name and kind of problem on top, then what was found and the fix side by side */
+.row-item { background: var(--surface); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; transition: background .35s; }
+.row-head { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; }
+.row-name { margin: 0; font: 700 15px/1.35 var(--serif); }
+.row-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; }
+.row-body > div { display: flex; flex-direction: column; gap: 6px; }
+.row-body .lab { margin: 0; }
 .row-item p { margin: 0; font: 400 13.5px/1.6 var(--sans); }
 .row-cause { color: var(--muted); }
 .row-fix { color: var(--ink); }
 .tag { font: 500 9.5px/1.3 var(--mono); letter-spacing: .08em; color: var(--faint); background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; text-align: center; white-space: nowrap; }
-@container case (max-width: 640px) {
-  .row-item { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .tag { justify-self: start; }
-}
-.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
-.tile { background: var(--surface); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 8px; transition: background .35s; }
+@container case (max-width: 640px) { .row-body { grid-template-columns: minmax(0, 1fr); } }
+/* a tile: its name and who it is for on the left, the text on the right; stacked when narrow */
+.tiles { display: grid; gap: 8px; }
+.tile { background: var(--surface); border-radius: 14px; padding: 18px; display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 10px 24px; align-items: start; transition: background .35s; }
+.tile-head { display: flex; flex-direction: column; gap: 8px; }
 .tile .glyph { width: 20px; height: 20px; }
 .tile .g-sq { border-radius: 7px; } .tile .g-di { width: 16px; height: 16px; border-radius: 6px; margin: 2px; }
 .tile h4 { font: 700 15px/1.35 var(--serif); margin: 4px 0 0; }
 .tile .lab { margin: 0; }
-.tile p { margin: 0; font: 400 13px/1.6 var(--sans); color: var(--muted); }
-@container case (max-width: 720px) { .tiles { grid-template-columns: minmax(0, 1fr); } }
+.tile p { margin: 0; font: 400 13.5px/1.6 var(--sans); color: var(--muted); }
+@container case (max-width: 640px) { .tile { grid-template-columns: minmax(0, 1fr); } }
 .shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
 .shot {
   border: 0; padding: 0; background: none; cursor: zoom-in; text-align: left; color: inherit; font: inherit;
