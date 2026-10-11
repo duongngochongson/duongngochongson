@@ -39,6 +39,7 @@ a:hover { color: var(--key); }
   display: flex; flex-direction: column; gap: clamp(22px, 3vw, 32px);
 }
 .doc-mark { display: block; height: 34px; width: auto; align-self: flex-start; }
+.doc-mark--icon { height: 52px; }   /* a project mark that is an icon, not a wordmark */
 .doc-titles { display: flex; flex-direction: column; gap: 18px; }
 .doc-eyebrow { font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--accent); letter-spacing: .02em; }
 .doc-head h1 { margin: 0; font: 700 clamp(36px, 6vw, 60px)/1.03 'Archivo', sans-serif; letter-spacing: -0.03em; color: var(--paper); }
@@ -52,6 +53,7 @@ a:hover { color: var(--key); }
   font: 500 16px/22px 'IBM Plex Mono', monospace;
 }
 .doc-foot .doc-mark { height: 26px; }
+.doc-foot .doc-mark--icon { height: 34px; }
 @media (max-width: 600px) { .doc, .doc-head, .doc-foot { border-radius: 0; } }
 
 /* ---------- body: the contents on the left, the reading column on the right ---------- */

@@ -2,8 +2,9 @@
 // data-wire on that box changes the line: "dash", "arrow", "good", "weak", "key", "bold".
 // Lines from one box share one trunk, so a box with several children reads as a bracket.
 // data-route forces the shape: "h" (side to side), "v" (top to bottom), "rail" (down the parent's left
-// side, then across: an outline). Without it, the shape follows where the two boxes sit, so the same
-// diagram can be a wide tree on a large screen and an outline on a phone. Lines are redrawn on resize.
+// side, then across: an outline), "around" (out to the right and back in: a loop), "none". Without it, the shape follows where the two boxes sit, so the same
+// diagram can be a wide tree on a large screen and an outline on a phone. CSS can set the shape too, as
+// --route on the box, so a container query can change it. Lines are redrawn on resize.
 (function () {
   var NS = 'http://www.w3.org/2000/svg';
   var R = 8;  // corner radius of a bend
@@ -32,6 +33,9 @@
   // the points of a line from box p (parent) to box c (child)
   function route(p, c, how) {
     var G = 2;
+    if (how === 'none') return null;  // a layout where the order alone says it (set from CSS)
+    // around: out of the parent's right side, up or down past both boxes, into the child's right side (a loop back)
+    if (how === 'around') { var ax = Math.max(p.r, c.r) + 16; return [[p.r, p.cy], [ax, p.cy], [ax, c.cy], [c.r, c.cy]]; }
     // below and indented: an outline, the line runs down the indent and across
     if (how === 'rail' || (!how && c.t >= p.b - G && c.l >= p.l + 10 && c.l < p.r)) {
       var rx = p.l + Math.min(22, Math.max(10, (c.l - p.l) / 2));
@@ -40,14 +44,17 @@
     if (how === 'h' || (!how && (c.l >= p.r - G || c.r <= p.l + G))) {
       var right = c.l >= p.r - G || (how === 'h' && c.cx >= p.cx);
       var x1 = right ? p.r : p.l, x2 = right ? c.l : c.r;
-      if (Math.abs(p.cy - c.cy) <= 2) return [[x1, c.cy], [x2, c.cy]];
+      // straight across when one box spans the other's middle (the parent's middle first, so a bracket keeps one trunk)
+      if (c.t <= p.cy - 4 && c.b >= p.cy + 4) return [[x1, p.cy], [x2, p.cy]];
+      if (p.t <= c.cy - 4 && p.b >= c.cy + 4) return [[x1, c.cy], [x2, c.cy]];
       var xm = x1 + (x2 - x1) / 2;
       return [[x1, p.cy], [xm, p.cy], [xm, c.cy], [x2, c.cy]];
     }
     if (how === 'v' || c.t >= p.b - G || c.b <= p.t + G) {
       var down = c.t >= p.b - G || (how === 'v' && c.cy >= p.cy);
       var y1 = down ? p.b : p.t, y2 = down ? c.t : c.b;
-      if (Math.abs(p.cx - c.cx) <= 2) return [[c.cx, y1], [c.cx, y2]];
+      if (c.l <= p.cx - 4 && c.r >= p.cx + 4) return [[p.cx, y1], [p.cx, y2]];
+      if (p.l <= c.cx - 4 && p.r >= c.cx + 4) return [[c.cx, y1], [c.cx, y2]];
       var ym = y1 + (y2 - y1) / 2;
       return [[p.cx, y1], [p.cx, ym], [c.cx, ym], [c.cx, y2]];
     }
@@ -83,7 +90,8 @@
       child.getAttribute('data-from').split(/\s+/).filter(Boolean).forEach(function (id) {
         var parent = document.getElementById(id);
         if (!parent || !dg.contains(parent) || !parent.getClientRects().length) return;
-        var pts = route(box(parent, o), box(child, o), child.getAttribute('data-route'));
+        var how = child.getAttribute('data-route') || getComputedStyle(child).getPropertyValue('--route').trim() || null;
+        var pts = route(box(parent, o), box(child, o), how);
         if (!pts) return;
         var path = document.createElementNS(NS, 'path');
         path.setAttribute('d', rounded(pts));

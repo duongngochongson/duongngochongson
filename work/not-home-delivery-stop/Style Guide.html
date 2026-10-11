@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Style guide · Not-Home Delivery Stop · Son Duong</title>
+<link rel="stylesheet" href="../frame/fonts/fonts.css">
+<link rel="stylesheet" href="../frame/frame.css">
+<style>
+/* The module's own fonts, for the type specimens only (latin subsets, SIL OFL 1.1) */
+@font-face { font-family: 'Atkinson Hyperlegible Next'; font-style: normal; font-weight: 400; font-display: swap; src: url('style-guide/atkinson-hyperlegible-next-400.woff2') format('woff2'); }
+@font-face { font-family: 'Atkinson Hyperlegible Next'; font-style: normal; font-weight: 700; font-display: swap; src: url('style-guide/atkinson-hyperlegible-next-700.woff2') format('woff2'); }
+@font-face { font-family: 'Barlow Semi Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url('style-guide/barlow-semi-condensed-600.woff2') format('woff2'); }
+
+/* The module's values, used only inside its specimens */
+:root { --sg-rem: 16px; --sg-primary: #1F4E8C; --sg-outline: #7D828B; --sg-divider: #E4E0D8; --sg-surface: #FFFFFF; --sg-ink: #1C2430; }
+@media (min-width: 600px) { :root { --sg-rem: 18px; } }
+
+/* groups inside a figure */
+.sg-stack { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.sg-group { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.sg-group-k { font: 500 15px/1.3 'IBM Plex Mono', monospace; color: var(--key); }
+
+/* color swatches */
+.sg-swatches { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 196px), 1fr)); gap: 12px; }
+.sg-swatch { display: flex; flex-direction: column; background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; }
+.sg-chip { display: block; height: 56px; border-bottom: 1.5px solid var(--line); }
+.sg-sw-body { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 14px; }
+.sg-sw-name { font: 600 16px/22px 'IBM Plex Mono', monospace; color: var(--ink); }
+.sg-sw-hex { font: 500 15px/21px 'IBM Plex Mono', monospace; color: var(--soft); }
+.sg-sw-role { font: 400 15px/21px 'IBM Plex Sans', sans-serif; color: var(--body); }
+.sg-sw-ratios { list-style: none; margin: 6px 0 0; padding: 8px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; font: 400 15px/21px 'IBM Plex Sans', sans-serif; color: var(--soft); }
+.sg-sw-ratios b { font-weight: 600; color: var(--ink); }
+
+/* type specimens, in the module's fonts and at its root size */
+.sg-type { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.sg-type li { display: flex; flex-direction: column; gap: 6px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.sg-type li:first-child { padding-top: 0; }
+.sg-type li:last-child { padding-bottom: 0; border-bottom: 0; }
+.sg-type-meta { margin: 0; font: 500 15px/1.4 'IBM Plex Mono', monospace; color: var(--soft); }
+.sg-type-meta b { font-weight: 600; color: var(--key); }
+.sg-type-sample { color: var(--sg-ink); }
+.sg-t-title { font: 600 calc(1.953 * var(--sg-rem))/1.2 'Barlow Semi Condensed', sans-serif; }
+.sg-t-heading { font: 600 calc(1.563 * var(--sg-rem))/1.2 'Barlow Semi Condensed', sans-serif; }
+.sg-t-lead { font: 400 calc(1.25 * var(--sg-rem))/1.4 'Atkinson Hyperlegible Next', sans-serif; }
+.sg-t-body { font: 400 var(--sg-rem)/1.5 'Atkinson Hyperlegible Next', sans-serif; }
+.sg-t-label { font: 400 calc(0.875 * var(--sg-rem))/1.3 'Atkinson Hyperlegible Next', sans-serif; }
+
+.sg-legible { display: flex; flex-direction: column; gap: 14px; }
+.sg-face { display: flex; flex-direction: column; gap: 2px; font-size: calc(1.25 * var(--sg-rem)); line-height: 1.35; color: var(--sg-ink); }
+.sg-face span { font: 500 15px/1.4 'IBM Plex Mono', monospace; color: var(--soft); }
+.sg-face--barlow { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 600; }
+.sg-face--atk { font-family: 'Atkinson Hyperlegible Next', sans-serif; font-weight: 400; }
+.sg-face--atk-b { font-family: 'Atkinson Hyperlegible Next', sans-serif; font-weight: 700; }
+.sg-code-rule { margin-top: 6px; padding: 16px 18px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; gap: 8px; }
+.sg-code-demo { font: 600 calc(1.563 * var(--sg-rem))/1.2 'Barlow Semi Condensed', sans-serif; color: var(--sg-ink); }
+.sg-ds-code { font-family: 'Atkinson Hyperlegible Next', sans-serif; font-size: inherit; font-weight: inherit; }
+.sg-markup { font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; }
+
+/* space, radius, line and elevation */
+.sg-space { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.sg-space li { display: grid; grid-template-columns: 92px 64px auto; align-items: center; gap: 14px; font: 500 15px/21px 'IBM Plex Mono', monospace; color: var(--soft); }
+.sg-space code { font-size: 15px; line-height: 21px; }
+.sg-bar { height: 12px; border-radius: 3px; background: var(--sg-primary); }
+.sg-tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr)); gap: 16px; }
+.sg-tiles--two { grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+.sg-tile { padding: 14px 16px; background: var(--sg-surface); border: 1px solid var(--sg-divider); font: 400 16px/22px 'IBM Plex Sans', sans-serif; color: var(--ink); }
+.sg-tile--control, .sg-tile--outline, .sg-tile--focus { border: 2px solid var(--sg-outline); border-radius: 8px; }
+.sg-tile--panel { border: 2px solid var(--sg-outline); border-radius: 12px; }
+.sg-tile--pill { border: 2px solid var(--sg-outline); border-radius: 999px; padding-inline: 20px; }
+.sg-tile--focus { outline: 2px solid var(--sg-primary); outline-offset: 2px; }
+.sg-tile--e1 { border-radius: 12px; }
+.sg-tile--e2 { border-color: transparent; border-radius: 12px; box-shadow: 0 4px 12px rgba(28, 36, 48, 0.16); }
+
+/* screenshots of the components */
+.sg-shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px 16px; align-items: start; }
+.sg-shots--row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 18px 16px; }
+.sg-shot { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
+.sg-shot img { display: block; max-width: 100%; height: auto; background: var(--sg-surface); border: 1.5px solid var(--line); border-radius: 10px; }
+.fig .sg-shot figcaption { display: block; font: 500 15px/1.35 'IBM Plex Mono', monospace; color: var(--soft); }
+
+/* screen anatomy */
+.sg-anatomy { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 24px 28px; }
+.sg-anatomy .sg-shot { flex: 0 1 404px; }
+.sg-legend { flex: 1 1 220px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.sg-legend li { display: flex; gap: 12px; font: 400 16px/24px 'IBM Plex Sans', sans-serif; color: var(--body); }
+.sg-legend-n { flex: none; width: 28px; height: 28px; margin-top: -2px; border-radius: 999px; background: var(--accent); font: 600 15px/28px 'IBM Plex Mono', monospace; color: var(--ink); text-align: center; }
+
+/* the grid at each breakpoint */
+.doc-sec > ul.sg-bps { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 12px; }
+.doc-sec > ul.sg-bps > li { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; font: 400 16px/24px 'IBM Plex Sans', sans-serif; color: var(--body); text-align: left; }
+.sg-bp-k { margin-bottom: 4px; font: 500 15px/21px 'IBM Plex Mono', monospace; color: var(--key); }
+
+/* tables: names and short lists sit left; only prose cells stay justified */
+.table-wrap.sg-left td, .table-wrap.sg-lead td:first-child { text-align: left; }
+.sg-lead td:first-child { width: 30%; min-width: 120px; }
+/* a short code in running text stays on one line */
+.sg-code { white-space: nowrap; }
+@media (min-width: 600px) { .sg-left td code, .sg-lead td code { white-space: nowrap; } }
+</style>
+<script src="../frame/frame.js" defer></script>
+</head>
+<body>
+<article class="doc">
+<header class="doc-head">
+<svg class="doc-mark doc-mark--icon" viewBox="52 25 136 98" role="img" aria-label="Not-Home Delivery Stop">
+    <g transform="translate(-7.5 4.5)">
+      <g fill="none" stroke="#FBF7EE" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M72 102a8 8 0 0 1-8-8V60a8 8 0 0 1 8-8h52a8 8 0 0 1 8 8v42H105"/>
+        <path d="M132 68h21a6 6 0 0 1 4.8 2.4l10 13.4a8 8 0 0 1 1.6 4.8V97a5 5 0 0 1-5 5"/>
+        <circle cx="89" cy="104" r="9.5"/><circle cx="148" cy="104" r="9.5"/>
+      </g>
+      <circle cx="174" cy="42" r="19" fill="#FBF7EE"/>
+      <g fill="none" stroke="#1F1A12" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M159 44l8.5-7 8.5 7M162 41.5V51h11V41.5" stroke-width="3"/>
+        <path d="M178.4 36.6a3 3 0 1 1 4.3 2.7c-.9.4-1.5 1.1-1.5 2.1v.7" stroke-width="2.4"/>
+      </g>
+      <circle cx="181.2" cy="46.6" r="1.45" fill="#1F1A12"/>
+    </g>
+  </svg>
+<div class="doc-titles">
+<span class="doc-eyebrow">Project · Not-Home Delivery Stop</span>
+<h1>Style guide</h1>
+<p class="doc-sub">The tokens, type, components, motion and sound of the seven-slide delivery module, and the rules that keep it readable on a phone between stops.</p>
+</div>
+<div class="doc-meta"><span>18 min read</span><span>12 sections</span></div>
+</header>
+<div class="doc-rule"></div>
+<div class="doc-layout">
+<aside class="doc-toc">
+<nav class="toc-side" aria-label="Contents"><span class="toc-title">Contents</span><ol>
+<li><a class="tone-amber" href="#purpose"><span class="toc-num">1</span>Purpose and scope</a></li>
+<li><a class="tone-blue" href="#principles"><span class="toc-num">2</span>Principles</a></li>
+<li><a class="tone-green" href="#color"><span class="toc-num">3</span>Color</a></li>
+<li><a class="tone-red" href="#type"><span class="toc-num">4</span>Type</a></li>
+<li><a class="tone-purple" href="#space"><span class="toc-num">5</span>Space, shape and layout</a></li>
+<li><a class="tone-brown" href="#icons"><span class="toc-num">6</span>Icons</a></li>
+<li><a class="tone-amber" href="#components"><span class="toc-num">7</span>Components</a></li>
+<li><a class="tone-blue" href="#motion"><span class="toc-num">8</span>Motion</a></li>
+<li><a class="tone-green" href="#sound"><span class="toc-num">9</span>Sound and captions</a></li>
+<li><a class="tone-red" href="#voice"><span class="toc-num">10</span>Voice and microcopy</a></li>
+<li><a class="tone-purple" href="#access"><span class="toc-num">11</span>Accessibility</a></li>
+<li><a class="tone-brown" href="#assets"><span class="toc-num">12</span>Assets and licenses</a></li>
+</ol></nav>
+<details class="toc-box"><summary>Contents<span>12</span></summary><ol>
+<li><a class="tone-amber" href="#purpose"><span class="toc-num">1</span>Purpose and scope</a></li>
+<li><a class="tone-blue" href="#principles"><span class="toc-num">2</span>Principles</a></li>
+<li><a class="tone-green" href="#color"><span class="toc-num">3</span>Color</a></li>
+<li><a class="tone-red" href="#type"><span class="toc-num">4</span>Type</a></li>
+<li><a class="tone-purple" href="#space"><span class="toc-num">5</span>Space, shape and layout</a></li>
+<li><a class="tone-brown" href="#icons"><span class="toc-num">6</span>Icons</a></li>
+<li><a class="tone-amber" href="#components"><span class="toc-num">7</span>Components</a></li>
+<li><a class="tone-blue" href="#motion"><span class="toc-num">8</span>Motion</a></li>
+<li><a class="tone-green" href="#sound"><span class="toc-num">9</span>Sound and captions</a></li>
+<li><a class="tone-red" href="#voice"><span class="toc-num">10</span>Voice and microcopy</a></li>
+<li><a class="tone-purple" href="#access"><span class="toc-num">11</span>Accessibility</a></li>
+<li><a class="tone-brown" href="#assets"><span class="toc-num">12</span>Assets and licenses</a></li>
+</ol></details>
+</aside>
+<main class="doc-main">
+<section class="doc-sec tone-amber" id="purpose">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-info"/></svg></span><h2><span class="sec-n">1</span>Purpose and scope</h2><span class="sec-line"></span></header>
+  <p>This guide sets one visual and interaction system for Not-Home Delivery Stop, a seven-slide eLearning module for delivery drivers about a stop where nobody is home. The learner puts the steps in order, opens the job aids, sorts parcels by their handling code, takes a phone call with the customer, writes a call to an AI customer, finds the safe place at the door and handles two stops that branch. The guide covers the tokens, the fonts, the components, motion, sound and the words on screen.</p>
+  <p>Every value comes from the module’s source: <code class="sg-code">src/<wbr>design/<wbr>tokens.json</code>, the single source of truth; <code class="sg-code">base.css</code> and <code class="sg-code">contrast.css</code>; the components in <code class="sg-code">src/<wbr>components/<wbr>ui/</code>, each with its own stylesheet; and the docs on the design system, the audio and the module. The component figures are screenshots of the module’s own design-document page.</p>
+  <div class="table-wrap sg-left sg-lead">
+    <table>
+      <thead><tr><th scope="col">Slide and type</th><th scope="col">Main components</th></tr></thead>
+      <tbody>
+      <tr><td>1 · Put the steps in order<br><code>sequence</code></td><td>StepCard</td></tr>
+      <tr><td>2 · Job aids<br><code>reveal</code></td><td>RevealCard</td></tr>
+      <tr><td>3 · Sort the parcels<br><code>categorize</code></td><td>ParcelCard, CodeBadge, Bin</td></tr>
+      <tr><td>4 · Take the call<br><code>dialogue</code></td><td>DialogueBubble, PlayLineButton, CaptionBar, ChoiceCard</td></tr>
+      <tr><td>5 · Write the call<br><code>ai-chat</code></td><td>ChatComposer, CheckCard</td></tr>
+      <tr><td>6 · Find the safe place<br><code>hotspot</code></td><td>HotspotScene, DoorstepScene</td></tr>
+      <tr><td>7 · Handle two stops<br><code>branching</code></td><td>ChoiceCard, OutcomePanel</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Every slide sits in the same frame: the TopBar, a task zone and the ActionBar, with the FeedbackPanel rising from it and the Job aids in a Dialog.</p>
+  <div class="callout"><span class="k">Tokens first</span><p>Edit <code class="sg-code">tokens.json</code>, then run <code>npm run tokens</code>; it also runs before <code class="sg-code">dev</code> and <code class="sg-code">build</code>. <code class="sg-code">scripts/<wbr>build-tokens.js</code> writes <code class="sg-code">tokens.css</code>, which is never edited by hand: a test fails if it drifts.</p></div>
+</section>
+<section class="doc-sec tone-blue" id="principles">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-star"/></svg></span><h2><span class="sec-n">2</span>Principles</h2><span class="sec-line"></span></header>
+  <div class="table-wrap sg-lead">
+    <table>
+      <thead><tr><th scope="col">Principle</th><th scope="col">What it means on every screen</th></tr></thead>
+      <tbody>
+      <tr><td><b>P1 · Readable on the street</b></td><td>Drivers read this outdoors, on a phone, between stops. Text is at least 16px (18px from 600px wide), body text reaches 7:1 contrast, and every control is at least 44 × 44px.</td></tr>
+      <tr><td><b>P2 · One thing per screen</b></td><td>Each screen asks one question and has one primary action, pinned to the bottom. Anything else waits for the next screen or goes into the job aids.</td></tr>
+      <tr><td><b>P3 · Meaning never by color alone</b></td><td>Every state carries an icon and a word as well as a color: “Correct” with a check, “Not quite” with a cross, “Selected” with a filled radio.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The source cites them by number: <code class="sg-code">src/<wbr>design/<wbr>states.js</code>, the list of every state and how it is shown besides color, points to P1 to P3, and two tests read that list (see Accessibility).</p>
+</section>
+<section class="doc-sec tone-green" id="color">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-palette"/></svg></span><h2><span class="sec-n">3</span>Color</h2><span class="sec-line"></span></header>
+  <p>Light theme only. The palette has seventeen tokens, each with a role in <code class="sg-code">tokens.json</code> and a custom property <code class="sg-code">--color-&lt;name&gt;</code> in <code class="sg-code">tokens.css</code>. Contrast is WCAG 2 contrast, computed with <code class="sg-code">src/<wbr>design/<wbr>contrast.js</code>. Text needs 4.5:1 (AA) and body text aims for 7:1 (AAA); outlines and icons need 3:1.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-stack">
+      <div class="sg-group"><p class="sg-group-k">Surfaces and text</p>
+      <ul class="sg-swatches">
+        <li class="sg-swatch"><span class="sg-chip" style="background:#F5F3EE"></span><span class="sg-sw-body"><b class="sg-sw-name">bg</b><span class="sg-sw-hex">#F5F3EE</span><span class="sg-sw-role">Page background</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>14.09:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#FFFFFF"></span><span class="sg-sw-body"><b class="sg-sw-name">surface</b><span class="sg-sw-hex">#FFFFFF</span><span class="sg-sw-role">Cards, panels, bars</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>15.62:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#1C2430"></span><span class="sg-sw-body"><b class="sg-sw-name">ink</b><span class="sg-sw-hex">#1C2430</span><span class="sg-sw-role">Main text</span><ul class="sg-sw-ratios"><li>On surface: <b>15.62:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#475160"></span><span class="sg-sw-body"><b class="sg-sw-name">slate</b><span class="sg-sw-hex">#475160</span><span class="sg-sw-role">Secondary text, returned outcome border</span><ul class="sg-sw-ratios"><li>On surface: <b>8.03:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#E4E0D8"></span><span class="sg-sw-body"><b class="sg-sw-name">divider</b><span class="sg-sw-hex">#E4E0D8</span><span class="sg-sw-role">1px dividers, level-1 borders</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>11.87:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#7D828B"></span><span class="sg-sw-body"><b class="sg-sw-name">outline</b><span class="sg-sw-hex">#7D828B</span><span class="sg-sw-role">Control outlines (choice cards, secondary buttons)</span><ul class="sg-sw-ratios"><li>On surface: <b>3.86:1 AA large / UI</b></li></ul></span></li>
+      </ul>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">Primary</p>
+      <ul class="sg-swatches">
+        <li class="sg-swatch"><span class="sg-chip" style="background:#1F4E8C"></span><span class="sg-sw-body"><b class="sg-sw-name">primary</b><span class="sg-sw-hex">#1F4E8C</span><span class="sg-sw-role">Primary buttons, selection, focus ring</span><ul class="sg-sw-ratios"><li>White text on it: <b>8.31:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#173C6D"></span><span class="sg-sw-body"><b class="sg-sw-name">primary-strong</b><span class="sg-sw-hex">#173C6D</span><span class="sg-sw-role">Hover and pressed</span><ul class="sg-sw-ratios"><li>White text on it: <b>11.03:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#E5EDF7"></span><span class="sg-sw-body"><b class="sg-sw-name">primary-tint</b><span class="sg-sw-hex">#E5EDF7</span><span class="sg-sw-role">Selected choice, driver bubble</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>13.23:1 AAA</b></li></ul></span></li>
+      </ul>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">The highlight</p>
+      <ul class="sg-swatches">
+        <li class="sg-swatch"><span class="sg-chip" style="background:#F2A900"></span><span class="sg-sw-body"><b class="sg-sw-name">accent</b><span class="sg-sw-hex">#F2A900</span><span class="sg-sw-role">The single highlight per screen; fills only, never text</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>7.77:1 AAA</b></li><li>On surface: <b>2.01:1 Fail</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#FDF0CC"></span><span class="sg-sw-body"><b class="sg-sw-name">accent-tint</b><span class="sg-sw-hex">#FDF0CC</span><span class="sg-sw-role">Soft fill for the single highlight per screen</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>13.77:1 AAA</b></li></ul></span></li>
+      </ul>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">Feedback and disabled</p>
+      <ul class="sg-swatches">
+        <li class="sg-swatch"><span class="sg-chip" style="background:#1E7A46"></span><span class="sg-sw-body"><b class="sg-sw-name">success</b><span class="sg-sw-hex">#1E7A46</span><span class="sg-sw-role">Correct / delivered: icons, borders</span><ul class="sg-sw-ratios"><li>On surface: <b>5.35:1 AA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#E3F1E8"></span><span class="sg-sw-body"><b class="sg-sw-name">success-tint</b><span class="sg-sw-hex">#E3F1E8</span><span class="sg-sw-role">Correct / delivered: panel background</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>13.40:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#B42318"></span><span class="sg-sw-body"><b class="sg-sw-name">error</b><span class="sg-sw-hex">#B42318</span><span class="sg-sw-role">Incorrect / violation: icons, borders</span><ul class="sg-sw-ratios"><li>On surface: <b>6.57:1 AA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#FBE8E6"></span><span class="sg-sw-body"><b class="sg-sw-name">error-tint</b><span class="sg-sw-hex">#FBE8E6</span><span class="sg-sw-role">Incorrect / violation: panel background</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>13.23:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#ECEEF1"></span><span class="sg-sw-body"><b class="sg-sw-name">slate-tint</b><span class="sg-sw-hex">#ECEEF1</span><span class="sg-sw-role">Info, returned, disabled fill</span><ul class="sg-sw-ratios"><li>Ink text on it: <b>13.44:1 AAA</b></li></ul></span></li>
+        <li class="sg-swatch"><span class="sg-chip" style="background:#646A73"></span><span class="sg-sw-body"><b class="sg-sw-name">disabled-text</b><span class="sg-sw-hex">#646A73</span><span class="sg-sw-role">Text on disabled controls (it carries an instruction, so 4.5:1 on slate-tint)</span><ul class="sg-sw-ratios"><li>On surface: <b>5.45:1 AA</b></li><li>On slate-tint: <b>4.69:1 AA</b></li></ul></span></li>
+      </ul>
+      </div>
+      </div>
+    </div>
+    <figcaption><b>Figure 1</b>The colors, with their token, value, role and contrast</figcaption>
+  </figure>
+  <ul>
+    <li><span><b>Primary</b> #1F4E8C carries the primary buttons, the selection and the focus ring, with white text at 8.31:1. Hover and pressed darken to primary-strong #173C6D (11.03:1). Primary-tint #E5EDF7 fills the selected choice and the driver’s bubble.</span></li>
+    <li><span><b>Accent</b> #F2A900 is the single highlight per screen. It is a fill only, never text: ink reads on it at 7.77:1, but it reaches only 2.01:1 on surface. Accent-tint #FDF0CC is its soft fill.</span></li>
+    <li><span><b>Success and error</b> mark correct or delivered and incorrect or violation, on icons and borders (5.35:1 and 6.57:1 on surface). Their tints fill the panels, with ink text at 13.40:1 and 13.23:1. Slate-tint #ECEEF1 does the same for info, returned and disabled.</span></li>
+    <li><span><b>Outline</b> #7D828B draws the control outlines of choice cards and secondary buttons, at 3.86:1 on surface. <b>Divider</b> #E4E0D8 draws 1px dividers and level-1 borders.</span></li>
+    <li><span><b>Disabled text</b> #646A73 sits on disabled controls. It carries an instruction (“Choose an option first”), so it reaches 4.69:1 on slate-tint.</span></li>
+  </ul>
+  <div class="callout"><span class="k">Illustration</span><p>The doorstep picture on slide 6 uses an ink outline, flat fills from the palette and rounded joins, with no gradients. Outlines stay 2px at any size. Amber, green and red are not used in it: they are kept for the one highlight and for feedback.</p></div>
+</section>
+<section class="doc-sec tone-red" id="type">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-type"/></svg></span><h2><span class="sec-n">4</span>Type</h2><span class="sec-line"></span></header>
+  <p>Headings are Barlow Semi Condensed 600. Body text is Atkinson Hyperlegible Next 400 and 700. Sizes step by 1.25 from a root of 16px, which becomes 18px from 600px wide, and text blocks stop at 65ch. There are no italics: emphasis is bold, and <code class="sg-code">base.css</code> sets <code class="sg-code">em</code>, <code class="sg-code">i</code>, <code class="sg-code">cite</code> and the rest upright.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <ul class="sg-type">
+        <li><span class="sg-type-meta"><b>Title</b> · 1.953rem (31 / 35px) · line height 1.2 · Barlow Semi Condensed 600</span><span class="sg-type-sample sg-t-title">SIG parcel · house 14 · Il1 O0 B8</span></li>
+        <li><span class="sg-type-meta"><b>Heading</b> · 1.563rem (25 / 28px) · line height 1.2 · Barlow Semi Condensed 600</span><span class="sg-type-sample sg-t-heading">SIG parcel · house 14 · Il1 O0 B8</span></li>
+        <li><span class="sg-type-meta"><b>Lead</b> · 1.25rem (20 / 23px) · line height 1.4 · Atkinson Hyperlegible Next</span><span class="sg-type-sample sg-t-lead">SIG parcel · house 14 · Il1 O0 B8</span></li>
+        <li><span class="sg-type-meta"><b>Body</b> · 1rem (16 / 18px) · line height 1.5 · Atkinson Hyperlegible Next</span><span class="sg-type-sample sg-t-body">SIG parcel · house 14 · Il1 O0 B8</span></li>
+        <li><span class="sg-type-meta"><b>Label</b> · 0.875rem (14 / 16px) · line height 1.3 · Atkinson Hyperlegible Next</span><span class="sg-type-sample sg-t-label">SIG parcel · house 14 · Il1 O0 B8</span></li>
+      </ul>
+    </div>
+    <figcaption><b>Figure 2</b>The type scale, each step set in its own font and size, at 16px or 18px to the rem like the module</figcaption>
+  </figure>
+  <h3>Codes and house numbers</h3>
+  <p>Barlow’s O and 0, and its I and l, look alike. So codes and house numbers are always set in Atkinson Hyperlegible Next, even inside a heading: wrap them in <code class="sg-code">.ds-code</code>, which switches the font and keeps the size and weight of the text around it. Atkinson has 400 and 700, so a 600 heading shows its code at 700.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-legible">
+        <p class="sg-type-meta">The same line in each face</p>
+        <p class="sg-face sg-face--barlow"><span>Barlow Semi Condensed 600</span>SIG parcel · house 14 · Il1 O0 B8</p>
+        <p class="sg-face sg-face--atk"><span>Atkinson Hyperlegible Next 400</span>SIG parcel · house 14 · Il1 O0 B8</p>
+        <p class="sg-face sg-face--atk-b"><span>Atkinson Hyperlegible Next 700</span>SIG parcel · house 14 · Il1 O0 B8</p>
+        <div class="sg-code-rule">
+          <p class="sg-type-meta">A heading with .ds-code</p>
+          <p class="sg-code-demo"><span class="sg-ds-code">SIG</span> parcel · house <span class="sg-ds-code">14</span></p>
+          <p class="sg-markup"><code>&lt;h3&gt;&lt;span class="ds-code"&gt;SIG&lt;/span&gt; parcel · house &lt;span class="ds-code"&gt;14&lt;/span&gt;&lt;/h3&gt;</code></p>
+        </div>
+      </div>
+    </div>
+    <figcaption><b>Figure 3</b>The same line in each face, and a Barlow heading with its code and house number in Atkinson</figcaption>
+  </figure>
+  <p>Both fonts are self-hosted woff2 files, the latin and latin-ext subsets from Fontsource 5.3.0, with no CDN, so a SCORM package keeps working when an LMS blocks outside requests. Both are under the SIL Open Font License 1.1, and the license texts ship next to the fonts.</p>
+</section>
+<section class="doc-sec tone-purple" id="space">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-layout"/></svg></span><h2><span class="sec-n">5</span>Space, shape and layout</h2><span class="sec-line"></span></header>
+  <p>Space is on a 4px base, in eight steps from <code class="sg-code">--space-1</code> to <code class="sg-code">--space-8</code>. Touch targets are at least 44 × 44px and at least 8px apart. Components size themselves from these steps: a button has 8px by 24px of padding, a flip card is at least 128px tall (two steps of 64), and the dialog is at most 768px wide (twelve).</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-stack">
+      <div class="sg-group"><p class="sg-group-k">Space</p>
+      <ul class="sg-space">
+        <li><code>--space-1</code><span class="sg-bar" style="width:4px"></span><span>4px</span></li>
+        <li><code>--space-2</code><span class="sg-bar" style="width:8px"></span><span>8px</span></li>
+        <li><code>--space-3</code><span class="sg-bar" style="width:12px"></span><span>12px</span></li>
+        <li><code>--space-4</code><span class="sg-bar" style="width:16px"></span><span>16px</span></li>
+        <li><code>--space-5</code><span class="sg-bar" style="width:24px"></span><span>24px</span></li>
+        <li><code>--space-6</code><span class="sg-bar" style="width:32px"></span><span>32px</span></li>
+        <li><code>--space-7</code><span class="sg-bar" style="width:48px"></span><span>48px</span></li>
+        <li><code>--space-8</code><span class="sg-bar" style="width:64px"></span><span>64px</span></li>
+      </ul>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">Radius</p>
+      <ul class="sg-tiles">
+        <li class="sg-tile sg-tile--control">8px · buttons, inputs, choice cards</li>
+        <li class="sg-tile sg-tile--panel">12px · panels, sheets</li>
+        <li class="sg-tile sg-tile--pill">999 · badges</li>
+      </ul>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">Line</p>
+      <ul class="sg-tiles">
+        <li class="sg-tile sg-tile--divider">1px divider</li>
+        <li class="sg-tile sg-tile--outline">2px outline, icons</li>
+        <li class="sg-tile sg-tile--focus">Focus ring: 2px primary, 2px offset</li>
+      </ul>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">Elevation</p>
+      <ul class="sg-tiles sg-tiles--two">
+        <li class="sg-tile sg-tile--e1">Level 1 · surface + 1px divider, no shadow</li>
+        <li class="sg-tile sg-tile--e2">Level 2 · shadow · only a dragged item, the feedback panel and dialogs</li>
+      </ul>
+      </div>
+      </div>
+    </div>
+    <figcaption><b>Figure 4</b>The space steps, the three radii, the lines and the two levels of elevation</figcaption>
+  </figure>
+  <div class="table-wrap sg-left sg-lead">
+    <table>
+      <thead><tr><th scope="col">Token and value</th><th scope="col">Use</th></tr></thead>
+      <tbody>
+      <tr><td><code>--radius-control</code><br>8px</td><td>Buttons, inputs, choice cards</td></tr>
+      <tr><td><code>--radius-panel</code><br>12px</td><td>Panels, sheets</td></tr>
+      <tr><td><code>--radius-pill</code><br>999px</td><td>Badges</td></tr>
+      <tr><td><code>--stroke-divider</code><br>1px</td><td>Dividers</td></tr>
+      <tr><td><code>--stroke-outline</code><br>2px</td><td>Control outlines</td></tr>
+      <tr><td><code>--stroke-icon</code><br>2px</td><td>Icons</td></tr>
+      <tr><td><code>--focus-width</code><br>2px</td><td>The focus ring, in primary</td></tr>
+      <tr><td><code>--focus-offset</code><br>2px</td><td>The gap between the focus ring and the control</td></tr>
+      <tr><td>Level 1<br>surface, 1px divider border, no shadow</td><td>Cards, panels and bars</td></tr>
+      <tr><td><code>--elevation-2-shadow</code><br>0 4px 12px rgba(28, 36, 48, 0.16)</td><td>Only a dragged item, the feedback panel and dialogs</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Layout</h3>
+  <p>Content is at most 960px wide, centered with token margins, on a grid of 4, 8 or 12 columns (<code class="sg-code">.ds-container</code> and <code class="sg-code">.ds-grid</code> in <code class="sg-code">base.css</code>). The root size changes with the first breakpoint, so all type grows by an eighth from 600px wide.</p>
+  <ul class="sg-bps plain">
+    <li><span class="sg-bp-k">Under 600px</span><span>4 columns</span><span>16px side margin</span><span>16px gutter</span><span>16px root size</span></li>
+    <li><span class="sg-bp-k">600 to 839px</span><span>8 columns</span><span>24px side margin</span><span>16px gutter</span><span>18px root size</span></li>
+    <li><span class="sg-bp-k">840px and up</span><span>12 columns</span><span>32px side margin</span><span>24px gutter</span><span>18px root size</span></li>
+  </ul>
+  <h3>Screen anatomy</h3>
+  <p>One slide on a 360px-wide phone, with an answer checked and the feedback panel open. The action bar holds exactly one primary button and, from slide 2, a text-style Back button. A slide the learner comes back to shows the checked answer again, locked.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-anatomy">
+      <figure class="sg-shot sg-shot--one"><img src="style-guide/screen-anatomy.webp" width="404" height="704" alt="A slide on a 360px phone with three numbered zones: 1, the top bar with “3 of 7” and the Job aids button; 2, the task zone with a SIG code badge, the heading “The customer answers.”, the customer’s bubble and two choice cards, the second marked Correct; 3, the action bar with the feedback panel “Correct” above the Continue button." loading="lazy" decoding="async"></figure>
+        <ol class="sg-legend">
+          <li><span class="sg-legend-n">1</span><span><b>Top bar.</b> Progress (“3 of 7”) and the Job aids button. Level 1: surface with a divider.</span></li>
+          <li><span class="sg-legend-n">2</span><span><b>Task zone.</b> One question per screen: the situation, then 2 or 3 choice cards. Only this part scrolls.</span></li>
+          <li><span class="sg-legend-n">3</span><span><b>Action bar.</b> Pinned to the bottom with one primary button. Feedback slides up from it (level 2 shadow).</span></li>
+        </ol>
+      </div>
+    </div>
+    <figcaption><b>Figure 5</b>The three zones of a slide</figcaption>
+  </figure>
+</section>
+<section class="doc-sec tone-brown" id="icons">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-search"/></svg></span><h2><span class="sec-n">6</span>Icons</h2><span class="sec-line"></span></header>
+  <p>Lucide icons on a 24px grid with a 2px stroke, at 16, 20 and 24px only. An icon never stands alone: it always has a visible or an accessible text label. 35 of them are in use.</p>
+  <div class="table-wrap sg-left sg-lead">
+    <table>
+      <thead><tr><th scope="col">Group</th><th scope="col">Icons and what they mean</th></tr></thead>
+      <tbody>
+      <tr><td><b>States and feedback</b></td><td><code>Check</code> correct, delivered · <code>X</code> incorrect, not quite · <code>Info</code> good to know · <code>TriangleAlert</code> policy violation · <code>Undo2</code> returned to depot · <code>Circle</code> and <code>CircleDot</code> unselected and selected choice · <code>ArrowUp</code> disabled button: do this first</td></tr>
+      <tr><td><b>Codes and job aids</b></td><td><code>Package</code> STD code · <code>PenLine</code> SIG code · <code>IdCard</code> AGE code · <code>BookOpen</code> job aids · <code>BookOpenCheck</code> job-aid card viewed · <code>ListOrdered</code> sequence card · <code>Tags</code> handling-codes card · <code>House</code> safe-place card · <code>Phone</code> call-moves card</td></tr>
+      <tr><td><b>Moving things</b></td><td><code>GripVertical</code> drag handle · <code>ChevronUp</code> and <code>ChevronDown</code> move a step up or down · <code>Move</code> selected to move · <code>ArrowDownToLine</code> put the selected parcel here · <code>RotateCw</code> turn a flip card · <code>ChevronLeft</code> back</td></tr>
+      <tr><td><b>The call and the chat</b></td><td><code>UserRound</code> customer avatar · <code>Play</code> play or replay a spoken line · <code>Square</code> stop the line that is playing, and an unmarked check · <code>VolumeX</code> audio unavailable · <code>Captions</code> and <code>CaptionsOff</code> captions on and off · <code>Send</code> send a chat message</td></tr>
+      <tr><td><b>Results and checks</b></td><td><code>Flag</code> the decision that led to the ending · <code>Minus</code> not reached · <code>CircleDashed</code> not yet · <code>SquareCheck</code> marked</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>In forced colors an icon takes the color of the text beside it, which the system chooses, so a blue or green icon cannot vanish on a dark theme.</p>
+</section>
+<section class="doc-sec tone-amber" id="components">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-components"/></svg></span><h2><span class="sec-n">7</span>Components</h2><span class="sec-line"></span></header>
+  <p>React components in <code class="sg-code">src/<wbr>components/<wbr>ui/</code>, styled only with the tokens. Each figure shows a component in its states, as the module draws it in a column about 360px wide, at the 18px root.</p>
+  <h3>Button</h3>
+  <p>Primary is filled; hover and pressed darken it to primary-strong. Secondary is outlined. Text has no fill or border and is kept for a secondary action, such as Back beside the one primary button. Every button is at least 44 × 44px with 8px corners, in bold body type. A disabled button still says what to do first, with an arrow and the words.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-stack">
+      <div class="sg-shots sg-shots--row">
+        <figure class="sg-shot"><img src="style-guide/button-primary-default.webp" width="192" height="68" alt="Primary button “Check answer”: white bold text on a dark blue fill." loading="lazy" decoding="async"><figcaption>Primary · Default</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-primary-hover.webp" width="192" height="68" alt="Primary button “Check answer” on hover, in a darker blue." loading="lazy" decoding="async"><figcaption>Primary · Hover</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-primary-pressed.webp" width="192" height="68" alt="Primary button “Check answer” pressed, in the darker blue." loading="lazy" decoding="async"><figcaption>Primary · Pressed</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-primary-focus.webp" width="192" height="68" alt="Primary button “Check answer” with a blue focus ring around it." loading="lazy" decoding="async"><figcaption>Primary · Keyboard focus</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-primary-disabled.webp" width="292" height="68" alt="Disabled button on a light gray fill with an up arrow and the words “Choose an option first”." loading="lazy" decoding="async"><figcaption>Primary · Disabled</figcaption></figure>
+      </div>
+      <div class="sg-shots sg-shots--row">
+        <figure class="sg-shot"><img src="style-guide/button-secondary-default.webp" width="158" height="68" alt="Secondary button “Show hint”: blue text and a blue outline on white." loading="lazy" decoding="async"><figcaption>Secondary · Default</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-secondary-hover.webp" width="158" height="68" alt="Secondary button “Show hint” on hover, with a pale blue fill." loading="lazy" decoding="async"><figcaption>Secondary · Hover</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-secondary-pressed.webp" width="158" height="68" alt="Secondary button “Show hint” pressed, with a pale blue fill." loading="lazy" decoding="async"><figcaption>Secondary · Pressed</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-secondary-focus.webp" width="158" height="68" alt="Secondary button “Show hint” with a focus ring outside its outline." loading="lazy" decoding="async"><figcaption>Secondary · Keyboard focus</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-secondary-disabled.webp" width="292" height="68" alt="Disabled secondary button on light gray with an up arrow and “Choose an option first”." loading="lazy" decoding="async"><figcaption>Secondary · Disabled</figcaption></figure>
+      </div>
+      <div class="sg-shots sg-shots--row">
+        <figure class="sg-shot"><img src="style-guide/button-text-default.webp" width="121" height="68" alt="Text button “Back” with a left chevron, underlined, with no fill or border." loading="lazy" decoding="async"><figcaption>Text · Back</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/button-text-hover.webp" width="121" height="68" alt="Text button “Back” on hover, on a pale blue fill." loading="lazy" decoding="async"><figcaption>Text · Hover</figcaption></figure>
+      </div>
+      </div>
+    </div>
+    <figcaption><b>Figure 6</b>Button: primary, secondary and text, in each state</figcaption>
+  </figure>
+  <h3>ChoiceCard</h3>
+  <p>One option of a single-answer question (slides 4 and 7), as a radio: the arrow keys move between the options of a group. Each state shows an icon and a word as well as its color: a filled dot and “Selected”, a check and “Correct”, a cross and “Incorrect”.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/choice-default.webp" width="382" height="77" alt="Choice card “Leave it at the door” with an empty radio circle and a gray outline." loading="lazy" decoding="async"><figcaption>Default</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/choice-selected.webp" width="382" height="77" alt="Choice card “Call the customer first” with a filled blue dot, a blue border, a pale blue fill and the word Selected." loading="lazy" decoding="async"><figcaption>Selected</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/choice-correct.webp" width="382" height="77" alt="Choice card “Call the customer first” with a green check, a green border, a pale green fill and the word Correct." loading="lazy" decoding="async"><figcaption>Correct (after checking)</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/choice-incorrect.webp" width="382" height="77" alt="Choice card “Leave it at the door” with a red cross, a red border, a pale red fill and the word Incorrect." loading="lazy" decoding="async"><figcaption>Incorrect (after checking)</figcaption></figure>
+      </div>
+    </div>
+    <figcaption><b>Figure 7</b>ChoiceCard in its four states</figcaption>
+  </figure>
+  <h3>FeedbackPanel and OutcomePanel</h3>
+  <p>FeedbackPanel rises from the action bar after Check answer, with the level 2 shadow, a 2px colored top edge and a title with its icon: “Correct”, “Not quite” or “Good to know”. OutcomePanel shows how a stop ended, in the three endings of slide 7 and the results: Delivered, Policy violation and Returned to depot.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-stack">
+      <div class="sg-group"><p class="sg-group-k">FeedbackPanel</p>
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/feedback-correct.webp" width="382" height="159" alt="Feedback panel on pale green with a green top edge, a check and the title Correct: “You checked the code and called before choosing an option.”" loading="lazy" decoding="async"><figcaption>Correct</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/feedback-incorrect.webp" width="382" height="159" alt="Feedback panel on pale red with a red top edge, a cross and the title Not quite: “A SIG parcel needs a signature, even from a neighbor.”" loading="lazy" decoding="async"><figcaption>Incorrect</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/feedback-info.webp" width="382" height="159" alt="Feedback panel on pale gray with an info icon and the title Good to know: “The handling code is on the arrival screen.”" loading="lazy" decoding="async"><figcaption>Info</figcaption></figure>
+      </div>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">OutcomePanel</p>
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/outcome-success.webp" width="382" height="155" alt="Outcome panel with a green border and fill, a check and the title Delivered: “Handed over with a signature on the first attempt.”" loading="lazy" decoding="async"><figcaption>Success</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/outcome-violation.webp" width="382" height="155" alt="Outcome panel with a red border and fill, a warning triangle and the title Policy violation: “The parcel was left without the signature its code needs.”" loading="lazy" decoding="async"><figcaption>Violation</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/outcome-returned.webp" width="382" height="155" alt="Outcome panel with a slate border on gray, a return arrow and the title Returned to depot: “The stop counts as a failed first attempt.”" loading="lazy" decoding="async"><figcaption>Returned</figcaption></figure>
+      </div>
+      </div>
+      </div>
+    </div>
+    <figcaption><b>Figure 8</b>FeedbackPanel and OutcomePanel, one for each variant</figcaption>
+  </figure>
+  <h3>DialogueBubble, PlayLineButton and CaptionBar</h3>
+  <p>The call on slide 4. Every bubble names its speaker; the customer speaks from the left beside an avatar, and the driver, “You”, from the right in primary-tint. PlayLineButton plays one spoken line. Nothing plays by itself (WCAG 1.4.2): the learner presses it. It sits in the bubble of the line it plays, and beside each line the learner can choose, so they can hear it first.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-stack">
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/bubbles.webp" width="382" height="342" alt="Three dialogue bubbles: the customer on the left with a person icon, “Can you just leave it at the door?”; You on the right on pale blue, “It needs a signature. Can a neighbor sign for it?”; and Neighbor, no. 14 on the left with the initials 14, “Sure, where do I sign?”" loading="lazy" decoding="async"><figcaption>DialogueBubble · a customer, the driver and a neighbor</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/bubbles-play.webp" width="382" height="384" alt="Two bubbles with their play buttons: Ms. Rivera, “Oh, hi. I’m at work right now. Can you just leave it at the door?” with a Play button; and You, “It needs a signature, so it can’t stay at the door.” with a Replay button." loading="lazy" decoding="async"><figcaption>PlayLineButton in its bubbles</figcaption></figure>
+      </div>
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/play-idle.webp" width="382" height="68" alt="Play button: a play triangle and the word Play in blue, outlined." loading="lazy" decoding="async"><figcaption>Play</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/play-playing.webp" width="382" height="68" alt="Playing button filled blue with a square stop icon and the word Stop." loading="lazy" decoding="async"><figcaption>Playing</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/play-replay.webp" width="382" height="68" alt="Replay button: a play triangle and the word Replay in blue, outlined." loading="lazy" decoding="async"><figcaption>Replay</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/play-error.webp" width="382" height="68" alt="Disabled gray button with a muted speaker icon and the words Audio unavailable." loading="lazy" decoding="async"><figcaption>Audio unavailable</figcaption></figure>
+      </div>
+      </div>
+    </div>
+    <figcaption><b>Figure 9</b>DialogueBubble and PlayLineButton</figcaption>
+  </figure>
+  <p>An <code class="sg-code">&lt;audio&gt;</code> element does not draw captions, so the app reads the WebVTT track and shows the active cue in the CaptionBar, with the speaker’s name. Captions are on by default; the toggle shows its state as an icon and a word.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/captions-playing.webp" width="382" height="221" alt="Caption bar headed Captions with the toggle “Captions on”, showing Ms. Rivera’s cue in large type: “Oh, hi. I’m at work right now. Can you just leave it at the door?”" loading="lazy" decoding="async"><figcaption>On, a line is playing</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/captions-idle.webp" width="382" height="157" alt="Caption bar with “Captions on” and the hint “Press Play on a line. Its captions appear here.”" loading="lazy" decoding="async"><figcaption>On, nothing playing</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/captions-off.webp" width="382" height="81" alt="Caption bar folded to its header, with a crossed captions icon and “Captions off”." loading="lazy" decoding="async"><figcaption>Off</figcaption></figure>
+      </div>
+    </div>
+    <figcaption><b>Figure 10</b>CaptionBar, on and off</figcaption>
+  </figure>
+  <h3>ChatComposer and CheckCard</h3>
+  <p>Slide 5, the AI chat. The composer is a labeled multi-line field with a character counter; Enter sends and Shift+Enter starts a new line. Its send button is the screen’s primary button, in the ActionBar. When the AI is not available, the learner marks the call moves they made with CheckCards: a marked card shows a checked box and the word “Marked”.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/chat-composer.webp" width="382" height="252" alt="Chat composer labeled “Your message (1 of 2)” with the hint “Enter sends. Shift+Enter starts a new line.”, a text field holding “Hello, Mr. Hayes. This is your delivery driver.” and the counter “47 of 400 characters”." loading="lazy" decoding="async"><figcaption>ChatComposer</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/checkcard.webp" width="382" height="192" alt="Two check cards: “Say who you are and what is happening” with an empty box, and “Explain the options allowed for the parcel” with a checked box, a blue border and the word Marked." loading="lazy" decoding="async"><figcaption>CheckCard · unmarked, marked</figcaption></figure>
+      </div>
+    </div>
+    <figcaption><b>Figure 11</b>ChatComposer and CheckCard</figcaption>
+  </figure>
+  <h3>TopBar and ActionBar</h3>
+  <p>The TopBar shows progress as “3 of 7” over a bar, and the Job aids button, which waits until slide 2 and says so. The ActionBar holds the one primary button; until the learner has chosen, it says what to do first.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/topbar.webp" width="382" height="85" alt="Top bar with “3 of 7” over a progress bar a third full and an outlined Job aids button with a book icon." loading="lazy" decoding="async"><figcaption>TopBar · step 3 of 7</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/topbar-locked.webp" width="382" height="89" alt="Top bar with “1 of 7”, an almost empty progress bar and a disabled gray Job aids button that says “Reach slide 2 first”." loading="lazy" decoding="async"><figcaption>TopBar · job aids not open yet (slide 1)</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/actionbar-disabled.webp" width="382" height="93" alt="Action bar with a full-width disabled gray button: an up arrow and “Choose an option first”." loading="lazy" decoding="async"><figcaption>ActionBar · nothing chosen yet</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/actionbar-ready.webp" width="382" height="93" alt="Action bar with a full-width blue primary button, “Check answer”." loading="lazy" decoding="async"><figcaption>ActionBar · ready</figcaption></figure>
+      </div>
+    </div>
+    <figcaption><b>Figure 12</b>TopBar and ActionBar</figcaption>
+  </figure>
+  <h3>FlipCard, RevealCard and Dialog</h3>
+  <p>A FlipCard turns over in place to show its back on primary-tint. A RevealCard holds a job aid (slide 2 and the Job aids dialog): its front is a disclosure button, and its back holds lists, so it turns in below the front instead of inside it. An opened card shows “Viewed” with an icon. The Dialog is a modal panel with the level 2 shadow, in the WAI-ARIA dialog pattern: focus moves to its title and stays inside; Esc, Close or a tap on the backdrop closes it, and focus returns to the button that opened it.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/flip-front.webp" width="382" height="189" alt="Flip card front: the code SIG and a “Turn over” link with a turning arrow." loading="lazy" decoding="async"><figcaption>FlipCard · Front (tap to turn)</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/flip-back.webp" width="382" height="189" alt="Flip card back on pale blue: “Signature required. A neighbor may sign if the customer approves it on the call.” and a “Turn back” link." loading="lazy" decoding="async"><figcaption>FlipCard · Back</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/reveal-closed.webp" width="382" height="106" alt="Closed reveal card with a numbered-list icon, the title Sequence and a “Turn over” link." loading="lazy" decoding="async"><figcaption>RevealCard · Closed; tap to open</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/reveal-open.webp" width="382" height="418" alt="Open reveal card Sequence with a green Viewed tag and Turn back, over a pale blue list of six steps from “Ring and knock; wait 60 seconds” to “Set the status and send the location note”." loading="lazy" decoding="async"><figcaption>RevealCard · Open and viewed</figcaption></figure>
+      </div>
+    </div>
+    <figcaption><b>Figure 13</b>FlipCard and RevealCard, closed and open</figcaption>
+  </figure>
+  <h3>StepCard, ParcelCard, CodeBadge and Bin</h3>
+  <p>A StepCard is one step in the sequencing list of slide 1. There are three ways to move it: drag the handle, use the up and down buttons, or tap it and then the step whose place it takes. With a keyboard, Space picks it up, the arrow keys move it and Space drops it. After checking, a step out of place says where it goes and what goes wrong in that order.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/step-default.webp" width="382" height="81" alt="Step card with a drag handle, the number 3, “Call the customer” and up and down buttons." loading="lazy" decoding="async"><figcaption>Default</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/step-selected.webp" width="382" height="105" alt="Step card on pale blue with a blue border and a move icon with the word Selected." loading="lazy" decoding="async"><figcaption>Selected (tapped or picked up)</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/step-correct.webp" width="382" height="105" alt="Step card on pale green with a green border, a check and the words In place." loading="lazy" decoding="async"><figcaption>In place (after checking)</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/step-incorrect.webp" width="382" height="217" alt="Step card 5 on pale red with a red border, a cross and “Goes at step 3”, then “The call comes before you choose. Called late, the customer can’t approve or change the option in time.”" loading="lazy" decoding="async"><figcaption>Out of place (after checking)</figcaption></figure>
+      </div>
+    </div>
+    <figcaption><b>Figure 14</b>StepCard in its four states</figcaption>
+  </figure>
+  <p>A ParcelCard on slide 3 shows its handling code as a CodeBadge, the stop note and the call. CodeBadge has one neutral style for every code: the icon and the word tell them apart, and the code is set in <code class="sg-code">.ds-code</code>. A Bin lists its parcels; while a parcel is selected, the bin’s heading becomes a button that says what it will do.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <div class="sg-stack">
+      <div class="sg-group"><p class="sg-group-k">CodeBadge</p>
+      <div class="sg-shots sg-shots--row">
+        <figure class="sg-shot"><img src="style-guide/badge-std.webp" width="102" height="54" alt="Pill badge with a package icon and the code STD." loading="lazy" decoding="async"><figcaption>STD</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/badge-sig.webp" width="99" height="54" alt="Pill badge with a pen icon and the code SIG." loading="lazy" decoding="async"><figcaption>SIG</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/badge-age.webp" width="103" height="54" alt="Pill badge with an ID card icon and the code AGE." loading="lazy" decoding="async"><figcaption>AGE</figcaption></figure>
+      </div>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">ParcelCard</p>
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/parcel-default.webp" width="382" height="150" alt="Parcel card with a drag handle, an STD badge, “Number 3”, “Stop note: Please leave it behind the side gate.” and “Call: No answer”." loading="lazy" decoding="async"><figcaption>Default</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/parcel-selected.webp" width="382" height="154" alt="Parcel card for Number 22 with a SIG badge on pale blue with a blue border and the word Selected." loading="lazy" decoding="async"><figcaption>Selected</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/parcel-correct.webp" width="382" height="154" alt="Parcel card for Number 3 on pale green with a green border, a check and Correct." loading="lazy" decoding="async"><figcaption>Correct (after checking)</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/parcel-incorrect.webp" width="382" height="239" alt="Parcel card for Number 22 on pale red with a cross and “Goes in: Pickup point”, then “A stop note can’t replace a signature. With no approval on the call, a SIG parcel goes to the pickup point.”" loading="lazy" decoding="async"><figcaption>Incorrect (after checking)</figcaption></figure>
+      </div>
+      </div>
+      <div class="sg-group"><p class="sg-group-k">Bin</p>
+      <div class="sg-shots sg-shots--grid">
+        <figure class="sg-shot"><img src="style-guide/bin-filled.webp" width="382" height="232" alt="Bin headed “Safe place” with the count “1 parcel”, holding the parcel card for Number 3." loading="lazy" decoding="async"><figcaption>With a parcel</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/bin-target.webp" width="382" height="174" alt="Empty bin with a dashed blue border whose heading is a button: a down arrow, “Pickup point” and “Put Number 22 here”." loading="lazy" decoding="async"><figcaption>A parcel is selected (tap target)</figcaption></figure>
+        <figure class="sg-shot"><img src="style-guide/bin-over.webp" width="382" height="150" alt="Bin “Neighbor” on pale blue with a blue border and “Drop here” with a down arrow." loading="lazy" decoding="async"><figcaption>A parcel is dragged over it</figcaption></figure>
+      </div>
+      </div>
+      </div>
+    </div>
+    <figcaption><b>Figure 15</b>CodeBadge, ParcelCard and Bin</figcaption>
+  </figure>
+  <h3>Doorstep scene</h3>
+  <p>Slide 6. Flat shapes, 2px ink outlines and token colors only, with just the cues the safe-place rules need. Each numbered spot is a real 44px button placed in percent; the selected one wears the screen’s amber highlight, and a line under the picture names it.</p>
+  <figure class="fig">
+    <div class="fig-panel">
+      <figure class="sg-shot sg-shot--one"><img src="style-guide/doorstep-scene.webp" width="536" height="436" alt="A flat drawing of a house with a blue door numbered 21, a hedge, a carport with bins and a wall on the left numbered 19. Five numbered circles mark the spots; spot 4, under the carport beside the bins, has an amber ring. Under the picture: “Selected: spot 4, Under the carport, beside the bins”." loading="lazy" decoding="async"></figure>
+    </div>
+    <figcaption><b>Figure 16</b>HotspotScene on the DoorstepScene, with spot 4 selected</figcaption>
+  </figure>
+</section>
+<section class="doc-sec tone-blue" id="motion">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-motion"/></svg></span><h2><span class="sec-n">8</span>Motion</h2><span class="sec-line"></span></header>
+  <p>Short and plain: a state changes in 150ms, things enter in 250ms and cards turn in 300ms, all ease-out. With reduced motion every movement becomes a 150ms opacity fade.</p>
+  <div class="table-wrap sg-lead">
+    <table>
+      <thead><tr><th scope="col">Token and value</th><th scope="col">Use</th></tr></thead>
+      <tbody>
+      <tr><td><code>--motion-state</code><br>150ms</td><td>State changes: the fill, border and text color of buttons and cards, and the width of the progress bar</td></tr>
+      <tr><td><code>--motion-enter</code><br>250ms</td><td>Entering: the feedback panel rises from behind the action bar, and the dialog rises 24px into place, both fading in</td></tr>
+      <tr><td><code>--motion-flip</code><br>300ms</td><td>Turning: the flip card turns over, and the back of a reveal card turns in below its front</td></tr>
+      <tr><td><code>--motion-ease</code><br>ease-out</td><td>Every movement</td></tr>
+      <tr><td><code>--motion-shift</code><br>1, or 0 with reduced motion</td><td>Multiplies every slide and turn, so at 0 they stay in place and only fade</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Reduced motion comes from the system setting (<code class="sg-code">prefers-reduced-motion</code>), or is forced on a part of the page with <code class="sg-code">data-motion="reduced"</code>. Then <code class="sg-code">--motion-enter</code> and <code class="sg-code">--motion-flip</code> become 150ms and <code class="sg-code">--motion-shift</code> 0. The flip card no longer rotates: its faces cross-fade. With full motion its faces swap at the half-turn, edge-on, where the swap is unseen.</p>
+</section>
+<section class="doc-sec tone-green" id="sound">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-captions"/></svg></span><h2><span class="sec-n">9</span>Sound and captions</h2><span class="sec-line"></span></header>
+  <p>Only slide 4 speaks. Each line of the call is a short MP3 with a WebVTT captions file next to it, made from the text in <code class="sg-code">module.json</code> by <code>npm run tts</code>. The speech is synthetic: no recording of a person is in it.</p>
+  <div class="table-wrap sg-lead">
+    <table>
+      <thead><tr><th scope="col">What</th><th scope="col">Detail</th></tr></thead>
+      <tbody>
+      <tr><td>Voices</td><td>Piper <code>en_US-libritts_r-medium</code>, a model with 904 speakers: speaker 1535 for the driver (“You”, a low voice) and 2254 for Ms. Rivera (a higher voice), both with <code>lengthScale</code> 1.15, a little slower</td></tr>
+      <tr><td>Files</td><td>40 kbps mono MP3, one per line, named by line id: <code>opening</code>, <code>&lt;turn&gt;-&lt;choice&gt;</code> for the driver and <code>&lt;turn&gt;-&lt;choice&gt;-reply</code> for Ms. Rivera; all of slide 4 stays under a 2 MB limit</td></tr>
+      <tr><td>The ring</td><td>The phone ringing in the opening is a generated 440 + 480 Hz tone, so “[phone rings]” is what you hear</td></tr>
+      <tr><td>Captions</td><td>The speaker’s name at the start of a cue (“Ms. Rivera: Hello?”), at most 2 lines of about 42 characters per cue, and non-speech sounds in brackets</td></tr>
+      <tr><td>Timing</td><td>Each sentence is spoken on its own, and its start and end come from the sample count plus the 50 ms an MP3 decoder adds, so a cue never drifts</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul>
+    <li><span><b>No autoplay</b> (WCAG 1.4.2). No <code class="sg-code">&lt;audio&gt;</code> exists until a Play button is pressed. One line plays at a time, and pressing it again stops it.</span></li>
+    <li><span><b>Captions on by default.</b> Each playing clip carries a hidden <code>&lt;track kind="captions"&gt;</code>; the app listens to its cue changes and shows the active cue in the caption bar. The toggle’s choice is kept for the session, so it holds on every slide and after a reload.</span></li>
+    <li><span><b>Your own voices.</b> An audio file per line in <code class="sg-code">scripts/<wbr>tts/<wbr>input/</code> always wins over Piper, and the captions are still generated from its length. With neither, the script stops and lists the lines to record: it never fakes audio.</span></li>
+  </ul>
+</section>
+<section class="doc-sec tone-red" id="voice">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-chat"/></svg></span><h2><span class="sec-n">10</span>Voice and microcopy</h2><span class="sec-line"></span></header>
+  <p>The module talks to a driver between stops, one question per screen, in short, plain US English.</p>
+  <ul>
+    <li><span><b>Buttons say the action</b>: “Check answer”, “Show hint”, “Continue”, “Back”, “Close”, “Try again”, “Improve your score”, “Finish and submit”.</span></li>
+    <li><span><b>A disabled control says what to do first</b>: “Choose an option first”, “Reach slide 2 first”.</span></li>
+    <li><span><b>States are words</b>, each with its icon: “Selected”, “Correct”, “Incorrect”, “In place”, “Viewed”, “Marked”, “Done”, “Missed”, “Not reached”, “Opens again”, “Captions on”, “Captions off”, “Audio unavailable”.</span></li>
+    <li><span><b>Feedback names the result, then the rule</b>: “Not quite” over “A SIG parcel needs a signature, even from a neighbor.” A misplaced item says where it goes: “Goes at step 3”, “Goes in: Pickup point”.</span></li>
+    <li><span><b>The endings</b> are “Delivered”, “Policy violation” and “Returned to depot”.</span></li>
+    <li><span><b>Every bubble names its speaker</b> (“You”, “Ms. Rivera”), and so does every caption cue.</span></li>
+    <li><span><b>A middle dot joins parts of a label</b>, as in “SIG parcel · house 14”; progress reads “3 of 7”.</span></li>
+    <li><span><b>Moves are announced</b> in a live region as each pick-up, move and drop happens: “Call the customer: step 3 of 6.”</span></li>
+    <li><span><b>Hints sit where they are needed</b>: “Enter sends. Shift+Enter starts a new line.” and “Press Play on a line. Its captions appear here.”</span></li>
+    <li><span><b>Terms</b>: handling code (STD, SIG, AGE), stop note, safe place, neighbor, pickup point, depot, call moves, job aids.</span></li>
+  </ul>
+</section>
+<section class="doc-sec tone-purple" id="access">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-access"/></svg></span><h2><span class="sec-n">11</span>Accessibility</h2><span class="sec-line"></span></header>
+  <p>Drivers use the module on a phone outdoors, so every task works with touch, a pointer and a keyboard, and moves are announced to screen readers. <code>npm run test:a11y</code> runs axe-core on every slide and state at 360, 600, 840 and 1280px.</p>
+  <h3>Every way to move</h3>
+  <p>Drag and drop on slides 1 and 3 runs on one machine, and every way of moving an item sends it the same events.</p>
+  <div class="table-wrap sg-lead">
+    <table>
+      <thead><tr><th scope="col">Way</th><th scope="col">How</th></tr></thead>
+      <tbody>
+      <tr><td>Pointer or touch</td><td>Drag the grip handle, which takes touch drags instead of scrolling. The page scrolls while you hold near its top or bottom edge, and Esc cancels.</td></tr>
+      <tr><td>Tap, no dragging (WCAG 2.5.7)</td><td>Tap an item, which shows “Selected” with an icon, then tap the step whose place it takes, or a bin.</td></tr>
+      <tr><td>Buttons</td><td>The up and down buttons on each step (slide 1).</td></tr>
+      <tr><td>Keyboard (WCAG 2.1.1)</td><td>Tab to an item; Space picks it up, the arrow keys move it, Space drops it and Escape cancels.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>On slide 6 a text list of the same five spots gives the same answer as the picture, and the figure carries a short description.</p>
+  <h3>Contrast modes</h3>
+  <p>The palette is designed for 7:1 on body text. Two settings of the device ask for more, and <code class="sg-code">src/<wbr>design/<wbr>contrast.css</code> honors both without a second palette: it only re-points tokens and uses system colors.</p>
+  <div class="table-wrap sg-lead">
+    <table>
+      <thead><tr><th scope="col">Setting</th><th scope="col">What changes</th></tr></thead>
+      <tbody>
+      <tr><td><code>prefers-contrast: more</code></td><td>Outlines, dividers and secondary text become ink (15.6:1 on white). Lines are 2px and control outlines 3px; the focus ring is 3px. Green and red text are darkened to 7:1 on every surface they sit on. The illustration keeps its palette.</td></tr>
+      <tr><td><code>forced-colors: active</code></td><td>The browser replaces the colors with the user’s palette and removes shadows. A selected card gets a 3px border in <code>Highlight</code>; correct is solid and incorrect dashed; the picked marker on the picture has a double ring; disabled controls are <code>GrayText</code> with a dashed border; the focus ring is 3px in <code>Highlight</code>; the progress bar keeps its fill.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><span class="k">A state never relies on color alone</span><p><code class="sg-code">src/<wbr>design/<wbr>states.js</code> lists every state and how it is shown besides color: an icon and a word, or a shape. <code class="sg-code">states.test.js</code> scans the component CSS and fails if a rule gives a state a color, border or shadow that is not in the list. A browser test walks slides 1 to 7 and fails if a state on screen has no icon or no visible word.</p></div>
+</section>
+<section class="doc-sec tone-brown" id="assets">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-license"/></svg></span><h2><span class="sec-n">12</span>Assets and licenses</h2><span class="sec-line"></span></header>
+  <p>Everything a learner sees or hears that others made is listed on the module’s Credits view (<code class="sg-code">#/<wbr>credits</code>), opened from the results screen by “Credits for the voices, icons and fonts”, and in <code class="sg-code">THIRD_PARTY_LICENSES.md</code>.</p>
+  <div class="table-wrap sg-left">
+    <table>
+      <thead><tr><th scope="col">Asset and use</th><th scope="col">License</th></tr></thead>
+      <tbody>
+      <tr><td><b>Barlow Semi Condensed 600</b><br>Headings</td><td>SIL Open Font License 1.1</td></tr>
+      <tr><td><b>Atkinson Hyperlegible Next 400, 700</b><br>Body text, codes and house numbers</td><td>SIL Open Font License 1.1</td></tr>
+      <tr><td><b>Lucide</b><br>Every icon, next to the words that name it</td><td>ISC; icons derived from Feather are MIT</td></tr>
+      <tr><td><b>Piper voice <code>en_US-libritts_r-medium</code></b><br>The spoken lines of the call on slide 4</td><td>CC BY 4.0, from the LibriTTS-R dataset</td></tr>
+      <tr><td><b>Google Gemini API</b><br>Mr. Hayes’s replies and the feedback on slide 5</td><td>Gemini API Additional Terms of Service</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="callout"><span class="k">Credit for the voice</span><p>Speech generated with a Piper voice trained on LibriTTS-R: Y. Koizumi et al., “LibriTTS-R: A Restored Multi-Speaker Text-to-Speech Corpus”, Interspeech 2023, which restores LibriTTS (H. Zen et al., 2019), built from public-domain LibriVox recordings. The audio docs ask for this line wherever the audio is published.</p></div>
+  <p>The font files are the latin and latin-ext woff2 subsets, served with the module and never from a CDN; their OFL texts ship next to them. The type specimens on this page use the module’s own latin files.</p>
+</section>
+</main>
+</div>
+<footer class="doc-foot">
+<svg class="doc-mark doc-mark--icon" viewBox="52 25 136 98" aria-hidden="true">
+    <g transform="translate(-7.5 4.5)">
+      <g fill="none" stroke="#FBF7EE" stroke-width="3.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M72 102a8 8 0 0 1-8-8V60a8 8 0 0 1 8-8h52a8 8 0 0 1 8 8v42H105"/>
+        <path d="M132 68h21a6 6 0 0 1 4.8 2.4l10 13.4a8 8 0 0 1 1.6 4.8V97a5 5 0 0 1-5 5"/>
+        <circle cx="89" cy="104" r="9.5"/><circle cx="148" cy="104" r="9.5"/>
+      </g>
+      <circle cx="174" cy="42" r="19" fill="#FBF7EE"/>
+      <g fill="none" stroke="#1F1A12" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M159 44l8.5-7 8.5 7M162 41.5V51h11V41.5" stroke-width="3"/>
+        <path d="M178.4 36.6a3 3 0 1 1 4.3 2.7c-.9.4-1.5 1.1-1.5 2.1v.7" stroke-width="2.4"/>
+      </g>
+      <circle cx="181.2" cy="46.6" r="1.45" fill="#1F1A12"/>
+    </g>
+  </svg>
+<span>Not-Home Delivery Stop · Style guide</span>
+</footer>
+</article>
+</body>
+</html>
