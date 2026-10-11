@@ -6,14 +6,16 @@
   };
   const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- the Portfolio page shows the same project cards as Home (without Home's block), so a project is added in one place ----
-  const projects = document.querySelector('[data-projects] .proj-list');
-  const projectsCopy = document.querySelector('[data-projects-copy]');
-  if (projects && projectsCopy) {
-    const copy = projects.cloneNode(true);
-    copy.querySelectorAll('[id]').forEach(n => { n.id += '-list'; });
-    copy.querySelectorAll('[aria-labelledby]').forEach(n => { n.setAttribute('aria-labelledby', n.getAttribute('aria-labelledby') + '-list'); });
-    projectsCopy.replaceWith(copy);
+  // ---- Home's Selected work shows the Portfolio cards marked data-selected, so a project is added in one place ----
+  const selectedCopy = document.querySelector('[data-selected-copy]');
+  if (selectedCopy) {
+    document.querySelectorAll('[data-page="portfolio"] .proj[data-selected]').forEach(card => {
+      const copy = card.cloneNode(true);
+      copy.removeAttribute('data-selected');
+      copy.querySelectorAll('[id]').forEach(n => { n.id += '-home'; });
+      if (copy.hasAttribute('aria-labelledby')) copy.setAttribute('aria-labelledby', copy.getAttribute('aria-labelledby') + '-home');
+      selectedCopy.append(copy);
+    });
   }
 
   // ---- pages: #home, #portfolio, #portfolio/<project>, #about ----

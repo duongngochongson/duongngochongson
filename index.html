@@ -107,34 +107,10 @@
     </div>
   </div>
 
-  <!-- Projects: the Portfolio page shows a copy of these cards (site.js), so a project is added here only. -->
-  <div class="block bg-t2" data-projects>
-    <h2 class="eyebrow" data-vi="DỰ ÁN">PROJECTS</h2>
-    <div class="proj-list">
-      <a class="proj" href="#portfolio/why-members-are-unhappy" aria-labelledby="proj-wmu">
-        <div class="thumb art-tile art-cozy" aria-hidden="true"><svg viewBox="0 0 240 148"><use href="#art-cozy"/></svg></div>
-        <div class="proj-body">
-          <h3 id="proj-wmu" data-vi="Why Members Are Unhappy">Why Members Are Unhappy</h3>
-          <dl class="prs">
-            <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd data-vi="Tại Cozy, một công ty coworking hư cấu, điểm hài lòng của thành viên giảm từ 4,1 xuống 3,2 trên 5 trong một năm. Cách xử lý khiếu nại bị chấm thấp nhất: 2,7.">At Cozy, a fictional coworking business, member satisfaction fell from 4.1 to 3.2 out of 5 in one year. Members gave complaint handling the lowest score: 2.7.</dd></div>
-            <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd data-vi="Mình phân tích nhu cầu và tìm ra ba nguyên nhân, chỉ một là thiếu kỹ năng. Vì vậy mình làm ba giải pháp: biển báo và hướng dẫn ngày đầu cho thành viên, checklist mất Wi-Fi cho nhân viên, và Hear Them Out, khoá học phân nhánh cho lễ tân.">I ran a needs analysis and found three causes. Only one was a skill gap, so I made three fixes: signs and a first-day guide for members, an outage checklist for staff, and Hear Them Out, a branching course for the front desk.</dd></div>
-            <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd data-vi="Nâng điểm hài lòng từ 3,2 lên 4,0, và điểm xử lý khiếu nại từ 2,7 lên 3,8, trong hai quý.">Raise member satisfaction from 3.2 to 4.0, and the complaint-handling score from 2.7 to 3.8, within two quarters.</dd></div>
-          </dl>
-        </div>
-      </a>
-
-      <a class="proj" href="#portfolio/delivery-scenario" aria-labelledby="proj-ds">
-        <div class="thumb art-tile art-delivery" aria-hidden="true"><svg viewBox="0 0 240 148"><use href="#art-delivery"/></svg></div>
-        <div class="proj-body">
-          <h3 id="proj-ds" data-vi="Giao hàng khi khách vắng nhà">Not-Home Delivery Stop</h3>
-          <dl class="prs">
-            <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd data-vi="Ở một công ty giao hàng hư cấu, khi khách vắng nhà chỉ 45% đơn được giao thành công ngay lần đầu. Tài xế bỏ qua cuộc gọi để giữ tốc độ, và không chắc đơn cần ký nhận hay kiểm tra tuổi được xử lý thế nào.">At a fictional parcel company, only 45% of parcels reach the customer on the first try when nobody is home. Drivers skip the phone call to keep their pace, and they are unsure what signature and age-check parcels allow.</dd></div>
-            <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd data-vi="Mình xác định bốn việc tài xế phải làm đúng, rồi làm một module 7 slide luyện từng việc: sắp thứ tự các bước, phân loại đơn, gọi điện cho khách, tìm chỗ để hàng an toàn, và hai điểm giao phân nhánh.">I mapped the four things drivers must get right, then built a seven-slide module that practises each one: ordering the steps, sorting parcels, calling the customer, finding a safe place and two branching stops.</dd></div>
-            <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd data-vi="Nâng tỉ lệ giao thành công lần đầu khi khách vắng nhà từ 45% lên 65% trong ba tháng, và giữ khiếu nại mất hàng ở mức 0,5% trở xuống.">Raise first-try success on not-home stops from 45% to 65% within three months, and keep missing-parcel claims at or below 0.5%.</dd></div>
-          </dl>
-        </div>
-      </a>
-    </div>
+  <!-- Selected work: copies of the cards marked data-selected in the Portfolio list (site.js), so a project is added there only. -->
+  <div class="block bg-t2">
+    <h2 class="eyebrow" data-vi="DỰ ÁN TIÊU BIỂU">SELECTED WORK</h2>
+    <div class="proj-list" data-selected-copy></div>
   </div>
 
   <div class="block bg-surface">
@@ -146,7 +122,32 @@
 <!-- ---------- PORTFOLIO: the list ---------- -->
 <section class="page" data-page="portfolio" data-title="Portfolio" hidden>
   <h2 class="sr-only">Portfolio</h2>
-  <div data-projects-copy></div>
+  <!-- Every project. A card marked data-selected also shows on Home, under Selected work. -->
+  <div class="proj-list">
+    <a class="proj" href="#portfolio/why-members-are-unhappy" data-selected aria-labelledby="proj-wmu">
+      <div class="thumb art-tile art-cozy" aria-hidden="true"><svg viewBox="0 0 240 148"><use href="#art-cozy"/></svg></div>
+      <div class="proj-body">
+        <h3 id="proj-wmu" data-vi="Why Members Are Unhappy">Why Members Are Unhappy</h3>
+        <dl class="prs">
+          <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd data-vi="Tại Cozy, một công ty coworking hư cấu, điểm hài lòng của thành viên giảm từ 4,1 xuống 3,2 trên 5 trong một năm. Cách xử lý khiếu nại bị chấm thấp nhất: 2,7.">At Cozy, a fictional coworking business, member satisfaction fell from 4.1 to 3.2 out of 5 in one year. Members gave complaint handling the lowest score: 2.7.</dd></div>
+          <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd data-vi="Mình phân tích nhu cầu và tìm ra ba nguyên nhân, chỉ một là thiếu kỹ năng. Vì vậy mình làm ba giải pháp: biển báo và hướng dẫn ngày đầu cho thành viên, checklist mất Wi-Fi cho nhân viên, và Hear Them Out, khoá học phân nhánh cho lễ tân.">I ran a needs analysis and found three causes. Only one was a skill gap, so I made three fixes: signs and a first-day guide for members, an outage checklist for staff, and Hear Them Out, a branching course for the front desk.</dd></div>
+          <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd data-vi="Nâng điểm hài lòng từ 3,2 lên 4,0, và điểm xử lý khiếu nại từ 2,7 lên 3,8, trong hai quý.">Raise member satisfaction from 3.2 to 4.0, and the complaint-handling score from 2.7 to 3.8, within two quarters.</dd></div>
+        </dl>
+      </div>
+    </a>
+
+    <a class="proj" href="#portfolio/delivery-scenario" aria-labelledby="proj-ds">
+      <div class="thumb art-tile art-delivery" aria-hidden="true"><svg viewBox="0 0 240 148"><use href="#art-delivery"/></svg></div>
+      <div class="proj-body">
+        <h3 id="proj-ds" data-vi="Giao hàng khi khách vắng nhà">Not-Home Delivery Stop</h3>
+        <dl class="prs">
+          <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd data-vi="Ở một công ty giao hàng hư cấu, khi khách vắng nhà chỉ 45% đơn được giao thành công ngay lần đầu. Tài xế bỏ qua cuộc gọi để giữ tốc độ, và không chắc đơn cần ký nhận hay kiểm tra tuổi được xử lý thế nào.">At a fictional parcel company, only 45% of parcels reach the customer on the first try when nobody is home. Drivers skip the phone call to keep their pace, and they are unsure what signature and age-check parcels allow.</dd></div>
+          <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd data-vi="Mình xác định bốn việc tài xế phải làm đúng, rồi làm một module 7 slide luyện từng việc: sắp thứ tự các bước, phân loại đơn, gọi điện cho khách, tìm chỗ để hàng an toàn, và hai điểm giao phân nhánh.">I mapped the four things drivers must get right, then built a seven-slide module that practises each one: ordering the steps, sorting parcels, calling the customer, finding a safe place and two branching stops.</dd></div>
+          <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd data-vi="Nâng tỉ lệ giao thành công lần đầu khi khách vắng nhà từ 45% lên 65% trong ba tháng, và giữ khiếu nại mất hàng ở mức 0,5% trở xuống.">Raise first-try success on not-home stops from 45% to 65% within three months, and keep missing-parcel claims at or below 0.5%.</dd></div>
+        </dl>
+      </div>
+    </a>
+  </div>
 </section>
 
 <!-- ---------- PORTFOLIO: one page per project ----------
