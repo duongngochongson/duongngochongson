@@ -322,8 +322,12 @@ def profile_md(root):
     links = [f'[Portfolio]({SITE}/#portfolio)', f'[About me]({SITE}/#about)'] + social + [f'[{mail}](mailto:{mail})']
     parts = [f'# {title}', f'**{hello}**', intro, ' · '.join(links)]
 
+    def heading(page, n):
+        # the block headings on the site, so the README sections keep their names
+        return tag_case(t(page.find_all(lambda x: x.tag == 'h2' and x.has('eyebrow'))[n], False))
+
     portfolio = root.find(lambda x: x.attrs.get('data-page') == 'portfolio')
-    parts.append('## Portfolio')
+    parts.append(f'## {heading(home, 0)}')
     for card in portfolio.find_all(lambda x: x.tag == 'a' and x.has('proj')):
         name = t(card.find(lambda x: x.tag == 'h3'), False)
         rows_ = []
@@ -333,12 +337,12 @@ def profile_md(root):
         parts.append(f'### [{name}]({SITE}/{card.attrs["href"]})\n\n' + '\n'.join(rows_))
 
     skills = home.find(by_class('chips-row'))
-    parts.append('## Skillset')
+    parts.append(f'## {heading(home, 1)}')
     parts.append(' '.join(f'`{t(x, False)}`' for x in skills.elements()))
 
     about = root.find(lambda x: x.attrs.get('data-page') == 'about')
     path = about.find(by_class('path'))
-    parts.append('## The path')
+    parts.append(f'## {heading(about, 0)}')
     steps = []
     for card in path.elements():
         when = tag_case(t(card.find(by_class('y'))))
@@ -346,10 +350,6 @@ def profile_md(root):
         desc = t(card.find(by_class('d')))
         steps.append(f'- **{what}** ({when}): {desc}')
     parts.append('\n'.join(steps))
-
-    footer = root.find(lambda x: x.tag == 'footer')
-    parts.append(f'## {t(footer.find(lambda x: x.tag == "h2"), False)}')
-    parts.append(f'[{mail}](mailto:{mail})')
     parts.append('---')
     parts.append(f'<sub>This README is written from my site, {SITE}, by scripts/readme/build.py, and is updated when the site changes.</sub>')
     return '\n\n'.join(parts) + '\n'

@@ -2,11 +2,11 @@
 
 **Hello, nice to meet you here, I'm Son.**
 
-My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and about designing learning experiences, and I want to help people build skills and navigate change. This site has my portfolio and my career journey so far.
+My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and about designing learning experiences, and I want to help people build skills and navigate change. This site has my portfolio, my career journey and a bit of my personal development so far.
 
 [Portfolio](https://duongngochongson.vercel.app/#portfolio) · [About me](https://duongngochongson.vercel.app/#about) · [LinkedIn](https://www.linkedin.com/in/duongngochongson/) · [GitHub](https://github.com/duongngochongson) · [duongngochongson@gmail.com](mailto:duongngochongson@gmail.com)
 
-## Portfolio
+## Selected work
 
 ### [Why Members Are Unhappy](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
 
@@ -30,10 +30,6 @@ My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and ab
 - **Teacher** (Now): Teaching math and digital skills to students of different ages, in class and online.
 - **Data Analyst coaching · Unigap** (2024): One-to-one coaching: SQL on Google Analytics data in BigQuery, RFM segmentation in Python, a vendor dashboard in Power BI.
 - **BBA · FPT University** (2020 to 2024): Bachelor of Business Administration, GPA 8.2/10.
-
-## Let's get in touch
-
-[duongngochongson@gmail.com](mailto:duongngochongson@gmail.com)
 
 ---
 
