@@ -328,7 +328,8 @@ def profile_md(root):
 
     portfolio = root.find(lambda x: x.attrs.get('data-page') == 'portfolio')
     parts.append(f'## {heading(home, 0)}')
-    for card in portfolio.find_all(lambda x: x.tag == 'a' and x.has('proj')):
+    # like Home's Selected work: only the Portfolio cards marked data-selected
+    for card in portfolio.find_all(lambda x: x.tag == 'a' and x.has('proj') and 'data-selected' in x.attrs):
         name = t(card.find(lambda x: x.tag == 'h3'), False)
         rows_ = []
         for d in card.find(by_class('prs')).elements():

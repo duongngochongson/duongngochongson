@@ -14,12 +14,6 @@ My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and ab
 - **Solution:** I traced the drop to its causes and chose a fix for each, including Hear Them Out, a branching course for front-desk staff.
 - **Goal:** Raise member satisfaction to 4.0 out of 5 within two quarters.
 
-### [Not-Home Delivery Stop](https://duongngochongson.vercel.app/#portfolio/delivery-scenario)
-
-- **Problem:** At a fictional parcel company, fewer than half of the stops where nobody answers end with the parcel delivered on the first attempt.
-- **Solution:** I mapped what drivers need to do at those stops and built a short module in which they practice it.
-- **Goal:** Raise first-attempt success at those stops from 45% to 65% within three months.
-
 ## Skillset
 
 `Needs analysis` `Action mapping` `Branching scenarios` `Job aids` `Vibe-coded e-learning` `Learning evaluation` `LMS · SCORM & xAPI` `Data analysis`
