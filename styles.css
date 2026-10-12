@@ -3,7 +3,7 @@
   --bg: #ffffff; --surface: #f6f3ee; --card: #ffffff;
   --ink: #1a1815; --muted: rgba(26,24,21,.7); --faint: rgba(26,24,21,.72);
   --line: rgba(26,24,21,.14);
-  --t1: oklch(.945 .045 150); --t2: oklch(.945 .05 55); --t3: oklch(.945 .045 240); --t4: oklch(.945 .045 310); --tw: oklch(.94 .04 25); --t5: oklch(.96 .07 95);
+  --t1: oklch(.945 .045 150); --t2: oklch(.945 .05 55); --t3: oklch(.945 .045 240); --t4: oklch(.945 .045 310); --tw: oklch(.94 .04 25); --t5: oklch(.96 .07 95); --t6: oklch(.95 .04 355);
   --a1: oklch(.74 .15 55); --a2: oklch(.72 .15 150); --a3: oklch(.7 .15 240); --a4: oklch(.72 .15 310); --a5: oklch(.83 .16 90); --a6: oklch(.72 .16 0);
   --sA: rgba(255,255,255,.8); --sB: rgba(255,255,255,.3);
   /* darker accents for small text and the focus ring, so they reach 4.5:1 on white */
@@ -19,7 +19,7 @@
   --bg: #131211; --surface: #1b1a18; --card: #211f1c;
   --ink: #f3efe9; --muted: rgba(243,239,233,.66); --faint: rgba(243,239,233,.66);
   --line: rgba(243,239,233,.14);
-  --t1: oklch(.26 .035 150); --t2: oklch(.27 .04 55); --t3: oklch(.26 .035 240); --t4: oklch(.26 .035 310); --tw: oklch(.27 .04 25); --t5: oklch(.28 .045 95);
+  --t1: oklch(.26 .035 150); --t2: oklch(.27 .04 55); --t3: oklch(.26 .035 240); --t4: oklch(.26 .035 310); --tw: oklch(.27 .04 25); --t5: oklch(.28 .045 95); --t6: oklch(.27 .04 355);
   --a1: oklch(.8 .14 55); --a2: oklch(.79 .14 150); --a3: oklch(.77 .14 240); --a4: oklch(.78 .14 310); --a5: oklch(.86 .14 90); --a6: oklch(.78 .13 0);
   --sA: rgba(255,255,255,.16); --sB: rgba(255,255,255,.04);
   --a1-ink: var(--a1); --a2-ink: var(--a2); --a3-ink: var(--a3); --accent-ink: var(--a1);
@@ -117,7 +117,7 @@ p, dd, li, .stat-l, .bul > div > span:last-child, .path .d {
 .eyebrow { font: 400 10px var(--mono); letter-spacing: .1em; color: var(--faint); margin-bottom: 16px; }
 .block { --pad: 24px; border-radius: 22px; padding: var(--pad); margin-bottom: 12px; transition: background .35s; }
 .bg-surface { background: var(--surface); } .bg-t2 { background: var(--t2); }
-.bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); }
+.bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
 .card { background: var(--card); border-radius: 16px; padding: 18px; transition: background .35s; }
 .glyph { width: 26px; height: 26px; opacity: .85; flex: none; display: block; }
 .g-sq { border-radius: 9px; } .g-ci { border-radius: 50%; } .g-di { border-radius: 8px; transform: rotate(45deg); } .g-pi { border-radius: 999px; }
