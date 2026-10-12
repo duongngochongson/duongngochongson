@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="fonts/fonts.css">
+</helmet>
+<article style="background:#FBF7EE;border:1.5px solid #E3DACB;border-radius:10px;box-shadow:0 18px 40px -18px rgba(31,26,18,.35);overflow:hidden;display:flex;flex-direction:column;width:100%">
+<div style="padding:22px 22px 18px;display:flex;flex-direction:column;gap:16px;flex:1">
+<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px">
+<div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">Job aid · Front desk · {{ number }}</span>
+<h3 style="margin:0;font:700 28px/1.05 'Archivo',sans-serif;letter-spacing:-0.02em;color:#1F1A12;">{{ title }}</h3>
+</div>
+<div style="flex:none;padding-top:2px"><dc-import name="Icon" icon="{{ icon }}" size="30" color="{{ iconColor }}" hint-size="30px,30px"></dc-import></div>
+</div>
+
+<sc-if value="{{ hasUse }}">
+<p style="margin:0;background:#F4EFE4;border-left:4px solid #F2A93B;border-radius:4px 10px 10px 4px;padding:12px 14px;font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A;"><b style="font-weight:600;color:#1F1A12">Use it when</b> {{ use }}</p>
+</sc-if>
+
+<sc-if value="{{ isRows }}" hint-placeholder-val="{{ true }}">
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="5">
+<li style="display:flex;gap:14px;align-items:flex-start">
+<span style="flex:none;min-width:22px;font:700 17px/1.35 'Archivo',sans-serif;color:#8A5300">{{ r.key }}</span>
+<span style="font:400 16px/1.35 'IBM Plex Sans',sans-serif;color:#3D352A;"><b style="font-weight:600;color:#1F1A12">{{ r.lead }}</b>{{ r.text }}</span>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+
+<sc-if value="{{ isSteps }}">
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px">
+<sc-for list="{{ rows }}" as="r" hint-placeholder-count="7">
+<li style="display:flex;gap:14px;align-items:flex-start;padding-bottom:12px;border-bottom:1px solid #E3DACB">
+<span style="flex:none;min-width:22px;font:700 17px/1.4 'Archivo',sans-serif;color:#8A5300">{{ r.key }}</span>
+<div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px">
+<b style="font:600 17px/1.3 'Archivo',sans-serif;color:#1F1A12">{{ r.lead }}</b>
+<span style="display:flex;align-items:center;gap:6px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300"><dc-import name="Icon" icon="alarm" size="17" color="#8A5300" hint-size="17px,17px"></dc-import>{{ r.when }}</span>
+</div>
+<span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ r.do }}</span>
+<span style="display:flex;gap:7px;align-items:flex-start;font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#B03A48;"><span style="flex:none;padding-top:2px"><dc-import name="Icon" icon="alert" size="17" color="#B03A48" hint-size="17px,17px"></dc-import></span><span><b style="font-weight:600">Avoid:</b> {{ r.avoid }}</span></span>
+</div>
+</li>
+</sc-for>
+</ul>
+</sc-if>
+
+<sc-if value="{{ hasFoot }}">
+<div style="background:#F4EFE4;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#5E5446">{{ footTitle }}</span>
+<dl style="margin:0;display:flex;flex-direction:column;gap:10px">
+<sc-for list="{{ foot }}" as="f" hint-placeholder-count="3">
+<div style="display:flex;flex-direction:column;gap:3px">
+<dt style="font:600 16px/1.3 'Archivo',sans-serif;color:#1F1A12">{{ f.key }}</dt>
+<dd style="margin:0;font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ f.text }}</dd>
+</div>
+</sc-for>
+</dl>
+</div>
+</sc-if>
+</div>
+<div style="background:#1F1A12;min-height:40px;display:flex;align-items:center;gap:10px;padding:10px 22px">
+<span style="width:10px;height:10px;border-radius:999px;background:#F2A93B;flex:none"></span>
+<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;letter-spacing:.08em;color:#FBF7EE;text-transform:uppercase">{{ band }}</span>
+</div>
+</article>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:420,&quot;height&quot;:560},&quot;number&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;01&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;title&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;HEARD card&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;icon&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;desk&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;iconColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#1F1A12&quot;,&quot;options&quot;:[&quot;#1F1A12&quot;,&quot;#2F5A9E&quot;,&quot;#A3501A&quot;,&quot;#6B5B4B&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;variant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;rows&quot;,&quot;steps&quot;],&quot;default&quot;:&quot;rows&quot;,&quot;tsType&quot;:&quot;'rows'|'steps'&quot;},&quot;rows&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object[]&quot;},&quot;use&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;foot&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;object[]&quot;},&quot;footTitle&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;What to say&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;band&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Front desk · Ask here&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const p = this.props;
+    const variant = p.variant || 'rows';
+    return {
+      number: p.number ?? '01',
+      title: p.title ?? 'HEARD card',
+      icon: p.icon ?? 'desk',
+      iconColor: p.iconColor ?? '#1F1A12',
+      rows: p.rows || [],
+      isRows: variant === 'rows',
+      isSteps: variant === 'steps',
+      use: p.use || '',
+      hasUse: !!p.use,
+      foot: p.foot || [],
+      hasFoot: !!(p.foot && p.foot.length),
+      footTitle: p.footTitle ?? 'What to say',
+      band: p.band ?? 'Front desk · Ask here'
+    };
+  }
+}
+</script>
+</body>
+</html>

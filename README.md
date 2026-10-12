@@ -1,38 +1,40 @@
-### Hi, I'm Son 👋
+# Son Duong · Learning Experience Designer
 
-**Learning Experience Designer** · teacher · builder
+**Hello, nice to meet you here, I'm Son.**
 
-I design learning experiences in code, so each one works on a phone, can be measured, and can be reused.
+My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and about designing learning experiences, and I want to help people build skills and navigate change. This site has my portfolio and my career journey so far.
 
-I teach math and digital skills to students of different ages, in class and online. I also have a background in data analysis and business administration, so I start from the problem and check the results with numbers.
+[Portfolio](https://duongngochongson.vercel.app/#portfolio) · [About me](https://duongngochongson.vercel.app/#about) · [LinkedIn](https://www.linkedin.com/in/duongngochongson/) · [GitHub](https://github.com/duongngochongson) · [duongngochongson@gmail.com](mailto:duongngochongson@gmail.com)
 
-📫 [LinkedIn](https://www.linkedin.com/in/duongngochongson/) · duongngochongson@gmail.com
+## Portfolio
+
+### [Why Members Are Unhappy](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
+
+- **Problem:** Members of Cozy, a fictional coworking business, grew less satisfied over one year, and complaint handling got the lowest score.
+- **Solution:** I traced the drop to its causes and chose a fix for each, including Hear Them Out, a branching course for front-desk staff.
+- **Goal:** Raise member satisfaction to 4.0 out of 5 within two quarters.
+
+### [Not-Home Delivery Stop](https://duongngochongson.vercel.app/#portfolio/delivery-scenario)
+
+- **Problem:** At a fictional parcel company, fewer than half of the stops where nobody answers end with the parcel delivered on the first attempt.
+- **Solution:** I mapped what drivers need to do at those stops and built a short module in which they practice it.
+- **Goal:** Raise first-attempt success at those stops from 45% to 65% within three months.
+
+## Skillset
+
+`Needs analysis` `Action mapping` `Branching scenarios` `Job aids` `Vibe-coded e-learning` `Learning evaluation` `LMS · SCORM & xAPI` `Data analysis`
+
+## The path
+
+- **Learning Experience Designer** (Now): Designing learning in code: modules that work on a phone, can be measured and reused, and upload to an LMS as SCORM.
+- **Teacher** (Now): Teaching math and digital skills to students of different ages, in class and online.
+- **Data Analyst coaching · Unigap** (2024): One-to-one coaching: SQL on Google Analytics data in BigQuery, RFM segmentation in Python, a vendor dashboard in Power BI.
+- **BBA · FPT University** (2020 to 2024): Bachelor of Business Administration, GPA 8.2/10.
+
+## Let's get in touch
+
+[duongngochongson@gmail.com](mailto:duongngochongson@gmail.com)
 
 ---
 
-**What I work on**
-
-- Needs analysis and action mapping, including saying when training is not the answer
-- Branching scenarios with consequence-based feedback
-- Measurable objectives, alignment, Kirkpatrick evaluation
-- Accessibility (WCAG 2.2 AA), SCORM 1.2 / 2004, xAPI, cmi5
-
-**Build:** React · TypeScript · Vite · Astro · Vercel · Claude Code<br>
-**Data:** SQL · Python (Pandas) · Power BI
-
----
-
-**Projects**
-
-| | |
-|---|---|
-| **LXD Studio** 🚧 | My learning design projects. Each one is an e-learning module you can click through, plus a case study on why I designed it that way. Built in code, works on a phone, and can be uploaded to an LMS as SCORM or cmi5. First project in progress. |
-| **[Phiếu Học Tập](https://sonteach.vercel.app/)** | Made for my own students. Paste a few lines of text and get a progress card for parents or an end-of-term report card to print. Sized for a phone screen, because that's where parents read it. *(Vietnamese UI)* |
-| **[Data Analysis Portfolio](https://duongngochongson.github.io/data-analysis/)** | SQL on Google Analytics data in BigQuery, RFM customer segmentation in Python, and a vendor performance dashboard in Power BI. |
-
----
-
-**Education**
-
-- **FPT University** · Bachelor of Business Administration · 2020–2024 · GPA 8.2/10
-- **Unigap** · Data Analyst 1-on-1 Coaching · 2024
+<sub>This README is written from my site, https://duongngochongson.vercel.app, by scripts/readme/build.py, and is updated when the site changes.</sub>

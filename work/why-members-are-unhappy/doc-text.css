@@ -1,0 +1,4 @@
+/* Paragraphs are justified, as on the rest of the site. The body text of these documents is set in
+   IBM Plex Sans, so text in that face is justified; headings, labels and captions stay left-aligned. */
+p, li, dd, [style*="IBM Plex Sans"] { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
+h1, h2, h3, h4, h5, h6, figcaption, button, summary, [style*="Archivo"], [style*="IBM Plex Mono"] { text-align: start; -webkit-hyphens: manual; hyphens: manual; }

@@ -1,0 +1,28 @@
+# Writes README.md and readme/*.md from index.html whenever the site changes, so GitHub shows the same
+# words as the site. The project repositories copy their file from readme/ (see readme-sync.yml there).
+name: READMEs from the site
+
+on:
+  push:
+    branches: [main, personal-site]
+    paths: [index.html, scripts/readme/**]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  write:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Write the READMEs
+        run: python3 scripts/readme/build.py
+      - name: Commit them if they changed
+        run: |
+          git add README.md readme
+          if git diff --cached --quiet; then echo "The READMEs already match the site."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update the READMEs from the site"
+          git push

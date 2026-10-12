@@ -4,21 +4,158 @@
     get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
     set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
   };
+  const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // ---- pages: #home, #work, #work/<case-id>, #about ----
-  const pages = ['home', 'work', 'about'];
-  function route() {
-    const [page, anchor] = (location.hash.slice(1) || 'home').split('/');
-    const current = pages.includes(page) ? page : 'home';
-    document.querySelectorAll('[data-page]').forEach(n => { n.hidden = n.dataset.page !== current; });
-    document.querySelectorAll('[data-nav]').forEach(a => {
-      if (a.dataset.nav === current) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  // ---- Home's Selected work shows the Portfolio cards marked data-selected, so a project is added in one place ----
+  const selectedCopy = document.querySelector('[data-selected-copy]');
+  if (selectedCopy) {
+    document.querySelectorAll('[data-page="portfolio"] .proj[data-selected]').forEach(card => {
+      const copy = card.cloneNode(true);
+      copy.removeAttribute('data-selected');
+      copy.querySelectorAll('[id]').forEach(n => { n.id += '-home'; });
+      if (copy.hasAttribute('aria-labelledby')) copy.setAttribute('aria-labelledby', copy.getAttribute('aria-labelledby') + '-home');
+      selectedCopy.append(copy);
     });
-    const target = anchor && document.getElementById(anchor);
-    if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }));
-    else window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ---- pages: #home, #portfolio, #portfolio/<project>, #about ----
+  // Old addresses keep working: #work… became #portfolio…, and Hear Them Out is now part of Why Members Are Unhappy.
+  const aliases = { 'portfolio/hear-them-out': 'portfolio/why-members-are-unhappy' };
+  const baseTitle = document.title;
+  const dialog = document.querySelector('dialog.doc');
+  function route(e) {
+    if (dialog && dialog.open) dialog.close();
+    let key = location.hash.slice(1) || 'home';
+    if (key === 'work' || key.startsWith('work/')) key = 'portfolio' + key.slice(4);
+    if (aliases[key]) key = aliases[key];
+    if ('#' + key !== location.hash && location.hash) history.replaceState(null, '', '#' + key);
+    const target = document.querySelector(`[data-page="${CSS.escape(key)}"]`) ? key : 'home';
+    document.querySelectorAll('[data-page]').forEach(n => { n.hidden = n.dataset.page !== target; });
+    const section = target.split('/')[0];
+    document.querySelectorAll('[data-nav]').forEach(a => {
+      if (a.dataset.nav === section) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
+    const page = document.querySelector(`[data-page="${CSS.escape(target)}"]`);
+    document.title = page.dataset.title ? `${page.dataset.title} · Son Duong` : baseTitle;
+    window.scrollTo(0, 0);  // smooth via CSS scroll-behavior, instant with reduced motion
+    if (e) {  // on navigation (not first load), put keyboard and screen reader focus on the new page
+      page.tabIndex = -1;
+      page.focus({ preventScroll: true });
+    }
   }
   window.addEventListener('hashchange', route);
+
+  // ---- pop-up: documents in a frame (data-frame, the only place they open), pictures (data-image), templates (data-doc) ----
+  if (dialog) {
+    const title = dialog.querySelector('[data-doc-title]');
+    const kicker = dialog.querySelector('[data-doc-kicker]');
+    const body = dialog.querySelector('[data-doc-body]');
+    const vi = () => root.lang === 'vi';
+
+    function open({ heading, label, wide }) {
+      title.textContent = heading || '';
+      kicker.textContent = label || '';
+      dialog.classList.toggle('doc-wide', !!wide);
+      body.scrollTop = 0;
+      if (!dialog.open) dialog.showModal();
+    }
+
+    // A document from work/ (same site): links inside it are kept tidy, so the pop-up behaves like one page.
+    function wireFrame(frame) {
+      let doc, win;
+      try { doc = frame.contentDocument; win = frame.contentWindow; } catch (e) { return; }
+      if (!doc || !win) return;
+      frame.classList.add('is-ready');
+      const name = (doc.title || '').split(' · ')[0].trim();
+      if (name) title.textContent = name;
+      doc.addEventListener('click', e => {
+        const a = e.target.closest && e.target.closest('a[href]');
+        if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const url = new URL(a.getAttribute('href'), win.location.href);
+        if (url.origin !== location.origin) {  // sources and the live course: a new tab, never inside the pop-up (documents never leave it)
+          e.preventDefault();
+          window.open(url.href, '_blank', 'noopener');
+        } else if (url.pathname === win.location.pathname && url.hash) {  // contents links: scroll, no history entry
+          e.preventDefault();
+          const to = doc.getElementById(decodeURIComponent(url.hash.slice(1)));
+          if (to) to.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
+        } else {  // another document of the project: replace, so browser Back still leaves the project page
+          e.preventDefault();
+          win.location.replace(url.href);
+        }
+      }, true);
+      doc.addEventListener('keydown', e => {  // Escape closes the pop-up, unless the document's own figure viewer is open
+        if (e.key === 'Escape' && !doc.querySelector('[aria-modal="true"]')) { e.preventDefault(); dialog.close(); }
+      }, true);
+    }
+
+    function openFrame(btn) {
+      const href = new URL(btn.dataset.frame, location.href).href;
+      open({ heading: btn.dataset.title || btn.textContent.trim(), label: btn.dataset.kicker, wide: true });
+      const loading = document.createElement('div');
+      loading.className = 'doc-loading';
+      loading.textContent = vi() ? 'Đang mở tài liệu…' : 'Opening the document…';
+      const frame = document.createElement('iframe');
+      frame.className = 'doc-frame';
+      frame.title = btn.dataset.title || 'Document';
+      frame.addEventListener('load', () => wireFrame(frame));
+      frame.src = href;
+      body.replaceChildren(loading, frame);
+    }
+
+    function openImage(btn) {
+      const img = btn.querySelector('img');
+      const src = new URL(btn.dataset.image, location.href).href;
+      open({ heading: btn.dataset.title, label: btn.dataset.kicker, wide: true });
+      const wrap = document.createElement('div');
+      wrap.className = 'doc-picture';
+      const big = document.createElement('img');
+      big.src = src;
+      big.alt = img ? img.alt : '';
+      wrap.append(big);
+      body.replaceChildren(wrap);
+    }
+
+    function openTemplate(btn) {
+      const tpl = document.getElementById(btn.dataset.doc);
+      if (!tpl) return;
+      open({
+        heading: (vi() && tpl.dataset.titleVi) || tpl.dataset.title || btn.textContent.trim(),
+        label: (vi() && tpl.dataset.kickerVi) || tpl.dataset.kicker || ''
+      });
+      body.replaceChildren(tpl.content.cloneNode(true));
+      if (vi()) body.querySelectorAll('[data-vi]').forEach(n => { n.innerHTML = n.dataset.vi; });
+    }
+
+    document.addEventListener('click', e => {
+      const el = e.target.closest('[data-frame], [data-image], [data-doc]');
+      if (!el) return;
+      if (el.matches('[data-frame]')) {
+        openFrame(el);
+      } else if (el.matches('[data-image]')) {
+        openImage(el);
+      } else {
+        openTemplate(el);
+      }
+    });
+    dialog.querySelector('[data-doc-close]').addEventListener('click', () => dialog.close());
+    // A click on the dimmed area around the box closes it, but only if the press started there too
+    // (so selecting text and letting go outside the box keeps it open).
+    const outside = e => {
+      const r = dialog.getBoundingClientRect();
+      return e.target === dialog && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom);
+    };
+    let pressedOutside = false;
+    dialog.addEventListener('pointerdown', e => { pressedOutside = outside(e); });
+    dialog.addEventListener('click', e => {
+      if (pressedOutside && outside(e)) dialog.close();
+      pressedOutside = false;
+    });
+    dialog.addEventListener('close', () => {
+      body.replaceChildren();
+      dialog.classList.remove('doc-wide');
+    });
+  }
 
   // ---- language: English is in the markup, Vietnamese in data-vi ----
   function setLang(lang) {
@@ -31,7 +168,7 @@
     store.set('lang', lang);
   }
 
-  // ---- theme ----
+  // ---- theme: light unless the visitor picks dark ----
   function setTheme(theme) {
     if (theme === 'dark') root.dataset.theme = 'dark'; else delete root.dataset.theme;
     document.querySelectorAll('[data-theme-set]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeSet === theme)));
@@ -45,16 +182,30 @@
     store.set('theme', b.dataset.themeSet);
   }));
 
-  // ---- Saigon clock ----
-  function tick() {
-    const t = new Date().toLocaleTimeString('en-GB', { timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', minute: '2-digit' });
-    document.querySelectorAll('[data-clock]').forEach(n => { n.textContent = t; });
-  }
-  tick();
-  setInterval(tick, 15000);
-
-  const savedLang = store.get('lang');
-  if (savedLang === 'vi') setLang('vi');
+  // Vietnamese only applies while its button is shown (it is hidden in index.html for now).
+  const viButton = document.querySelector('[data-lang="vi"]');
+  if (viButton && !viButton.hidden && store.get('lang') === 'vi') setLang('vi');
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+  // ---- copy the email: the button shows a tick and a short note for a moment ----
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    const note = btn.parentElement.querySelector('.copy-note');
+    let timer;
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      let ok = false;
+      try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
+        const t = document.createElement('textarea');
+        t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.append(t); t.select();
+        try { ok = document.execCommand('copy'); } catch (e2) { ok = false; }
+        t.remove();
+      }
+      btn.classList.toggle('is-done', ok);
+      if (note) { note.textContent = ok ? 'Email copied' : 'Copy did not work'; note.classList.add('is-shown'); }
+      clearTimeout(timer);
+      timer = setTimeout(() => { btn.classList.remove('is-done'); if (note) { note.classList.remove('is-shown'); note.textContent = ''; } }, 1800);
+    });
+  });
+
   route();
 })();
