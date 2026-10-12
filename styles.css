@@ -3,8 +3,8 @@
   --bg: #ffffff; --surface: #f6f3ee; --card: #ffffff;
   --ink: #1a1815; --muted: rgba(26,24,21,.7); --faint: rgba(26,24,21,.72);
   --line: rgba(26,24,21,.14);
-  --t1: oklch(.945 .045 150); --t2: oklch(.945 .05 55); --t3: oklch(.945 .045 240); --t4: oklch(.945 .045 310); --tw: oklch(.94 .04 25);
-  --a1: oklch(.74 .15 55); --a2: oklch(.72 .15 150); --a3: oklch(.7 .15 240); --a4: oklch(.72 .15 310);
+  --t1: oklch(.945 .045 150); --t2: oklch(.945 .05 55); --t3: oklch(.945 .045 240); --t4: oklch(.945 .045 310); --tw: oklch(.94 .04 25); --t5: oklch(.96 .07 95);
+  --a1: oklch(.74 .15 55); --a2: oklch(.72 .15 150); --a3: oklch(.7 .15 240); --a4: oklch(.72 .15 310); --a5: oklch(.83 .16 90); --a6: oklch(.72 .16 0);
   --sA: rgba(255,255,255,.8); --sB: rgba(255,255,255,.3);
   /* darker accents for small text and the focus ring, so they reach 4.5:1 on white */
   --a1-ink: oklch(.52 .14 55); --a2-ink: oklch(.52 .14 150); --a3-ink: oklch(.52 .14 240);
@@ -19,8 +19,8 @@
   --bg: #131211; --surface: #1b1a18; --card: #211f1c;
   --ink: #f3efe9; --muted: rgba(243,239,233,.66); --faint: rgba(243,239,233,.66);
   --line: rgba(243,239,233,.14);
-  --t1: oklch(.26 .035 150); --t2: oklch(.27 .04 55); --t3: oklch(.26 .035 240); --t4: oklch(.26 .035 310); --tw: oklch(.27 .04 25);
-  --a1: oklch(.8 .14 55); --a2: oklch(.79 .14 150); --a3: oklch(.77 .14 240); --a4: oklch(.78 .14 310);
+  --t1: oklch(.26 .035 150); --t2: oklch(.27 .04 55); --t3: oklch(.26 .035 240); --t4: oklch(.26 .035 310); --tw: oklch(.27 .04 25); --t5: oklch(.28 .045 95);
+  --a1: oklch(.8 .14 55); --a2: oklch(.79 .14 150); --a3: oklch(.77 .14 240); --a4: oklch(.78 .14 310); --a5: oklch(.86 .14 90); --a6: oklch(.78 .13 0);
   --sA: rgba(255,255,255,.16); --sB: rgba(255,255,255,.04);
   --a1-ink: var(--a1); --a2-ink: var(--a2); --a3-ink: var(--a3); --accent-ink: var(--a1);
   --shadow: rgba(0,0,0,.35);
@@ -55,7 +55,7 @@ p, dd, li, .stat-l, .bul > div > span:last-child, .path .d {
 
 /* ---------- sidebar ---------- */
 .side {
-  background: var(--t1); border-radius: 24px; padding: 28px 24px;
+  background: var(--t5); border-radius: 24px; padding: 28px 24px;
   display: flex; flex-direction: column; gap: 26px; position: sticky; top: 16px; transition: background .35s;
 }
 .side-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
@@ -399,9 +399,9 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .path .d { font: 400 13px/1.6 var(--sans); color: var(--muted); }
 
 /* ---------- footer ---------- */
-/* a light tint like the other blocks, in the sidebar's green, with a white pill for the email */
+/* a light tint like the other blocks, in the sidebar's yellow, with a white pill for the email */
 .footer {
-  background: var(--t1); color: var(--ink); border-radius: 22px; padding: 20px 20px 20px 28px;
+  background: var(--t5); color: var(--ink); border-radius: 22px; padding: 20px 20px 20px 28px;
   display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap;
   transition: background .35s, color .35s;
 }
