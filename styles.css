@@ -34,7 +34,7 @@ html:has(dialog[open]) { overflow: hidden; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
 body { margin: 0; background: var(--bg); font-family: var(--sans); -webkit-font-smoothing: antialiased; transition: background .35s; }
-a { color: #b4562a; } a:hover { color: #8d3f1c; }
+a { color: inherit; }
 h1, h2, h3, h4, p, dl, dd { margin: 0; }
 button { font: inherit; }
 :focus-visible { outline: 2px solid var(--a3-ink); outline-offset: 2px; }
@@ -313,7 +313,7 @@ p, dd, li, .stat-l, .bul > div > span:last-child, .path .d {
 .bul { display: grid; gap: 10px; font: 400 14px/1.65 var(--sans); color: var(--muted); }
 .bul > div { display: flex; gap: 12px; }
 .bul .b { width: 5px; height: 5px; border-radius: 50%; background: var(--a2); margin-top: 9px; flex: none; }
-.stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
 @container case (max-width: 660px) { .stat { font-size: 22px; } }
 @container case (max-width: 560px) { .stats { grid-template-columns: minmax(0,1fr); } }
 
@@ -472,6 +472,8 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 
 /* the zones and the problems */
 .zones, .issues, .checks, .persona ul, .heard, .slides, .flow ol, .credit-list { list-style: none; margin: 0; padding: 0; }
+/* a list straight inside a section keeps the section's 14px space above it */
+.cs > :is(.zones, .issues, .checks, .heard, .slides) { margin-top: 14px; }
 .zones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .zones li { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border-radius: 12px; padding: 12px 14px; }
 .zones .ic { color: var(--a3-ink); margin-top: 1px; }
