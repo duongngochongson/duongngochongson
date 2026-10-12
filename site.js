@@ -186,5 +186,26 @@
   const viButton = document.querySelector('[data-lang="vi"]');
   if (viButton && !viButton.hidden && store.get('lang') === 'vi') setLang('vi');
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+  // ---- copy the email: the button shows a tick and a short note for a moment ----
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    const note = btn.parentElement.querySelector('.copy-note');
+    let timer;
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      let ok = false;
+      try { await navigator.clipboard.writeText(text); ok = true; } catch (e) {
+        const t = document.createElement('textarea');
+        t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0';
+        document.body.append(t); t.select();
+        try { ok = document.execCommand('copy'); } catch (e2) { ok = false; }
+        t.remove();
+      }
+      btn.classList.toggle('is-done', ok);
+      if (note) { note.textContent = ok ? 'Email copied' : 'Copy did not work'; note.classList.add('is-shown'); }
+      clearTimeout(timer);
+      timer = setTimeout(() => { btn.classList.remove('is-done'); if (note) { note.classList.remove('is-shown'); note.textContent = ''; } }, 1800);
+    });
+  });
+
   route();
 })();
