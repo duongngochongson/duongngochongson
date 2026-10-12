@@ -179,6 +179,10 @@ p, dd, li, .stat-l, .bul > div > span:last-child, .path .d {
   -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--pad, 24px), #000 calc(100% - var(--pad, 24px) - 8px), transparent);
           mask-image: linear-gradient(to right, transparent, #000 var(--pad, 24px), #000 calc(100% - var(--pad, 24px) - 8px), transparent);
 }
+/* wider screens show every skill, in rows; phones keep one row that swipes */
+@media (min-width: 600px) {
+  .chips-row { flex-wrap: wrap; overflow: visible; margin-inline: 0; padding-inline: 0; -webkit-mask-image: none; mask-image: none; }
+}
 .chips-row::-webkit-scrollbar { display: none; }
 .chips-row span { flex: none; font-size: 11px; padding: 6px 11px; }
 /* Home: View my CV, under Skillset, in the middle */
