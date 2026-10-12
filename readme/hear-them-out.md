@@ -8,7 +8,7 @@ This repository holds the code of Hear Them Out, the course this project led to.
 
 ## The problem
 
-Over one year, member satisfaction at Cozy fell from 4.1 to 3.2 out of 5, and the way Cozy handles complaints got the lowest score.
+Over one year, member satisfaction at Cozy fell from 4.1/5 to 3.2/5, and the way Cozy handles complaints got the lowest score.
 
 Cozy runs three coworking spaces, where freelancers, remote workers and small teams, called members, rent desks and rooms on monthly plans. Each space has three zones. Front-desk staff, whom Cozy calls community managers, work in shifts: they welcome members, answer their questions and handle their complaints.
 
@@ -23,8 +23,10 @@ Every quarter, Cozy runs a member survey with scores from 1 to 5. In their comme
 - Wi-Fi outages
 - Complaint handling: about **half** of the complaints had a written next step, and some members waited weeks for a reply
 
-- **4.1 → 3.2**: overall member satisfaction, out of 5, over one year
-- **2.7 / 5**: the score for how Cozy handles complaints, the lowest in the survey
+<!-- -->
+
+- **4.1/5 → 3.2/5**: overall member satisfaction over one year
+- **2.7/5**: the score for how Cozy handles complaints, the lowest in the survey
 - **1 in 2**: complaints in the issue log with a written next step
 
 > “We’ll look into it.”
@@ -33,12 +35,12 @@ Every quarter, Cozy runs a member survey with scores from 1 to 5. In their comme
 
 ## The goal
 
-Within two quarters, overall satisfaction should reach 4.0 and the score for how Cozy handles complaints should reach 3.8.
+Within two quarters, overall satisfaction should reach 4.0/5 and the score for how Cozy handles complaints should reach 3.8/5.
 
 Because the survey runs once a quarter, I also chose a measure that Cozy’s managers can check every week in the issue log: **9 in 10** complaints should have a next step with a follow-up date, and the member should hear back by that date.
 
-- **Overall satisfaction**: Now **3.2**, **3.5** after the first quarter, target **4.0**
-- **How Cozy handles complaints**: Now **2.7**, target **3.8**
+- **Overall satisfaction**: Now **3.2/5**, **3.5/5** after the first quarter, target **4.0/5**
+- **How Cozy handles complaints**: Now **2.7/5**, target **3.8/5**
 - **Complaints with a dated next step and a reply by that date**: Target **9 in 10**, checked every week. Today about half have any written next step.
 
 _Cozy is fictional, so these numbers are targets, not measured results._
@@ -139,7 +141,7 @@ Sofia calls because yesterday another member took a half-hour phone call next to
 - If all five went right:
   1. **Part 2.** The learner logs the case from the note in Cozy Desk, a practice copy of the front-desk software
   2. The course moves ahead: the case is handed over at shift change, the learner talks to the other member and calls Sofia back on the promised day
-  3. Sofia scores Cozy **5 out of 5**
+  3. Sofia scores Cozy **5/5**
 - **Practice.** A new call, a private talk with the other member and a log entry to write
 
 Sofia’s survey score: the talk is decisions 1 to 3, and solving the problem is decisions 4 and 5.
@@ -153,25 +155,18 @@ Sofia’s survey score: the talk is decisions 1 to 3, and solving the problem is
 - **Why survey scores as endings**: Each ending ties the call to the course goal and shows which part of the call went wrong.
 - **Why Son never hints first**: Each first choice stays the learner’s, so the debrief shows the habits they bring to a real call.
 
+<!-- -->
+
 - Three job aids, cards that staff keep at hand at work, open during the course: the HEARD card and the Options card after the first ending, and the Log card in Part 2.
 - After the course, three practice activities are waiting: a new call, the private talk with the member who made the call, and a log entry to write. In the new call an AI plays the member, and an AI checks the call and the log entry. The practice activities do not count toward passing, because AI scoring can vary.
 
 Read more: [Full design document](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Design%20Document.dc.html) · [Full storyboard](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Storyboard.dc.html) · [Full action map](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Diagrams.html#action-map)
 
-## How it was built and tested
+## How it was built
 
-I built the course as a web app and checked it with automated tests and two reviews.
+I planned the course in three documents, then built it as a web app.
 
 I wrote the case study, the design document, which sets out how the course works and why, and the storyboard, which holds every line and screen. I designed the screens and the Cozy brand. In the app, React draws the screens, XState runs the course’s logic and Zod checks the content, and Vercel hosts it.
-
-- Every line of the course is checked against the storyboard, word for word
-- Browser tests go through the whole course on a desktop, a laptop and a phone
-- Buttons are large enough to tap, and the layout fits a phone 320 pixels wide
-- A test checks the contrast of every color pair
-- An expert review of the built course, from the points of view of a strict reviewer of user experience, Jane and a new hire
-- A cognitive walkthrough of the storyboard as Jane and as a new hire, which asks at each moment whether the learner would know what to do next
-
-**Next step:** Test the course with real front-desk staff on their own devices during a shift, and watch where they hesitate.
 
 Read more: [Full style guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Style%20Guide.dc.html)
 

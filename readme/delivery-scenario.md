@@ -26,12 +26,14 @@ These stops are called not-home stops. A parcel that goes back to the depot need
 
 Within three months of rollout, first-attempt success at not-home stops should rise from 45% to 65%.
 
-At the same time, the share of those stops that lead to a claim for a missing parcel should stay at **0.5%** or less. Inside the module, a driver passes with **80 out of 100** points if no stop on the last slide ends with a broken rule.
+At the same time, the share of those stops that lead to a claim for a missing parcel should stay at **0.5%** or less. Inside the module, a driver passes with **80/100** if no stop on the last slide ends with a broken rule.
 
 - **First-attempt success at not-home stops**: Now **45%**, target **65%** within three months
 
+<!-- -->
+
 - **0.5% or less**: not-home stops that lead to a claim for a missing parcel
-- **80 / 100**: points to pass the module, with no rule broken on the last slide
+- **80/100**: the score to pass the module, with no rule broken on the last slide
 
 _The parcel company is fictional, so these numbers are targets, not measured results._
 
@@ -116,7 +118,7 @@ Drivers use the module outdoors, on a phone, between stops. So each screen asks 
 | 5 | **Write the call** | Typed call | no points |
 | 6 | **Find the safe place** | Picture | 10 points |
 | 7 | **Handle two stops** | Branching scenario | 40 points |
-|  | **Results** | 80 points to pass |  |
+|  | **Results** | 80/100 to pass |  |
 
 - On slides 1 and 3, an item can be dragged, moved with buttons, tapped into place or moved with the keyboard. After the check, each item in the wrong place says where it belongs and what goes wrong there.
 - Slide 4 is a call with Ms. Rivera, whose parcel needs a signature. It has recorded voices and captions, the sound plays when the driver presses Play, and two of the lines end the call early.
@@ -124,25 +126,19 @@ Drivers use the module outdoors, on a phone, between stops. So each screen asks 
 - Slide 7 is a branching scenario with two stops, in which each choice changes what happens next. The results screen then explains the rule behind each choice, and Try again reopens the slides that lost points.
 - The module also comes as a SCORM 1.2 package, a standard format that lets a learning management system (LMS), the software companies use for staff training, run the module and save each driver’s progress and best score.
 
+<!-- -->
+
 - **Why one question per screen**: Drivers read on a phone, outdoors, between stops, so each screen holds one thing to decide.
 - **Why four ways to move an item**: Some drivers cannot drag, so buttons, taps and the keyboard do the same job.
 - **Why slide 5 has no points**: AI scoring can vary, so the typed call is practice and the scored slides use fixed answers.
 
 Read more: [Full branching map](https://duongngochongson.vercel.app/work/not-home-delivery-stop/Diagrams.html#branching)
 
-## How it was built and tested
+## How it was built
 
-I built the module as a web app and checked it with automated tests.
+I built the module as a web app that also runs in an LMS.
 
 React draws the screens, XState runs the logic of each slide, and Zod checks the content files, where the slides, the job aids and the action map are written. The voices on slide 4 are synthetic speech, with captions timed to the audio. The module is hosted on Vercel and is also built as a SCORM package.
-
-- Unit tests check the logic of every slide, the scoring and the content
-- Browser tests try every slide with the keyboard alone, and the drag-and-drop slides with a mouse and with touch
-- One browser test goes through the whole module to a score of 100
-- axe-core, an accessibility checker, tests every slide at four screen widths and in high-contrast modes
-- The SCORM package is tested in scorm-again, a stand-in for a real LMS
-
-**Next step:** Test the module with real drivers on their routes, since all of the testing so far is automated.
 
 Read more: [Full style guide](https://duongngochongson.vercel.app/work/not-home-delivery-stop/Style%20Guide.html)
 

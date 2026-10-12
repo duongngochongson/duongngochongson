@@ -12,7 +12,7 @@ My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and ab
 
 - **Problem:** Members of Cozy, a fictional coworking business, grew less satisfied over one year, and complaint handling got the lowest score.
 - **Solution:** I traced the drop to its causes and chose a fix for each, including Hear Them Out, a branching course for front-desk staff.
-- **Goal:** Raise member satisfaction to 4.0 out of 5 within two quarters.
+- **Goal:** Raise member satisfaction to 4.0/5 within two quarters.
 
 ## Skillset
 

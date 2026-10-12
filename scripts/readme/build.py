@@ -91,6 +91,8 @@ def text(node, marks=True):
     """The visible words of a node, with bold and links kept as Markdown."""
     if isinstance(node, str):
         return node
+    if 'data-md' in node.attrs:   # what the README shows in place of a node that is only for the eye (the → in "4.1 → 3.2")
+        return node.attrs['data-md']
     if node.tag in ('svg', 'script', 'style', 'template', 'img') or node.attrs.get('aria-hidden') == 'true' or node.has('sr-only'):
         return ''
     if node.tag in ('br', 'wbr'):
@@ -145,7 +147,7 @@ def block_md(n):
         return t(n)
     if 'zones' in c:
         return '\n'.join(f'- **{t(li.find(lambda x: x.tag == "b"), False)}**: {t(li.find(lambda x: x.tag == "b").parent.elements()[1])}' for li in n.elements())
-    if 'issues' in c or 'checks' in c:
+    if 'issues' in c:
         return '\n'.join(f'- {t(li)}' for li in n.elements())
     if 'stats' in c:
         return '\n'.join(f'- **{t(card.find(by_class("stat")))}**: {t(card.find(by_class("stat-l")))}' for card in n.elements())
@@ -219,8 +221,6 @@ def block_md(n):
         return '\n'.join(f'- **{t(it.find(lambda x: x.tag == "b"), False)}**: {t(it.find(lambda x: x.tag == "p"))}' for it in n.elements())
     if 'bul' in c:
         return '\n'.join(f'- {t(d.elements()[-1])}' for d in n.elements())
-    if 'nextstep' in c:
-        return f'**{t(n.find(lambda x: x.tag == "b"), False)}:** {t(n.find(lambda x: x.tag == "p"))}'
     if 'codes' in c:
         cap = tag_case(t(n.find(lambda x: x.tag == 'figcaption')))
         trs = n.find_all(lambda x: x.tag == 'tr')
@@ -247,6 +247,7 @@ def block_md(n):
 
 
 SKIP = {'cs-head', 'shots'}
+LIST_ITEM = re.compile(r'\s*(?:[-*+]|\d+[.)])\s')
 
 
 def section_md(sec):
@@ -257,6 +258,10 @@ def section_md(sec):
             continue
         md = block_md(el)
         if md:
+            # Two lists in a row with only a blank line between them become one list on GitHub (CommonMark),
+            # so an empty HTML comment keeps them apart.
+            if LIST_ITEM.match(parts[-1].splitlines()[-1]) and LIST_ITEM.match(md.splitlines()[0]):
+                parts.append('<!-- -->')
             parts.append(md)
     chips = sec.find_all(by_class('doc-btn'))
     if chips:

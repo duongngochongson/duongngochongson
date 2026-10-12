@@ -65,9 +65,13 @@
       let doc, win;
       try { doc = frame.contentDocument; win = frame.contentWindow; } catch (e) { return; }
       if (!doc || !win) return;
+      // The pop-up's body color shows around the document's card: its own page color (dark, for when it is opened on its own) is cleared.
+      const see = doc.createElement('style');
+      see.textContent = 'html, body, :not(article, article *):has(article) { background: transparent !important; }';
+      doc.head.append(see);
       frame.classList.add('is-ready');
       const name = (doc.title || '').split(' · ')[0].trim();
-      if (name) title.textContent = name;
+      if (name) { title.textContent = name; frame.title = name; }  // the frame's name follows the document it shows
       doc.addEventListener('click', e => {
         const a = e.target.closest && e.target.closest('a[href]');
         if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -81,11 +85,12 @@
           if (to) to.scrollIntoView({ behavior: reduceMotion() ? 'auto' : 'smooth', block: 'start' });
         } else {  // another document of the project: replace, so browser Back still leaves the project page
           e.preventDefault();
+          frame.classList.remove('is-ready');  // the loading screen shows until the next document is wired
           win.location.replace(url.href);
         }
       }, true);
       doc.addEventListener('keydown', e => {  // Escape closes the pop-up, unless the document's own figure viewer is open
-        if (e.key === 'Escape' && !doc.querySelector('[aria-modal="true"]')) { e.preventDefault(); dialog.close(); }
+        if (e.key === 'Escape' && !doc.querySelector('[aria-modal="true"]')) { e.preventDefault(); shut(); }
       }, true);
     }
 
@@ -138,7 +143,21 @@
         openTemplate(el);
       }
     });
-    dialog.querySelector('[data-doc-close]').addEventListener('click', () => dialog.close());
+    // Closing fades out over .2s (styles.css, .is-closing), then the dialog closes and focus goes back; at once with reduced motion.
+    let closeTimer = 0;
+    function shut() {
+      if (!dialog.open || dialog.classList.contains('is-closing')) return;
+      if (reduceMotion()) { dialog.close(); return; }
+      dialog.classList.add('is-closing');
+      closeTimer = setTimeout(() => dialog.close(), 300);  // in case the animation does not run
+    }
+    dialog.addEventListener('animationend', e => { if (e.animationName === 'doc-out') dialog.close(); });
+    dialog.addEventListener('cancel', e => {  // Escape
+      if (reduceMotion()) return;
+      e.preventDefault();
+      shut();
+    });
+    dialog.querySelector('[data-doc-close]').addEventListener('click', shut);
     // A click on the dimmed area around the box closes it, but only if the press started there too
     // (so selecting text and letting go outside the box keeps it open).
     const outside = e => {
@@ -148,12 +167,13 @@
     let pressedOutside = false;
     dialog.addEventListener('pointerdown', e => { pressedOutside = outside(e); });
     dialog.addEventListener('click', e => {
-      if (pressedOutside && outside(e)) dialog.close();
+      if (pressedOutside && outside(e)) shut();
       pressedOutside = false;
     });
     dialog.addEventListener('close', () => {
+      clearTimeout(closeTimer);
+      dialog.classList.remove('is-closing', 'doc-wide');
       body.replaceChildren();
-      dialog.classList.remove('doc-wide');
     });
   }
 
@@ -169,7 +189,14 @@
   }
 
   // ---- theme: light unless the visitor picks dark ----
-  function setTheme(theme) {
+  // On a switch, theme-fading on <html> fades every color for 400ms (styles.css); not on the first paint, nor with reduced motion.
+  let fadeTimer;
+  function setTheme(theme, fade) {
+    if (fade && !reduceMotion() && (root.dataset.theme === 'dark') !== (theme === 'dark')) {
+      root.classList.add('theme-fading');
+      clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(() => root.classList.remove('theme-fading'), 400);
+    }
     if (theme === 'dark') root.dataset.theme = 'dark'; else delete root.dataset.theme;
     document.querySelectorAll('[data-theme-set]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.themeSet === theme)));
     const meta = document.querySelector('meta[name="theme-color"]');
@@ -178,7 +205,7 @@
 
   document.querySelectorAll('[data-lang]').forEach(b => b.addEventListener('click', () => setLang(b.dataset.lang)));
   document.querySelectorAll('[data-theme-set]').forEach(b => b.addEventListener('click', () => {
-    setTheme(b.dataset.themeSet);
+    setTheme(b.dataset.themeSet, true);
     store.set('theme', b.dataset.themeSet);
   }));
 
