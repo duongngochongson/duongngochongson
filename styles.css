@@ -339,7 +339,6 @@ p, dd, li, .stat-l, .bul > div > span:last-child, .path .d {
 }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px var(--shadow); }
 .btn-primary { background: var(--ink); color: var(--bg); } .btn-primary:hover { color: var(--bg); }
-.btn-accent { background: var(--a1); color: #1a1815; } .btn-accent:hover { color: #1a1815; }
 
 /* ---------- document pop-up ---------- */
 dialog.doc {
@@ -400,12 +399,15 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .path .d { font: 400 13px/1.6 var(--sans); color: var(--muted); }
 
 /* ---------- footer ---------- */
+/* a light tint like the other blocks, in the sidebar's green, with a white pill for the email */
 .footer {
-  background: var(--ink); color: var(--bg); border-radius: 22px; padding: 20px 20px 20px 28px;
+  background: var(--t1); color: var(--ink); border-radius: 22px; padding: 20px 20px 20px 28px;
   display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap;
   transition: background .35s, color .35s;
 }
 .footer h2 { font: 700 22px/1.3 var(--serif); }
+.footer .btn-mail { background: var(--card); color: var(--ink); }
+.footer .btn-mail:hover { color: var(--ink); }
 
 /* ---------- small screens ---------- */
 /* short landscape screens: the sidebar would not fit, so it scrolls with the page */
