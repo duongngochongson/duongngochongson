@@ -39,7 +39,7 @@
 </sc-for>
 </div>
 
-<p style="margin:0;background:#F4EFE4;border-left:4px solid #B03A48;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Talk is right when decisions 1 to 3 of the call all take the best option, and resolve is right when decisions 4 and 5 both do. If the learner hangs up on Sofia twice, the call is over, and her answer is 1 out of 5: "They hung up on me, and nobody called back." If the learner shared the name of Dan, the member who made the call, the ending adds a line: "A few days later, Dan asks the front desk who reported him."</p>
+<p style="margin:0;background:#F4EFE4;border-left:4px solid #B03A48;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Talk is right when decisions 1 to 3 of the call all take the best option, and resolve is right when decisions 4 and 5 both do. If the learner hangs up on Sofia twice, the call is over, her answer is 1/5, there is no debrief, and the call starts again from Accept. Her survey comment is "They hung up on me, and nobody called back." If the learner shared the name of Dan, the member who made the call, the ending adds a line: "A few days later, Dan asks the front desk who reported him."</p>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:640}}">
@@ -52,10 +52,10 @@ class Component extends DCLogic {
     const G = '#2F7A4B', R = '#B03A48';
     return {
       cells: [
-        { talk: 'right', resolve: 'right', talkColor: G, resolveColor: G, score: '5 out of 5', word: 'Very satisfied', stars: stars(5), quote: '"They listened, fixed it, and called back when they said they would."', note: 'after Part 2' },
-        { talk: 'not yet', resolve: 'right', talkColor: R, resolveColor: G, score: '3 out of 5', word: 'Neutral', stars: stars(3), quote: '"They fixed it, but I never felt they cared."', note: '' },
-        { talk: 'right', resolve: 'not yet', talkColor: G, resolveColor: R, score: '2 out of 5', word: 'Dissatisfied', stars: stars(2), quote: '"They were nice about it, but nothing changed."', note: '' },
-        { talk: 'not yet', resolve: 'not yet', talkColor: R, resolveColor: R, score: '1 out of 5', word: 'Very dissatisfied', stars: stars(1), quote: '"They explained the rules to me, and that was it. I\u2019ve started looking at other spaces."', note: '' }
+        { talk: 'right', resolve: 'right', talkColor: G, resolveColor: G, score: '5/5', word: 'Very satisfied', stars: stars(5), quote: '"They listened, fixed it, and called back when they said they would."', note: 'after Part 2' },
+        { talk: 'not yet', resolve: 'right', talkColor: R, resolveColor: G, score: '3/5', word: 'Neutral', stars: stars(3), quote: '"They fixed it, but I never felt they cared."', note: '' },
+        { talk: 'right', resolve: 'not yet', talkColor: G, resolveColor: R, score: '2/5', word: 'Dissatisfied', stars: stars(2), quote: '"They were nice about it, but nothing changed."', note: '' },
+        { talk: 'not yet', resolve: 'not yet', talkColor: R, resolveColor: R, score: '1/5', word: 'Very dissatisfied', stars: stars(1), quote: '"They explained the rules to me, and that was it. I\u2019ve started looking at other spaces."', note: '' }
       ]
     };
   }
