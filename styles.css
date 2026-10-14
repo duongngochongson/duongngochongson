@@ -741,7 +741,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 
 /* my own notes: a dashed blue border. How I sorted the causes keeps a light blue fill, so it reads apart from the boxes under it;
    the takeaways are text only, three in a row, one under another when narrow */
-.method.my-note { border: 1.5px dashed var(--a3); background: var(--t3); padding: 14.5px 16.5px; }
+.method.my-note { border: 1.5px dashed var(--a3); background: none; padding: 14.5px 16.5px; }  /* (the border only, on the section's white) */
 .takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .takeaways li { border: 1.5px dashed var(--a3); border-radius: 12px; padding: 14.5px 16.5px; font: 400 13px/1.6 var(--sans); color: var(--muted); text-align: left; }
 .takeaways b { color: var(--ink); }
@@ -786,7 +786,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .method:has(> .split) { grid-template-columns: minmax(0, 1fr); align-items: start; }
 .sixbox { display: grid; grid-template-columns: 96px repeat(3, minmax(0, 1fr)); gap: 8px; }
 .sb-h { align-self: center; }
-.sb-c { font: 500 11px/1.2 var(--sans); color: var(--muted); background: var(--card); border-radius: 12px; padding: 8px 2px; text-align: center; overflow-wrap: anywhere; -webkit-hyphens: auto; hyphens: auto; }
+.sb-c { font: 500 11px/1.2 var(--sans); color: var(--muted); background: var(--surface); border-radius: 12px; padding: 8px 2px; text-align: center; overflow-wrap: anywhere; -webkit-hyphens: auto; hyphens: auto; }
 @container case (max-width: 720px) { .method { grid-template-columns: minmax(0, 1fr); } }
 @container case (max-width: 420px) {
   .row-tag { margin-left: 0; } .tag { white-space: normal; text-align: left; }
