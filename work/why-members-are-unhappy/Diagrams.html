@@ -38,22 +38,24 @@
 <div class="doc-layout doc-layout--wide">
 <aside class="doc-toc">
 <nav class="toc-side" aria-label="Contents"><span class="toc-title">Contents</span><ol>
-<li><a class="tone-green" href="#causes"><span class="toc-num">1</span>Three causes and their solutions</a></li>
-<li><a class="tone-amber" href="#action-map"><span class="toc-num">2</span>Action map</a></li>
-<li><a class="tone-blue" href="#learner-path"><span class="toc-num">3</span>Learner’s path</a></li>
-<li><a class="tone-purple" href="#branch-map"><span class="toc-num">4</span>Branches of the call</a></li>
+<li><a data-kind="problem" href="#causes"><span class="toc-num">1</span>Three causes and their solutions</a></li>
+<li><a data-kind="problem" href="#action-map"><span class="toc-num">2</span>Action map</a></li>
+<li><a data-kind="made" href="#learner-path"><span class="toc-num">3</span>Learner’s path</a></li>
+<li><a data-kind="made" href="#branch-map"><span class="toc-num">4</span>Branches of the call</a></li>
 </ol></nav>
 <details class="toc-box"><summary>Contents<span>4</span></summary><ol>
-<li><a class="tone-green" href="#causes"><span class="toc-num">1</span>Three causes and their solutions</a></li>
-<li><a class="tone-amber" href="#action-map"><span class="toc-num">2</span>Action map</a></li>
-<li><a class="tone-blue" href="#learner-path"><span class="toc-num">3</span>Learner’s path</a></li>
-<li><a class="tone-purple" href="#branch-map"><span class="toc-num">4</span>Branches of the call</a></li>
+<li><a data-kind="problem" href="#causes"><span class="toc-num">1</span>Three causes and their solutions</a></li>
+<li><a data-kind="problem" href="#action-map"><span class="toc-num">2</span>Action map</a></li>
+<li><a data-kind="made" href="#learner-path"><span class="toc-num">3</span>Learner’s path</a></li>
+<li><a data-kind="made" href="#branch-map"><span class="toc-num">4</span>Branches of the call</a></li>
 </ol></details>
 </aside>
 <main class="doc-main">
-<section class="doc-sec tone-green" id="causes">
+<section class="doc-sec" data-kind="problem" id="causes">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-search"/></svg></span><h2><span class="sec-n">1</span>Three causes and their solutions</h2><span class="sec-line"></span></header>
-  <p>Cozy, a coworking business with three spaces, is a concept project made for this portfolio. Each cause behind the drop in member satisfaction was sorted with the Six Boxes, Carl Binder’s version of Gilbert’s Behavior Engineering Model, with the environment checked first. Two causes sit in the environment, so signs, a checklist and a tool solve them, and the third also needs a course.</p>
+  <p class="keyline">With the Behavior Engineering Model (BEM), I found three root causes and matched each with a solution, and only one of them is a course.</p>
+  <p>Cozy, a coworking business with three spaces, is a concept project made for this portfolio. Two of the causes sit only in the environment, so signs, a checklist and a tool solve them, and the one about complaints also needs a course.</p>
+  <div class="callout my-note"><span class="k">How I sorted the causes</span><p>I sorted each cause into the BEM’s six cells, in Carl Binder’s plain-language version of Gilbert’s model, and checked the environment first, because changing it costs less than training. For each cause, I asked Mager and Pipe’s question: could people do it if they had to? If so, a course would not help.</p></div>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -61,42 +63,42 @@
         <li><span class="sw" style="background:var(--weak-tint);border-color:transparent"></span>Cause</li>
         <li><span class="sw" style="background:var(--good-tint);border-color:transparent"></span>Solution</li>
         <li><span class="sw" style="border:2px solid var(--ink)"></span>Target</li>
-        <li><span class="sw cz-sw-on"></span>Where the cause sits in the Six Boxes</li>
+        <li><span class="sw cz-sw-on"></span>Where the cause sits in the BEM’s six cells</li>
       </ul>
       <div class="dg cz">
         <div class="n n--ink cz-gap" id="wmu-causes-gap"><span class="k">Problem</span><p>Overall member satisfaction fell from <b>4.1/5 to 3.2/5</b> in one year. The score for how Cozy handles complaints was <b>2.7/5</b>, the lowest in the survey.</p></div>
         <div class="cz-cols">
         <div class="cz-col">
-          <div class="n n--weak cz-cause" id="wmu-causes-c1" data-from="wmu-causes-gap"><span class="k">Cause 1 · Noise in Focus and the kitchen</span><p>Members are unsure of the zone and kitchen rules, which are written in the handbook, far from where they work.</p><span class="six" role="img" aria-label="Six boxes: Information"><span class="six-h">Environment</span><span class="on">Information</span><span class="">Tools</span><span class="">Incentives</span><span class="six-h">Person</span><span class="">Knowledge</span><span class="">Capacity</span><span class="">Motives</span></span></div>
-          <div class="n n--good cz-fix" id="wmu-causes-f1" data-from="wmu-causes-c1"><span class="k">Solution · The rules shown where members work</span><p><b>Signs in the space, and Cozy in 60 seconds, a guide for a new member’s first day</b></p></div>
+          <div class="n n--weak cz-cause" id="wmu-causes-c1" data-from="wmu-causes-gap"><span class="k">Cause 1</span><p><b>No follow-up process or call practice for complaints</b></p><p>The log asked for no follow-up date or owner, and open cases passed between shifts by word of mouth. On calls, staff explained the rules first and apologized in general terms. Calming an upset member takes practice.</p><span class="six" role="img" aria-label="Six cells: Information, Tools, Incentives, Knowledge"><span class="six-h">Environment</span><span class="on">Information</span><span class="on">Tools</span><span class="on">Incentives</span><span class="six-h">Person</span><span class="on">Knowledge</span><span class="">Capacity</span><span class="">Motives</span></span></div>
+          <div class="n n--good cz-fix" id="wmu-causes-f1" data-from="wmu-causes-c1"><span class="k">Solution 1 · For front-desk staff and managers</span><p><b>A follow-up process and call practice for complaints</b></p><p>Hear Them Out trains staff to handle a complaint call, with the log card as a job aid. Managers make the follow-up date and the owner required in the log, with a reminder and a check at each shift change.</p></div>
         </div>
         <div class="cz-col">
-          <div class="n n--weak cz-cause" id="wmu-causes-c2" data-from="wmu-causes-gap"><span class="k">Cause 2 · Wi-Fi outages</span><p>Each shift handles outages its own way, and staff switch to the backup internet line by hand.</p><span class="six" role="img" aria-label="Six boxes: Information, Tools"><span class="six-h">Environment</span><span class="on">Information</span><span class="on">Tools</span><span class="">Incentives</span><span class="six-h">Person</span><span class="">Knowledge</span><span class="">Capacity</span><span class="">Motives</span></span></div>
-          <div class="n n--good cz-fix" id="wmu-causes-f2" data-from="wmu-causes-c2"><span class="k">Solution · A procedure and a tool</span><p><b>The Wi-Fi Down card, a checklist for outages, and an automatic switch to the backup line</b></p></div>
+          <div class="n n--weak cz-cause" id="wmu-causes-c2" data-from="wmu-causes-gap"><span class="k">Cause 2</span><p><b>Space rules members could not see</b></p><p>Focus and Flex, the zone for calls, looked the same, and the zone and kitchen rules sat in the handbook, far from where members work. Members could follow the rules, so they need to see them where they work.</p><span class="six" role="img" aria-label="Six cells: Information"><span class="six-h">Environment</span><span class="on">Information</span><span class="">Tools</span><span class="">Incentives</span><span class="six-h">Person</span><span class="">Knowledge</span><span class="">Capacity</span><span class="">Motives</span></span></div>
+          <div class="n n--good cz-fix" id="wmu-causes-f2" data-from="wmu-causes-c2"><span class="k">Solution 2 · For members</span><p><b>Space rules members can see</b></p><p>A sign, zone tape and kitchen labels, and Cozy in 60 seconds, eight short screens that show a new member the same rules.</p></div>
         </div>
         <div class="cz-col">
-          <div class="n n--weak cz-cause" id="wmu-causes-c3" data-from="wmu-causes-gap"><span class="k">Cause 3 · Complaint handling</span><p>The log asks for no follow-up date or owner, and staff explain the rules first and apologize in general terms.</p><span class="six" role="img" aria-label="Six boxes: Information, Tools, Incentives, Knowledge"><span class="six-h">Environment</span><span class="on">Information</span><span class="on">Tools</span><span class="on">Incentives</span><span class="six-h">Person</span><span class="on">Knowledge</span><span class="">Capacity</span><span class="">Motives</span></span></div>
-          <div class="n n--good cz-fix" id="wmu-causes-f3" data-from="wmu-causes-c3"><span class="k">Solution · A process change and training</span><p><b>Log changes by Cozy’s managers, and Hear Them Out, a course for staff</b></p></div>
+          <div class="n n--weak cz-cause" id="wmu-causes-c3" data-from="wmu-causes-gap"><span class="k">Cause 3</span><p><b>No set steps for Wi-Fi outages</b></p><p>Each shift handled an outage in its own order, and most waited for the cause before telling members. Staff switched to the backup internet line by hand. Staff could do each step, but outages are rare and stressful.</p><span class="six" role="img" aria-label="Six cells: Information, Tools"><span class="six-h">Environment</span><span class="on">Information</span><span class="on">Tools</span><span class="">Incentives</span><span class="six-h">Person</span><span class="">Knowledge</span><span class="">Capacity</span><span class="">Motives</span></span></div>
+          <div class="n n--good cz-fix" id="wmu-causes-f3" data-from="wmu-causes-c3"><span class="k">Solution 3 · For front-desk staff and operations</span><p><b>Set steps for Wi-Fi outages</b></p><p>The Wi-Fi Down card, a one-page checklist: tell members within 10 minutes, send an update every 15 minutes and give everyone the same compensation. The backup line also switches on by itself.</p></div>
         </div>
         </div>
-        <div class="n n--key cz-target cz-target--wide" data-from="wmu-causes-f1 wmu-causes-f2 wmu-causes-f3"><span class="k">Target within two quarters</span><p><b class="cz-big">4.0/5</b> for overall satisfaction, and 3.8/5 for how Cozy handles complaints</p></div>
-        <div class="n n--key cz-target cz-target--narrow" data-from="wmu-causes-gap"><span class="k">Target within two quarters</span><p><b class="cz-big">4.0/5</b> for overall satisfaction, and 3.8/5 for how Cozy handles complaints</p></div>
+        <div class="n n--key cz-target cz-target--wide" data-from="wmu-causes-f1 wmu-causes-f2 wmu-causes-f3"><span class="k">Target within two quarters</span><p><b class="cz-big">4.0/5</b> for overall satisfaction, up from 3.2/5, and <b>3.8/5</b> for the complaint score, up from 2.7/5.</p><p>Each week, managers check that 9 in 10 complaints have a dated next step.</p></div>
+        <div class="n n--key cz-target cz-target--narrow" data-from="wmu-causes-gap"><span class="k">Target within two quarters</span><p><b class="cz-big">4.0/5</b> for overall satisfaction, up from 3.2/5, and <b>3.8/5</b> for the complaint score, up from 2.7/5.</p><p>Each week, managers check that 9 in 10 complaints have a dated next step.</p></div>
       </div>
     </div>
-    <figcaption><b>Figure 1</b>Three causes, where each sits in the Six Boxes, and the solution for each</figcaption>
+    <figcaption><b>Figure 1</b>Three causes, where each sits in the BEM’s six cells, and the solution for each</figcaption>
   </figure>
   <style>
     #causes .cz { display: flex; flex-direction: column; gap: 14px; }
-    #causes .cz-cols { display: flex; flex-direction: column; gap: 14px; margin-left: 22px; }
+    #causes .cz-cols { display: flex; flex-direction: column; gap: 14px; margin-left: var(--indent); }
     #causes .cz-col { display: flex; flex-direction: column; gap: 8px; }
-    #causes .cz-fix { margin-left: 22px; }
-    #causes .cz-target { margin-left: 22px; }
+    #causes .cz-fix { margin-left: var(--indent); }
+    #causes .cz-target { margin-left: var(--indent); }
     #causes .cz-target--wide { display: none; }
-    #causes .cz-big { font: 600 20px/1.3 'Archivo', sans-serif; display: block; }
+    #causes .cz-big { font: 600 20px/1.3 var(--font-head); display: block; }
     #causes .six { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(4, auto); grid-auto-flow: column; gap: 4px 6px; margin-top: 12px; }
-    #causes .six .six-h { font: 500 11px/1.3 'IBM Plex Mono', monospace; color: var(--soft); border: 0; padding: 0 0 2px; opacity: 1; text-align: left; }
-    #causes .six span { font: 500 12px/1.2 'IBM Plex Sans', sans-serif; color: var(--soft); text-align: center; padding: 5px 2px; border: 1px solid var(--line-strong); border-radius: 6px; opacity: .6; white-space: nowrap; overflow: hidden; text-overflow: clip; }
-    #causes .six span.on { background: var(--weak); border-color: var(--weak); color: var(--paper); opacity: 1; }
+    #causes .six .six-h { font: 500 11px/1.3 var(--font-mono); color: var(--soft); border: 0; padding: 0 0 2px; opacity: 1; text-align: left; }
+    #causes .six span { font: 500 12px/1.2 var(--font-body); color: var(--soft); text-align: center; padding: 5px 2px; border: 1px dashed var(--line-strong); border-radius: 6px; white-space: nowrap; overflow: hidden; text-overflow: clip; }
+    #causes .six span.on { background: var(--weak); border-style: solid; border-color: var(--weak); color: var(--paper); }
     #causes .cz-sw-on { background: var(--weak); border-color: var(--weak); }
     @container (min-width: 620px) {
       #causes .cz { align-items: center; gap: 30px; }
@@ -112,9 +114,10 @@
   </style>
 </section>
 
-<section class="doc-sec tone-amber" id="action-map">
+<section class="doc-sec" data-kind="problem" id="action-map">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-target"/></svg></span><h2><span class="sec-n">2</span>Action map</h2><span class="sec-line"></span></header>
-  <p>Hear Them Out was planned with action mapping (Moore, 2017): each action has a practice and the minimum information it needs, which goes into the job aids. Barriers in the environment, marked “→ Managers”, go to Cozy’s managers instead of the course.</p>
+  <p class="keyline">With action mapping, I chose five actions that resolve a complaint, and Hear Them Out practices all five in one call and its follow-up.</p>
+  <p>Following Moore’s action mapping (2017), each action has a practice and the minimum information it needs, which goes into the job aids. Barriers in the environment, marked “→ Managers”, go to Cozy’s managers instead of the course.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -174,10 +177,10 @@
   </figure>
   <style>
     #action-map .am { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
-    #action-map .am-rows { display: flex; flex-direction: column; gap: 14px; margin-left: 22px; }
+    #action-map .am-rows { display: flex; flex-direction: column; gap: 14px; margin-left: var(--indent); }
     #action-map .am-row { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
-    #action-map .am-det { display: flex; flex-direction: column; gap: 8px; margin-left: 22px; }
-    #action-map .am-ops { margin-left: 22px; }
+    #action-map .am-det { display: flex; flex-direction: column; gap: 8px; margin-left: var(--indent); }
+    #action-map .am-ops { margin-left: var(--indent); }
     #action-map .am-ops-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px 24px; }
     #action-map .am-ops-list li { display: flex; gap: 10px; align-items: baseline; font-size: 14px; }
     @container (min-width: 760px) {
@@ -192,9 +195,10 @@
   </style>
 </section>
 
-<section class="doc-sec tone-blue" id="learner-path">
+<section class="doc-sec" data-kind="made" id="learner-path">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-route"/></svg></span><h2><span class="sec-n">3</span>Learner’s path</h2><span class="sec-line"></span></header>
-  <p>Right after the call, the course branches. After the best path, Sofia waits to see whether Cozy follows up, and Part 2 begins. After any other path, the course jumps ahead a week to her survey answer, then a debrief and a rewind. The three practices after the course are not scored.</p>
+  <p class="keyline">The course has two parts: Part 1, the call, with five decisions, and Part 2, which the learner reaches only if all five went right.</p>
+  <p>Right after the call, the course branches. If all five decisions went right, Sofia waits to see whether Cozy follows up, and the learner moves on to Part 2. If a decision went wrong, the course jumps ahead a week to her survey answer, then a debrief and a rewind. After the course, the learner can practice more if they want, in three ways, and none of them is scored.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -203,6 +207,7 @@
         <li><span class="sw" style="border-radius:999px;background:var(--good-tint);border-color:transparent"></span>Ending, 5/5</li>
         <li><span class="sw" style="border-radius:999px;background:var(--weak-tint);border-color:transparent"></span>Ending, lower</li>
         <li><span class="sw" style="background:var(--key-tint);border-color:transparent"></span>Practice</li>
+        <li><span class="sw sw--go"></span>The way on to Part 2</li>
         <li><span class="sw-line dash" style="border-top-color:var(--weak)"></span>Rewind</li>
       </ul>
       <div class="dg lp">
@@ -212,21 +217,21 @@
         <div class="n lp-incoming" id="wmu-learner-path-incoming" data-from="wmu-learner-path-open"><span class="k">Step · Incoming call</span>The phone rings face down. Turned over, it stops ringing and stays quiet while Son brings in Sofia’s member card and points to her report from two weeks ago, still open, with no owner and no follow-up. The learner starts the note, then accepts. The phone rings again when Sofia calls once more, after a decline or a dropped line.</div>
         <div class="n lp-call" id="wmu-learner-path-call" data-from="wmu-learner-path-incoming"><span class="k">Step · Call with Sofia</span><span class="lp-heard"><span class="letter">H</span><span class="letter">E</span><span class="letter">A</span><span class="letter">R</span><span class="letter">D</span></span>Hear, Empathize, Apologize and Resolve, then the goodbye, End and Diagnose. The learner adds lines to the note all through the call.<span class="lp-port" id="wmu-learner-path-port" data-from="wmu-learner-path-rewind" data-route="around" data-wire="dash weak arrow"></span></div>
         <div class="n n--key lp-after" id="wmu-learner-path-after" data-from="wmu-learner-path-call"><span class="k">Decision point · Right after the call</span>Was every decision the best one?</div>
-        <div class="n n--end n--weak lp-survey" id="wmu-learner-path-survey" data-from="wmu-learner-path-after" data-wire="weak"><span class="k">Any other path · The course jumps ahead a week</span><b>Survey: 1/5, 2/5 or 3/5</b></div>
+        <div class="n n--end n--weak lp-survey" id="wmu-learner-path-survey" data-from="wmu-learner-path-after" data-wire="weak"><span class="k">If a decision went wrong · The course jumps ahead a week</span><b>Survey: 1/5, 2/5 or 3/5</b></div>
         <div class="n lp-debrief" id="wmu-learner-path-debrief" data-from="wmu-learner-path-survey"><span class="k">Step · Debrief</span>Each decision is marked right or not yet. The first one not yet shows its mistake, the reason and the rewind button.</div>
         <div class="n lp-rewind" id="wmu-learner-path-rewind" data-from="wmu-learner-path-debrief"><span class="k">Step · Rewind</span>Back to the first decision that went wrong, keeping the right choices before it. The call clock goes on from there.</div>
-        <div class="n n--end n--weak lp-hungup" id="wmu-learner-path-hungup" data-from="wmu-learner-path-after" data-wire="weak"><span class="k">Hung up twice · The course jumps ahead a week</span><b>Survey: 1/5, no debrief</b><br>The call starts again from Accept.</div>
-        <div class="n lp-summary" id="wmu-learner-path-summary" data-from="wmu-learner-path-after" data-wire="good"><span class="k">Best path · How you handled the call</span>Sofia hangs up and waits to see whether Cozy follows up. A summary shows where the learner used each step of HEARD.</div>
+        <div class="n n--end n--weak lp-hungup" id="wmu-learner-path-hungup" data-from="wmu-learner-path-after" data-wire="weak"><span class="k">If the learner hangs up twice · The course jumps ahead a week</span><b>Survey: 1/5, no debrief</b><br>The call starts again from Accept.</div>
+        <div class="n lp-summary" id="wmu-learner-path-summary" data-from="wmu-learner-path-after" data-wire="good"><span class="k">If all five went right</span>Sofia hangs up and waits to see whether Cozy follows up. A summary shows where the learner used each step of HEARD. The learner moves on to <b>Part 2</b>.</div>
         <div class="lp-div lp-r11">Part 2 · Cozy Desk</div>
-        <div class="n lp-part2" id="wmu-learner-path-part2" data-from="wmu-learner-path-summary"><span class="k">Step · Part 2</span>The desk computer starts and the learner signs in to Cozy Desk, which opens with a short tour the first time. For steps 3 to 6, the course moves ahead in time:<ol class="lp-seq"><li><span class="pill">1</span>Find the member</li><li><span class="pill">2</span>Log the case from the note</li><li><span class="pill">3</span>Hand it over at shift change</li><li><span class="pill">4</span>Talk with Dan</li><li><span class="pill">5</span>Call Sofia back on the day promised</li><li><span class="pill">6</span>Close the case</li></ol></div>
+        <div class="n n--go lp-part2" id="wmu-learner-path-part2" data-from="wmu-learner-path-summary" data-wire="good bold arrow"><span class="k">Part 2 · The learner logs the case and follows it up</span>The desk computer starts, and its sign-in and welcome sit on a wallpaper of Cozy’s floor plan, with the lamp’s glow. The learner signs in to Cozy Desk, which opens with a short tour the first time. For steps 3 to 6, the course moves ahead in time:<ol class="lp-seq"><li><span class="pill">1</span>Find the member</li><li><span class="pill">2</span>Log the case from the note</li><li><span class="pill">3</span>Hand it over at shift change</li><li><span class="pill">4</span>Talk with Dan</li><li><span class="pill">5</span>Call Sofia back on the day promised</li><li><span class="pill">6</span>Close the case</li></ol></div>
         <div class="n n--end n--good lp-end2" id="wmu-learner-path-end2" data-from="wmu-learner-path-part2" data-wire="good"><span class="k">Ending · Sofia’s survey, after Part 2</span><b>5/5</b></div>
         <div class="lp-div lp-r14">After the course</div>
         <div class="n lp-results" id="wmu-learner-path-results" data-from="wmu-learner-path-end2"><span class="k">Step · Results</span>How many of the five decisions and nine log fields were right on the first try, the steps to practice, two questions with a next step from Son, and the job aids to print.</div>
         <div class="lp-practice">
-          <span class="col-label lp-plabel">Practice, best done tomorrow, once today’s call has settled</span>
+          <span class="col-label lp-plabel">Practice more, if they want. Best done tomorrow, once today’s call has settled</span>
           <div class="n n--tint lp-p" data-from="wmu-learner-path-results"><span class="k">Practice · A new call (AI)</span>Omar, a member who works in Flex, calls about the noise there. Son gives a hint for each HEARD step, and the grader marks three criteria.</div>
-          <div class="n n--tint lp-p" data-from="wmu-learner-path-results"><span class="k">Practice · The private talk</span>The talk promised to Sofia, with Dan, the member who made the call, in five questions.</div>
-          <div class="n n--tint lp-p" data-from="wmu-learner-path-results"><span class="k">Practice · Write it up (AI)</span>A note of a visit from Marta, another member, to log in Cozy Desk. The grader checks the two text entries.</div>
+          <div class="n n--tint lp-p" data-from="wmu-learner-path-results"><span class="k">Practice · A private talk</span>The talk promised to Sofia, with Dan, the member who made the call, in five questions.</div>
+          <div class="n n--tint lp-p" data-from="wmu-learner-path-results"><span class="k">Practice · A log entry to write (AI)</span>In Write it up, a note of a visit from Marta, another member, to log in Cozy Desk. The grader checks the two text entries.</div>
         </div>
       </div>
     </div>
@@ -234,16 +239,18 @@
   </figure>
   <style>
     #learner-path .lp { display: flex; flex-direction: column; gap: 14px; padding-right: 22px; }
-    #learner-path .lp-div { display: flex; align-items: center; gap: 12px; margin-top: 10px; font: 500 12.5px/1.3 'IBM Plex Mono', monospace; color: var(--soft); }
-    #learner-path .lp-div::after { content: ""; flex: 1; border-top: 1.5px dashed var(--line-strong); opacity: .6; }
+    #learner-path .lp-div { display: flex; align-items: center; gap: 12px; margin-top: 10px; font: var(--type-tag); color: var(--soft); }
+    #learner-path .lp-div::after { content: ""; flex: 1; border-top: var(--border-dash); opacity: .6; }
     #learner-path .lp-div.lp-r1 { margin-top: 0; }
+    #learner-path .lp-div.lp-r11 { color: var(--good); font-weight: 600; }
+    #learner-path .lp-div.lp-r11::after { border-top-style: solid; border-top-color: var(--good); opacity: 1; }
     #learner-path .lp-heard { display: flex; gap: 4px; margin: 2px 0 8px; color: var(--alt); }
     #learner-path .lp-heard .letter { margin: 0; }
     #learner-path .lp-port { position: absolute; right: 0; top: 50%; width: 1px; height: 1px; }
-    #learner-path .lp-survey, #learner-path .lp-debrief, #learner-path .lp-rewind, #learner-path .lp-hungup, #learner-path .lp-summary { margin-left: 22px; }
+    #learner-path .lp-survey, #learner-path .lp-debrief, #learner-path .lp-rewind, #learner-path .lp-hungup, #learner-path .lp-summary { margin-left: var(--indent); }
     #learner-path .lp-seq { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; }
     #learner-path .lp-seq li { display: inline-flex; align-items: baseline; gap: 6px; }
-    #learner-path .lp-practice { display: flex; flex-direction: column; gap: 10px; margin-left: 22px; }
+    #learner-path .lp-practice { display: flex; flex-direction: column; gap: 10px; margin-left: var(--indent); }
     #learner-path .lp-p { --route: rail; }
     @container (min-width: 700px) {
       #learner-path .lp { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); column-gap: 56px; row-gap: 22px; }
@@ -269,9 +276,10 @@
   </style>
 </section>
 
-<section class="doc-sec tone-purple" id="branch-map">
+<section class="doc-sec" data-kind="made" id="branch-map">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-branch"/></svg></span><h2><span class="sec-n">4</span>Branches of the call</h2><span class="sec-line"></span></header>
-  <p>Decisions 1 to 3 make up the talk axis and decisions 4 and 5 the resolve axis, and together they set Sofia’s survey answer. [name], [call date] and [call time] are the learner’s own, and [day 1] and [day 2] are the next two working days after the call.</p>
+  <p class="keyline">The call has five decisions, one for each step of HEARD, and together they set Sofia’s score.</p>
+  <p>HEARD, a service recovery technique taught by the <a href="https://www.landscapemanagement.net/?p=72027" target="_blank" rel="noopener">Disney Institute</a>, stands for Hear, Empathize, Apologize, Resolve and Diagnose. Decisions 1 to 3 make up the talk axis and decisions 4 and 5 the resolve axis, and together they set Sofia’s survey answer. [name], [call date] and [call time] are the learner’s own, and [day 1] and [day 2] are the next two working days after the call.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -284,9 +292,10 @@
       <div class="dg bm">
           <div class="n n--plain n--sm bm-say" id="wmu-branch-map-b0"><span class="k">Note · First line of the note, before answering</span>“Sofia · [call date] · [call time]”</div>
           <div class="n n--plain n--sm bm-say" id="wmu-branch-map-b1" data-from="wmu-branch-map-b0"><span class="k">Line · Greeting</span>“Cozy front desk, [name] speaking.”</div>
-          <div class="n n--key bm-dec" id="wmu-branch-map-b2" data-from="wmu-branch-map-b1"><span class="k">Decision 1 <span class="pill bm-ax-talk">Talk</span></span><span class="letter">H</span><b>Hear</b></div>
+          <div class="n n--plain n--sm bm-say" id="wmu-branch-map-b1s" data-from="wmu-branch-map-b1"><span class="k">Son · After Sofia’s opening</span>“Her usual spot is in Focus. That sounds important, so tap Note on that line.” The learner goes on with his Next, or by noting Sofia’s first line, which is lit while his line waits.</div>
+          <div class="n n--key bm-dec" id="wmu-branch-map-b2" data-from="wmu-branch-map-b1s"><span class="k">Decision 1 <span class="pill bm-ax-talk">Talk</span></span><span class="letter">H</span><b>Hear</b></div>
           <div class="bm-opts"><div class="n n--good n--sm" data-from="wmu-branch-map-b2" data-wire="good"><span class="k">Best</span>“I’m listening. Tell me what happened, from the start.”</div><div class="n n--weak n--sm" data-from="wmu-branch-map-b2" data-wire="weak"><span class="k">Weaker</span>Asks a closed question that doubts where it happened</div><div class="n n--weak n--sm" data-from="wmu-branch-map-b2" data-wire="weak"><span class="k">Weaker</span>States the rule, then asks a question that blames her</div></div>
-          <div class="n n--plain n--sm bm-say bm-after" id="wmu-branch-map-b3" data-from="wmu-branch-map-b2"><span class="k">Line · Let her finish</span>“Mm-hm. Go on, I’m listening.”</div>
+          <div class="n n--plain n--sm bm-say bm-after" id="wmu-branch-map-b3" data-from="wmu-branch-map-b2"><span class="k">Son · Let her finish</span>After her reply, Son reads her mood (for the best option, “Nice, she’s opening up.”) and goes on in the same message: “She still has more to get off her chest, so let her finish.” There is no Next, and the line to say comes in with it: “<span style="white-space:nowrap">Mm-hm</span>. Go on, I’m listening.”</div>
           <div class="n n--key bm-dec" id="wmu-branch-map-b4" data-from="wmu-branch-map-b3"><span class="k">Decision 2 <span class="pill bm-ax-talk">Talk</span></span><span class="letter">E</span><b>Empathize</b></div>
           <div class="bm-opts"><div class="n n--good n--sm" data-from="wmu-branch-map-b4" data-wire="good"><span class="k">Best</span>Names the feeling and says her need back</div><div class="n n--weak n--sm" data-from="wmu-branch-map-b4" data-wire="weak"><span class="k">Weaker</span>“I understand” with a solution that puts the work on her</div><div class="n n--weak n--sm" data-from="wmu-branch-map-b4" data-wire="weak"><span class="k">Weaker</span>Reassurance that brushes the feeling off</div></div>
           <div class="n n--key bm-dec bm-after" id="wmu-branch-map-b5" data-from="wmu-branch-map-b4"><span class="k">Decision 3 <span class="pill bm-ax-talk">Talk</span></span><span class="letter">A</span><b>Apologize</b></div>
@@ -307,17 +316,17 @@
   </figure>
   <style>
     #branch-map .bm { display: flex; flex-direction: column; gap: 10px; }
-    #branch-map .bm-opts { display: flex; flex-direction: column; gap: 6px; margin-left: 22px; }
+    #branch-map .bm-opts { display: flex; flex-direction: column; gap: 6px; margin-left: var(--indent); }
     #branch-map .bm-dec { margin-top: 6px; }
     #branch-map .bm-dec .letter { color: var(--ink); }
     #branch-map .bm-ax-talk { border-color: var(--key); color: var(--key); }
     #branch-map .bm-ax-res { border-color: var(--alt); color: var(--alt); }
     #branch-map .legend .pill { margin-right: -2px; }
     #branch-map .bm-end { margin-top: 14px; }
-    #branch-map .bm-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-left: 22px; }
-    #branch-map .bm-score { font: 600 17px/1.3 'Archivo', sans-serif; }
+    #branch-map .bm-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-left: var(--indent); }
+    #branch-map .bm-score { font: 600 17px/1.3 var(--font-head); }
     #branch-map .bm-quote { display: block; margin-top: 4px; font-style: italic; color: var(--soft); }
-    #branch-map .bm-debrief { margin-left: 22px; }
+    #branch-map .bm-debrief { margin-left: var(--indent); }
     #branch-map .bm-after { --route: none; }
     #branch-map .bm-endnote { margin-top: 8px; }
     @container (min-width: 700px) {

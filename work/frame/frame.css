@@ -1,7 +1,9 @@
 /* The document frame of the portfolio: every project document uses it (the Cozy documents are drawn
    by their own runtime with the same values). A dark header with the project's mark, a paper body with
    the contents on the left (a box that opens on a phone), numbered sections, figures with mono captions,
-   and a dark footer. Diagrams add dg.css and dg.js on top. */
+   and a dark footer. Diagrams add dg.css and dg.js on top. The documents speak the project pages' language:
+   each section has the color of its kind (data-kind), opens with a key line (p.keyline), and my own notes
+   sit in a dashed blue box (.callout.my-note). */
 
 :root {
   --night: #1F1A12; --night-line: #4A4235; --night-text: #E8DFD0; --night-soft: #CFC4B1;
@@ -10,47 +12,83 @@
   --accent: #F2A93B;                        /* the rule under the header, the eyebrow */
   --key: #8A5300; --key-tint: #FBEBCB;      /* labels, links, and the tint that marks a level */
   --alt: #2F5A9E; --alt-tint: #E3EAF5;
-  --good: #2F7A4B; --good-tint: #E2EFE5;
+  --good: #2F7A4B; --good-tint: #E2EFE5; --good-ink: #2B7347;   /* green text on the tint: 4.5:1 and more */
   --weak: #B03A48; --weak-tint: #F6E1E1;
   --wire: #8C8170;
-  --tone-ink: #8A5300; --tone-tint: #FBEFDB; --tone-line: #F0D5A4;
+  --tone-ink: var(--ink); --tone-tint: var(--desk); --tone-line: var(--line);   /* a section's own color: set by its kind, below */
+  /* ---- named values: each role has one value, and every rule below uses the name ---- */
+  /* faces */
+  --font-head: 'Archivo', sans-serif; --font-body: 'IBM Plex Sans', sans-serif; --font-mono: 'IBM Plex Mono', monospace;
+  /* corners */
+  --radius-block: 16px;   /* the sheet, a table, a figure's panel */
+  --radius-box: 12px;     /* a box inside: a node, a swatch, a callout's right side */
+  --radius-small: 10px;   /* a small box: a small node, the contents box, a picture */
+  --radius-tick: 4px;     /* a small mark: a swatch, a callout's left side */
+  --radius-pill: 999px;   /* a pill, a dot, an end */
+  /* lines */
+  --line-width: 1.5px;                                   /* the width of an outline, solid or dashed */
+  --border-hair: var(--line-width) solid var(--line);              /* the edge of a box, a table, a panel */
+  --border-strong: var(--line-width) solid var(--line-strong);     /* the edge of a plain node or a swatch */
+  --border-dash: var(--line-width) dashed var(--line-strong);      /* a change for others, a lane, a divider */
+  /* the padding inside a box */
+  --pad-box: 16px 18px;     /* a callout, a code rule */
+  --pad-cell: 14px 16px;    /* a table cell, a small card */
+  --pad-node: 12px 14px;    /* a node of a diagram */
+  --pad-node-s: 8px 12px;   /* a small node */
+  /* type */
+  --type-label: 500 16px/22px var(--font-mono);   /* the eyebrow, the meta line, the foot, a table head, the contents' title */
+  --type-mono: 500 15px/21px var(--font-mono);    /* a number in the contents, a value, a space step */
+  --type-cap: 500 15px/1.3 var(--font-mono);      /* a callout's label, a group's name */
+  --type-meta: 500 15px/1.4 var(--font-mono);     /* the small mono line above a specimen */
+  --type-tag: 500 12.5px/1.3 var(--font-mono);    /* a node's label, a column's name, a divider */
+  --type-chip: 500 13px/1.3 var(--font-mono);     /* a legend entry, a chip */
+  --type-text: 400 16px/24px var(--font-body);    /* a table cell, a list in a card */
+  --type-text-s: 400 16px/22px var(--font-body);  /* a line in the contents box, a tile */
+  --type-text-xs: 400 15px/21px var(--font-body); /* a swatch's lines */
+  --type-keyline: 600 clamp(19px, 2.2vw, 22px)/1.4 var(--font-head);   /* a section's first line (the same in every document) */
+  /* my own notes: a dashed blue box with no fill */
+  --border-note: var(--line-width) dashed var(--alt);
+  /* one color for each kind of section, as on the project pages (ink, tint and line) */
+  --problem-ink: var(--key);  --problem-tint: #FBEFDB; --problem-line: #F0D5A4;   /* orange: the problem and its causes */
+  --goal-ink: var(--alt);     --goal-tint: #E9EFF8;    --goal-line: #C3D2EA;      /* blue: the goal, measuring, results and takeaways */
+  --made-ink: var(--good);    --made-tint: #E6F2EA;    --made-line: #BFDFCB;      /* green: what was made, a style guide, a job aid */
+  --docs-ink: #6A4A8C;        --docs-tint: #F1EAF8;    --docs-line: #D6C8E7;      /* purple: sources and documents */
 }
-/* a section's colour: its icon, its number in the contents, its rule */
-.tone-amber  { --tone-ink: #8A5300; --tone-tint: #FBEFDB; --tone-line: #F0D5A4; }
-.tone-blue   { --tone-ink: #2F5A9E; --tone-tint: #E9EFF8; --tone-line: #C3D2EA; }
-.tone-green  { --tone-ink: #2F7A4B; --tone-tint: #E6F2EA; --tone-line: #BFDFCB; }
-.tone-red    { --tone-ink: #B03A48; --tone-tint: #FBEAEC; --tone-line: #EFC6CB; }
-.tone-purple { --tone-ink: #6A4A8C; --tone-tint: #F1EAF8; --tone-line: #D6C8E7; }
-.tone-brown  { --tone-ink: #6B5B4B; --tone-tint: #F1EBE3; --tone-line: #DCD0C2; }
+/* a section's color is the color of its kind: its number and icon, the rule after its heading, and its number in the contents.
+   The section and its link in the contents both carry data-kind. */
+[data-kind="problem"] { --tone-ink: var(--problem-ink); --tone-tint: var(--problem-tint); --tone-line: var(--problem-line); }
+[data-kind="goal"]    { --tone-ink: var(--goal-ink);    --tone-tint: var(--goal-tint);    --tone-line: var(--goal-line); }
+[data-kind="made"]    { --tone-ink: var(--made-ink);    --tone-tint: var(--made-tint);    --tone-line: var(--made-line); }
+[data-kind="docs"]    { --tone-ink: var(--docs-ink);    --tone-tint: var(--docs-tint);    --tone-line: var(--docs-line); }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-body { margin: 0; background: var(--night); padding: clamp(0px, 3vw, 40px); font: 400 18px/28px 'IBM Plex Sans', sans-serif; color: var(--body); -webkit-font-smoothing: antialiased; }
+body { margin: 0; background: var(--night); padding: clamp(0px, 3vw, 40px); font: 400 18px/28px var(--font-body); color: var(--body); -webkit-font-smoothing: antialiased; }
 a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 3px; }
 a:hover { color: var(--key); }
-:focus-visible { outline: 2px solid #2F5A9E; outline-offset: 2px; }
-.doc { max-width: 1240px; margin: 0 auto; background: var(--paper); border-radius: 16px; }
+:focus-visible { outline: 2px solid var(--alt); outline-offset: 2px; }
+.doc { max-width: 1240px; margin: 0 auto; background: var(--paper); border-radius: var(--radius-block); }
 
 /* ---------- header and footer ---------- */
 .doc-head {
-  background: var(--night); color: var(--paper); border-radius: 16px 16px 0 0;
+  background: var(--night); color: var(--paper); border-radius: var(--radius-block) var(--radius-block) 0 0;
   padding: clamp(28px, 4vw, 52px) clamp(20px, 4vw, 56px) clamp(26px, 3.5vw, 40px);
   display: flex; flex-direction: column; gap: clamp(22px, 3vw, 32px);
 }
 .doc-mark { display: block; height: 34px; width: auto; align-self: flex-start; }
 .doc-mark--icon { height: 52px; }   /* a project mark that is an icon, not a wordmark */
 .doc-titles { display: flex; flex-direction: column; gap: 18px; }
-.doc-eyebrow { font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--accent); letter-spacing: .02em; }
-.doc-head h1 { margin: 0; font: 700 clamp(36px, 6vw, 60px)/1.03 'Archivo', sans-serif; letter-spacing: -0.03em; color: var(--paper); }
-.doc-sub { margin: 0; font: 400 clamp(17px, 2vw, 20px)/1.5 'IBM Plex Sans', sans-serif; color: var(--night-text); text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
-.doc-meta { display: flex; flex-wrap: wrap; gap: 0 24px; padding-top: 18px; border-top: 1px solid var(--night-line); font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--night-soft); }
+.doc-eyebrow { font: var(--type-label); color: var(--accent); letter-spacing: .02em; }
+.doc-head h1 { margin: 0; font: 700 clamp(36px, 6vw, 60px)/1.03 var(--font-head); letter-spacing: -0.03em; color: var(--paper); }
+.doc-sub { margin: 0; font: 400 clamp(17px, 2vw, 20px)/1.5 var(--font-body); color: var(--night-text); text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
+.doc-meta { display: flex; flex-wrap: wrap; gap: 0 24px; padding-top: 18px; border-top: 1px solid var(--night-line); font: var(--type-label); color: var(--night-soft); }
 .doc-meta span { white-space: nowrap; }
 .doc-rule { height: 4px; background: var(--accent); }
 .doc-foot {
-  background: var(--night); color: var(--night-soft); border-radius: 0 0 16px 16px;
+  background: var(--night); color: var(--night-soft); border-radius: 0 0 var(--radius-block) var(--radius-block);
   padding: 28px clamp(20px, 4vw, 56px); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;
-  font: 500 16px/22px 'IBM Plex Mono', monospace;
+  font: var(--type-label);
 }
 .doc-foot .doc-mark { height: 26px; }
 .doc-foot .doc-mark--icon { height: 34px; }
@@ -63,26 +101,26 @@ a:hover { color: var(--key); }
 .doc-layout--wide .doc-main { max-width: none; }   /* a document of wide figures: the column takes the room there is */
 
 .toc-side { display: flex; flex-direction: column; gap: 14px; padding: 0 0 0 2px; }
-.toc-title { font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--key); letter-spacing: .02em; }
+.toc-title { font: var(--type-label); color: var(--key); letter-spacing: .02em; }
 .doc-toc ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
-.toc-side ol { border-left: 1.5px solid var(--line); }
+.toc-side ol { border-left: var(--border-hair); }
 .toc-side a {
-  display: flex; align-items: baseline; gap: 10px; padding: 7px 10px 7px 12px; margin-left: -1.5px; min-height: 36px;
-  border-left: 3px solid transparent; font: 400 16px/21px 'IBM Plex Sans', sans-serif; color: var(--soft); text-decoration: none;
+  display: flex; align-items: baseline; gap: 10px; padding: 7px 10px 7px 12px; margin-left: calc(-1 * var(--line-width)); min-height: 36px;
+  border-left: 3px solid transparent; font: 400 16px/21px var(--font-body); color: var(--soft); text-decoration: none;
 }
 .toc-side a:hover { color: var(--ink); background: var(--desk); }
 .toc-side a[aria-current="true"] { border-left-color: var(--tone-ink); color: var(--ink); font-weight: 600; }
-.toc-num { flex: none; font: 500 15px/21px 'IBM Plex Mono', monospace; color: var(--tone-ink); }
-.toc-dot { flex: none; width: 6px; height: 6px; margin-top: 7px; border-radius: 999px; background: var(--line); }
-.toc-box { display: none; background: var(--paper); border: 1.5px solid var(--line); border-radius: 10px; overflow: hidden; }
+.toc-num { flex: none; font: var(--type-mono); color: var(--tone-ink); }
+.toc-dot { flex: none; width: 6px; height: 6px; margin-top: 7px; border-radius: var(--radius-pill); background: var(--line); }
+.toc-box { display: none; background: var(--paper); border: var(--border-hair); border-radius: var(--radius-small); overflow: hidden; }
 .toc-box summary {
   display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; padding: 12px 16px; cursor: pointer;
-  font: 600 16px/24px 'IBM Plex Sans', sans-serif; color: var(--ink); background: var(--desk); list-style: none;
+  font: 600 16px/24px var(--font-body); color: var(--ink); background: var(--desk); list-style: none;
 }
 .toc-box summary::-webkit-details-marker { display: none; }
-.toc-box summary span { font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--key); }
+.toc-box summary span { font: var(--type-label); color: var(--key); }
 .toc-box ol { padding: 8px; }
-.toc-box a { display: flex; align-items: baseline; gap: 10px; padding: 10px 12px; border-radius: 8px; min-height: 44px; font: 400 16px/22px 'IBM Plex Sans', sans-serif; color: var(--body); text-decoration: none; }
+.toc-box a { display: flex; align-items: baseline; gap: 10px; padding: 10px 12px; border-radius: 8px; min-height: 44px; font: var(--type-text-s); color: var(--body); text-decoration: none; }
 .toc-box a:hover { background: var(--desk); }
 @media (max-width: 859.98px) {
   .doc-toc { flex-basis: 100%; max-width: none; min-width: 0; position: static; max-height: none; overflow: visible; }
@@ -94,38 +132,43 @@ a:hover { color: var(--key); }
 .doc-sec { scroll-margin-top: 24px; display: flex; flex-direction: column; gap: 20px; min-width: 0; }
 .doc-sec + .doc-sec { margin-top: clamp(16px, 3vw, 32px); }
 .sec-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.sec-ico { flex: none; width: 44px; height: 44px; border-radius: 13px; background: var(--tone-tint); border: 1.5px solid var(--tone-line); display: flex; align-items: center; justify-content: center; color: var(--tone-ink); }
+.sec-ico { flex: none; width: 44px; height: 44px; border-radius: 13px; background: var(--tone-tint); border: var(--line-width) solid var(--tone-line); display: flex; align-items: center; justify-content: center; color: var(--tone-ink); }
 .sec-ico svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
-.sec-head h2 { margin: 0; display: flex; gap: 12px; align-items: baseline; font: 600 clamp(24px, 3vw, 30px)/1.2 'Archivo', sans-serif; letter-spacing: -0.01em; color: var(--ink); }
-.sec-n { flex: none; font: 500 18px/1 'IBM Plex Mono', monospace; color: var(--tone-ink); }
+.sec-head h2 { margin: 0; display: flex; gap: 12px; align-items: baseline; font: 600 clamp(24px, 3vw, 30px)/1.2 var(--font-head); letter-spacing: -0.01em; color: var(--ink); }
+.sec-n { flex: none; font: 500 18px/1 var(--font-mono); color: var(--tone-ink); }
 .sec-line { flex: 1 1 40px; min-width: 20px; height: 2px; border-radius: 2px; background: var(--tone-line); }
-.doc-sec h3 { margin: 8px 0 0; font: 600 21px/1.3 'Archivo', sans-serif; letter-spacing: -0.005em; color: var(--ink); }
+.doc-sec h3 { margin: 8px 0 0; font: 600 21px/1.3 var(--font-head); letter-spacing: -0.005em; color: var(--ink); }
 .doc-sec p, .doc-sec li { margin: 0; }
 /* paragraphs and bullet lists of the text are justified; the words inside figures are not */
 .doc-sec > p, .doc-sec > ul > li, .callout p, .table-wrap td { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
 .doc-sec > ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
 .doc-sec > ul > li { display: flex; gap: 12px; }
-.doc-sec > ul > li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 11px; border-radius: 999px; background: var(--tone-ink); }
+.doc-sec > ul > li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: 11px; border-radius: var(--radius-pill); background: var(--tone-ink); }
 .doc-sec > ul.plain > li::before { content: none; }
-code { font: 600 0.9em/1 'IBM Plex Mono', monospace; color: var(--key); }
+/* the key line: a section opens with one short sentence in bold, then the text (as on the project pages) */
+.doc-sec > p.keyline { font: var(--type-keyline); letter-spacing: -0.005em; color: var(--ink); text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+code { font: 600 0.9em/1 var(--font-mono); color: var(--key); }
 b, strong { font-weight: 600; color: var(--ink); }
 
 /* a callout: a paper note with a coloured edge */
-.callout { background: var(--desk); border-left: 4px solid var(--tone-ink); border-radius: 4px 12px 12px 4px; padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
-.callout .k { font: 500 15px/1.3 'IBM Plex Mono', monospace; color: var(--tone-ink); }
+.callout { background: var(--desk); border-left: 4px solid var(--tone-ink); border-radius: var(--radius-tick) var(--radius-box) var(--radius-box) var(--radius-tick); padding: var(--pad-box); display: flex; flex-direction: column; gap: 8px; }
+.callout .k { font: var(--type-cap); color: var(--tone-ink); }
+/* my own notes (how I sorted, what I learned): a dashed blue border and no fill, as on the project pages */
+.callout.my-note { background: none; border: var(--border-note); border-radius: var(--radius-block); }
+.callout.my-note .k { color: var(--alt); }
 
 /* tables */
-.table-wrap { border: 1.5px solid var(--line); border-radius: 16px; background: var(--paper); overflow-x: auto; overscroll-behavior-x: contain; }
+.table-wrap { border: var(--border-hair); border-radius: var(--radius-block); background: var(--paper); overflow-x: auto; overscroll-behavior-x: contain; }
 .table-wrap table { width: 100%; border-collapse: collapse; text-align: left; }
-.table-wrap th { padding: 14px 16px; font: 500 16px/22px 'IBM Plex Mono', monospace; color: var(--ink); vertical-align: bottom; background: var(--desk); border-bottom: 1.5px solid var(--line); }
-.table-wrap td { padding: 14px 16px; font: 400 16px/24px 'IBM Plex Sans', sans-serif; color: var(--body); vertical-align: top; border-bottom: 1px solid var(--line); }
+.table-wrap th { padding: var(--pad-cell); font: var(--type-label); color: var(--ink); vertical-align: bottom; background: var(--desk); border-bottom: var(--border-hair); }
+.table-wrap td { padding: var(--pad-cell); font: var(--type-text); color: var(--body); vertical-align: top; border-bottom: 1px solid var(--line); }
 .table-wrap tr:last-child td { border-bottom: 0; }
 
 /* figures: a panel and a mono caption */
 .fig { margin: 0; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.fig-panel { background: var(--desk); border: 1.5px solid var(--line); border-radius: 16px; padding: clamp(16px, 2.5vw, 28px); overflow-x: auto; container-type: inline-size; }
-.fig-panel > img { display: block; width: 100%; height: auto; border-radius: 10px; }
-.fig figcaption { display: flex; gap: 10px; font: 500 17px/1.35 'IBM Plex Mono', monospace; color: var(--soft); }
+.fig-panel { background: var(--desk); border: var(--border-hair); border-radius: var(--radius-block); padding: clamp(16px, 2.5vw, 28px); overflow-x: auto; container-type: inline-size; }
+.fig-panel > img { display: block; width: 100%; height: auto; border-radius: var(--radius-small); }
+.fig figcaption { display: flex; gap: 10px; font: 500 17px/1.35 var(--font-mono); color: var(--soft); }
 .fig figcaption b { color: var(--key); font-weight: 600; flex: none; }
 
 @media print { body { background: none; padding: 0; } .doc-toc { display: none; } .doc-head, .doc-foot { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }

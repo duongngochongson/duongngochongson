@@ -39,22 +39,24 @@
 <div class="doc-layout doc-layout--wide">
 <aside class="doc-toc">
 <nav class="toc-side" aria-label="Contents"><span class="toc-title">Contents</span><ol>
-<li><a class="tone-amber" href="#action-map"><span class="toc-num">1</span>Action map</a></li>
-<li><a class="tone-blue" href="#module-path"><span class="toc-num">2</span>Path through the module</a></li>
-<li><a class="tone-purple" href="#branching"><span class="toc-num">3</span>Two branching stops</a></li>
-<li><a class="tone-green" href="#ai-chat"><span class="toc-num">4</span>Typed call on slide 5</a></li>
+<li><a data-kind="problem" href="#action-map"><span class="toc-num">1</span>Action map</a></li>
+<li><a data-kind="made" href="#module-path"><span class="toc-num">2</span>Path through the module</a></li>
+<li><a data-kind="made" href="#branching"><span class="toc-num">3</span>Two branching stops</a></li>
+<li><a data-kind="made" href="#ai-chat"><span class="toc-num">4</span>Typed call on slide 5</a></li>
 </ol></nav>
 <details class="toc-box"><summary>Contents<span>4</span></summary><ol>
-<li><a class="tone-amber" href="#action-map"><span class="toc-num">1</span>Action map</a></li>
-<li><a class="tone-blue" href="#module-path"><span class="toc-num">2</span>Path through the module</a></li>
-<li><a class="tone-purple" href="#branching"><span class="toc-num">3</span>Two branching stops</a></li>
-<li><a class="tone-green" href="#ai-chat"><span class="toc-num">4</span>Typed call on slide 5</a></li>
+<li><a data-kind="problem" href="#action-map"><span class="toc-num">1</span>Action map</a></li>
+<li><a data-kind="made" href="#module-path"><span class="toc-num">2</span>Path through the module</a></li>
+<li><a data-kind="made" href="#branching"><span class="toc-num">3</span>Two branching stops</a></li>
+<li><a data-kind="made" href="#ai-chat"><span class="toc-num">4</span>Typed call on slide 5</a></li>
 </ol></details>
 </aside>
 <main class="doc-main">
-<section class="doc-sec tone-amber" id="action-map">
+<section class="doc-sec" data-kind="problem" id="action-map">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-target"/></svg></span><h2><span class="sec-n">1</span>Action map</h2><span class="sec-line"></span></header>
-  <p>Not-Home Delivery Stop is a seven-slide module for drivers at a parcel company, a concept project made for this portfolio. At a not-home stop, nobody answers the door, and the parcel’s handling code sets where it may go: an STD parcel to a safe place, a neighbor or a pickup point, a SIG parcel to a neighbor who signs or a pickup point, and an AGE parcel only to a pickup point. The map gives each action its barriers, practice and job aid, and the two barriers marked “→ Ops” go to operations.</p>
+  <p class="keyline">With action mapping, I found seven barriers (five for training and two for operations) behind four key actions.</p>
+  <p>Not-Home Delivery Stop is a seven-slide module for drivers at a parcel company, a concept project made for this portfolio. At a not-home stop, nobody answers the door, and the parcel’s handling code sets where it may go: an STD parcel to a safe place, a neighbor or a pickup point, a SIG parcel to a neighbor who signs or a pickup point, and an AGE parcel only to a pickup point. The map matches the seven barriers with a solution in three parts: practice for the four actions, job aids for what is hard to remember, and two changes in operations for what training cannot fix. The two barriers marked “→&nbsp;Operations” are the ones that training cannot fix.</p>
+  <div class="callout my-note"><span class="k">How I sorted the barriers</span><p>Cathy Moore sorts barriers into environment, knowledge, skill and motivation. Training helps with knowledge and skill. Stop notes that are hard to find, or a scorecard that rewards skipping the call, need a change in the work.</p></div>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -63,32 +65,32 @@
         <li><span class="sw" style="background:var(--weak-tint);border-color:transparent"></span>Barrier</li>
         <li><span class="sw" style="background:var(--key-tint);border-color:transparent"></span>Practice</li>
         <li><span class="sw" style="background:var(--alt-tint);border-color:transparent"></span>Minimum information</li>
-        <li><span class="sw" style="background:transparent;border-style:dashed"></span>Change for operations</li>
+        <li><span class="sw" style="background:transparent;border-style:dashed"></span>Change in operations</li>
       </ul>
       <div class="dg am">
-        <div class="n n--ink am-goal" id="ds-am-goal"><span class="k">Goal</span>Within three months of rollout, city-route drivers will increase first-attempt success on not-home stops from 45% to 65%, while missing-parcel claims on those stops stay at or below 0.5%.</div>
+        <div class="n n--ink am-goal" id="ds-am-goal"><span class="k">Goal</span>Deliver more of these parcels on the first attempt, without more missing parcels. Within three months, first-attempt success at not-home stops should rise from 45% to 65%, while claims for missing parcels stay at 0.5% or less of those stops.</div>
         <div class="am-rows">
       <div class="am-row">
-        <div class="n n--key am-act" id="ds-am-a1" data-from="ds-am-goal"><span class="k">Action A1</span>Follow the six steps of a not-home stop in order, including the call, before choosing an option.</div>
+        <div class="n n--key am-act" id="ds-am-a1" data-from="ds-am-goal"><span class="k">Action A1</span><b>Follow the steps in order:</b> follow the six steps of a not-home stop in order, including the call, before choosing an option.</div>
         <div class="am-det">
-          <div class="n n--weak n--sm" data-from="ds-am-a1"><span class="k">Barrier · motivation <span class="pill pill--weak">→ Ops</span></span>Some drivers skip the call to protect their stop rate.</div>
+          <div class="n n--weak n--sm" data-from="ds-am-a1"><span class="k">Barrier · motivation <span class="pill pill--weak">→ Operations</span></span>Some drivers skip the call to protect their stop rate.</div>
           <div class="n n--weak n--sm" data-from="ds-am-a1"><span class="k">Barrier · knowledge</span>Some drivers are unsure of the order.</div>
           <div class="n n--tint n--sm" data-from="ds-am-a1"><span class="k">Practice</span>Slide 1, “Put the steps in order”</div>
           <div class="n n--alt n--sm" data-from="ds-am-a1"><span class="k">Minimum information</span>Sequence card</div>
         </div>
       </div>
       <div class="am-row">
-        <div class="n n--key am-act" id="ds-am-a2" data-from="ds-am-goal"><span class="k">Action A2</span>Choose a place for the parcel that the handling code and the customer’s instructions allow.</div>
+        <div class="n n--key am-act" id="ds-am-a2" data-from="ds-am-goal"><span class="k">Action A2</span><b>Choose an allowed option:</b> choose a place for the parcel that the handling code and the customer’s instructions allow.</div>
         <div class="am-det">
           <div class="n n--weak n--sm" data-from="ds-am-a2"><span class="k">Barrier · knowledge</span>Drivers are unsure what SIG and AGE parcels allow.</div>
-          <div class="n n--weak n--sm" data-from="ds-am-a2"><span class="k">Barrier · environment <span class="pill pill--weak">→ Ops</span></span>Stop notes are hard for drivers to find.</div>
+          <div class="n n--weak n--sm" data-from="ds-am-a2"><span class="k">Barrier · environment <span class="pill pill--weak">→ Operations</span></span>Stop notes are hard for drivers to find.</div>
           <div class="n n--tint n--sm" data-from="ds-am-a2"><span class="k">Practice</span>Slide 3, “Sort the parcels”</div>
           <div class="n n--tint n--sm" data-from="ds-am-a2"><span class="k">Practice</span>Slide 7, “Handle two stops”, where each choice changes what happens next</div>
           <div class="n n--alt n--sm" data-from="ds-am-a2"><span class="k">Minimum information</span>Handling codes card</div>
         </div>
       </div>
       <div class="am-row">
-        <div class="n n--key am-act" id="ds-am-a3" data-from="ds-am-goal"><span class="k">Action A3</span>Call the customer and agree on an allowed option within two minutes.</div>
+        <div class="n n--key am-act" id="ds-am-a3" data-from="ds-am-goal"><span class="k">Action A3</span><b>Agree on an option by phone:</b> call the customer and agree on an allowed option within two minutes.</div>
         <div class="am-det">
           <div class="n n--weak n--sm" data-from="ds-am-a3"><span class="k">Barrier · skill</span>Some drivers agree to requests the rules do not allow, and their calls drift from the point.</div>
           <div class="n n--tint n--sm" data-from="ds-am-a3"><span class="k">Practice</span>Slide 4, “Take the call”, with recorded voices</div>
@@ -97,7 +99,7 @@
         </div>
       </div>
       <div class="am-row">
-        <div class="n n--key am-act" id="ds-am-a4" data-from="ds-am-goal"><span class="k">Action A4</span>Place the parcel in a spot that meets all four safe-place rules and take a photo with the house number visible.</div>
+        <div class="n n--key am-act" id="ds-am-a4" data-from="ds-am-goal"><span class="k">Action A4</span><b>Leave the parcel in a safe place:</b> place the parcel in a spot that meets all four safe-place rules and take a photo with the house number visible.</div>
         <div class="am-det">
           <div class="n n--weak n--sm" data-from="ds-am-a4"><span class="k">Barrier · skill</span>Drivers misjudge whether a spot is hidden from the street.</div>
           <div class="n n--weak n--sm" data-from="ds-am-a4"><span class="k">Barrier · knowledge</span>Drivers’ photos miss the house number.</div>
@@ -107,17 +109,17 @@
         </div>
       </div>
         </div>
-        <div class="n n--ops am-ops" data-from="ds-am-goal" data-wire="dash"><span class="k">→ Ops · Changes for operations</span><ul class="am-ops-list"><li><span class="pill pill--key">A1</span><span>Count neighbor and pickup-point handovers as first-attempt successes on the driver scorecard.</span></li><li><span class="pill pill--key">A2</span><span>Show the handling code and stop notes on the arrival screen.</span></li></ul></div>
+        <div class="n n--ops am-ops" data-from="ds-am-goal" data-wire="dash"><span class="k">→ Operations · Two changes in operations for what training cannot fix</span><ul class="am-ops-list"><li><span class="pill pill--key">A1</span><span>Count neighbor and pickup-point handovers as first-attempt successes on the driver scorecard.</span></li><li><span class="pill pill--key">A2</span><span>Show the handling code and stop notes on the arrival screen.</span></li></ul></div>
       </div>
     </div>
-    <figcaption><b>Figure 1</b>Action map, from the goal to each action’s barriers, practice and information, with the changes for operations</figcaption>
+    <figcaption><b>Figure 1</b>Action map, from the goal to each action’s barriers, practice and job aids, with the changes in operations</figcaption>
   </figure>
   <style>
     #action-map .am { display: flex; flex-direction: column; align-items: stretch; gap: 14px; }
-    #action-map .am-rows { display: flex; flex-direction: column; gap: 14px; margin-left: 22px; }
+    #action-map .am-rows { display: flex; flex-direction: column; gap: 14px; margin-left: var(--indent); }
     #action-map .am-row { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
-    #action-map .am-det { display: flex; flex-direction: column; gap: 8px; margin-left: 22px; }
-    #action-map .am-ops { margin-left: 22px; }
+    #action-map .am-det { display: flex; flex-direction: column; gap: 8px; margin-left: var(--indent); }
+    #action-map .am-ops { margin-left: var(--indent); }
     #action-map .am-ops-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px 24px; }
     #action-map .am-ops-list li { display: flex; gap: 10px; align-items: baseline; font-size: 14px; }
     @container (min-width: 760px) {
@@ -132,8 +134,9 @@
   </style>
 </section>
 
-<section class="doc-sec tone-blue" id="module-path">
+<section class="doc-sec" data-kind="made" id="module-path">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-route"/></svg></span><h2><span class="sec-n">2</span>Path through the module</h2><span class="sec-line"></span></header>
+  <p class="keyline">The module practices the four high-priority actions from the action map in seven short slides on a phone.</p>
   <p>Slide 2 opens the four job aids, and the other six slides practice the actions. A driver passes with 80/100 and no broken rule on slide 7. The module also runs in an LMS as a SCORM 1.2 package.</p>
   <figure class="fig">
     <div class="fig-panel">
@@ -147,7 +150,7 @@
       </ul>
       <div class="dg mp">
         <div class="n mp-slide" id="ds-module-path-s1"><span class="k">Slide 1 · Put the steps in order</span><p>Put the six steps of a not-home stop in order. A step can be dragged, moved with buttons, tapped into place or moved with the keyboard.</p><span class="mp-pills"><span class="pill pill--key">10 points</span><span class="pill">A1</span></span></div>
-        <div class="n mp-slide" id="ds-module-path-s2" data-from="ds-module-path-s1"><span class="k">Slide 2 · Job aids</span><p>The driver opens each of the four cards before going on.</p><span class="mp-pills"><span class="pill">Not scored</span></span></div>
+        <div class="n mp-slide" id="ds-module-path-s2" data-from="ds-module-path-s1"><span class="k">Slide 2 · Open the job aids</span><p>The driver opens each of the four cards before going on.</p><span class="mp-pills"><span class="pill">Not scored</span></span></div>
         <div class="n n--alt mp-aids" id="ds-module-path-aids" data-from="ds-module-path-s2" data-wire="dash"><span class="k">Job aids · open from slide 2 on</span><p>On slides 3 to 7, the Job aids button in the top bar opens the four cards again:</p><ul class="mp-list"><li>Sequence</li><li>Handling codes</li><li>Safe place</li><li>Call moves</li></ul></div>
         <div class="n mp-slide mp-s3" id="ds-module-path-s3" data-from="ds-module-path-s2"><span class="k">Slide 3 · Sort the parcels</span><p>Put each of six parcels in the place its code, stop note and call allow. Parcels move in the same four ways as the steps on slide 1.</p><span class="mp-pills"><span class="pill pill--key">20 points</span><span class="pill">A2</span></span></div>
         <div class="n mp-slide" id="ds-module-path-s4" data-from="ds-module-path-s3"><span class="k">Slide 4 · Take the call</span><p>The driver takes a phone call with Ms. Rivera, with recorded voices and captions.</p><span class="mp-pills"><span class="pill pill--key">20 points</span><span class="pill">A3</span></span></div>
@@ -165,10 +168,10 @@
   <style>
     #module-path .mp { display: flex; flex-direction: column; gap: 12px; }
     #module-path .mp-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    #module-path .mp-aids, #module-path .mp-retry, #module-path .mp-ready, #module-path .mp-lms { margin-left: 22px; }
+    #module-path .mp-aids, #module-path .mp-retry, #module-path .mp-ready, #module-path .mp-lms { margin-left: var(--indent); }
     #module-path .mp-s3 { --route: none; }
     #module-path .mp-list { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
-    #module-path .mp-list li { font: 500 13px/1.3 'IBM Plex Mono', monospace; color: var(--alt); border: 1px solid var(--alt); border-radius: 999px; padding: 3px 10px; }
+    #module-path .mp-list li { font: var(--type-chip); color: var(--alt); border: 1px solid var(--alt); border-radius: var(--radius-pill); padding: 3px 10px; }
     #module-path .mp-results { margin-top: 10px; }
     @container (min-width: 700px) {
       #module-path .mp { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); column-gap: 48px; row-gap: 14px; }
@@ -190,9 +193,10 @@
   </style>
 </section>
 
-<section class="doc-sec tone-purple" id="branching">
+<section class="doc-sec" data-kind="made" id="branching">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-branch"/></svg></span><h2><span class="sec-n">3</span>Two branching stops</h2><span class="sec-line"></span></header>
-  <p>Slide 7 puts the driver at two doors, an STD parcel and then a SIG parcel, with three decisions at each. A weaker choice ends the stop as returned or as a violation, or goes on with no points.</p>
+  <p class="keyline">Slide 7 is a branching scenario with two stops, and each choice changes what happens next.</p>
+  <p>The driver is at two doors, an STD parcel and then a SIG parcel, with three decisions at each. A weaker choice ends the stop as returned or as a violation, or goes on with no points.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -229,12 +233,12 @@
   <style>
     #branching .br { display: flex; flex-direction: column; gap: 22px; }
     #branching .br-stop { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-    #branching .br-head { position: relative; z-index: 1; font: 600 18px/1.3 'Archivo', sans-serif; color: var(--ink); padding: 2px 0 4px; }
-    #branching .br-head .k { display: block; font: 500 12.5px/1.3 'IBM Plex Mono', monospace; color: var(--key); margin-bottom: 2px; }
-    #branching .br-opts { display: flex; flex-direction: column; gap: 6px; margin-left: 22px; }
+    #branching .br-head { position: relative; z-index: 1; font: 600 18px/1.3 var(--font-head); color: var(--ink); padding: 2px 0 4px; }
+    #branching .br-head .k { display: block; font: var(--type-tag); color: var(--key); margin-bottom: 2px; }
+    #branching .br-opts { display: flex; flex-direction: column; gap: 6px; margin-left: var(--indent); }
     #branching .br-dec + .br-opts + .br-dec { margin-top: 6px; }
-    #branching .br-ends { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding: 12px; border-radius: 14px; border: 1.5px dashed var(--line-strong); }
-    #branching .br-e { border-radius: 12px; }
+    #branching .br-ends { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 6px; margin-top: 8px; padding: 12px; border-radius: 14px; border: var(--border-dash); }
+    #branching .br-e { border-radius: var(--radius-box); }
     @container (min-width: 760px) {
       #branching .br { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 52px; row-gap: 26px; }
       #branching .br-score { grid-column: 1 / -1; }
@@ -243,9 +247,10 @@
   </style>
 </section>
 
-<section class="doc-sec tone-green" id="ai-chat">
+<section class="doc-sec" data-kind="made" id="ai-chat">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-chat"/></svg></span><h2><span class="sec-n">4</span>Typed call on slide 5</h2><span class="sec-line"></span></header>
-  <p>On slide 5, an AI model plays Mr. Hayes, a customer with an AGE parcel, and a second model checks the call against the three call moves. The slide has no points, and it switches to a self-check if the service fails.</p>
+  <p class="keyline">On slide 5, an AI model plays a customer in a typed call, and a second model checks it against the three call moves.</p>
+  <p>The customer is Mr. Hayes, with an AGE parcel. The slide has no points, and it switches to a self-check if the service fails.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="legend" aria-label="Key">
@@ -279,14 +284,14 @@
   <style>
     #ai-chat .ac { display: flex; flex-direction: column; gap: 10px; }
     #ai-chat .ac-lane { display: none; }
-    #ai-chat .ac-b, #ai-chat .ac-c, #ai-chat .ac-card { margin-left: 22px; }
+    #ai-chat .ac-b, #ai-chat .ac-c, #ai-chat .ac-card { margin-left: var(--indent); }
     #ai-chat .ac-moves { margin: 6px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
     #ai-chat .ac-out { margin-top: 8px; }
-    #ai-chat .ac-retry { margin-left: 22px; }
+    #ai-chat .ac-retry { margin-left: var(--indent); }
     #ai-chat .ac-fall { margin-top: 8px; }
     @container (min-width: 700px) {
       #ai-chat .ac { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 40px; row-gap: 14px; align-items: start; }
-      #ai-chat .ac-lane { display: block; padding-bottom: 6px; border-bottom: 1.5px dashed var(--line-strong); }
+      #ai-chat .ac-lane { display: block; padding-bottom: 6px; border-bottom: var(--border-dash); }
       #ai-chat .ac-l1 { grid-column: 1; grid-row: 1; } #ai-chat .ac-l2 { grid-column: 2; grid-row: 1; } #ai-chat .ac-l3 { grid-column: 3; grid-row: 1; }
       #ai-chat .ac-a, #ai-chat .ac-b, #ai-chat .ac-c, #ai-chat .ac-card { margin-left: 0; --route: v; }
       #ai-chat .ac-a { grid-column: 1; } #ai-chat .ac-b { grid-column: 2; } #ai-chat .ac-c { grid-column: 3; }

@@ -19,17 +19,17 @@
 /* groups inside a figure */
 .sg-stack { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
 .sg-group { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-.sg-group-k { font: 500 15px/1.3 'IBM Plex Mono', monospace; color: var(--key); }
+.sg-group-k { font: var(--type-cap); color: var(--key); }
 
 /* color swatches */
 .sg-swatches { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 196px), 1fr)); gap: 12px; }
-.sg-swatch { display: flex; flex-direction: column; background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; overflow: hidden; }
-.sg-chip { display: block; height: 56px; border-bottom: 1.5px solid var(--line); }
+.sg-swatch { display: flex; flex-direction: column; background: var(--paper); border: var(--border-hair); border-radius: var(--radius-box); overflow: hidden; }
+.sg-chip { display: block; height: 56px; border-bottom: var(--border-hair); }
 .sg-sw-body { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 14px; }
-.sg-sw-name { font: 600 16px/22px 'IBM Plex Mono', monospace; color: var(--ink); }
-.sg-sw-hex { font: 500 15px/21px 'IBM Plex Mono', monospace; color: var(--soft); }
-.sg-sw-role { font: 400 15px/21px 'IBM Plex Sans', sans-serif; color: var(--body); }
-.sg-sw-ratios { list-style: none; margin: 6px 0 0; padding: 8px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; font: 400 15px/21px 'IBM Plex Sans', sans-serif; color: var(--soft); }
+.sg-sw-name { font: 600 16px/22px var(--font-mono); color: var(--ink); }
+.sg-sw-hex { font: var(--type-mono); color: var(--soft); }
+.sg-sw-role { font: var(--type-text-xs); color: var(--body); }
+.sg-sw-ratios { list-style: none; margin: 6px 0 0; padding: 8px 0 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; font: var(--type-text-xs); color: var(--soft); }
 .sg-sw-ratios b { font-weight: 600; color: var(--ink); }
 
 /* type specimens, in the module's fonts and at its root size */
@@ -37,7 +37,7 @@
 .sg-type li { display: flex; flex-direction: column; gap: 6px; padding: 16px 0; border-bottom: 1px solid var(--line); }
 .sg-type li:first-child { padding-top: 0; }
 .sg-type li:last-child { padding-bottom: 0; border-bottom: 0; }
-.sg-type-meta { margin: 0; font: 500 15px/1.4 'IBM Plex Mono', monospace; color: var(--soft); }
+.sg-type-meta { margin: 0; font: var(--type-meta); color: var(--soft); }
 .sg-type-meta b { font-weight: 600; color: var(--key); }
 .sg-type-sample { color: var(--sg-ink); }
 .sg-t-title { font: 600 calc(1.953 * var(--sg-rem))/1.2 'Barlow Semi Condensed', sans-serif; }
@@ -48,23 +48,23 @@
 
 .sg-legible { display: flex; flex-direction: column; gap: 14px; }
 .sg-face { display: flex; flex-direction: column; gap: 2px; font-size: calc(1.25 * var(--sg-rem)); line-height: 1.35; color: var(--sg-ink); }
-.sg-face span { font: 500 15px/1.4 'IBM Plex Mono', monospace; color: var(--soft); }
+.sg-face span { font: var(--type-meta); color: var(--soft); }
 .sg-face--barlow { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 600; }
 .sg-face--atk { font-family: 'Atkinson Hyperlegible Next', sans-serif; font-weight: 400; }
 .sg-face--atk-b { font-family: 'Atkinson Hyperlegible Next', sans-serif; font-weight: 700; }
-.sg-code-rule { margin-top: 6px; padding: 16px 18px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; gap: 8px; }
+.sg-code-rule { margin-top: 6px; padding: var(--pad-box); background: var(--paper); border: var(--border-hair); border-radius: var(--radius-box); display: flex; flex-direction: column; gap: 8px; }
 .sg-code-demo { font: 600 calc(1.563 * var(--sg-rem))/1.2 'Barlow Semi Condensed', sans-serif; color: var(--sg-ink); }
 .sg-ds-code { font-family: 'Atkinson Hyperlegible Next', sans-serif; font-size: inherit; font-weight: inherit; }
 .sg-markup { font-size: 15px; line-height: 1.5; overflow-wrap: anywhere; }
 
 /* space, radius, line and elevation */
 .sg-space { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.sg-space li { display: grid; grid-template-columns: 92px 64px auto; align-items: center; gap: 14px; font: 500 15px/21px 'IBM Plex Mono', monospace; color: var(--soft); }
+.sg-space li { display: grid; grid-template-columns: 92px 64px auto; align-items: center; gap: 14px; font: var(--type-mono); color: var(--soft); }
 .sg-space code { font-size: 15px; line-height: 21px; }
 .sg-bar { height: 12px; border-radius: 3px; background: var(--sg-primary); }
 .sg-tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr)); gap: 16px; }
 .sg-tiles--two { grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
-.sg-tile { padding: 14px 16px; background: var(--sg-surface); border: 1px solid var(--sg-divider); font: 400 16px/22px 'IBM Plex Sans', sans-serif; color: var(--ink); }
+.sg-tile { padding: var(--pad-cell); background: var(--sg-surface); border: 1px solid var(--sg-divider); font: var(--type-text-s); color: var(--ink); }
 .sg-tile--control, .sg-tile--outline, .sg-tile--focus { border: 2px solid var(--sg-outline); border-radius: 8px; }
 .sg-tile--panel { border: 2px solid var(--sg-outline); border-radius: 12px; }
 .sg-tile--pill { border: 2px solid var(--sg-outline); border-radius: 999px; padding-inline: 20px; }
@@ -76,20 +76,20 @@
 .sg-shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px 16px; align-items: start; }
 .sg-shots--row { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 18px 16px; }
 .sg-shot { margin: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
-.sg-shot img { display: block; max-width: 100%; height: auto; background: var(--sg-surface); border: 1.5px solid var(--line); border-radius: 10px; }
-.fig .sg-shot figcaption { display: block; font: 500 15px/1.35 'IBM Plex Mono', monospace; color: var(--soft); }
+.sg-shot img { display: block; max-width: 100%; height: auto; background: var(--sg-surface); border: var(--border-hair); border-radius: var(--radius-small); }
+.fig .sg-shot figcaption { display: block; font: 500 15px/1.35 var(--font-mono); color: var(--soft); }
 
 /* screen anatomy */
 .sg-anatomy { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 24px 28px; }
 .sg-anatomy .sg-shot { flex: 0 1 404px; }
 .sg-legend { flex: 1 1 220px; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
-.sg-legend li { display: flex; gap: 12px; font: 400 16px/24px 'IBM Plex Sans', sans-serif; color: var(--body); }
-.sg-legend-n { flex: none; width: 28px; height: 28px; margin-top: -2px; border-radius: 999px; background: var(--accent); font: 600 15px/28px 'IBM Plex Mono', monospace; color: var(--ink); text-align: center; }
+.sg-legend li { display: flex; gap: 12px; font: var(--type-text); color: var(--body); }
+.sg-legend-n { flex: none; width: 28px; height: 28px; margin-top: -2px; border-radius: var(--radius-pill); background: var(--accent); font: 600 15px/28px var(--font-mono); color: var(--ink); text-align: center; }
 
 /* the grid at each breakpoint */
 .doc-sec > ul.sg-bps { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 12px; }
-.doc-sec > ul.sg-bps > li { display: flex; flex-direction: column; gap: 2px; padding: 14px 16px; background: var(--paper); border: 1.5px solid var(--line); border-radius: 12px; font: 400 16px/24px 'IBM Plex Sans', sans-serif; color: var(--body); text-align: left; }
-.sg-bp-k { margin-bottom: 4px; font: 500 15px/21px 'IBM Plex Mono', monospace; color: var(--key); }
+.doc-sec > ul.sg-bps > li { display: flex; flex-direction: column; gap: 2px; padding: var(--pad-cell); background: var(--paper); border: var(--border-hair); border-radius: var(--radius-box); font: var(--type-text); color: var(--body); text-align: left; }
+.sg-bp-k { margin-bottom: 4px; font: var(--type-mono); color: var(--key); }
 
 /* tables: names and short lists sit left; only prose cells stay justified */
 .table-wrap.sg-left td, .table-wrap.sg-lead td:first-child { text-align: left; }
@@ -123,43 +123,44 @@
 <h1>Style guide</h1>
 <p class="doc-sub">The design tokens, type, components, motion and sound of the seven-slide delivery module, and the rules that keep it readable on a phone between stops.</p>
 </div>
-<div class="doc-meta"><span>23 min read</span><span>12 sections</span></div>
+<div class="doc-meta"><span>24 min read</span><span>12 sections</span></div>
 </header>
 <div class="doc-rule"></div>
 <div class="doc-layout">
 <aside class="doc-toc">
 <nav class="toc-side" aria-label="Contents"><span class="toc-title">Contents</span><ol>
-<li><a class="tone-amber" href="#purpose"><span class="toc-num">1</span>Purpose and scope</a></li>
-<li><a class="tone-blue" href="#principles"><span class="toc-num">2</span>Principles</a></li>
-<li><a class="tone-green" href="#color"><span class="toc-num">3</span>Color</a></li>
-<li><a class="tone-red" href="#type"><span class="toc-num">4</span>Type</a></li>
-<li><a class="tone-purple" href="#space"><span class="toc-num">5</span>Space, shape and layout</a></li>
-<li><a class="tone-brown" href="#icons"><span class="toc-num">6</span>Icons</a></li>
-<li><a class="tone-amber" href="#components"><span class="toc-num">7</span>Components</a></li>
-<li><a class="tone-blue" href="#motion"><span class="toc-num">8</span>Motion</a></li>
-<li><a class="tone-green" href="#sound"><span class="toc-num">9</span>Sound and captions</a></li>
-<li><a class="tone-red" href="#voice"><span class="toc-num">10</span>Voice and microcopy</a></li>
-<li><a class="tone-purple" href="#access"><span class="toc-num">11</span>Accessibility</a></li>
-<li><a class="tone-brown" href="#assets"><span class="toc-num">12</span>Assets and licenses</a></li>
+<li><a data-kind="made" href="#purpose"><span class="toc-num">1</span>Purpose &amp; scope</a></li>
+<li><a data-kind="made" href="#principles"><span class="toc-num">2</span>Principles</a></li>
+<li><a data-kind="made" href="#color"><span class="toc-num">3</span>Color</a></li>
+<li><a data-kind="made" href="#type"><span class="toc-num">4</span>Type</a></li>
+<li><a data-kind="made" href="#space"><span class="toc-num">5</span>Space, shape &amp; layout</a></li>
+<li><a data-kind="made" href="#icons"><span class="toc-num">6</span>Icons</a></li>
+<li><a data-kind="made" href="#components"><span class="toc-num">7</span>Components</a></li>
+<li><a data-kind="made" href="#motion"><span class="toc-num">8</span>Motion</a></li>
+<li><a data-kind="made" href="#sound"><span class="toc-num">9</span>Sound &amp; captions</a></li>
+<li><a data-kind="made" href="#voice"><span class="toc-num">10</span>Voice &amp; microcopy</a></li>
+<li><a data-kind="made" href="#access"><span class="toc-num">11</span>Accessibility</a></li>
+<li><a data-kind="made" href="#assets"><span class="toc-num">12</span>Assets &amp; licenses</a></li>
 </ol></nav>
 <details class="toc-box"><summary>Contents<span>12</span></summary><ol>
-<li><a class="tone-amber" href="#purpose"><span class="toc-num">1</span>Purpose and scope</a></li>
-<li><a class="tone-blue" href="#principles"><span class="toc-num">2</span>Principles</a></li>
-<li><a class="tone-green" href="#color"><span class="toc-num">3</span>Color</a></li>
-<li><a class="tone-red" href="#type"><span class="toc-num">4</span>Type</a></li>
-<li><a class="tone-purple" href="#space"><span class="toc-num">5</span>Space, shape and layout</a></li>
-<li><a class="tone-brown" href="#icons"><span class="toc-num">6</span>Icons</a></li>
-<li><a class="tone-amber" href="#components"><span class="toc-num">7</span>Components</a></li>
-<li><a class="tone-blue" href="#motion"><span class="toc-num">8</span>Motion</a></li>
-<li><a class="tone-green" href="#sound"><span class="toc-num">9</span>Sound and captions</a></li>
-<li><a class="tone-red" href="#voice"><span class="toc-num">10</span>Voice and microcopy</a></li>
-<li><a class="tone-purple" href="#access"><span class="toc-num">11</span>Accessibility</a></li>
-<li><a class="tone-brown" href="#assets"><span class="toc-num">12</span>Assets and licenses</a></li>
+<li><a data-kind="made" href="#purpose"><span class="toc-num">1</span>Purpose &amp; scope</a></li>
+<li><a data-kind="made" href="#principles"><span class="toc-num">2</span>Principles</a></li>
+<li><a data-kind="made" href="#color"><span class="toc-num">3</span>Color</a></li>
+<li><a data-kind="made" href="#type"><span class="toc-num">4</span>Type</a></li>
+<li><a data-kind="made" href="#space"><span class="toc-num">5</span>Space, shape &amp; layout</a></li>
+<li><a data-kind="made" href="#icons"><span class="toc-num">6</span>Icons</a></li>
+<li><a data-kind="made" href="#components"><span class="toc-num">7</span>Components</a></li>
+<li><a data-kind="made" href="#motion"><span class="toc-num">8</span>Motion</a></li>
+<li><a data-kind="made" href="#sound"><span class="toc-num">9</span>Sound &amp; captions</a></li>
+<li><a data-kind="made" href="#voice"><span class="toc-num">10</span>Voice &amp; microcopy</a></li>
+<li><a data-kind="made" href="#access"><span class="toc-num">11</span>Accessibility</a></li>
+<li><a data-kind="made" href="#assets"><span class="toc-num">12</span>Assets &amp; licenses</a></li>
 </ol></details>
 </aside>
 <main class="doc-main">
-<section class="doc-sec tone-amber" id="purpose">
-  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-info"/></svg></span><h2><span class="sec-n">1</span>Purpose and scope</h2><span class="sec-line"></span></header>
+<section class="doc-sec" data-kind="made" id="purpose">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-info"/></svg></span><h2><span class="sec-n">1</span>Purpose &amp; scope</h2><span class="sec-line"></span></header>
+  <p class="keyline">The look of the module is built around one place: a phone, outdoors, between stops.</p>
   <p>This guide sets the look and the interaction rules of Not-Home Delivery Stop, a seven-slide module that teaches delivery drivers what to do when nobody answers the door. Every value comes from the module’s source code.</p>
   <p>Each slide, its type and its main components:</p>
   <div class="table-wrap sg-left sg-lead">
@@ -167,7 +168,7 @@
       <thead><tr><th scope="col">Slide and type</th><th scope="col">Main components</th></tr></thead>
       <tbody>
       <tr><td>1 · Put the steps in order<br><code>sequence</code></td><td>StepCard</td></tr>
-      <tr><td>2 · Job aids<br><code>reveal</code></td><td>RevealCard</td></tr>
+      <tr><td>2 · Open the job aids<br><code>reveal</code></td><td>RevealCard</td></tr>
       <tr><td>3 · Sort the parcels<br><code>categorize</code></td><td>ParcelCard, CodeBadge, Bin</td></tr>
       <tr><td>4 · Take the call<br><code>dialogue</code></td><td>DialogueBubble, PlayLineButton, CaptionBar, ChoiceCard</td></tr>
       <tr><td>5 · Write the call<br><code>ai-chat</code></td><td>ChatComposer, CheckCard</td></tr>
@@ -178,8 +179,9 @@
   </div>
   <p>Every slide sits in the same frame: the TopBar, a task zone and the ActionBar.</p>
 </section>
-<section class="doc-sec tone-blue" id="principles">
+<section class="doc-sec" data-kind="made" id="principles">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-star"/></svg></span><h2><span class="sec-n">2</span>Principles</h2><span class="sec-line"></span></header>
+  <p class="keyline">Three principles guide every screen: readable on the street, one thing per screen, and meaning never by color alone.</p>
   <div class="table-wrap sg-lead">
     <table>
       <thead><tr><th scope="col">Principle</th><th scope="col">What it means on every screen</th></tr></thead>
@@ -191,9 +193,10 @@
     </table>
   </div>
 </section>
-<section class="doc-sec tone-green" id="color">
+<section class="doc-sec" data-kind="made" id="color">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-palette"/></svg></span><h2><span class="sec-n">3</span>Color</h2><span class="sec-line"></span></header>
-  <p>The module has one light theme with seventeen color tokens. Text reaches at least 4.5:1, body text aims for 7:1, and outlines and icons reach 3:1.</p>
+  <p class="keyline">The module has one light theme with seventeen color tokens.</p>
+  <p>Text reaches at least 4.5:1, body text aims for 7:1, and outlines and icons reach 3:1.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-stack">
@@ -237,9 +240,10 @@
   <p>Primary blue carries the buttons, the selection and the focus ring. Amber marks one highlight per screen, as a fill only, because amber text on white would reach only 2.01:1. Green and red mark correct and incorrect, and each always comes with an icon and a word.</p>
   <div class="callout"><span class="k">Illustration</span><p>The doorstep picture uses an ink outline and flat fills from the palette. It leaves out amber, green and red, which are kept for the highlight and for feedback.</p></div>
 </section>
-<section class="doc-sec tone-red" id="type">
+<section class="doc-sec" data-kind="made" id="type">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-type"/></svg></span><h2><span class="sec-n">4</span>Type</h2><span class="sec-line"></span></header>
-  <p>Headings are Barlow Semi Condensed 600, and body text is Atkinson Hyperlegible Next 400 and 700. Each size is 1.25 times the one below, from a 16px root that becomes 18px from 600px wide. There are no italics: emphasis is bold.</p>
+  <p class="keyline">Headings are Barlow Semi Condensed 600, and body text is Atkinson Hyperlegible Next 400 and 700.</p>
+  <p>Each size is 1.25 times the one below, from a 16px root that becomes 18px from 600px wide. There are no italics: emphasis is bold.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="sg-type">
@@ -272,9 +276,10 @@
   </figure>
   <p>Both fonts are served with the module, not from a CDN, because an LMS can block outside servers.</p>
 </section>
-<section class="doc-sec tone-purple" id="space">
-  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-layout"/></svg></span><h2><span class="sec-n">5</span>Space, shape and layout</h2><span class="sec-line"></span></header>
-  <p>Space is on a 4px base, in eight steps. Touch targets are at least 44 × 44px and 8px apart.</p>
+<section class="doc-sec" data-kind="made" id="space">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-layout"/></svg></span><h2><span class="sec-n">5</span>Space, shape &amp; layout</h2><span class="sec-line"></span></header>
+  <p class="keyline">Space is on a 4px base, in eight steps.</p>
+  <p>Touch targets are at least 44 × 44px and 8px apart.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-stack">
@@ -337,14 +342,16 @@
     <figcaption><b>Figure 5</b>Three zones of a slide</figcaption>
   </figure>
 </section>
-<section class="doc-sec tone-brown" id="icons">
+<section class="doc-sec" data-kind="made" id="icons">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-search"/></svg></span><h2><span class="sec-n">6</span>Icons</h2><span class="sec-line"></span></header>
-  <p>The 35 icons come from Lucide, on a 24px grid with a 2px stroke, at 16, 20 and 24px. Every icon has a text label, and each state’s icon always comes with its word.</p>
+  <p class="keyline">The 35 icons come from Lucide, on a 24px grid with a 2px stroke, at 16, 20 and 24px.</p>
+  <p>Every icon has a text label, and each state’s icon always comes with its word.</p>
   <p>In forced colors mode, an icon takes the color of the text beside it.</p>
 </section>
-<section class="doc-sec tone-amber" id="components">
+<section class="doc-sec" data-kind="made" id="components">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-components"/></svg></span><h2><span class="sec-n">7</span>Components</h2><span class="sec-line"></span></header>
-  <p>The components are written in React and take every value from the tokens. Each figure shows a component in its states, at 360px wide.</p>
+  <p class="keyline">The components are written in React and take every value from the tokens.</p>
+  <p>Each figure shows a component in its states, at 360px wide.</p>
   <h3>Button</h3>
   <p>Primary buttons are filled, secondary buttons are outlined, and text buttons, such as Back, have neither. A disabled button still says what to do first, such as “Choose an option first”.</p>
   <figure class="fig">
@@ -528,9 +535,10 @@
     <figcaption><b>Figure 16</b>HotspotScene on the DoorstepScene, with spot 4 selected</figcaption>
   </figure>
 </section>
-<section class="doc-sec tone-blue" id="motion">
+<section class="doc-sec" data-kind="made" id="motion">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-motion"/></svg></span><h2><span class="sec-n">8</span>Motion</h2><span class="sec-line"></span></header>
-  <p>Movements are short and simple. A state changes in 150ms, things enter in 250ms and cards turn in 300ms, all with an ease-out curve, which starts fast and slows down at the end. With reduced motion, every movement becomes a 150ms fade.</p>
+  <p class="keyline">Movements are short and simple.</p>
+  <p>A state changes in 150ms, things enter in 250ms and cards turn in 300ms, all with an ease-out curve, which starts fast and slows down at the end. With reduced motion, every movement becomes a 150ms fade.</p>
   <div class="table-wrap sg-lead">
     <table>
       <thead><tr><th scope="col">Token and value</th><th scope="col">Use</th></tr></thead>
@@ -545,17 +553,19 @@
   </div>
   <p>With reduced motion, entrances and turns become 150ms fades, and the flip card cross-fades instead of rotating.</p>
 </section>
-<section class="doc-sec tone-green" id="sound">
-  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-captions"/></svg></span><h2><span class="sec-n">9</span>Sound and captions</h2><span class="sec-line"></span></header>
-  <p>Only slide 4 has sound. Each line of the call is a short MP3 with a WebVTT captions file, made with Piper, an open-source text-to-speech tool.</p>
+<section class="doc-sec" data-kind="made" id="sound">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-captions"/></svg></span><h2><span class="sec-n">9</span>Sound &amp; captions</h2><span class="sec-line"></span></header>
+  <p class="keyline">Only slide 4 has sound, and every line has captions.</p>
+  <p>Each line of the call is a short MP3 with a WebVTT captions file, made with Piper, an open-source text-to-speech tool.</p>
   <ul>
     <li><span><b>No autoplay</b> (WCAG 1.4.2). Nothing plays until the learner presses Play, and one line plays at a time.</span></li>
     <li><span><b>Captions on by default.</b> The learner’s choice holds on every slide and after a reload.</span></li>
   </ul>
 </section>
-<section class="doc-sec tone-red" id="voice">
-  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-chat"/></svg></span><h2><span class="sec-n">10</span>Voice and microcopy</h2><span class="sec-line"></span></header>
-  <p>The module talks to a driver between stops, in short, plain US English.</p>
+<section class="doc-sec" data-kind="made" id="voice">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-chat"/></svg></span><h2><span class="sec-n">10</span>Voice &amp; microcopy</h2><span class="sec-line"></span></header>
+  <p class="keyline">The module talks to a driver between stops, in short, plain US English.</p>
+
   <ul>
     <li><span><b>Buttons say the action</b>: “Check answer”, “Show hint”, “Continue”, “Back”, “Close”, “Try again”, “Improve your score”, “Finish and submit”.</span></li>
     <li><span><b>A disabled control says what to do first</b>: “Choose an option first”, “Reach slide 2 first”.</span></li>
@@ -566,9 +576,10 @@
     <li><span><b>The same words every time</b>: handling code (STD, SIG, AGE), stop note, safe place, neighbor, pickup point, depot, call moves and job aids.</span></li>
   </ul>
 </section>
-<section class="doc-sec tone-purple" id="access">
+<section class="doc-sec" data-kind="made" id="access">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-access"/></svg></span><h2><span class="sec-n">11</span>Accessibility</h2><span class="sec-line"></span></header>
-  <p>Every task works with touch, a pointer and a keyboard, and a test runs axe-core on every slide and state at four widths.</p>
+  <p class="keyline">Every task works with touch, a pointer and a keyboard.</p>
+  <p>A test runs axe-core on every slide and state at four widths.</p>
   <h3>Every way to move</h3>
   <p>Drag and drop on slides 1 and 3 runs on one state machine, so all four ways of moving give the same result (WCAG 2.5.7 and 2.1.1).</p>
   <div class="table-wrap sg-lead">
@@ -596,9 +607,10 @@
   </div>
   <div class="callout"><span class="k">Every state shows more than a color</span><p>A list of every state and how it is shown besides color drives two tests, which fail if a state has a color but no icon or no visible word.</p></div>
 </section>
-<section class="doc-sec tone-brown" id="assets">
-  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-license"/></svg></span><h2><span class="sec-n">12</span>Assets and licenses</h2><span class="sec-line"></span></header>
-  <p>The voice, the icons and the fonts are shared under open licenses, and the module’s Credits screen lists them.</p>
+<section class="doc-sec" data-kind="made" id="assets">
+  <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-license"/></svg></span><h2><span class="sec-n">12</span>Assets &amp; licenses</h2><span class="sec-line"></span></header>
+  <p class="keyline">The voice, the icons and the fonts are shared under open licenses.</p>
+  <p>The module’s Credits screen lists them.</p>
   <div class="table-wrap sg-left">
     <table>
       <thead><tr><th scope="col">Asset and use</th><th scope="col">License</th></tr></thead>
