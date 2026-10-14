@@ -188,7 +188,7 @@ React draws the screens, XState runs the course’s logic, Zod checks the conten
 
 ## Results & takeaways
 
-I put my heart into this project, and it taught me many lessons.
+I put a lot of time and effort into this project, and it taught me many lessons.
 
 - **Plan slow, build fast.** Planning every line and screen before building felt slow at first, but it saved a lot of time later, when I had to change things.
 - **Plan for the unplanned.** However carefully I planned, small issues still came up that I only found after building the prototype, so I now leave buffer time to fix them.
