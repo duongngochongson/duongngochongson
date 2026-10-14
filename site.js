@@ -217,20 +217,20 @@
   if (viButton && !viButton.hidden && store.get('lang') === 'vi') setLang('vi');
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
   // ---- the greeting: once per page load, its letters are decoded like the About intro's; then "I'm Son." takes its color with a press ----
-  // While the letters settle, the whole line is in the text color; then, like a pressed key, the color runs quickly to a hot orange and
-  // settles into the accent as the key comes back up, over about a second (styles.css, gr-press).
+  // While the letters settle, the whole line is in the text color; then, like a pressed key, the color runs to a hot orange and
+  // settles into the accent as the key comes back up, over about two seconds (styles.css, gr-press).
   const greeting = document.querySelector('.side h1');
   if (greeting && !reduceMotion()) {
     greeting.classList.add('is-decoding', 'gr-wait');
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => {
-      greetRun = decode([greeting], () => {
+      greetRun = decode([greeting], () => {  // (twice as slow as the About intro's)
         greetRun = null;
         setTimeout(() => {
           greeting.classList.remove('gr-wait');
           const accent = greeting.querySelector('.accent');
           if (accent) accent.classList.add('gr-press');
         }, 260);
-      });
+      }, 2);
     }, 250));
   }
   // ---- copy the email: the button shows a tick and a short note for a moment ----
@@ -291,14 +291,15 @@
     p.append(el);
     return { p, el, list };
   }
-  function decode(paragraphs, end) {  // the paragraphs one after another: the next one starts as the rest of the last one begins
+  function decode(paragraphs, end, pace = 1) {  // the paragraphs one after another: the next one starts as the rest of the last one begins
+    // (pace stretches every time in it: 2 is twice as slow, the flicker included)
     const layers = paragraphs.map(layer).filter(Boolean);
     const all = [];
     layers.forEach((L, n) => {
-      const at = n * HEAD_MS;
+      const at = n * HEAD_MS * pace;
       L.list.forEach(g => {
-        if (g.head) { g.start = at + g.k * STEP; g.end = g.start + 150; }
-        else { g.start = at + HEAD_MS + Math.random() * 80; g.end = at + HEAD_MS + 180 + Math.random() * 240; }
+        if (g.head) { g.start = at + g.k * STEP * pace; g.end = g.start + 150 * pace; }
+        else { g.start = at + (HEAD_MS + Math.random() * 80) * pace; g.end = at + (HEAD_MS + 180 + Math.random() * 240) * pace; }
         all.push(g);
       });
     });
@@ -318,7 +319,7 @@
           const set = pool[g.cls];
           g.i.textContent = set[Math.floor(Math.random() * set.length)];
           g.i.className = g.head ? 'h' : 'r';
-          g.swap = t + 50 + Math.random() * 30;
+          g.swap = t + (50 + Math.random() * 30) * pace;
         }
       }
       if (left) id = requestAnimationFrame(tick); else halt();

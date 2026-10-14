@@ -580,7 +580,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .side h1.is-decoding, .side h1.is-decoding .accent { position: relative; color: transparent; }
 .side h1 .dc { color: var(--ink); }
 /* the press: on the way down the color runs quickly to a hot orange with a glow, on the way back it settles into the accent */
-.side h1 .accent.gr-press { animation: gr-press 1s cubic-bezier(.3, .7, .4, 1.25); }
+.side h1 .accent.gr-press { animation: gr-press 2s cubic-bezier(.3, .7, .4, 1.25); }
 @keyframes gr-press {
   0% { transform: none; color: var(--ink); }
   38% { transform: scale(.88) translateY(1px); color: oklch(.72 .2 48); text-shadow: 0 0 12px oklch(.75 .19 55 / .45); }
