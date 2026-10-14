@@ -10,19 +10,19 @@
 <helmet>
 <link rel="stylesheet" href="fonts/fonts.css">
 </helmet>
-<div style="background:#FBF7EE;border:1.5px solid #E3DACB;border-radius:16px;padding:clamp(16px,2.5vw,24px);display:flex;flex-direction:column;gap:14px">
+<div style="background:#FBF7EE;border:var(--cz-border);border-radius:var(--cz-radius-box);padding:var(--cz-pad-panel);display:flex;flex-direction:column;gap:14px">
 <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
 <dc-import name="Logo" variant="lockup" tone="light" size="22" hint-size="80px,22px"></dc-import>
-<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">Sofia’s member survey answer, a week after the call</span>
+<span style="font:var(--cz-mono-tag);color:#5E5446">Sofia’s member survey answer, a week after the call</span>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:12px">
 <sc-for list="{{ cells }}" as="c" hint-placeholder-count="4">
-<div style="border:1.5px solid #E3DACB;border-radius:12px;overflow:hidden;display:flex;flex-direction:column">
-<div style="background:#F4EFE4;padding:11px 16px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;border-bottom:1.5px solid #E3DACB">
-<span style="display:flex;align-items:center;gap:7px;padding:4px 10px;border:1.5px solid {{ c.talkColor }};border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:{{ c.talkColor }}">Talk: {{ c.talk }}</span>
-<span style="display:flex;align-items:center;gap:7px;padding:4px 10px;border:1.5px solid {{ c.resolveColor }};border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:{{ c.resolveColor }}">Resolve: {{ c.resolve }}</span>
-<span style="margin-left:auto;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446">{{ c.note }}</span>
+<div style="border:var(--cz-border);border-radius:var(--cz-radius-item);overflow:hidden;display:flex;flex-direction:column">
+<div style="background:#F4EFE4;padding:11px 16px;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;border-bottom:var(--cz-border)">
+<span style="display:flex;align-items:center;gap:7px;padding:4px 10px;border:1.5px solid {{ c.talkColor }};border-radius:var(--cz-radius-pill);font:var(--cz-mono-tag);color:{{ c.talkColor }}">Talk: {{ c.talk }}</span>
+<span style="display:flex;align-items:center;gap:7px;padding:4px 10px;border:1.5px solid {{ c.resolveColor }};border-radius:var(--cz-radius-pill);font:var(--cz-mono-tag);color:{{ c.resolveColor }}">Resolve: {{ c.resolve }}</span>
+<span style="margin-left:auto;font:var(--cz-mono-tag);color:#5E5446">{{ c.note }}</span>
 </div>
 <div style="padding:14px 16px;display:flex;flex-direction:column;gap:10px">
 <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
@@ -39,7 +39,7 @@
 </sc-for>
 </div>
 
-<p style="margin:0;background:#F4EFE4;border-left:4px solid #B03A48;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Talk is right when decisions 1 to 3 of the call all take the best option, and resolve is right when decisions 4 and 5 both do. If the learner hangs up on Sofia twice, the call is over, her answer is 1/5, there is no debrief, and the call starts again from Accept. Her survey comment is "They hung up on me, and nobody called back." If the learner shared the name of Dan, the member who made the call, the ending adds a line: "A few days later, Dan asks the front desk who reported him."</p>
+<p style="margin:0;background:#F4EFE4;border-left:4px solid #B03A48;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Talk is right when decisions 1 to 3 of the call all take the best option, and resolve is right when decisions 4 and 5 both do. If the learner hangs up on Sofia twice, the call is over, her answer is 1/5, there is no debrief, and the call starts again from Accept. Her survey comment is “They hung up on me, and nobody called back.” If the learner shared the name of Dan, the member who made the call, the ending adds a line: “A few days later, Dan asks the front desk who reported him.”</p>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:720,&quot;height&quot;:640}}">

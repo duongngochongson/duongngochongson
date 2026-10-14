@@ -12,20 +12,20 @@
 </helmet>
 <div ref="{{ rootRef }}" style="width:100%;min-width:0">
 <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
-<div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;overflow-x:auto;overscroll-behavior-x:contain">
+<div style="border:var(--cz-border);border-radius:var(--cz-radius-box);background:#FBF7EE;overflow-x:auto;overscroll-behavior-x:contain">
 <table style="width:100%;min-width:100%;border-collapse:collapse;text-align:left">
 <thead>
 <tr style="background:#F4EFE4">
 <sc-for list="{{ head }}" as="h" hint-placeholder-count="3">
-<th scope="col" style="padding:14px 16px;font:500 16px/22px 'IBM Plex Mono',monospace;color:#1F1A12;vertical-align:bottom;border-bottom:1.5px solid #E3DACB;">{{ h }}</th>
+<th scope="col" style="padding:var(--cz-pad-cell);font:var(--cz-mono-label);color:#1F1A12;vertical-align:bottom;border-bottom:var(--cz-border);">{{ h }}</th>
 </sc-for>
 </tr>
 </thead>
 <tbody>
 <sc-for list="{{ rows }}" as="row" hint-placeholder-count="3">
-<tr style="border-bottom:1px solid #E3DACB">
+<tr style="border-bottom:var(--cz-border-row)">
 <sc-for list="{{ row.cells }}" as="c" hint-placeholder-count="3">
-<td style="padding:14px 16px;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:{{ c.color }};vertical-align:top;">
+<td style="padding:var(--cz-pad-cell);font:400 16px/24px 'IBM Plex Sans',sans-serif;color:{{ c.color }};vertical-align:top;">
 <sc-for list="{{ c.segs }}" as="s" hint-placeholder-count="1">
 <sc-if value="{{ s.isLink }}"><a href="{{ s.href }}" style="color:#1F1A12;text-decoration:underline;text-decoration-color:#F2A93B;text-underline-offset:3px">{{ s.t }}</a></sc-if>
 <sc-if value="{{ s.isText }}"><span style="font-weight:{{ s.w }};font-family:{{ s.f }};color:{{ s.c }}">{{ s.t }}</span></sc-if>
@@ -41,12 +41,12 @@
 <sc-if value="{{ narrow }}">
 <div style="display:flex;flex-direction:column;gap:12px">
 <sc-for list="{{ rows }}" as="row" hint-placeholder-count="3">
-<div style="border:1.5px solid #E3DACB;border-radius:16px;background:#FBF7EE;overflow:hidden">
-<div style="background:#F4EFE4;padding:12px 16px;font:600 17px/24px 'Archivo',sans-serif;color:#1F1A12;border-bottom:1.5px solid #E3DACB;">{{ row.lead }}</div>
+<div style="border:var(--cz-border);border-radius:var(--cz-radius-box);background:#FBF7EE;overflow:hidden">
+<div style="background:#F4EFE4;padding:12px 16px;font:600 17px/24px 'Archivo',sans-serif;color:#1F1A12;border-bottom:var(--cz-border);">{{ row.lead }}</div>
 <dl style="margin:0;padding:4px 16px 14px;display:flex;flex-direction:column">
 <sc-for list="{{ row.rest }}" as="c" hint-placeholder-count="2">
-<div style="display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid #E3DACB">
-<dt style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#5E5446;">{{ c.key }}</dt>
+<div style="display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:var(--cz-border-row)">
+<dt style="font:var(--cz-mono-label);color:#5E5446;">{{ c.key }}</dt>
 <dd style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:#3D352A;">
 <sc-for list="{{ c.segs }}" as="s" hint-placeholder-count="1">
 <sc-if value="{{ s.isLink }}"><a href="{{ s.href }}" style="color:#1F1A12;text-decoration:underline;text-decoration-color:#F2A93B;text-underline-offset:3px">{{ s.t }}</a></sc-if>

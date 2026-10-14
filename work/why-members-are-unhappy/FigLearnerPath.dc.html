@@ -10,26 +10,26 @@
 <helmet>
 <link rel="stylesheet" href="fonts/fonts.css">
 </helmet>
-<div style="background:#1F1A12;border-radius:16px;padding:clamp(18px,2.5vw,26px);display:flex;flex-direction:column;gap:14px">
+<div style="background:#1F1A12;border-radius:var(--cz-radius-box);padding:clamp(18px,2.5vw,26px);display:flex;flex-direction:column;gap:14px">
 
 <div style="display:flex;align-items:center;gap:14px">
-<span style="width:40px;height:40px;border-radius:999px;background:#F2A93B;flex:none;box-shadow:0 0 0 10px rgba(242,169,59,.3)"></span>
+<span style="width:40px;height:40px;border-radius:var(--cz-radius-pill);background:#F2A93B;flex:none;box-shadow:0 0 0 10px rgba(242,169,59,.3)"></span>
 <span style="font:500 16px/1.3 'IBM Plex Mono',monospace;color:#F2A93B">Turn on the lamp</span>
 </div>
 
 <ol style="margin:0;padding:0 0 0 20px;list-style:none;display:flex;flex-direction:column;gap:10px;border-left:2px solid #4A4235">
 <sc-for list="{{ steps }}" as="s" hint-placeholder-count="7">
-<li style="position:relative;display:flex;gap:14px;align-items:flex-start;background:#2A2318;border-radius:12px;padding:14px 16px">
-<span style="position:absolute;left:-27px;top:18px;width:12px;height:12px;border-radius:999px;background:#F2A93B;border:2px solid #1F1A12"></span>
+<li style="position:relative;display:flex;gap:14px;align-items:flex-start;background:#2A2318;border-radius:var(--cz-radius-item);padding:14px 16px">
+<span style="position:absolute;left:-27px;top:18px;width:12px;height:12px;border-radius:var(--cz-radius-pill);background:#F2A93B;border:2px solid #1F1A12"></span>
 <span style="flex:none;padding-top:2px"><dc-import name="Icon" icon="{{ s.icon }}" size="22" color="#F2A93B" hint-size="22px,22px"></dc-import></span>
 <div style="display:flex;flex-direction:column;gap:5px;min-width:0">
 <div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px">
 <span style="font:600 18px/1.25 'Archivo',sans-serif;color:#FBF7EE">{{ s.title }}</span>
-<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#CFC4B1">{{ s.phase }}</span>
+<span style="font:var(--cz-mono-tag);color:#CFC4B1">{{ s.phase }}</span>
 </div>
 <span style="font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#E8DFD0;">{{ s.detail }}</span>
 <sc-if value="{{ s.hasEnding }}">
-<span style="align-self:flex-start;margin-top:3px;display:flex;align-items:center;gap:8px;padding:5px 11px;border:1.5px solid #F2A93B;border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#F2A93B">{{ s.ending }}</span>
+<span style="align-self:flex-start;margin-top:3px;display:flex;align-items:center;gap:8px;padding:5px 11px;border:1.5px solid #F2A93B;border-radius:var(--cz-radius-pill);font:var(--cz-mono-tag);color:#F2A93B">{{ s.ending }}</span>
 </sc-if>
 </div>
 </li>
@@ -46,7 +46,7 @@ class Component extends DCLogic {
         { icon: 'phone', phase: 'Part 1', title: 'Incoming call', detail: 'The learner turns over the ringing phone, and the ringing stops. It shows Sofia\u2019s incoming call, quiet now, and her member card comes in. Son points to her report from two weeks ago, which is still open. The learner starts the note and answers. The phone rings again when Sofia calls once more, after a decline or a dropped line.', hasEnding: false, ending: '' },
         { icon: 'mobile', phase: 'Part 1', title: 'Call with Sofia', detail: 'The learner makes the Hear, Empathize, Apologize and Resolve decisions, says goodbye and ends the call. The Diagnose decision follows in a small Cozy Desk window.', hasEnding: false, ending: '' },
         { icon: 'star', phase: 'Part 1', title: 'Right after the call', detail: 'After the best path, the learner sees "How you handled the call", a look back at each step. After any other path, the course shows Sofia’s survey answer a week later, then a review of each decision and a rewind to the first one that went wrong. After two hang-ups, Sofia’s answer is 1/5, there is no review, and the call starts again from Accept.', hasEnding: true, ending: 'First ending' },
-        { icon: 'monitor', phase: 'Part 2', title: 'Part 2', detail: 'The learner signs in on the desk computer, takes a tour of Cozy Desk and logs the case from the note. The course then moves ahead in time to the handover, the talk and the call back.', hasEnding: false, ending: '' },
+        { icon: 'monitor', phase: 'Part 2', title: 'Part 2', detail: 'The learner signs in on the desk computer, on a wallpaper of Cozy\u2019s floor plan with the lamp\u2019s glow, takes a tour of Cozy Desk and logs the case from the note. The course then moves ahead in time to the handover, the talk and the call back.', hasEnding: false, ending: '' },
         { icon: 'right', phase: 'Part 2', title: 'After Part 2', detail: 'A week later, Sofia gives 5/5 in the member survey.', hasEnding: true, ending: 'Second ending' },
         { icon: 'cases', phase: 'After the course', title: 'Results and practice', detail: 'The results show how many of the five decisions and nine log fields were right on the first try, and which steps to practice. The learner answers two questions and can print the job aids, try three practice activities or restart.', hasEnding: false, ending: '' }
       ]

@@ -10,16 +10,16 @@
 <helmet>
 <link rel="stylesheet" href="fonts/fonts.css">
 </helmet>
-<header style="background:#1F1A12;color:#FBF7EE;border-radius:16px 16px 0 0;padding:clamp(28px,4vw,52px) clamp(20px,4vw,56px) clamp(26px,3.5vw,40px);display:flex;flex-direction:column;gap:clamp(22px,3vw,32px)">
+<header style="background:#1F1A12;color:#FBF7EE;border-radius:var(--cz-radius-box) 16px 0 0;padding:clamp(28px,4vw,52px) clamp(20px,4vw,56px) clamp(26px,3.5vw,40px);display:flex;flex-direction:column;gap:clamp(22px,3vw,32px)">
 <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:20px">
 <dc-import name="Logo" variant="lockup" tone="lit" size="34" hint-size="124px,34px"></dc-import>
 </div>
 <div style="display:flex;flex-direction:column;gap:18px">
-<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#F2A93B;letter-spacing:.02em">Project · {{ project }}</span>
+<span style="font:var(--cz-mono-label);color:#F2A93B;letter-spacing:.02em">Project · {{ project }}</span>
 <h1 style="margin:0;font:700 clamp(36px,6vw,60px)/1.03 'Archivo',sans-serif;letter-spacing:-0.03em;color:#FBF7EE">{{ type }}</h1>
 <p style="margin:0;font:400 clamp(17px,2vw,20px)/1.5 'IBM Plex Sans',sans-serif;color:#E8DFD0">{{ subtitle }}</p>
 </div>
-<div style="display:flex;flex-wrap:wrap;gap:0 24px;padding-top:18px;border-top:1px solid #4A4235;font:500 16px/22px 'IBM Plex Mono',monospace;color:#CFC4B1">
+<div style="display:flex;flex-wrap:wrap;gap:0 24px;padding-top:18px;border-top:1px solid #4A4235;font:var(--cz-mono-label);color:#CFC4B1">
 <sc-if value="{{ measured }}"><span style="white-space:nowrap">{{ readLabel }}</span></sc-if>
 <sc-if value="{{ measured }}"><span style="white-space:nowrap">{{ partsLabel }}</span></sc-if>
 </div>

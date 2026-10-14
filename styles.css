@@ -80,7 +80,7 @@
   --type-contact: 400 10px/1.6 var(--mono);     /* the sidebar's email and links */
   --track-label: .08em;                         /* the letter spacing of the mono labels and tags */
   /* motion */
-  --ease-press: var(--ease-press);  /* hover, press, a chevron */
+  --ease-press: .25s ease;  /* hover, press, a chevron */
   --ease-fade: .5s ease;    /* an arrow or picture fading */
   /* objects that keep their own colors: the instant prints, the pin, the date stamp, the project art, the split-flap board */
   --print-paper: #f8f5ee; --print-window: #e7e1d5; --print-ink: rgba(26,24,21,.55);

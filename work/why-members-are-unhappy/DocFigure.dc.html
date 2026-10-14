@@ -12,18 +12,18 @@
 </helmet>
 <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
 <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ true }}">
-<img src="{{ src }}" alt="{{ alt }}" style="display:block;width:100%;border:1.5px solid #E3DACB;border-radius:16px;background:#F4EFE4">
+<img src="{{ src }}" alt="{{ alt }}" style="display:block;width:100%;border:var(--cz-border);border-radius:var(--cz-radius-box);background:#F4EFE4">
 </sc-if>
 <sc-if value="{{ empty }}">
-<div role="img" aria-label="{{ alt }}" style="background:#F4EFE4;border:1.5px dashed #8C8170;border-radius:16px;min-height:{{ minH }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;text-align:center">
+<div role="img" aria-label="{{ alt }}" style="background:#F4EFE4;border:var(--cz-border-empty);border-radius:var(--cz-radius-box);min-height:{{ minH }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;text-align:center">
 <dc-import name="Icon" icon="thought" size="28" color="#8C8170" hint-size="28px,28px"></dc-import>
-<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#5E5446">{{ num }} goes here</span>
+<span style="font:var(--cz-mono-label);color:#5E5446">{{ num }} goes here</span>
 <span style="max-width:460px;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ note }}</span>
 </div>
 </sc-if>
-<figcaption style="display:flex;gap:10px;font:500 17px/1.35 'IBM Plex Mono',monospace;color:#5E5446;"><b style="color:#8A5300;font-weight:600;flex:none">{{ num }}</b>{{ caption }}</figcaption>
+<figcaption style="display:flex;gap:10px;font:var(--cz-mono-caption);color:#5E5446;"><b style="color:#8A5300;font-weight:600;flex:none">{{ num }}</b>{{ caption }}</figcaption>
 <sc-if value="{{ hasLink }}">
-<a href="{{ href }}" style="align-self:flex-start;display:flex;align-items:center;gap:10px;min-height:44px;padding:10px 18px;border:1.5px solid #1F1A12;border-radius:12px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#1F1A12;text-decoration:none" style-hover="background:#F4EFE4">{{ hrefLabel }}<dc-import name="Icon" icon="arrowRight" size="18" color="#1F1A12" hint-size="18px,18px"></dc-import></a>
+<a href="{{ href }}" style="align-self:flex-start;display:flex;align-items:center;gap:10px;min-height:44px;padding:var(--cz-pad-button);border:var(--cz-border-ink);border-radius:var(--cz-radius-item);font:var(--cz-sans-strong);color:#1F1A12;text-decoration:none" style-hover="background:#F4EFE4">{{ hrefLabel }}<dc-import name="Icon" icon="arrowRight" size="18" color="#1F1A12" hint-size="18px,18px"></dc-import></a>
 </sc-if>
 </figure>
 </x-dc>

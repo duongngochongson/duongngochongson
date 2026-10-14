@@ -10,12 +10,12 @@
 <helmet>
 <link rel="stylesheet" href="fonts/fonts.css">
 </helmet>
-<div style="background:#FBF7EE;border:1.5px solid #E3DACB;border-radius:16px;padding:clamp(16px,2.5vw,24px);display:flex;flex-direction:column;gap:14px">
+<div style="background:#FBF7EE;border:var(--cz-border);border-radius:var(--cz-radius-box);padding:var(--cz-pad-panel);display:flex;flex-direction:column;gap:14px">
 <div style="display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center">
-<span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446"><span style="width:12px;height:12px;border-radius:999px;background:#F2A93B"></span>Tap to say or note</span>
-<span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#5E5446"><span style="width:12px;height:12px;border-radius:3px;background:#1F1A12"></span>Decision</span>
-<span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#2F7A4B"><dc-import name="Icon" icon="right" size="17" color="#2F7A4B" hint-size="17px,17px"></dc-import>Best</span>
-<span style="display:flex;align-items:center;gap:8px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#B03A48"><dc-import name="Icon" icon="notyet" size="17" color="#B03A48" hint-size="17px,17px"></dc-import>Weaker</span>
+<span style="display:flex;align-items:center;gap:8px;font:var(--cz-mono-tag);color:#5E5446"><span style="width:12px;height:12px;border-radius:var(--cz-radius-pill);background:#F2A93B"></span>Tap to say or note</span>
+<span style="display:flex;align-items:center;gap:8px;font:var(--cz-mono-tag);color:#5E5446"><span style="width:12px;height:12px;border-radius:3px;background:#1F1A12"></span>Decision</span>
+<span style="display:flex;align-items:center;gap:8px;font:var(--cz-mono-tag);color:#2F7A4B"><dc-import name="Icon" icon="right" size="17" color="#2F7A4B" hint-size="17px,17px"></dc-import>Best</span>
+<span style="display:flex;align-items:center;gap:8px;font:var(--cz-mono-tag);color:#B03A48"><dc-import name="Icon" icon="notyet" size="17" color="#B03A48" hint-size="17px,17px"></dc-import>Weaker</span>
 </div>
 
 <ol style="margin:0;padding:0 0 0 22px;list-style:none;display:flex;flex-direction:column;gap:12px;border-left:2px solid #E3DACB">
@@ -32,11 +32,11 @@
 </sc-if>
 
 <sc-if value="{{ b.isDecision }}">
-<div style="border:1.5px solid #E3DACB;border-radius:12px;overflow:hidden">
+<div style="border:var(--cz-border);border-radius:var(--cz-radius-item);overflow:hidden">
 <div style="background:#1F1A12;padding:11px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px">
-<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#F2A93B">Decision {{ b.n }}</span>
+<span style="font:var(--cz-mono-tag);color:#F2A93B">Decision {{ b.n }}</span>
 <span style="display:flex;align-items:center;gap:8px"><span style="width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:1.5px solid #CFC4B1;border-radius:8px;font:600 16px/1 'Archivo',sans-serif;color:#FBF7EE">{{ b.letter }}</span><span style="font:600 17px/1.2 'Archivo',sans-serif;color:#FBF7EE">{{ b.step }}</span></span>
-<span style="margin-left:auto;padding:4px 10px;border:1.5px solid #4A4235;border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#CFC4B1">Axis: {{ b.axis }}</span>
+<span style="margin-left:auto;padding:4px 10px;border:1.5px solid #4A4235;border-radius:var(--cz-radius-pill);font:var(--cz-mono-tag);color:#CFC4B1">Axis: {{ b.axis }}</span>
 </div>
 <div style="padding:12px 16px;display:flex;flex-direction:column;gap:10px">
 <div style="display:flex;gap:10px;align-items:flex-start">
@@ -56,7 +56,7 @@
 </sc-for>
 </ol>
 
-<p style="margin:0;background:#F4EFE4;border-left:4px solid #F2A93B;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Each decision counts toward one of two axes. The talk axis is about how the call felt to Sofia, and it is right when decisions 1 to 3 all use the best option. The resolve axis is about whether her problem was solved, and it is right when decisions 4 and 5 both use the best option. Together, the two axes give Sofia's answer in the member survey a week later. In the lines, [name] is the learner's first name, and [call date] and [call time] are the date and time when the learner starts the note. [day 1] is the next working day after the call, and [day 2] is the working day after that.</p>
+<p style="margin:0;background:#F4EFE4;border-left:4px solid #F2A93B;border-radius:4px 12px 12px 4px;padding:14px 16px;font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#3D352A;">Each decision counts toward one of two axes. The talk axis is about how the call felt to Sofia, and it is right when decisions 1 to 3 all use the best option. The resolve axis is about whether her problem was solved, and it is right when decisions 4 and 5 both use the best option. Together, the two axes give Sofia’s answer in the member survey a week later. In the lines, [name] is the learner’s first name, and [call date] and [call time] are the date and time when the learner starts the note. [day 1] is the next working day after the call, and [day 2] is the working day after that.</p>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:760,&quot;height&quot;:900}}">

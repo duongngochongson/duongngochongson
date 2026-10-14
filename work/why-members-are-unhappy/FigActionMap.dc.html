@@ -10,33 +10,33 @@
 <helmet>
 <link rel="stylesheet" href="fonts/fonts.css">
 </helmet>
-<div style="background:#FBF7EE;border:1.5px solid #E3DACB;border-radius:16px;padding:clamp(16px,2.5vw,24px);display:flex;flex-direction:column;gap:16px">
+<div style="background:#FBF7EE;border:var(--cz-border);border-radius:var(--cz-radius-box);padding:var(--cz-pad-panel);display:flex;flex-direction:column;gap:16px">
 
-<div style="background:#1F1A12;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px">
-<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#F2A93B">Goal</span>
-<span style="font:600 18px/1.4 'Archivo',sans-serif;color:#FBF7EE;">Within the next two quarters, raise members' rating of how Cozy handles their complaints from 2.7/5 to 3.8/5.</span>
+<div style="background:#1F1A12;border-radius:var(--cz-radius-item);padding:16px 18px;display:flex;flex-direction:column;gap:8px">
+<span style="font:var(--cz-mono-tag);color:#F2A93B">Goal</span>
+<span style="font:600 18px/1.4 'Archivo',sans-serif;color:#FBF7EE;">Within the next two quarters, raise members’ rating of how Cozy handles their complaints from 2.7/5 to 3.8/5.</span>
 </div>
 
 <div style="display:flex;flex-direction:column;gap:12px">
 <sc-for list="{{ actions }}" as="a" hint-placeholder-count="5">
-<div style="border:1.5px solid #E3DACB;border-radius:12px;overflow:hidden">
-<div style="background:#F4EFE4;padding:12px 16px;display:flex;gap:12px;align-items:flex-start;border-bottom:1.5px solid #E3DACB">
-<span style="flex:none;min-width:34px;height:30px;display:flex;align-items:center;justify-content:center;background:#1F1A12;border-radius:8px;font:500 16px/1 'IBM Plex Mono',monospace;color:#F2A93B">{{ a.id }}</span>
+<div style="border:var(--cz-border);border-radius:var(--cz-radius-item);overflow:hidden">
+<div style="background:#F4EFE4;padding:12px 16px;display:flex;gap:12px;align-items:flex-start;border-bottom:var(--cz-border)">
+<span style="flex:none;min-width:34px;height:30px;display:flex;align-items:center;justify-content:center;background:#1F1A12;border-radius:8px;font:var(--cz-mono-count);color:#F2A93B">{{ a.id }}</span>
 <span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#1F1A12;"><b style="font-weight:600">{{ a.lead }}</b>{{ a.text }}</span>
 </div>
 <div style="display:flex;flex-wrap:wrap">
 <div style="flex:1 1 240px;min-width:0;padding:14px 16px;display:flex;flex-direction:column;gap:6px;border-right:1px solid #E3DACB">
-<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">Practice</span>
+<span style="font:var(--cz-mono-tag);color:#8A5300">Practice</span>
 <span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ a.practice }}</span>
 </div>
 <div style="flex:1 1 240px;min-width:0;padding:14px 16px;display:flex;flex-direction:column;gap:6px">
-<span style="font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">Minimum information</span>
+<span style="font:var(--cz-mono-tag);color:#8A5300">Minimum information</span>
 <span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#3D352A;">{{ a.info }}</span>
 </div>
 </div>
 <sc-if value="{{ a.hasOps }}">
 <div style="background:#FBF7EE;border-top:1px dashed #8C8170;padding:12px 16px;display:flex;gap:10px;align-items:flex-start">
-<span style="flex:none;padding:3px 9px;border:1.5px solid #8A5300;border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#8A5300">→ Ops</span>
+<span style="flex:none;padding:3px 9px;border:1.5px solid #8A5300;border-radius:var(--cz-radius-pill);font:var(--cz-mono-tag);color:#8A5300">→ Ops</span>
 <span style="font:400 16px/1.4 'IBM Plex Sans',sans-serif;color:#5E5446;">{{ a.ops }}</span>
 </div>
 </sc-if>
@@ -44,15 +44,15 @@
 </sc-for>
 </div>
 
-<div style="background:#2A2318;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:12px">
+<div style="background:#2A2318;border-radius:var(--cz-radius-item);padding:16px 18px;display:flex;flex-direction:column;gap:12px">
 <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px">
-<span style="padding:4px 10px;border:1.5px solid #F2A93B;border-radius:999px;font:500 16px/1.2 'IBM Plex Mono',monospace;color:#F2A93B">→ Ops</span>
+<span style="padding:4px 10px;border:1.5px solid #F2A93B;border-radius:var(--cz-radius-pill);font:var(--cz-mono-tag);color:#F2A93B">→ Ops</span>
 <span style="font:600 18px/1.3 'Archivo',sans-serif;color:#FBF7EE">Changes to operations, which Cozy’s managers make outside the course</span>
 </div>
 <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px">
 <sc-for list="{{ ops }}" as="o" hint-placeholder-count="4">
 <li style="display:flex;gap:12px;align-items:flex-start">
-<span style="flex:none;margin-top:9px;width:7px;height:7px;border-radius:999px;background:#F2A93B"></span>
+<span style="flex:none;margin-top:9px;width:7px;height:7px;border-radius:var(--cz-radius-pill);background:#F2A93B"></span>
 <span style="font:400 16px/1.45 'IBM Plex Sans',sans-serif;color:#E8DFD0;"><b style="font-weight:600;color:#FBF7EE">{{ o.lead }}</b>{{ o.text }}</span>
 </li>
 </sc-for>
