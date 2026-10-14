@@ -206,8 +206,6 @@ Thank you to the people who made these open-source fonts, faces and libraries fr
 - **Faces**: [Open Peeps](https://www.openpeeps.com/) by Pablo Stanley · CC0; [DiceBear](https://www.dicebear.com/) by Florian Körner · MIT
 - **Libraries**: [React](https://react.dev) by Meta · MIT; [Motion](https://motion.dev) by Motion B.V. · MIT; [XState](https://github.com/statelyai/xstate) by David Khourshid · MIT; [Zod](https://zod.dev) by Colin McDonnell · MIT
 
-[All projects](https://duongngochongson.vercel.app/#portfolio)
-
 ---
 
 <sub>This README is written from the project page on my portfolio, https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy, and is updated when that page changes. To run, build and test the code, see [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).</sub>

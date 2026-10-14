@@ -330,9 +330,6 @@ def project_md(page, route, holds):
     credits = page.find(lambda x: x.tag == 'template' and x.has('credits'))
     if credits is not None:
         parts.append(credits_md(credits))
-    back = page.find(lambda x: x.tag == 'a' and x.has('back') and x.parent.has('case'))  # All projects, under the last section
-    if back is not None:
-        parts.append(f'[{t(back)}]({SITE}/{back.attrs["href"]})')
     parts.append('---')
     parts.append(f'<sub>This README is written from the project page on my portfolio, {SITE}/#{route}, '
                  'and is updated when that page changes. To run, build and test the code, see '

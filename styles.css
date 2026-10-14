@@ -327,9 +327,8 @@ p, dd, li {
 .cs[data-kind="goal"] { --sec: var(--a3-ink); }
 .cs[data-kind="made"] { --sec: var(--a2-ink); }
 .cs[data-kind="docs"] { --sec: var(--a4-ink); }
-/* the buttons of the last section; All projects is its own button under that section (card-colored, on the page's surface) */
+/* the buttons of the last section */
 .cs .cta-row { margin: 0; }
-.case > .back { display: flex; width: fit-content; margin-top: 12px; background: var(--card); }
 .cs-head { margin-bottom: 16px; }
 .cs > * + * { margin-top: 14px; }
 .cs > .cs-head + * { margin-top: 0; }

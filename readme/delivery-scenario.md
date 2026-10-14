@@ -174,8 +174,6 @@ Thank you to the people who made these open-source fonts, icons, voices and libr
 
 Speech generated with a Piper voice trained on LibriTTS-R: Y. Koizumi et al., “LibriTTS-R: A Restored Multi-Speaker Text-to-Speech Corpus”, Interspeech 2023 ([openslr.org/141](https://www.openslr.org/141/)), which restores LibriTTS (H. Zen et al., 2019), built from public-domain LibriVox recordings. Licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The sentences were synthesized, then trimmed, leveled and encoded to MP3.
 
-[All projects](https://duongngochongson.vercel.app/#portfolio)
-
 ---
 
 <sub>This README is written from the project page on my portfolio, https://duongngochongson.vercel.app/#portfolio/delivery-scenario, and is updated when that page changes. To run, build and test the code, see [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).</sub>
