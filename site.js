@@ -446,20 +446,27 @@
       let running = false, done = false, armed = false;
       let stick = 0, top0 = 0, travel = 0, plan = [];  // measured: where the card sticks, where the track starts, how far it travels, each part's stretch of scroll
       let shown = -1, want = -1, busy = false, turn = 0, calm = 0;
+      // The rail: one short bar per part along the top of the card, filled as the visitor scrolls, so every bit of scrolling shows.
+      const rail = document.createElement('div');
+      rail.className = 'stage-rail';
+      rail.setAttribute('aria-hidden', 'true');
+      const bars = items.map(() => { const bar = document.createElement('i'), fill = document.createElement('b'); bar.append(fill); rail.append(bar); return fill; });
+      const filled = items.map(() => -1);
+      card.append(rail);
 
       // ---- the scroll: where the stage sticks and how far it travels (measured when the page opens or changes size) ----
-      // A part gets a screen of scroll (85% of the window), and a part taller than the room the card has gets the extra it needs, so its
-      // words can scroll up (only after the first 45% of that screen, so the opening lines can be read first). The card is as tall as
-      // its part and what is around it (chrome), but never taller than the window gives it.
+      // A part gets a stretch of scroll (55% of the window, 300 to 560px), and a part taller than the room the card has gets the extra it
+      // needs, so its words scroll up with the finger from the start. The card is as tall as its part and what is around it (chrome), but
+      // never taller than the window gives it.
       const fit = i => track.style.setProperty('--card-h', plan[i].card + 'px');
       function measure() {
         if (!running) return;
         const full = pinEl.offsetHeight, chrome = card.offsetHeight - frame.clientHeight, room = full - chrome;
-        const screen = Math.min(900, Math.max(360, innerHeight * .85));
+        const screen = Math.min(560, Math.max(300, innerHeight * .55));
         let at = 0;
         plan = items.map(p => {
           const h = p.offsetHeight, over = Math.max(0, Math.ceil(h - room));
-          const one = { start: at, over, lead: screen * .45, card: Math.min(full, Math.ceil(chrome + h)) };
+          const one = { start: at, over, card: Math.min(full, Math.ceil(chrome + h)) };
           at += screen + over;
           return one;
         });
@@ -486,9 +493,16 @@
         }
         let i = items.length - 1;
         while (i > 0 && s < plan[i].start) i--;
-        const shift = Math.min(plan[i].over, Math.max(0, s - plan[i].start - plan[i].lead));
+        const span = (i + 1 < items.length ? plan[i + 1].start : travel) - plan[i].start;
+        const p = Math.min(1, Math.max(0, (s - plan[i].start) / span));
+        // a part taller than its room moves with the scroll; a short one drifts up 8px over its stretch, so the scrolling is felt
+        const shift = plan[i].over ? Math.min(plan[i].over, Math.max(0, s - plan[i].start)) : p * 8;
         const px = shift.toFixed(1);
         if (items[i].style.getPropertyValue('--shift') !== px) items[i].style.setProperty('--shift', px);
+        bars.forEach((fill, k) => {
+          const v = k < i ? 1 : k > i ? 0 : Math.round(p * 1000) / 1000;
+          if (filled[k] !== v) { filled[k] = v; fill.style.transform = `scaleX(${v})`; }
+        });
         go(i);
       }
 
@@ -542,6 +556,7 @@
         track.style.removeProperty('--travel');
         track.style.removeProperty('--card-h');
         items.forEach(p => { p.classList.remove('is-on'); p.style.removeProperty('--shift'); });
+        bars.forEach((fill, k) => { filled[k] = -1; fill.style.removeProperty('transform'); });
       }
       // Back to plain content for good. What is on screen stays where it is: the block after the stage when the card has scrolled out
       // or the page is at its end (the stage's empty room under the card goes, and what is after it must not move), otherwise the part
