@@ -477,19 +477,20 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 
 /* the owner's own text before and after the periods: the page's body text, 15px */
 .about-intro p, .about-outside p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
-.about-intro p + p { margin-top: 14px; }
-/* "OMG, I'm genuinely passionate about it." stands out: a larger serif line with the site's orange bar */
-.about-intro .about-omg { margin-block: 26px; padding-left: 16px; border-left: 3px solid var(--a1); font: 700 22px/1.4 var(--serif); letter-spacing: -.01em; color: var(--ink); text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+/* the intro is three parts: 14px between paragraphs, and (when it is one block) between parts, with more before the note */
+.intro-part p + p { margin-top: 14px; }
+.stage-track:not(.is-stage) .intro-part + .intro-part { margin-top: 14px; }
+.stage-track:not(.is-stage) .intro-part:last-child { margin-top: 26px; }
 /* the fun fact is a short note of my own: a dashed blue border (as on the project pages) */
-.about-intro .about-fact { margin-top: 26px; padding: 14.5px 16.5px; border: 1.5px dashed var(--a3); border-radius: 12px; font-size: 13px; line-height: 1.6; }
+.about-intro .about-fact { padding: 14.5px 16.5px; border: 1.5px dashed var(--a3); border-radius: 12px; font-size: 13px; line-height: 1.6; }
 .about-fact b { font-weight: 600; color: var(--ink); }
 
+/* the page's scroll bar: a thin line of the site's yellow along the top of the window, filled by site.js as the page is scrolled */
+.scroll-bar { position: fixed; z-index: 30; top: env(safe-area-inset-top, 0px); left: env(safe-area-inset-left, 0px); right: env(safe-area-inset-right, 0px); height: 4px; pointer-events: none; }
+.scroll-bar i { display: block; height: 100%; background: var(--a5); transform: scaleX(0); transform-origin: 0 50%; }
+
 /* ---------- about: the four periods ---------- */
-/* By default (no script, reduced motion, and once the effect is over) the periods are a list: a round picture and the words, one row each.
-   site.js can turn the list into a stage (.is-stage on .path-track): the block sticks to the top of the window while the track gives it
-   scroll, one period shows at a time, and the years turn over on a split-flap board. */
-.path-track { --stage-top: 16px; --stage-h: calc(100vh - 2 * var(--stage-top)); --stage-h: calc(100svh - 2 * var(--stage-top)); margin-bottom: 12px; }
-.path-track > .block { margin-bottom: 0; }
+/* By default (no script, reduced motion, and once the effect is over) the periods are a list: a picture and the words, one row each. */
 .about-path { container: path / inline-size; }
 .periods { list-style: none; margin: 0; padding: 0; --pic: clamp(120px, 24cqw, 200px); }
 .period { display: grid; grid-template-columns: var(--pic) minmax(0, 1fr); gap: 20px clamp(20px, 4cqw, 36px); align-items: start; padding: 28px 0; }
@@ -528,21 +529,54 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .period-body p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
 .period-body p + p { margin-top: 14px; }
 @container path (max-width: 560px) { .period { grid-template-columns: minmax(0, 1fr); } .periods { --pic: clamp(96px, 28cqw, 124px); } }
-/* when the list takes over from the stage, the rows above the one being read come in softly */
-.path-track.just-done .period:not(:last-child) { animation: path-in .5s ease both; }
-@keyframes path-in { from { opacity: 0; } }
 
-/* the stage */
-.path-track.is-stage { height: calc(var(--stage-h) + var(--travel, 0px)); }
-.is-stage .about-path { position: sticky; top: var(--stage-top); height: var(--stage-h); box-sizing: border-box; display: flex; flex-direction: column; overflow-anchor: none; }
-/* one period at a time: they sit on top of each other, all from the same top edge, so the picture stays put as the board flips */
-.is-stage .path-view { position: relative; flex: 1 1 0; min-height: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 24px, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(to bottom, transparent, #000 24px, #000 calc(100% - 24px), transparent); }
-.is-stage .periods { position: absolute; inset: 24px 0; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
-.is-stage .period { grid-area: 1 / 1; align-self: start; padding: 0; border: 0; pointer-events: none; }
-.is-stage .period.is-on { pointer-events: auto; }
-/* the board shows the years, so the heading keeps them for screen readers only */
+/* ---------- about: the stages ---------- */
+/* The intro (three parts) and the four periods are each a "stage". By default a stage is plain content. site.js can turn it into a stage
+   (.is-stage on .stage-track): the card (.stage-card) sticks to the top of the window while the track gives it scroll, one part shows at a
+   time, and the card is as tall as the part it shows (--card-h, set by the script, and animated). A part taller than the window gives the card
+   all the room, and its words scroll up (--shift, set by the script) as the page does. A small arrow at the card's foot says there is more. */
+.stage-track { --stage-top: 16px; --stage-h: calc(100vh - 2 * var(--stage-top)); --stage-h: calc(100svh - 2 * var(--stage-top)); margin-bottom: 12px; }
+.stage-pin { display: contents; }
+.stage-track .stage-card { margin-bottom: 0; }
+.stage-more { display: none; }
+/* when the plain content takes over from the stage, the parts above the one being read (all of them, when none is in view) come in softly */
+.stage-track.just-done:not(.fresh) .stage-item:not(:last-child), .stage-track.just-done.fresh .stage-item { animation: stage-in .5s ease both; }
+@keyframes stage-in { from { opacity: 0; } }
+
+.stage-track.is-stage { height: calc(var(--stage-h) + var(--travel, 0px)); }
+.is-stage > .stage-pin { display: block; position: sticky; top: var(--stage-top); height: var(--stage-h); overflow-anchor: none; }
+.is-stage .stage-card { position: relative; height: var(--card-h, 100%); max-height: 100%; box-sizing: border-box; display: flex; flex-direction: column; transition: height .6s cubic-bezier(.4, 0, .2, 1); }
+.is-stage.no-tween .stage-card { transition: none; }
+/* one part at a time: they sit on top of each other, all from the same top edge */
+.is-stage .stage-view { --fade: 24px; position: relative; flex: 1 1 0; min-height: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); }
+.is-stage .stage-frame { position: absolute; inset: var(--fade) 0; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
+.is-stage .stage-item { grid-area: 1 / 1; align-self: start; padding: 0; border: 0; pointer-events: none; }
+.is-stage .stage-item.is-on { pointer-events: auto; }
+.is-stage .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: .45; pointer-events: none; transition: opacity .5s ease; }
+.is-stage .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
+.is-stage:not(.is-live) .stage-more, .is-stage.is-last .stage-more { opacity: 0; }
+@keyframes more-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
+
+/* the intro: the heading stays, the part under it changes. The words are not faded in: they are decoded (below). */
+.is-stage .about-intro .stage-view { --fade: 16px; }  /* (the 16px under the heading is the fade, so the first line is where it is in the plain block) */
+.is-stage .about-intro .eyebrow { margin-bottom: 0; }
+.is-stage .intro-part { opacity: 0; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease; }
+.is-stage .intro-part.is-on { opacity: 1; transition: none; }
+.is-stage .intro-part.is-on.soft { transition: opacity .4s ease; }  /* a part read before comes back with a short fade */
+.intro-part.pop .about-fact { animation: pop-in .65s ease both; }  /* the fun fact: a soft bounce (it rises a little past its place and settles) */
+@keyframes pop-in { 0% { opacity: 0; transform: translateY(18px); } 45% { opacity: 1; } 65% { transform: translateY(-4px); } 100% { opacity: 1; transform: none; } }
+
+/* decoding: the real paragraph keeps its place with transparent text; .dc is a layer of one element per letter, put on the real letters
+   (site.js measures them), flickering through other characters until each one settles */
+.stage-track p.is-decoding { position: relative; color: transparent; }
+.dc { position: absolute; inset: 0; color: var(--muted); pointer-events: none; user-select: none; }
+.dc i { position: absolute; font-style: normal; white-space: pre; }  /* (a letter that has settled starts where the real one does) */
+.dc i.r, .dc i.h { text-align: center; }
+.dc i.r { color: var(--faint); }
+.dc i.h { color: var(--a1-ink); }
+
+/* the periods: the picture comes in as the board flips, the words after it */
 .is-stage .period-years { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-/* the picture comes in as the board flips, the words after it; a tall period's words scroll up (--shift, set by the script) as the page does */
 .is-stage .period-pic { opacity: 0; transition: opacity .5s ease; }
 .is-stage .is-pic .period-pic { opacity: 1; }
 .is-stage .period-body { opacity: 0; translate: 0 14px; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease, translate .3s ease; }
@@ -596,7 +630,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 @media (max-width: 420px) {
   :root { --block-pad: 20px; }
   .site { padding: 10px; }
-  .path-track { --stage-top: 10px; }
+  .stage-track { --stage-top: 10px; }
   .cs, .sum-box { padding: 18px; }
   /* the email and its copy button take the whole row, so the address stays on one line when it fits */
   .mail-row { flex: 1 1 100%; }
