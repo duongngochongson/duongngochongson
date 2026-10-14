@@ -61,7 +61,7 @@ With the Behavior Engineering Model (BEM), I found three root causes:
 - Space rules members could not see
 - No set steps for Wi-Fi outages
 
-**How I sorted the causes.** I used Carl Binder’s **Six Boxes** and checked the environment first, because changing it costs less than training. For each cause, I asked Mager and Pipe’s question: could people do it if they had to? If so, a course would not help.
+**How I sorted the causes.** I sorted each cause into the BEM’s **six cells** and checked the environment first, because changing it costs less than training. For each cause, I asked Mager and Pipe’s question: could people do it if they had to? If so, a course would not help.
 
 - Environment: Information, Tools, Incentives
 - Person: Knowledge, Capacity, Motives

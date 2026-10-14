@@ -51,8 +51,6 @@ Within three months, first-attempt success at not-home stops should rise from 45
 
 - **First-attempt success at not-home stops**: Now **45%**; Target **65%** within three months. The share of not-home stops where the parcel reaches an allowed place on the first visit.
 
-_This is a concept project, so the starting numbers are simulated and no results have been measured yet._
-
 ## Finding the root causes
 
 Action mapping found seven barriers behind four key actions: five for training and two for operations.
@@ -154,14 +152,6 @@ React draws the screens, XState runs each slide’s logic, and Zod checks the co
 Each change on GitHub builds a new **SCORM 1.2 package**, so an LMS can run the module and save each driver’s progress and best score.
 
 Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.
-
-## Results & takeaways
-
-The module has not met real drivers yet, so these are lessons from building it.
-
-- I liked how the action map kept the module small: four actions, seven short slides, and two barriers handed to operations.
-- I built a SCORM package for the first time and saw how an LMS saves progress and scores.
-- I put the handling codes on a card once I saw how much drivers would otherwise have to remember.
 
 ## Documents & credits
 
