@@ -3,7 +3,7 @@
     python3 scripts/readme/build.py
 
 It reads index.html and writes:
-  README.md                      the profile README (Home, Portfolio, the periods of About me)
+  README.md                      the profile README (Home, Portfolio, the periods of About me by name)
   readme/hear-them-out.md        the README of the Hear Them Out repository (the Why Members Are Unhappy page)
   readme/delivery-scenario.md    the README of the delivery-scenario repository (the Not-Home Delivery Stop page)
 
@@ -372,13 +372,14 @@ def profile_md(root):
     parts.append(' '.join(f'`{t(x, False)}`' for x in skills.elements()))
 
     about = root.find(lambda x: x.attrs.get('data-page') == 'about')
-    # My path: the four periods of the About page, each with its title, its years and its words
-    parts.append(f'## {heading(about, 1)}')
+    # About me: the page's name, then the title and the years of each of its four periods
+    parts.append(f'## [{about.attrs["data-title"]}]({SITE}/#about)')
+    lines = []
     for period in about.find_all(by_class('period')):
         name = t(period.find(by_class('period-name')), False)
         years = t(period.find(by_class('period-years')), False)
-        parts.append(f'### {name} ({years})')
-        parts.extend(t(p) for p in period.find(by_class('period-body')).find_all(lambda x: x.tag == 'p'))
+        lines.append(f'- **{name}** ({years})')
+    parts.append('\n'.join(lines))
     parts.append('---')
     parts.append(f'<sub>This README is written from my site, {SITE}, by scripts/readme/build.py, and is updated when the site changes.</sub>')
     return '\n\n'.join(parts) + '\n'
