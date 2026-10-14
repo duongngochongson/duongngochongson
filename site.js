@@ -53,6 +53,17 @@
     const body = dialog.querySelector('[data-doc-body]');
     const vi = () => root.lang === 'vi';
 
+    // Previous and next: the pictures and documents of the same section as the button that opened the pop-up (its group).
+    const nav = dialog.querySelector('[data-doc-nav]');
+    const prev = dialog.querySelector('[data-doc-prev]');
+    const next = dialog.querySelector('[data-doc-next]');
+    const count = dialog.querySelector('[data-doc-count]');
+    const say = document.createElement('div');  // inside the dialog: the page behind a modal dialog is inert, so a region there is not read
+    say.className = 'sr-only';
+    say.setAttribute('aria-live', 'polite');
+    dialog.append(say);
+    let group = [], at = 0, opener = null;
+
     function open({ heading, label, wide }) {
       title.textContent = heading || '';
       kicker.textContent = label || '';
@@ -90,8 +101,9 @@
           win.location.replace(url.href);
         }
       }, true);
-      doc.addEventListener('keydown', e => {  // Escape closes the pop-up, unless the document's own figure viewer is open
-        if (e.key === 'Escape' && !doc.querySelector('[aria-modal="true"]')) { e.preventDefault(); shut(); }
+      doc.addEventListener('keydown', e => {  // Escape closes the pop-up, Left and Right move through the section; not while the document's own figure viewer is open
+        if (doc.querySelector('[aria-modal="true"]')) return;
+        if (e.key === 'Escape') { e.preventDefault(); shut(); } else arrowKey(e);
       }, true);
     }
 
@@ -133,16 +145,53 @@
       if (vi()) body.querySelectorAll('[data-vi]').forEach(n => { n.innerHTML = n.dataset.vi; });
     }
 
+    const items = '[data-frame], [data-image], [data-doc]';
+
+    // Show one item and the controls around it. A move keeps the dialog open: the new body fades in, and screen readers hear where they are.
+    function present(btn, moved) {
+      if (btn.matches('[data-frame]')) openFrame(btn);
+      else if (btn.matches('[data-image]')) openImage(btn);
+      else openTemplate(btn);
+      if (!dialog.open) return;
+      body.scrollTop = 0;  // a move starts at the top of the picture or document
+      nav.hidden = group.length < 2;  // a lone item, or one outside a section, has nothing to move to
+      prev.setAttribute('aria-label', vi() ? 'Trước' : 'Previous');
+      next.setAttribute('aria-label', vi() ? 'Tiếp theo' : 'Next');
+      count.textContent = `${at + 1} / ${group.length}`;
+      if (!moved) return;
+      if (!reduceMotion()) body.animate({ opacity: [0, 1] }, { duration: 250, easing: 'ease-out' });
+      say.textContent = `${title.textContent}, ${at + 1} ${vi() ? 'trên' : 'of'} ${group.length}`;
+    }
+    // The ends wrap round, so the buttons are never disabled.
+    function move(by) {
+      if (group.length < 2 || !dialog.open || dialog.classList.contains('is-closing')) return;
+      at = (at + by + group.length) % group.length;
+      // focus inside the old body (a document's frame, a picture) goes with it: it moves to the matching step button instead
+      const lost = body.contains(document.activeElement);
+      present(group[at], true);
+      if (lost) (by > 0 ? next : prev).focus({ preventScroll: true });
+    }
+    // Left and Right, from the page or from inside a document's frame (wireFrame passes its own key events here).
+    function arrowKey(e) {
+      const by = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!by || e.repeat || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || group.length < 2) return;
+      const t = e.target;
+      if (t.isContentEditable || /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) return;  // arrows belong to the field
+      e.preventDefault();
+      move(by);
+    }
+    document.addEventListener('keydown', e => { if (dialog.open) arrowKey(e); });
+    prev.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+
     document.addEventListener('click', e => {
-      const el = e.target.closest('[data-frame], [data-image], [data-doc]');
+      const el = e.target.closest(items);
       if (!el) return;
-      if (el.matches('[data-frame]')) {
-        openFrame(el);
-      } else if (el.matches('[data-image]')) {
-        openImage(el);
-      } else {
-        openTemplate(el);
-      }
+      const section = el.closest('section.cs');  // folds count too: a closed fold's buttons are still in the section
+      group = section ? [...section.querySelectorAll(items)] : [el];
+      at = group.indexOf(el);
+      opener = el;
+      present(el, false);
     });
     // Closing fades out over .2s (styles.css, .is-closing), then the dialog closes and focus goes back; at once with reduced motion.
     let closeTimer = 0;
@@ -175,6 +224,14 @@
       clearTimeout(closeTimer);
       dialog.classList.remove('is-closing', 'doc-wide');
       body.replaceChildren();
+      // After moves, focus goes to the item last shown if it is on screen (not in a closed fold or a hidden page);
+      // if not, it stays where the browser put it, on the button that opened the pop-up.
+      const last = group[at];
+      if (last && last !== opener && !last.closest('[hidden], details:not([open])')) last.focus({ preventScroll: true });
+      group = [];
+      at = 0;
+      opener = null;
+      say.textContent = '';
     });
   }
 

@@ -35,7 +35,7 @@ html:has(dialog[open]) { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after, ::backdrop { transition: none !important; animation: none !important; }
   /* no lifts or nudges either: the hover shadow and underline stay */
-  :is(.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb, .arrow, .go, .guide-go) { transform: none !important; }
+  :is(.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb, .arrow, .go, .guide-go) { transform: none !important; }
 }
 body { margin: 0; background: var(--bg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
@@ -49,8 +49,8 @@ a, button, summary { touch-action: manipulation; }
   }
 }
 /* one tap area for the small controls: at least 44 by 44, centered on the control (a square, so round buttons count too) */
-.pill button, .cv-link, .doc-btn, .copy-mail, .doc-close { position: relative; }
-:is(.pill button, .cv-link, .doc-btn, .copy-mail, .doc-close)::after {
+.pill button, .cv-link, .doc-btn, .copy-mail, .doc-close, .doc-step { position: relative; }
+:is(.pill button, .cv-link, .doc-btn, .copy-mail, .doc-close, .doc-step)::after {
   content: ""; position: absolute; left: 50%; top: 50%; width: 100%; height: 100%;
   min-width: 44px; min-height: 44px; transform: translate(-50%, -50%);
 }
@@ -58,13 +58,13 @@ a, button, summary { touch-action: manipulation; }
 
 /* Hover and press. Every box-like control lifts 2px with the one --lift shadow (only where a pointer can hover),
    and a press puts it back down. The Home project cards have no box, so their picture lifts instead. */
-.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb {
+.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb {
   transition: transform .25s ease, box-shadow .25s ease;
 }
 /* the controls whose colors change with their state: the current page, the pressed toggle, a fold's chevron on hover */
 .nav a, .pill button, .fold-chev { transition: transform .25s ease, box-shadow .25s ease, background-color .25s, color .25s; }
 @media (hover: hover) {
-  :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button):hover { transform: translateY(-2px); box-shadow: var(--lift); }
+  :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button):hover { transform: translateY(-2px); box-shadow: var(--lift); }
   .fold > summary:hover .fold-chev { transform: translateY(-2px); box-shadow: var(--lift); color: var(--ink); }
   /* the pictures that open the picture pop-up, and the picture of a Home project card */
   .shot:hover img, .tile-thumb:hover, [data-selected-copy] .proj:hover .thumb { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line), var(--lift); }
@@ -76,7 +76,7 @@ a, button, summary { touch-action: manipulation; }
   /* text links: one hover, an underline */
   :is(.contact .mail, .contact .row a, .credit-list a, .credit-line a):hover { text-decoration: underline 1.5px currentColor; }
 }
-:is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button):active,
+:is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button):active,
 .fold > summary:active .fold-chev { transform: none; box-shadow: none; }
 .shot:active img, .tile-thumb:active, [data-selected-copy] .proj:active .thumb { transform: none; box-shadow: 0 0 0 1px var(--line); }
 .arrow, .go, .guide-go { transition: transform .25s ease; }
@@ -440,14 +440,22 @@ dialog.doc.is-closing::backdrop { animation: doc-undim .2s ease-in forwards; }
 .doc-heading { display: contents; }
 .doc-top .lab { grid-row: 1; grid-column: 1; }
 .doc-top h2 { grid-row: 2; grid-column: 1; min-width: 0; font: 700 22px/1.3 var(--serif); letter-spacing: -.01em; }
-/* 44px; the negative margin lets it reach past the title's line without making the bar taller */
-.doc-close {
-  grid-row: 2; grid-column: 2; margin-block: -8px;
+/* 44px; the negative margin lets it reach past the title's line without making the bar taller (the last column, with or without the nav) */
+.doc-close { grid-row: 2; grid-column: -2; margin-block: -8px; }
+.doc-close, .doc-step {
   width: 44px; height: 44px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
   background: var(--surface); color: var(--ink);
   display: flex; align-items: center; justify-content: center;
 }
-.doc-close .ic { --ic: 20; }
+.doc-close .ic, .doc-step .ic { --ic: 20; }
+/* previous, count, next: on the title's row, 16px from the title and 8px from the close button; the bar has its third column only while the nav shows */
+.doc-top:has(.doc-nav:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto auto; column-gap: 0; }
+.doc-top:has(.doc-nav:not([hidden])) .lab { grid-column: 1 / -1; }  /* the label keeps the whole row, so a narrow title column does not break it up */
+.doc-top:has(.doc-nav:not([hidden])) h2 { overflow-wrap: anywhere; }
+.doc-nav { grid-row: 2; grid-column: 2; display: flex; align-items: center; margin: -8px 8px -8px 16px; }
+.doc-nav[hidden] { display: none; }
+/* a fixed width, so the buttons stay put as the count changes (the biggest group has 8) */
+.doc-count { min-width: 4.5em; text-align: center; white-space: nowrap; font: 400 11px/1 var(--mono); letter-spacing: .08em; color: var(--muted); }
 /* a size container, so what it shows (the credits) can lay itself out by the pop-up's width */
 .doc-body { flex: 1; min-height: 0; overflow-y: auto; padding: 22px; font: 400 14px/1.7 var(--sans); color: var(--muted); container-type: inline-size; }
 .doc-body > * + * { margin-top: 14px; }
@@ -669,6 +677,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
   /* the email and its copy button take the whole row, so the address stays on one line when it fits */
   .mail-row { flex: 1 1 100%; }
   dialog.doc { width: calc(100vw - 20px); }
+  dialog.doc:not(.doc-wide) .doc-top:has(.doc-nav:not([hidden])) h2 { font-size: 20px; }  /* "Credits" next to the nav at 320px */
   .guide { grid-template-columns: minmax(0, 1fr); }
 }
 /* documents and pictures fill a phone screen */
@@ -676,6 +685,10 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
   /* 100%, not 100vw and 100dvh: a classic scrollbar's gutter never covers the close button */
   dialog.doc.doc-wide { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; border-radius: 0; border: 0; }
   .doc-wide .doc-top .lab { display: none; }
+  /* with the nav: a tighter bar, so the title, the nav and the close button stay on one row down to 320px (the title may wrap) */
+  .doc-top:has(.doc-nav:not([hidden])) { padding-inline: 16px; }
+  .doc-nav { margin-left: 12px; }
+  .doc-count { min-width: 3.6em; }
 }
 
 /* ---------- project pages: the blocks that tell the story ---------- */
