@@ -116,7 +116,7 @@
 
   <div class="block bg-surface">
     <h2 class="eyebrow"><svg class="ic" aria-hidden="true" style="color:var(--a2-ink)"><use href="work/frame/icons.svg#i-components"/></svg><span data-vi="KỸ NĂNG">SKILLSET</span></h2>
-    <div class="chips chips-row"><span data-vi="Phân tích nhu cầu">Needs analysis</span><span>Action mapping</span><span data-vi="Tình huống phân nhánh">Branching scenarios</span><span>Job aids</span><span>Vibe-coded e-learning</span><span data-vi="Đánh giá hiệu quả học tập">Learning evaluation</span><span>LMS · SCORM &amp; xAPI</span><span data-vi="Phân tích dữ liệu">Data analysis</span></div>
+    <div class="chips chips-row"><span data-vi="Phân tích nhu cầu">Needs analysis</span><span>Action mapping</span><span data-vi="Tình huống phân nhánh">Branching scenarios</span><span data-vi="Đánh giá hiệu quả học tập">Learning evaluation</span><span>Job aids</span><span>Vibe-coded e-learning</span><span>LMS · SCORM &amp; xAPI</span><span data-vi="Phân tích dữ liệu">Data analysis</span></div>
   </div>
 </section>
 
@@ -581,10 +581,10 @@
       <path d="M57.6 6.6A37 37 0 0 1 70.7 20.6 M61.3 .7A44 44 0 0 1 76.8 17.3" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
     </svg>
     <h2 data-vi="Chào bạn, rất vui được gặp bạn ở đây">Hi, welcome here</h2>
-    <p data-vi="Mình rất vui vì bạn đã ghé phần này của trang. Đây là hành trình của riêng mình: những điều mình thích làm, và điều đã đưa mình đến với nghề thiết kế học tập.">I’m glad you found this part of the site. This page is about my own journey: what I like to do, and what drives me to become a learning designer.</p>
+    <p data-vi="Mình rất vui vì bạn đã ghé phần này của trang.&lt;br&gt;Đây là hành trình của riêng mình: những điều mình thích làm, và điều đã đưa mình đến với nghề thiết kế học tập.">I’m glad you found this part of the site.<br>This page is about my own journey: what I like to do, and what drives me to become a learning designer.</p>
   </div>
 
-  <!-- So, what is this page about? Three parts. site.js turns them into a sticky stage that shows one part at a time (not with reduced motion);
+  <!-- So, what is this page about? Two parts. site.js turns them into a sticky stage that shows one part at a time (not with reduced motion);
        without it they are one block. -->
   <div class="stage-track" data-stage="intro">
     <div class="stage-pin">
@@ -601,15 +601,15 @@
               <p>This is the kind of work where I can sit down and map out how a learning experience should unfold. I love pretty much every part of the learning design process. From digging into the problem and identifying learning needs and gaps, to deciding which learning activities should take priority, brainstorming the experience’s style and vibe, developing it, and finally choosing the right way to evaluate it.</p>
               <p>On top of that, I think two things I’ve enjoyed since childhood have helped me in this field: tinkering with computers and technology, and having deep conversations that let me explore an idea with someone and really get to the bottom of it.</p>
             </div>
-            <div class="stage-item intro-part">
-              <p class="about-fact"><b>Fun fact:</b> My name is Son, which means Sơn in Vietnamese. I usually go by Son without the diacritic to make things easier, since it’s still close to the original pronunciation.</p>
-            </div>
           </div>
         </div>
         <span class="stage-more" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowDown"/></svg></span>
       </div>
     </div>
   </div>
+
+  <!-- The fun fact stands on its own, on the page; it pops in when it comes into view (site.js, data-reveal). -->
+  <p class="about-fact" data-reveal="pop"><b>Fun fact:</b> My name is Son, which means Sơn in Vietnamese. I usually go by Son without the diacritic to make things easier, since it’s still close to the original pronunciation.</p>
 
   <!-- The four periods. Pictures: put one file per period in assets/about/ with these names (any shape; each is cropped to the window of an old instant print, 4 wide by 5 high, so a portrait photo fits best):
          2019.webp, 2020-2024.webp, 2025-2026.webp, 2026-now.webp
@@ -665,7 +665,7 @@
     </div>
   </div>
 
-  <div class="block bg-t1 about-outside">
+  <div class="block bg-t2 about-outside" data-reveal="rise">
     <p>Outside of work, I enjoy watching movies, playing board games, and trying to figure out the secrets behind magic tricks. I guess I’ve always enjoyed exploring how things work, whether it’s a learning experience, a good story, or a clever illusion. If you’re into any of these, we might have something to talk about!</p>
   </div>
 </section>

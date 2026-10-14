@@ -157,7 +157,9 @@ p, dd, li {
   /* 128px; on a narrow sidebar the email breaks before the @ instead of the photo shrinking (the links keep at least 108px, more than the CV pill's 104px) */
   width: min(128px, calc(100% - 120px)); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; flex: none; display: block;
   background: var(--card); box-shadow: 0 0 0 3px var(--card);
+  animation: face-in .9s ease .15s both;  /* a soft fade when the page opens */
 }
+@keyframes face-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 .contact-links { display: flex; flex-direction: column; gap: 6px; min-width: 0; font: 400 10px/1.6 var(--mono); letter-spacing: .02em; }
 /* The text links are 24px tall to tap; each negative margin gives back its padding, so nothing moves.
    The padding is split so that no two tap areas meet: 6px from the email to the row, 10px from the row to the CV pill
@@ -184,7 +186,7 @@ p, dd, li {
 .page[hidden] { display: none; }
 .block { border-radius: 22px; padding: var(--block-pad); margin-bottom: 12px; }
 .bg-surface { background: var(--surface); }
-.bg-t1 { background: var(--t1); } .bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
+.bg-t1 { background: var(--t1); } .bg-t2 { background: var(--t2); } .bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
 
 /* home */
 .intro p { font: 400 15px/1.7 var(--sans); color: var(--muted); }
@@ -477,12 +479,11 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 
 /* the owner's own text before and after the periods: the page's body text, 15px */
 .about-intro p, .about-outside p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
-/* the intro is three parts: 14px between paragraphs, and (when it is one block) between parts, with more before the note */
+/* the intro is two parts: 14px between paragraphs, and (when it is one block) between the parts */
 .intro-part p + p { margin-top: 14px; }
 .stage-track:not(.is-stage) .intro-part + .intro-part { margin-top: 14px; }
-.stage-track:not(.is-stage) .intro-part:last-child { margin-top: 26px; }
-/* the fun fact is a short note of my own: a dashed blue border (as on the project pages) */
-.about-intro .about-fact { padding: 14.5px 16.5px; border: 1.5px dashed var(--a3); border-radius: 12px; font-size: 13px; line-height: 1.6; }
+/* the fun fact is a short note of my own, on the page itself: a dashed blue border (as on the project pages) */
+.about-fact { margin: 0 0 12px; padding: 14.5px 16.5px; border: 1.5px dashed var(--a3); border-radius: 12px; font: 400 13px/1.6 var(--sans); color: var(--muted); }
 .about-fact b { font-weight: 600; color: var(--ink); }
 
 /* the page's scroll bar: a thin line of the site's yellow along the top of the window, filled by site.js as the page is scrolled */
@@ -539,11 +540,11 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .stage-pin { display: contents; }
 .stage-track .stage-card { margin-bottom: 0; }
 .stage-more { display: none; }
-/* the rail: one short bar per part along the top of the card, filled with the scroll (site.js) */
+/* the rail: one short bar per part along the top of the card; a bar fills when its part comes in (site.js) */
 .stage-rail { display: none; }
 .is-stage .stage-rail { display: flex; gap: 4px; position: absolute; top: 11px; left: var(--block-pad); right: var(--block-pad); pointer-events: none; }
 .stage-rail i { flex: 1 1 0; height: 3px; border-radius: 2px; overflow: hidden; background: color-mix(in srgb, var(--ink) 14%, transparent); }
-.stage-rail b { display: block; height: 100%; background: var(--ink); opacity: .55; transform: scaleX(0); transform-origin: left; }
+.stage-rail b { display: block; height: 100%; background: var(--ink); opacity: .55; transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
 /* when the plain content takes over from the stage, the parts above the one being read (all of them, when none is in view) come in softly */
 .stage-track.just-done:not(.fresh) .stage-item:not(:last-child), .stage-track.just-done.fresh .stage-item { animation: stage-in .5s ease both; }
 @keyframes stage-in { from { opacity: 0; } }
@@ -568,7 +569,11 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .is-stage .intro-part { opacity: 0; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease; }
 .is-stage .intro-part.is-on { opacity: 1; transition: none; }
 .is-stage .intro-part.is-on.soft { transition: opacity .4s ease; }  /* a part read before comes back with a short fade */
-.intro-part.pop .about-fact { animation: pop-in .65s ease both; }  /* the fun fact: a soft bounce (it rises a little past its place and settles) */
+/* coming into view (site.js adds .reveal-on to the page, then .is-in to each [data-reveal] once it is seen; once per page load) */
+.reveal-on [data-reveal]:not(.is-in) { opacity: 0; }
+.reveal-on [data-reveal="pop"].is-in { animation: pop-in .65s ease both; }  /* the fun fact: a soft bounce (it rises a little past its place and settles) */
+.reveal-on [data-reveal="rise"].is-in { animation: rise-in .7s ease-out both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @keyframes pop-in { 0% { opacity: 0; transform: translateY(18px); } 45% { opacity: 1; } 65% { transform: translateY(-4px); } 100% { opacity: 1; transform: none; } }
 
 /* decoding: the real paragraph keeps its place with transparent text; .dc is a layer of one element per letter, put on the real letters

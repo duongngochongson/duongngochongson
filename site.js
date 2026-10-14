@@ -354,9 +354,9 @@
       root.style.scrollBehavior = '';
     };
 
-    // ---- the intro: the words of each part are decoded, and the fun fact pops in ----
+    // ---- the intro: the words of each part are decoded ----
     // A part read before comes back with a short fade instead (it would be tiring to see it decoded again).
-    const words = part => [...part.querySelectorAll('p:not(.about-fact)')];
+    const words = part => [...part.querySelectorAll('p')];
     function introKind(track, items, wait) {
       const frame = track.querySelector('.stage-frame');
       const seen = new Set();
@@ -368,18 +368,17 @@
         stop() {
           calm();
           seen.clear();
-          items.forEach(p => { p.classList.remove('soft', 'pop'); p.querySelectorAll('p').forEach(q => q.classList.remove('is-decoding')); });
+          items.forEach(p => { p.classList.remove('soft'); p.querySelectorAll('p').forEach(q => q.classList.remove('is-decoding')); });
         },
         change(to, from) {  // the old part fades out while the card moves to the height of the new one
           calm();
-          if (from >= 0) items[from].classList.remove('soft', 'pop');
+          if (from >= 0) items[from].classList.remove('soft');
           if (!seen.has(to)) words(items[to]).forEach(p => p.classList.add('is-decoding'));
           return from < 0 ? Promise.resolve() : wait(300);
         },
         shown(to, alive) {
           if (seen.has(to)) { items[to].classList.add('soft'); return; }
           seen.add(to);
-          items[to].classList.add('pop');
           // (after the fonts are in: the letters are put where the real ones are)
           Promise.resolve(document.fonts && document.fonts.ready).then(() => {
             if (!alive()) return;
@@ -388,7 +387,8 @@
           });
         },
         relayout() { if (run && sign() !== sig) run.halt(); },  // the real text moved (a resize, a font): show it as it is
-        anchor: i => items[i]
+        anchor: i => items[i],
+        keepsTop: true
       };
     }
 
@@ -471,7 +471,7 @@
       let running = false, done = false, armed = false;
       let stick = 0, top0 = 0, travel = 0, plan = [];  // measured: where the card sticks, where the track starts, how far it travels, each part's stretch of scroll
       let shown = -1, want = -1, busy = false, turn = 0, calm = 0;
-      // The rail: one short bar per part along the top of the card, filled as the visitor scrolls, so every bit of scrolling shows.
+      // The rail: one short bar per part along the top of the card; a bar fills when its part comes in (one step at a time).
       const rail = document.createElement('div');
       rail.className = 'stage-rail';
       rail.setAttribute('aria-hidden', 'true');
@@ -480,14 +480,14 @@
       card.append(rail);
 
       // ---- the scroll: where the stage sticks and how far it travels (measured when the page opens or changes size) ----
-      // A part gets a stretch of scroll (55% of the window, 300 to 560px), and a part taller than the room the card has gets the extra it
-      // needs, so its words scroll up with the finger from the start. The card is as tall as its part and what is around it (chrome), but
-      // never taller than the window gives it.
+      // A part gets a short stretch of scroll (a quarter of the window, 140 to 240px), so one light scroll brings the next part; a part
+      // taller than the room the card has gets the extra it needs, and its words scroll up with the finger until its end, then the next
+      // part comes. The card is as tall as its part and what is around it (chrome), but never taller than the window gives it.
       const fit = i => track.style.setProperty('--card-h', plan[i].card + 'px');
       function measure() {
         if (!running) return;
         const full = pinEl.offsetHeight, chrome = card.offsetHeight - frame.clientHeight, room = full - chrome;
-        const screen = Math.min(560, Math.max(300, innerHeight * .55));
+        const screen = Math.min(240, Math.max(140, innerHeight * .24));
         let at = 0;
         plan = items.map(p => {
           const h = p.offsetHeight, over = Math.max(0, Math.ceil(h - room));
@@ -507,25 +507,21 @@
         clearTimeout(calm);
         const far = scrollY - top0;  // how far the card has been stuck
         const s = Math.min(far, travel);  // (past the end it keeps showing the last part as it scrolls away)
-        // Past the last part. The plain content takes over only when the scrolling has settled (nothing for 120ms): switching mid-glide
-        // would cancel a smooth scroll that is still on its way (a key press, a link that takes focus). And it waits until the card has
-        // scrolled out of the window (or the page can go no further), so that nothing in view has to move.
-        const out = far - travel >= stick + plan[items.length - 1].card;
-        if (far > travel + 2 && (out || scrollY >= maxY - 2)) calm = setTimeout(() => finish(items.length - 1), 120);
+        // Past the last part, the plain content takes over as soon as the scrolling pauses (nothing for 120ms: switching mid-glide would
+        // cancel a smooth scroll that is still on its way, a key press or a link that takes focus).
+        if (far > travel + 2) calm = setTimeout(() => finish(items.length - 1), 120);
         if (!armed) {  // the first part shows once the stage is well into the window
           if (s < stick - innerHeight * .6) return;
           armed = true;
         }
         let i = items.length - 1;
         while (i > 0 && s < plan[i].start) i--;
-        const span = (i + 1 < items.length ? plan[i + 1].start : travel) - plan[i].start;
-        const p = Math.min(1, Math.max(0, (s - plan[i].start) / span));
-        // a part taller than its room moves with the scroll; a short one drifts up 8px over its stretch, so the scrolling is felt
-        const shift = plan[i].over ? Math.min(plan[i].over, Math.max(0, s - plan[i].start)) : p * 8;
+        // a part taller than its room moves with the scroll until its end; a short one stays still
+        const shift = Math.min(plan[i].over, Math.max(0, s - plan[i].start));
         const px = shift.toFixed(1);
         if (items[i].style.getPropertyValue('--shift') !== px) items[i].style.setProperty('--shift', px);
         bars.forEach((fill, k) => {
-          const v = k < i ? 1 : k > i ? 0 : Math.round(p * 1000) / 1000;
+          const v = k <= i ? 1 : 0;
           if (filled[k] !== v) { filled[k] = v; fill.style.transform = `scaleX(${v})`; }
         });
         go(i);
@@ -590,13 +586,19 @@
         const r = track.getBoundingClientRect(), c = card.getBoundingClientRect();
         const part = i >= 0 ? kind.anchor(i) : null;
         const end = scrollY >= root.scrollHeight - root.clientHeight - 2;
-        const mark = r.bottom <= 0 || c.bottom <= 0 || end ? track.nextElementSibling
+        const seen = c.bottom > 0 && c.top < innerHeight;
+        // the intro: its heading stays at the top and the whole block shows under it, so the visitor sees all of it before going on
+        const top = kind.keepsTop && seen;
+        const mark = top ? card
+          : r.bottom <= 0 || c.bottom <= 0 || end ? track.nextElementSibling
           : part && r.top < innerHeight ? part
           : track.previousElementSibling;
-        const before = mark.getBoundingClientRect().bottom;
+        const edge = el => top ? el.getBoundingClientRect().top : el.getBoundingClientRect().bottom;
+        // (the intro's heading goes back to where the card stuck, in case the page moved on a little before the scrolling paused)
+        const before = top ? stick : edge(mark);
         done = true;
         stop();
-        const after = mark.getBoundingClientRect().bottom;  // (measured first: it lays the page out, and the scroll position settles)
+        const after = edge(mark);  // (measured first: it lays the page out, and the scroll position settles)
         const goal = Math.max(0, scrollY + after - before);
         // The page is shorter now. With a tall window the scroll position that keeps the words where they were can be lower than the new
         // bottom of the page; the page then gets the missing height as space under the footer (hold), until the visitor scrolls up past it or leaves.
@@ -615,6 +617,19 @@
     }
 
     const stages = [...page.querySelectorAll('[data-stage]')].map(stage);
+
+    // ---- coming into view: the fun fact and the block after the periods come in once each, the first time they are seen ----
+    // (styles.css, data-reveal; once per page load, nothing with reduced motion)
+    const reveals = [...page.querySelectorAll('[data-reveal]')];
+    if (reveals.length && 'IntersectionObserver' in window && !motion.matches) {
+      page.classList.add('reveal-on');
+      const watch = new IntersectionObserver(list => list.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add('is-in');
+        watch.unobserve(e.target);
+      }), { threshold: .25 });
+      reveals.forEach(el => watch.observe(el));
+    }
 
     // ---- the page: the scroll bar, the sizes, start and stop ----
     function unhold() {
