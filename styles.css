@@ -327,9 +327,9 @@ p, dd, li {
 .cs[data-kind="goal"] { --sec: var(--a3-ink); }
 .cs[data-kind="made"] { --sec: var(--a2-ink); }
 .cs[data-kind="docs"] { --sec: var(--a4-ink); }
-/* the buttons of the last section, then the All projects link on its own row */
+/* the buttons of the last section; All projects is its own button under that section (card-colored, on the page's surface) */
 .cs .cta-row { margin: 0; }
-.cs > .back { display: flex; width: fit-content; }
+.case > .back { display: flex; width: fit-content; margin-top: 12px; background: var(--card); }
 .cs-head { margin-bottom: 16px; }
 .cs > * + * { margin-top: 14px; }
 .cs > .cs-head + * { margin-top: 0; }
@@ -381,6 +381,9 @@ p, dd, li {
 .fold[open] > .fold-body { animation: fold-in .35s ease-out; }
 @keyframes fold-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 .fold-body > p, .fold-media > p { font: 400 13px/1.6 var(--sans); color: var(--muted); }
+/* a small source line under a figure (HEARD) */
+.fold-body > .src-note { font: 400 12px/1.6 var(--sans); color: var(--faint); }
+.src-note a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 /* a fold with a picture: the text, and the picture beside it (it opens larger); stacked when narrow */
 .fold-media { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 14px 18px; align-items: start; }
 .fold-media > * + * { margin-top: 0; }
@@ -699,6 +702,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .method.my-note { border: 1.5px dashed var(--a3); background: var(--t3); padding: 14.5px 16.5px; }
 .takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .takeaways li { border: 1.5px dashed var(--a3); border-radius: 12px; padding: 14.5px 16.5px; font: 400 13px/1.6 var(--sans); color: var(--muted); text-align: left; }
+.takeaways b { color: var(--ink); }
 @container case (max-width: 640px) { .takeaways { grid-template-columns: minmax(0, 1fr); } }
 
 /* a quote */
@@ -779,9 +783,12 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .flow { display: grid; }
 .f-step { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border-radius: 12px; padding: 12px 14px; font: 400 13px/1.5 var(--sans); color: var(--muted); text-align: left; position: relative; }
 .f-step .ic { margin-top: 1px; color: var(--sec); }
-.f-lanes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 22px 0; position: relative; }
+.f-lanes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 22px 0; position: relative; }
 .f-lane { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; align-content: start; }
 .f-lane .lab { margin: 0; }
+/* the way on to Part 2 stands out: a green border and a line that names it */
+.f-right { border: 1.5px solid var(--a2); }
+.f-go { margin: 0; font: 400 13.5px/1.5 var(--sans); color: var(--ink); }
 .f-lane ol { display: grid; gap: 16px; }
 /* ↓ from one step to the next: icons, hidden from screen readers, centered in the gap */
 .f-lanes > .f-down, .f-step > .f-down { position: absolute; margin: 0; color: var(--faint); }
@@ -789,7 +796,6 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .f-lanes > .f-down:first-child { top: -18px; } .f-lanes > .f-down:last-child { bottom: -18px; }
 .f-step > .f-down { --ic: 12; top: -14px; left: 17px; }
 .f-wrong .lab { color: var(--a1-ink); } .f-right .lab { color: var(--a2-ink); }
-@container case (max-width: 560px) { .f-lanes { grid-template-columns: minmax(0, 1fr); } }
 
 /* handling codes: where each one lets a parcel go */
 .codes { margin-inline: 0; margin-bottom: 0; }

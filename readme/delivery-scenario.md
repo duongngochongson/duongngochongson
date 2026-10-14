@@ -155,7 +155,7 @@ Each change on GitHub builds a new **SCORM 1.2 package**, so an LMS can run the 
 
 Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.
 
-## Results and takeaways
+## Results & takeaways
 
 The module has not met real drivers yet, so these are lessons from building it.
 
@@ -163,11 +163,9 @@ The module has not met real drivers yet, so these are lessons from building it.
 - I built a SCORM package for the first time and saw how an LMS saves progress and scores.
 - I put the handling codes on a card once I saw how much drivers would otherwise have to remember.
 
-## Documents and credits
+## Documents & credits
 
 [Try the module](https://delivery-scenario.vercel.app/) · [Diagrams](https://duongngochongson.vercel.app/work/not-home-delivery-stop/Diagrams.html) · [Style guide](https://duongngochongson.vercel.app/work/not-home-delivery-stop/Style%20Guide.html)
-
-[All projects](https://duongngochongson.vercel.app/#portfolio)
 
 ## Credits
 
@@ -179,6 +177,8 @@ Thank you to the people who made these open-source fonts, icons, voices and libr
 - **Libraries**: [React](https://react.dev) by Meta · MIT; [XState](https://github.com/statelyai/xstate) by David Khourshid · MIT; [Zod](https://zod.dev) by Colin McDonnell · MIT
 
 Speech generated with a Piper voice trained on LibriTTS-R: Y. Koizumi et al., “LibriTTS-R: A Restored Multi-Speaker Text-to-Speech Corpus”, Interspeech 2023 ([openslr.org/141](https://www.openslr.org/141/)), which restores LibriTTS (H. Zen et al., 2019), built from public-domain LibriVox recordings. Licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The sentences were synthesized, then trimmed, leveled and encoded to MP3.
+
+[All projects](https://duongngochongson.vercel.app/#portfolio)
 
 ---
 

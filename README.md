@@ -10,9 +10,9 @@ My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and ab
 
 ### [Why Members Are Unhappy](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
 
-- **Problem:** In this concept project, members of Cozy, a coworking business, grew less satisfied over one year, and complaint handling got the lowest score.
-- **Solution:** I traced the drop to its root causes and chose a solution for each: Hear Them Out, a branching course for front-desk staff, with changes to the log, signs in the space and a Wi-Fi checklist.
-- **Goal:** Raise member satisfaction to 4.0/5 within two quarters.
+- **Problem:** Members of Cozy, a coworking business, grew less satisfied over one year, especially with the way complaints were handled.
+- **Solution:** Hear Them Out, a training course for front-desk staff that combines a branching scenario with a software tutorial, plus support tools for staff and members: an updated issue log, signs in the space, a first-day guide and a Wi-Fi checklist.
+- **Goal:** Raise member satisfaction to 4.0/5 within two quarters, with the complaint score rising from 2.7/5 to 3.8/5.
 
 ## Skillset
 
