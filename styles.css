@@ -282,10 +282,9 @@ p, dd, li {
 }
 .hero-head { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 18px; }
 .hero .back { background: var(--card); }
-/* the title, and under it the small "Concept project" tag (a .tag pill) */
+/* the title */
 .hero-title { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .case .hero-head h2 { font: 700 26px/1.3 var(--serif); letter-spacing: .03em; text-transform: uppercase; }
-.hero-tag { text-transform: uppercase; }
 .hero-art { flex: none; width: clamp(170px, 36%, 280px); align-self: center; }
 .hero-art svg { display: block; width: 100%; height: auto; }
 .hero-art.art-delivery { width: clamp(110px, 20%, 150px); }

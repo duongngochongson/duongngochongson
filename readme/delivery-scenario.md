@@ -1,7 +1,5 @@
 # Not-Home Delivery Stop
 
-_Concept project_
-
 Discover Not-Home Delivery Stop, a **mobile module** where drivers practice the four actions an **action map** showed they need when nobody answers the door. Besides the module, other support tools help drivers deliver more parcels on the first attempt, so customers get them when they expect, with no rise in missing parcels: four job aids (to check the steps, the handling codes, the safe-place rules and what to say on a call) and two changes in operations (the handling code and stop notes on the arrival screen, and a scorecard that counts a neighbor or a pickup point as a success).
 
 This repository holds the code of the module.
