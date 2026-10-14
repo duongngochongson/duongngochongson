@@ -218,7 +218,7 @@
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
   // ---- the greeting: once per page load, its letters are decoded like the About intro's; then "I'm Son." takes its color with a press ----
   // While the letters settle, the whole line is in the text color; then, like a pressed key, the color runs quickly to a hot orange and
-  // settles into the accent as the key comes back up (styles.css, gr-press).
+  // settles into the accent as the key comes back up, over about a second (styles.css, gr-press).
   const greeting = document.querySelector('.side h1');
   if (greeting && !reduceMotion()) {
     greeting.classList.add('is-decoding', 'gr-wait');
