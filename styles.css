@@ -512,6 +512,13 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
   filter: sepia(.2) saturate(.86) contrast(1.06) brightness(1.03); transition: opacity .5s ease; }
 .pic-stamp { position: absolute; z-index: 1; right: 11%; top: calc(var(--w) * (.07 + 1.075) - 1.9em); font: 700 clamp(9px, calc(var(--w) * .065), 12px)/1 var(--mono);
   letter-spacing: .06em; color: #ff9a3c; text-shadow: 0 0 3px rgba(255,120,30,.75); white-space: nowrap; }
+/* a red push pin holds each print to the wall: a round head with a highlight and a soft shadow on the paper */
+.pic-pin { position: absolute; z-index: 2; top: calc(var(--w) * -.03); left: 50%; width: clamp(12px, calc(var(--w) * .11), 22px); aspect-ratio: 1; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, #ff9c8f 0 10%, #e8382f 32%, #b3201a 72%, #7a1210 100%);
+  box-shadow: 2px 4px 5px rgba(0,0,0,.32), inset -1px -2px 3px rgba(0,0,0,.25); }
+.period:nth-child(4n+1) .pic-pin { left: 46%; }
+.period:nth-child(4n+2) .pic-pin { left: 55%; }
+.period:nth-child(4n+4) .pic-pin { left: 43%; }
 .period-pic.has-photo img { opacity: 1; }
 .period-pic.has-photo .ic { display: none; }
 [data-theme="dark"] .period-pic { box-shadow: 0 1px 2px rgba(0,0,0,.5), 0 12px 26px -6px rgba(0,0,0,.6); }
