@@ -7,7 +7,8 @@ It reads index.html and writes:
   readme/hear-them-out.md        the README of the Hear Them Out repository (the Why Members Are Unhappy page)
   readme/delivery-scenario.md    the README of the delivery-scenario repository (the Not-Home Delivery Stop page)
 
-Only text is copied. Pictures, screenshots and diagrams stay on the site, and the README links to them.
+Only text is copied. Pictures and screenshots stay on the site, and the README links to each of them (a link with its caption).
+A block this script does not know stops the build with a message, so nothing is dropped without anyone noticing.
 A GitHub Action runs this script when index.html changes (.github/workflows/readme.yml); each project
 repository copies its file from readme/ (its own .github/workflows/readme-sync.yml).
 """
@@ -139,24 +140,62 @@ def doc_link(path):
 
 
 # ---------------------------------------------------------------- the blocks of a project section
+def bullets(items):
+    return '\n'.join(f'- {x}' for x in items)
+
+
+def picture_md(btn):
+    """A picture that opens in the pop-up: a link to the picture, with its caption (or its description) as the text."""
+    img = btn.find(lambda x: x.tag == 'img')
+    cap = t(btn.find(by_class('shot-cap'))) or clean(img.attrs.get('alt', '') if img is not None else '')
+    return f'[{cap}]({SITE}/{btn.attrs["data-image"]})'
+
+
+def meter_md(m):
+    keys = '; '.join(t(li) for li in m.find(by_class('m-keys')).elements())
+    how = t(m.find(by_class('m-how')))
+    return f'- **{t(m.find(by_class("m-name")))}**: {keys}.' + (f' {how}' if how else '')
+
+
+def fold_md(det):
+    """A fold: its title row is the heading (and the tag under it), then what is inside."""
+    head = det.find(lambda x: x.tag == 'summary')
+    name = t(head.find(by_class('fold-name')), False)
+    tag = head.find(by_class('tag'))
+    body = det.find(by_class('fold-body'))
+    parts = [f'### {name}'] + ([f'_{tag_case(t(tag))}_'] if tag is not None else [])
+    blocks = []
+    for k in body.elements():
+        md = block_md(k)
+        if md.startswith(f'**{name}.** '):   # the persona card says its own name again
+            md = md[len(name) + 6:]
+        blocks.append(md)
+    return join_blocks(parts + blocks)
+
+
 def block_md(n):
     c = n.classes
     if n.tag == 'p':
         if 'note' in c:
             return f'_{t(n)}_'
         return t(n)
-    if 'zones' in c:
-        return '\n'.join(f'- **{t(li.find(lambda x: x.tag == "b"), False)}**: {t(li.find(lambda x: x.tag == "b").parent.elements()[1])}' for li in n.elements())
+    if n.tag in ('ul', 'ol') and (not c or 'takeaways' in c):
+        return bullets(t(li) for li in n.elements())
+    if 'folds' in c:
+        return join_blocks([fold_md(d) for d in n.elements()])
+    if 'shots' in c:   # one picture is a line of its own, several are a list
+        links = [picture_md(b) for b in n.elements()]
+        return links[0] if len(links) == 1 else bullets(links)
+    if 'tile-thumb' in c:
+        return picture_md(n)
     if 'issues' in c:
-        return '\n'.join(f'- {t(li)}' for li in n.elements())
-    if 'stats' in c:
-        return '\n'.join(f'- **{t(card.find(by_class("stat")))}**: {t(card.find(by_class("stat-l")))}' for card in n.elements())
+        return bullets(t(li) for li in n.elements())
     if 'pull' in c:
         q = t(n.find(lambda x: x.tag == 'blockquote'))
         cap = t(n.find(lambda x: x.tag == 'figcaption'))
         return f'> {q}\n>\n> {cap}'
     if 'meters' in c:
-        return '\n'.join(f'- **{t(m.find(by_class("m-name")))}**: {t(m.find(by_class("m-text")))}' for m in n.elements())
+        return '\n'.join(meter_md(m) for m in n.elements())
     if 'method' in c:
         lab = sentence(t(n.find(by_class('lab'))))
         body = t(n.find(lambda x: x.tag == 'p'))
@@ -164,33 +203,21 @@ def block_md(n):
         rows_ = []
         for i in range(0, len(cells), 4):
             rows_.append(f'- {cells[i]}: {", ".join(cells[i + 1:i + 4])}')
-        return f'**{lab}.** {body}\n\n' + '\n'.join(rows_)
-    if 'rows' in c:
-        out = []
-        for item in n.elements():
-            name = t(item.find(by_class('row-name')))
-            tag = tag_case(t(item.find(by_class('tag'))))
-            parts = []
-            for col in item.find(by_class('row-body')).elements():
-                parts.append(f'**{tag_case(t(col.find(by_class("lab"))))}.** {t(col.find(lambda x: x.tag == "p"))}')
-            out.append(f'### {name}\n\n_{tag}_\n\n' + '\n\n'.join(parts))
-        return '\n\n'.join(out)
-    if 'tiles' in c:
-        out = []
-        for tile in n.elements():
-            out.append(f'### {t(tile.find(lambda x: x.tag == "h4"))}\n\n_{tag_case(t(tile.find(by_class("lab"))))}_\n\n{t(tile.find(lambda x: x.tag == "p"))}')
-        return '\n\n'.join(out)
+        split = n.find(by_class('split'))
+        if split is not None:
+            rows_.append(split.attrs.get('aria-label', '').capitalize() + '.')
+        return f'**{lab}.** {body}' + ('\n\n' + '\n'.join(rows_) if rows_ else '')
     if 'persona' in c:
         cards = n.find_all(by_class('pe-card'))
         who = cards[0].find(by_class('pe-who'))
         name = t(who.find(lambda x: x.tag == 'b'), False)
         desc = t(who.find(lambda x: x.tag == 'b').parent.elements()[1])
-        facts = '\n'.join(f'- {t(li)}' for li in cards[0].find(lambda x: x.tag == 'ul').elements())
+        facts = bullets(t(li) for li in cards[0].find(lambda x: x.tag == 'ul').elements())
         so_lab = tag_case(t(cards[1].find(by_class('lab'))))
-        so = '\n'.join(f'- {t(li)}' for li in cards[1].find(lambda x: x.tag == 'ul').elements())
+        so = bullets(t(li) for li in cards[1].find(lambda x: x.tag == 'ul').elements())
         return f'**{name}.** {desc}.\n\n{facts}\n\n**{so_lab}:**\n\n{so}'
     if 'heard' in c:
-        return '\n'.join(f'- **{t(li.find(lambda x: x.tag == "b"), False)}**: {t(li.elements()[-1])}' for li in n.elements())
+        return bullets(f'**{t(li.find(lambda x: x.tag == "b"), False)}**: {t(li.elements()[-1])}' for li in n.elements())
     if 'flow' in c:
         out = []
         mains = [x for x in n.elements() if x.has('f-main')]
@@ -199,28 +226,11 @@ def block_md(n):
             out.append(f'- {tag_case(t(lane.find(by_class("lab"))))}:')
             for i, step in enumerate(lane.find(lambda x: x.tag == 'ol').elements(), 1):
                 out.append(f'  {i}. {t(step)}')
+            alt = lane.find(by_class('f-alt'))
+            if alt is not None:
+                out.append(f'  - {t(alt)}')
         out.append(f'- {t(mains[-1])}')
         return '\n'.join(out)
-    if 'matrix' in c:
-        cap = tag_case(t(n.find(lambda x: x.tag == 'figcaption')))
-        cols = [t(x) for x in n.find_all(by_class('mx-col'))]
-        grid = n.find(by_class('mx-grid')).elements()
-        lines = [f'| | {" | ".join(cols)} |', '|---|' + '---|' * len(cols)]
-        row, cells = None, []
-        for el in grid:
-            if el.has('mx-row'):
-                if row:
-                    lines.append(f'| {row} | {" | ".join(cells)} |')
-                row, cells = t(el), []
-            elif el.has('mx-cell'):
-                parts = [t(x, False) for x in el.elements()]
-                cells.append(cell(f'**{parts[0]} {parts[1]}**: {parts[2]}'))
-        lines.append(f'| {row} | {" | ".join(cells)} |')
-        return f'{cap}.\n\n' + '\n'.join(lines)
-    if 'why' in c:
-        return '\n'.join(f'- **{t(it.find(lambda x: x.tag == "b"), False)}**: {t(it.find(lambda x: x.tag == "p"))}' for it in n.elements())
-    if 'bul' in c:
-        return '\n'.join(f'- {t(d.elements()[-1])}' for d in n.elements())
     if 'codes' in c:
         cap = tag_case(t(n.find(lambda x: x.tag == 'figcaption')))
         trs = n.find_all(lambda x: x.tag == 'tr')
@@ -243,36 +253,52 @@ def block_md(n):
             pts = t(li.find(by_class('sl-pts')))
             lines.append(f'| {num} | {cell(name)} | {cell(kind)} | {cell(pts)} |')
         return '\n'.join(lines)
-    return ''   # pictures, screenshots and anything else that is not text
+    if 'cta-row' in c:   # the last section's buttons: each document is a link; Credits has its own section below
+        return ' · '.join(doc_links(n))
+    if n.tag == 'a' and 'back' in c:
+        return f'[{t(n)}]({SITE}/{n.attrs["href"]})'
+    if n.tag == 'template':   # the credits, written by credits_md
+        return ''
+    raise ValueError(f'build.py does not know this block: <{n.tag} class="{" ".join(c)}"> ("{t(n)[:40]}"). Add it to block_md.')
 
 
-SKIP = {'cs-head', 'shots'}
+def doc_links(row):
+    """The links of a row of buttons: the live page and each document. A button with no file (Credits) is left out."""
+    links = []
+    for el in row.elements():
+        if el.tag == 'a':
+            links.append(f'[{clean(text(el, False)).replace(" ↗", "")}]({el.attrs["href"]})')
+        elif el.has('doc-btn') and 'data-frame' in el.attrs:
+            links.append(f'[{t(el)}]({doc_link(el.attrs["data-frame"])})')
+    return links
+
+
+def join_blocks(blocks):
+    """Blocks with a blank line between them. Two lists in a row with only a blank line between them become one list
+    on GitHub (CommonMark), so an empty HTML comment keeps them apart."""
+    parts = []
+    for md in blocks:
+        if not md:
+            continue
+        if parts and LIST_ITEM.match(parts[-1].splitlines()[-1]) and LIST_ITEM.match(md.splitlines()[0]):
+            parts.append('<!-- -->')
+        parts.append(md)
+    return '\n\n'.join(parts)
+
+
+SKIP = {'cs-head'}
 LIST_ITEM = re.compile(r'\s*(?:[-*+]|\d+[.)])\s')
 
 
 def section_md(sec):
     label = sentence(t(sec.find(lambda x: x.tag == 'h3')))
-    parts = [f'## {label}']
-    for el in sec.elements():
-        if set(el.classes) & SKIP:
-            continue
-        md = block_md(el)
-        if md:
-            # Two lists in a row with only a blank line between them become one list on GitHub (CommonMark),
-            # so an empty HTML comment keeps them apart.
-            if LIST_ITEM.match(parts[-1].splitlines()[-1]) and LIST_ITEM.match(md.splitlines()[0]):
-                parts.append('<!-- -->')
-            parts.append(md)
-    chips = sec.find_all(by_class('doc-btn'))
-    if chips:
-        parts.append('Read more: ' + ' · '.join(f'[{t(b)}]({doc_link(b.attrs["data-frame"])})' for b in chips))
-    return '\n\n'.join(parts)
+    return join_blocks([f'## {label}'] + [block_md(el) for el in sec.elements() if not set(el.classes) & SKIP])
 
 
-def credits_md(det):
-    out = ['## Credits', t(det.find(by_class('credits-intro')))]
+def credits_md(tpl):
+    out = ['## Credits', t(tpl.find(by_class('credits-intro')))]
     rows_ = []
-    for row in det.find_all(by_class('used-row')):
+    for row in tpl.find_all(by_class('used-row')):
         lab = tag_case(t(row.find(by_class('chips-label'))))
         items = []
         for li in row.find(lambda x: x.tag == 'ul').elements():
@@ -281,29 +307,28 @@ def credits_md(det):
             items.append(f'[{t(a, False)}]({a.attrs["href"]}) {rest}')
         rows_.append(f'- **{lab}**: ' + '; '.join(items))
     out.append('\n'.join(rows_))
-    line = det.find(by_class('credit-line'))
+    line = tpl.find(by_class('credit-line'))
     if line is not None:
         out.append(t(line))
     return '\n\n'.join(out)
 
 
 def project_md(page, route, holds):
-    title = t(page.find(lambda x: x.tag == 'h2' and x.parent.has('hero-head')), False)
+    hero = page.find(by_class('hero'))
+    title = t(hero.find(lambda x: x.tag == 'h2'), False)
+    concept = hero.find(by_class('hero-tag'))
     lead = t(page.find(by_class('sum')))
-    cta = page.find(by_class('cta-row'))
-    links = []
-    for el in cta.elements():
-        if el.tag == 'a':
-            links.append(f'[{clean(text(el, False)).replace(" ↗", "")}]({el.attrs["href"]})')
-        elif el.has('doc-btn'):
-            links.append(f'[{t(el)}]({doc_link(el.attrs["data-frame"])})')
+    links = doc_links(page.find(lambda x: x.has('cta-row') and x.parent.has('case')))
     links.append(f'[The project page]({SITE}/#{route})')
-    parts = [f'# {title}', lead, holds, ' · '.join(links)]
+    parts = [f'# {title}', f'_{t(concept)}_' if concept is not None else '', lead, holds, ' · '.join(links)]
+    summary = page.find(by_class('summary'))
+    for box in summary.elements() if summary is not None else []:
+        parts.append(f'**{tag_case(t(box.find(by_class("lab"))))}**\n\n' + bullets(t(li) for li in box.find(lambda x: x.tag == 'ul').elements()))
     for sec in page.find_all(lambda x: x.tag == 'section' and x.has('cs')):
         parts.append(section_md(sec))
-    det = page.find(lambda x: x.tag == 'details' and x.has('used-sec'))
-    if det is not None:
-        parts.append(credits_md(det))
+    credits = page.find(lambda x: x.tag == 'template' and x.has('credits'))
+    if credits is not None:
+        parts.append(credits_md(credits))
     parts.append('---')
     parts.append(f'<sub>This README is written from the project page on my portfolio, {SITE}/#{route}, '
                  'and is updated when that page changes. To run, build and test the code, see '

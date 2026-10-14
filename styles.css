@@ -37,7 +37,7 @@ html:has(dialog[open]) { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after, ::backdrop { transition: none !important; animation: none !important; }
   /* no lifts or nudges either: the hover shadow and underline stay */
-  :is(.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button, .used-toggle, .shot img, .tile-thumb, .thumb, .arrow, .go, .guide-go) { transform: none !important; }
+  :is(.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb, .arrow, .go, .guide-go) { transform: none !important; }
 }
 body { margin: 0; background: var(--bg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
@@ -60,14 +60,14 @@ a, button, summary { touch-action: manipulation; }
 
 /* Hover and press. Every box-like control lifts 2px with the one --lift shadow (only where a pointer can hover),
    and a press puts it back down. The Home project cards have no box, so their picture lifts instead. */
-.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button, .used-toggle, .shot img, .tile-thumb, .thumb {
+.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb {
   transition: transform .25s ease, box-shadow .25s ease;
 }
-/* the controls whose colors change with their state: the current page, the pressed toggle, the Credits toggle on hover */
-.nav a, .pill button, .used-toggle { transition: transform .25s ease, box-shadow .25s ease, background-color .25s, color .25s; }
+/* the controls whose colors change with their state: the current page, the pressed toggle, a fold's chevron on hover */
+.nav a, .pill button, .fold-chev { transition: transform .25s ease, box-shadow .25s ease, background-color .25s, color .25s; }
 @media (hover: hover) {
   :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button):hover { transform: translateY(-2px); box-shadow: var(--lift); }
-  .used-sec > summary:hover .used-toggle { transform: translateY(-2px); box-shadow: var(--lift); color: var(--ink); }
+  .fold > summary:hover .fold-chev { transform: translateY(-2px); box-shadow: var(--lift); color: var(--ink); }
   /* the pictures that open the picture pop-up, and the picture of a Home project card */
   .shot:hover img, .tile-thumb:hover, [data-selected-copy] .proj:hover .thumb { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line), var(--lift); }
   .proj:hover h3 { text-decoration: underline 1.5px; text-underline-offset: 5px; }
@@ -79,7 +79,7 @@ a, button, summary { touch-action: manipulation; }
   :is(.contact .mail, .contact .row a, .credit-list a, .credit-line a):hover { text-decoration: underline 1.5px currentColor; }
 }
 :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button):active,
-.used-sec > summary:active .used-toggle { transform: none; box-shadow: none; }
+.fold > summary:active .fold-chev { transform: none; box-shadow: none; }
 .shot:active img, .tile-thumb:active, [data-selected-copy] .proj:active .thumb { transform: none; box-shadow: 0 0 0 1px var(--line); }
 .arrow, .go, .guide-go { transition: transform .25s ease; }
 
@@ -94,7 +94,7 @@ a, button, summary { touch-action: manipulation; }
 .go .ic { --ic: 12; }
 
 /* Every small mono caps label shares one look; 8px to its content */
-.eyebrow, .lab, .chips-label, .prs dt, .sb-h, .mx-col, .mx-row, .codes tr:first-child th, .path .y, .m-scale {
+.eyebrow, .lab, .chips-label, .prs dt, .sb-h, .codes tr:first-child th, .path .y, .m-scale {
   font: 400 10px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint);
 }
 .lab { margin: 0 0 8px; }
@@ -102,6 +102,7 @@ a, button, summary { touch-action: manipulation; }
 .eyebrow, .cs-title { display: flex; align-items: center; gap: 10px; }
 .eyebrow { margin: 0 0 16px; }
 .eyebrow .ic, .cs-title .ic { --ic: 20; }
+.cs-title .ic { color: var(--sec); }
 .cs-title .lab { margin: 0; }
 
 /* Labels that are not controls: a filled pill with no border and no hover (a 1px border is for secondary buttons only) */
@@ -109,7 +110,7 @@ a, button, summary { touch-action: manipulation; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 /* Every paragraph is justified, site-wide. Hyphenation keeps the gaps even in narrow columns. */
-p, dd, li, .stat-l, .path .d {
+p, dd, li, .path .d {
   text-align: justify; -webkit-hyphens: auto; hyphens: auto;
 }
 .page:focus { outline: none; }
@@ -258,21 +259,12 @@ p, dd, li, .stat-l, .path .d {
 /* a phone's row scrolls, so it takes keyboard focus: its ring sits in the row's 4px of block padding, with the fade taken off, so nothing masks it */
 .chips-row:focus-visible { -webkit-mask-image: none; mask-image: none; outline-offset: -2px; border-radius: 12px; }
 .chips-row span { flex: none; }
-/* Credits: a label, then its links */
+/* Credits (in the pop-up): a label, then its links */
 .used { display: grid; gap: 14px; }
 .used-row { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; align-items: baseline; }
 .used-row .chips-label { padding-top: 2px; }
-/* Credits: folded until its header is pressed */
-/* 44px to tap; the -12px margins give back the 12px between the 20px title row and the 44px, so the label sits where every other section label does */
-.used-sec > summary { list-style: none; cursor: pointer; min-height: 44px; margin: -12px 0; }
-.used-sec > summary::-webkit-details-marker { display: none; }
-.used-sec[open] > summary { margin-bottom: 4px; }
-.used-toggle { margin-left: auto; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
-.used-toggle .chev { transition: transform .25s ease; }
-.used-sec[open] .used-toggle .chev { transform: rotate(180deg); }
-.used-sec[open] > .used { animation: used-in .35s ease-out; }
-@keyframes used-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-@container case (max-width: 560px) { .used-row { grid-template-columns: minmax(0, 1fr); } }
+/* narrow, on the page or in the pop-up (the nearest container): each label above its links */
+@container (max-width: 560px) { .used-row { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------- project pages ---------- */
 /* 44px tall; the arrow's 32px circle sits 6px from the edge, like it does from the top and bottom */
@@ -292,7 +284,10 @@ p, dd, li, .stat-l, .path .d {
 }
 .hero-head { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 18px; }
 .hero .back { background: var(--card); }
+/* the title, and under it the small "Concept project" tag (a .tag pill) */
+.hero-title { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .case .hero-head h2 { font: 700 26px/1.3 var(--serif); letter-spacing: .03em; text-transform: uppercase; }
+.hero-tag { text-transform: uppercase; }
 .hero-art { flex: none; width: clamp(170px, 36%, 280px); align-self: center; }
 .hero-art svg { display: block; width: 100%; height: auto; }
 .hero-art.art-delivery { width: clamp(110px, 20%, 150px); }
@@ -307,59 +302,50 @@ p, dd, li, .stat-l, .path .d {
   .hero .back { order: 1; align-self: flex-start; }
   .hero-art { order: 2; width: min(100%, 220px); align-self: flex-start; margin: 6px 0; }
   .hero-art.art-delivery { width: min(100%, 130px); }
-  .case .hero-head h2 { order: 3; }
+  .hero-title { order: 3; }
 }
 .case .sum { font: 400 15px/1.7 var(--sans); color: var(--muted); }
+.sum b { font-weight: 600; color: var(--ink); }
 .cta-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
 
-/* a project's sections: full width, one under another */
-.cs { background: var(--card); border-radius: 12px; padding: 22px; margin-top: 12px; }
-.cs-head { display: flex; align-items: center; justify-content: space-between; gap: 10px 16px; flex-wrap: wrap; margin-bottom: 16px; }
-.cs-head .doc-btn, .cs-head .doc-btns { margin-left: auto; }
-/* 16px between rows: each button's tap area reaches 7px above and below it */
-.doc-btns { display: flex; flex-wrap: wrap; gap: 16px 8px; justify-content: flex-end; }
-/* narrow: the document buttons sit under the section's name, from the left, in rows */
-@container case (max-width: 560px) {
-  .cs-head .doc-btn, .cs-head .doc-btns { margin-left: 0; }
-  .cs-head .doc-btns { flex: 1 1 100%; }
-  .doc-btns { justify-content: flex-start; }
-}
+/* The project summary under the buttons: three boxes (Audience, Responsibilities, Tools), each a heading with its icon
+   in the text color and a short list. In a row; narrower, Audience on top of the other two; on a phone, one under another. */
+.summary { --sec: var(--ink); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.sum-box .cs-title { margin-bottom: 12px; }
+.sum-box ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font: 400 13px/1.55 var(--sans); color: var(--muted); }
+.sum-box li { text-align: left; }
+.sum-box li::marker { color: var(--faint); }
+@container case (max-width: 720px) { .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sum-box:first-child { grid-column: 1 / -1; } }
+@container case (max-width: 440px) { .summary { grid-template-columns: minmax(0, 1fr); } }
+
+/* a project's sections: full width, one under another (the summary boxes are the same white card) */
+.cs, .sum-box { background: var(--card); border-radius: 12px; padding: 22px; }
+.cs { margin-top: 12px; }
+/* Each kind of section has one color, for its heading icon and the icons inside it (data-kind in index.html):
+   orange for the problem and its causes, blue for the goal and the results, green for what was made, purple for the documents.
+   Right and wrong keep their own colors. */
+.cs { --sec: var(--ink); }
+.cs[data-kind="problem"] { --sec: var(--a1-ink); }
+.cs[data-kind="goal"] { --sec: var(--a3-ink); }
+.cs[data-kind="made"] { --sec: var(--a2-ink); }
+.cs[data-kind="docs"] { --sec: var(--a4-ink); }
+/* the buttons of the last section, then the All projects link on its own row */
+.cs .cta-row { margin: 0; }
+.cs > .back { display: flex; width: fit-content; }
+.cs-head { margin-bottom: 16px; }
 .cs > * + * { margin-top: 14px; }
 .cs > .cs-head + * { margin-top: 0; }
-.rows { display: grid; gap: 8px; }
-/* a row: its name and kind of problem on top, then what was found and the fix side by side */
-.row-item { background: var(--surface); border-radius: 12px; padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; }
-.row-head { display: flex; align-items: center; gap: 8px 10px; flex-wrap: wrap; }
-.row-ic { width: 32px; height: 32px; border-radius: 50%; background: var(--card); display: inline-flex; align-items: center; justify-content: center; color: var(--a2-ink); flex: none; }
+/* an icon in a 32px circle (the left of a fold's title row), and the tag at its right (kind of problem or who it is for) */
+.row-ic { width: 32px; height: 32px; border-radius: 50%; background: var(--card); display: inline-flex; align-items: center; justify-content: center; color: var(--sec); flex: none; }
 .row-tag { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; }
+/* the Six Boxes in small: the three environment boxes, then the three person boxes; the ones that apply are filled */
 .sixmini { display: grid; grid-template-columns: repeat(3, 7px); gap: 2px; }
 .sixmini i { width: 7px; height: 7px; border-radius: 2px; background: var(--line); }
-.sixmini i.on { background: var(--a2-ink); }
-.row-name { font: 700 15px/1.35 var(--serif); }
-.row-body { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; }
-.row-body > div { display: flex; flex-direction: column; gap: 8px; }
-.row-body .lab { margin: 0; }
-.row-item p { font: 400 13px/1.6 var(--sans); color: var(--muted); }
+.sixmini i.on { background: var(--sec); }
 .tag { font: 500 10px/1.3 var(--mono); letter-spacing: .08em; color: var(--faint); text-align: center; white-space: nowrap; }
-@container case (max-width: 640px) { .row-body { grid-template-columns: minmax(0, 1fr); } }
-/* a tile: a picture of the fix, then its name, who it is for and the text; stacked when narrow */
-.tiles { display: grid; gap: 8px; }
-.tile { background: var(--surface); border-radius: 12px; padding: 16px 18px; display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 14px 18px; align-items: start; }
-/* a picture that opens the picture pop-up: the same ring and hover as .shot */
+/* a picture beside the text of a fold; it opens the picture pop-up (the same ring and hover as .shot) */
 .tile-thumb { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: var(--card); border: 0; padding: 0; cursor: zoom-in; box-shadow: 0 0 0 1px var(--line); }
 .tile-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* a picture made of icons: it opens nothing, so it has no ring, no hover and no zoom cursor */
-.tile-art { display: flex; align-items: center; justify-content: center; gap: 16px; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; background: var(--t3); color: var(--a3-ink); }
-.tile-art .ic { --ic: 36; }
-.tile-main { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.tile-head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
-/* the mark beside a tile's name: a circle, a square or a diamond */
-.glyph { width: 18px; height: 18px; opacity: .85; flex: none; display: block; }
-.g-sq { border-radius: 6px; } .g-ci { border-radius: 50%; } .g-di { width: 14px; height: 14px; border-radius: 5px; margin: 2px; transform: rotate(45deg); }
-.tile h4 { font: 700 15px/1.35 var(--serif); }
-.tile .lab { margin: 0; flex-basis: 100%; }
-.tile p { font: 400 13px/1.6 var(--sans); color: var(--muted); }
-@container case (max-width: 560px) { .tile { grid-template-columns: minmax(0, 1fr); } }
 .shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .shot {
   border: 0; padding: 0; background: none; cursor: zoom-in; text-align: left; color: inherit; font: inherit;
@@ -367,19 +353,46 @@ p, dd, li, .stat-l, .path .d {
 }
 .shot img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; display: block; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); }
 .shot-cap { font: 400 12px/1.45 var(--sans); color: var(--muted); }
-@container case (max-width: 560px) { .shots { grid-template-columns: minmax(0, 1fr); } }
-.cs > p:not(.note) { font: 400 14px/1.7 var(--sans); color: var(--muted); }
-/* a list of notes: a 16px icon on each item's first line */
-.bul { display: grid; gap: 10px; font: 400 14px/1.65 var(--sans); color: var(--muted); }
-.bul li { display: flex; gap: 10px; align-items: flex-start; }
-.bul .ic { --ic: 16; margin-top: 3.5px; color: var(--a2-ink); }
-.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
-@container case (max-width: 660px) { .stat { font-size: 22px; } }
-@container case (max-width: 560px) { .stats { grid-template-columns: minmax(0,1fr); } }
+/* two pictures side by side (a before and an after), one figure across the whole width, or two figures of different
+   shapes side by side (a phone screen and a tall map): the last two are shown whole at their own shape (16:10 until they load) */
+.shots.pair, .shots.whole { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.shots.single { grid-template-columns: minmax(0, 1fr); }
+.shots.whole { align-items: start; }
+.shots.single .shot img, .shots.whole .shot img { aspect-ratio: auto 16 / 10; object-fit: contain; }
+@container case (max-width: 560px) { .shots, .shots.pair, .shots.whole { grid-template-columns: minmax(0, 1fr); } }
 
-.stats .card { background: var(--surface); border-radius: 12px; padding: 16px 18px; }
-.stat { font: 700 26px/1.1 var(--serif); margin-bottom: 6px; }
-.stat-l { font: 400 12px/1.5 var(--sans); color: var(--muted); }
+/* A fold: a block that stays closed until its title row is pressed (a native <details class="fold">, inside .folds).
+   An outlined box; the row is the summary: an optional icon in a circle, the name, an optional tag, and a chevron that
+   turns when the fold is open. Narrow, the tag moves under the name. */
+.folds { display: grid; gap: 8px; }
+.fold { border: 1px solid var(--line); border-radius: 12px; }
+.fold > summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px 10px;
+  min-height: 44px; box-sizing: border-box; padding: 12px 12px 12px 17px; border-radius: 11px;
+}
+.fold > summary::-webkit-details-marker { display: none; }
+.fold-name { flex: 1 1 0; min-width: 0; font: 700 15px/1.35 var(--serif); color: var(--ink); }
+.fold .row-tag { flex: none; margin-left: 0; }
+.fold :is(.row-ic, .tag) { background: var(--surface); }
+/* the chevron: an icon circle like the hero's arrow, 32px */
+.fold-chev { flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
+.fold-chev .ic { transition: transform .25s ease; }
+.fold[open] > summary .fold-chev .ic { transform: rotate(180deg); }
+.fold-body { padding: 2px 17px 17px; }
+.fold-body > * + * { margin-top: 14px; }
+.fold[open] > .fold-body { animation: fold-in .35s ease-out; }
+@keyframes fold-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+.fold-body > p, .fold-media > p { font: 400 13px/1.6 var(--sans); color: var(--muted); }
+/* a fold with a picture: the text, and the picture beside it (it opens larger); stacked when narrow */
+.fold-media { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 14px 18px; align-items: start; }
+.fold-media > * + * { margin-top: 0; }
+@container case (max-width: 640px) {
+  .fold > summary { flex-wrap: wrap; }
+  .fold > summary .fold-chev { order: 1; }
+  .fold > summary .row-tag { order: 2; flex: 1 1 100%; padding-left: 42px; box-sizing: border-box; }
+}
+@container case (max-width: 560px) { .fold-media { grid-template-columns: minmax(0, 1fr); } }
+.cs > p:not(.note) { font: 400 14px/1.7 var(--sans); color: var(--muted); }
 .note { font: 400 12px/1.6 var(--sans); color: var(--faint); margin-top: 14px; }
 
 /* a button that opens a document in the pop-up: the document icon, never ↗ */
@@ -434,7 +447,8 @@ dialog.doc.is-closing::backdrop { animation: doc-undim .2s ease-in forwards; }
   display: flex; align-items: center; justify-content: center;
 }
 .doc-close .ic { --ic: 20; }
-.doc-body { flex: 1; min-height: 0; overflow-y: auto; padding: 22px; font: 400 14px/1.7 var(--sans); color: var(--muted); }
+/* a size container, so what it shows (the credits) can lay itself out by the pop-up's width */
+.doc-body { flex: 1; min-height: 0; overflow-y: auto; padding: 22px; font: 400 14px/1.7 var(--sans); color: var(--muted); container-type: inline-size; }
 .doc-body > * + * { margin-top: 14px; }
 .doc-frame { width: 100%; height: 70dvh; border: 0; border-radius: 12px; background: var(--surface); display: block; }
 dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dvh - 32px); max-height: none; }
@@ -505,7 +519,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 @media (max-width: 420px) {
   :root { --block-pad: 20px; }
   .site { padding: 10px; }
-  .cs { padding: 18px; }
+  .cs, .sum-box { padding: 18px; }
   .path .card { grid-template-columns: 16px minmax(0,1fr); }
   .path .card .y { grid-column: 2; padding-top: 0; }
   .path .dot { margin-top: 2px; }
@@ -525,23 +539,28 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 /* ---------- project pages: the blocks that tell the story ---------- */
 .cs b { font-weight: 600; color: var(--ink); }
 .cs > p.keyline { font: 700 16.5px/1.55 var(--serif); color: var(--ink); letter-spacing: -.005em; }
-/* Two box styles, both radius 12: filled (--surface, no border) and outlined (1px solid --line).
-   Dashed is only for placeholders (.doc-empty); .pull is the one quote. */
+/* Two box styles, both radius 12: filled (--surface, no border) and outlined (1px solid --line; the folds).
+   A dashed blue border marks my own notes (.my-note, .takeaways); .doc-empty is the one dashed placeholder; .pull is the one quote. */
 
-/* the zones and the problems */
-.zones, .issues, .persona ul, .heard, .slides, .flow ol, .credit-list, .bul, .why { list-style: none; margin: 0; padding: 0; }
+/* the problems */
+.issues, .persona ul, .heard, .slides, .flow ol, .credit-list, .takeaways, .m-keys { list-style: none; margin: 0; padding: 0; }
 /* a list straight inside a section keeps the section's 14px space above it */
-.cs > :is(.zones, .issues, .heard, .slides, .bul, .why) { margin-top: 14px; }
-.zones { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.zones li { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border-radius: 12px; padding: 12px 14px; }
-.zones .ic { color: var(--a3-ink); margin-top: 1px; }
-.zones b { display: block; font: 700 15px/1.3 var(--serif); }
-.zones li span span { display: block; margin-top: 2px; font: 400 12px/1.45 var(--sans); color: var(--muted); }
-.issues { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.cs > :is(.issues, .heard, .slides, .takeaways, ul:not([class])) { margin-top: 14px; }
+.issues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
 .issues li { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--surface); font: 400 13px/1.5 var(--sans); color: var(--muted); text-align: left; }
-.issues li:last-child { grid-column: 1 / -1; }
-.issues .ic { color: var(--a1-ink); margin-top: 1px; }
-@container case (max-width: 560px) { .zones, .issues { grid-template-columns: minmax(0, 1fr); } }
+.issues .ic { color: var(--sec); margin-top: 1px; }
+@container case (max-width: 560px) { .issues { grid-template-columns: minmax(0, 1fr); } }
+
+/* a plain list in a section's text (the five actions): a dot in the section's color */
+.cs > ul:not([class]) { margin-bottom: 0; padding-left: 20px; display: grid; gap: 6px; font: 400 14px/1.7 var(--sans); color: var(--muted); }
+.cs > ul:not([class]) li::marker { color: var(--sec); }
+
+/* my own notes: a dashed blue border. How I sorted the causes keeps a light blue fill, so it reads apart from the boxes under it;
+   the takeaways are text only, three in a row, one under another when narrow */
+.method.my-note { border: 1.5px dashed var(--a3); background: var(--t3); padding: 14.5px 16.5px; }
+.takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.takeaways li { border: 1.5px dashed var(--a3); border-radius: 12px; padding: 14.5px 16.5px; font: 400 13px/1.6 var(--sans); color: var(--muted); text-align: left; }
+@container case (max-width: 640px) { .takeaways { grid-template-columns: minmax(0, 1fr); } }
 
 /* a quote */
 .pull { margin-inline: 0; margin-bottom: 0; display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-left: 3px solid var(--a1); background: var(--surface); border-radius: 12px; }
@@ -549,7 +568,8 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .pull blockquote p { font: italic 400 19px/1.4 var(--serif); color: var(--ink); text-align: left; }
 .pull figcaption { margin-top: 6px; font: 400 12px/1.6 var(--sans); color: var(--faint); }
 
-/* goals: where a number is now and where it should go */
+/* goals: where a number is now and where it should go. The bar, five marks under it (a score of 1 to 5, or 0% to 100%),
+   a key for what the bar shows, and a line that says how it is measured */
 .meters { display: grid; gap: 8px; }
 .meter { background: var(--surface); border-radius: 12px; padding: 16px 18px; }
 .m-head { font: 600 13px/1.35 var(--sans); color: var(--ink); margin-bottom: 12px; }
@@ -559,13 +579,26 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .meter:not(:has(.m-now)) .m-gain { border-radius: 999px; background: repeating-linear-gradient(-45deg, var(--a2) 0 4px, transparent 4px 8px); opacity: .8; }
 .m-mid { position: absolute; top: -4px; bottom: -4px; left: var(--mid); width: 2px; margin-left: -1px; background: var(--ink); border-radius: 2px; }
 .m-goal { position: absolute; top: 50%; left: var(--goal); width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--card); border: 3px solid var(--a2-ink); box-sizing: border-box; }
-/* the scale's ends are labels; the text between them is not */
-.m-scale { display: flex; gap: 10px; justify-content: space-between; align-items: baseline; margin-top: 8px; }
-.m-text { flex: 1; text-align: center; font: 400 12px/1.45 var(--sans); letter-spacing: normal; text-transform: none; color: var(--muted); }
+/* the five marks sit at 0, 25, 50, 75 and 100% of the bar, each centered on its tick */
+.m-scale { position: relative; height: 24px; margin-top: 6px; }
+.m-scale span { position: absolute; top: 0; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.m-scale span::before { content: ""; width: 1px; height: 5px; background: var(--faint); }
+.m-scale span:nth-child(1) { left: 0; } .m-scale span:nth-child(2) { left: 25%; } .m-scale span:nth-child(3) { left: 50%; }
+.m-scale span:nth-child(4) { left: 75%; } .m-scale span:nth-child(5) { left: 100%; }
+/* the key: a small sample of each mark on the bar, then what it says */
+.m-keys { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; font: 400 12px/1.45 var(--sans); color: var(--muted); }
+.m-keys li { display: flex; align-items: center; gap: 8px; text-align: left; }
+.m-keys li::before { content: ""; flex: none; box-sizing: border-box; }
+.mk-now::before { width: 16px; height: 6px; border-radius: 999px; background: var(--ink); opacity: .5; }
+.mk-mid::before { width: 2px; height: 12px; border-radius: 2px; background: var(--ink); }
+.mk-goal::before { width: 12px; height: 12px; border-radius: 50%; background: var(--card); border: 3px solid var(--a2-ink); }
+.m-how { margin-top: 12px; font: 400 12px/1.6 var(--sans); color: var(--muted); }
 
 /* the Six Boxes: a 96px label column, then cells that are part of a diagram, not controls (filled, no border) */
 .method { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 350px); gap: 16px 22px; align-items: center; background: var(--surface); border-radius: 12px; padding: 16px 18px; }
 .method p { font: 400 13px/1.6 var(--sans); color: var(--muted); }
+/* the barriers: the text, then the bar under it, across the whole box */
+.method:has(> .split) { grid-template-columns: minmax(0, 1fr); align-items: start; }
 .sixbox { display: grid; grid-template-columns: 96px repeat(3, minmax(0, 1fr)); gap: 8px; }
 .sb-h { align-self: center; }
 .sb-c { font: 500 11px/1.2 var(--sans); color: var(--muted); background: var(--card); border-radius: 12px; padding: 8px 2px; text-align: center; overflow-wrap: anywhere; -webkit-hyphens: auto; hyphens: auto; }
@@ -580,7 +613,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .pe-card { background: var(--surface); border-radius: 12px; padding: 16px 18px; }
 .pe-who { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
 /* an 18px icon in a 32px circle */
-.pe-who > .ic { padding: 7px; box-sizing: content-box; border-radius: 50%; background: var(--card); color: var(--a4-ink); }
+.pe-who > .ic { padding: 7px; box-sizing: content-box; border-radius: 50%; background: var(--card); color: var(--sec); }
 .pe-who b { display: block; font: 700 15px/1.3 var(--serif); }
 .pe-who span span { display: block; margin-top: 2px; font: 400 12px/1.45 var(--sans); color: var(--muted); }
 .persona ul { display: grid; gap: 8px; }
@@ -594,7 +627,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 /* HEARD, one step per column */
 .heard { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
 .heard li { background: var(--surface); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; text-align: left; }
-.h-l { font: 700 26px/1 var(--serif); color: var(--a4-ink); margin-bottom: 4px; }
+.h-l { font: 700 26px/1 var(--serif); color: var(--sec); margin-bottom: 4px; }
 .heard b { font: 600 13px/1.3 var(--sans); }
 .heard li > span:last-child { font: 400 12px/1.45 var(--sans); color: var(--muted); }
 @container case (max-width: 640px) {
@@ -606,7 +639,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 /* the learner's path: the call, two ways on, then practice */
 .flow { display: grid; }
 .f-step { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border-radius: 12px; padding: 12px 14px; font: 400 13px/1.5 var(--sans); color: var(--muted); text-align: left; position: relative; }
-.f-step .ic { margin-top: 1px; color: var(--a4-ink); }
+.f-step .ic { margin-top: 1px; color: var(--sec); }
 .f-lanes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 22px 0; position: relative; }
 .f-lane { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; align-content: start; }
 .f-lane .lab { margin: 0; }
@@ -618,26 +651,6 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .f-step > .f-down { --ic: 12; top: -14px; left: 17px; }
 .f-wrong .lab { color: var(--a1-ink); } .f-right .lab { color: var(--a2-ink); }
 @container case (max-width: 560px) { .f-lanes { grid-template-columns: minmax(0, 1fr); } }
-
-/* the four endings */
-.matrix { margin-inline: 0; margin-bottom: 0; }
-.mx-grid { display: grid; grid-template-columns: 96px repeat(2, minmax(0, 1fr)); gap: 8px; }
-.mx-col, .mx-row { display: flex; padding: 0 4px; }
-.mx-col { align-items: flex-end; }
-.mx-row { align-items: center; }
-.mx-cell { border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; text-align: left; }
-.mx-good { background: var(--t1); } .mx-mid { background: var(--t2); } .mx-weak { background: var(--tw); }
-.mx-score { display: flex; align-items: baseline; gap: 1px; font: 700 26px/1 var(--serif); color: var(--ink); } .mx-score small { font: 400 13px var(--serif); color: var(--muted); }
-.mx-cell b { font: 600 13px/1.3 var(--sans); }
-.mx-cell > span:last-child { font: italic 400 12px/1.5 var(--serif); color: var(--muted); }
-@container case (max-width: 520px) { .mx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .mx-corner { display: none; } .mx-row { grid-column: 1 / -1; padding-top: 6px; } .mx-col, .mx-row { padding-inline: 0; } }
-
-/* the reasons behind the choices */
-.why { display: grid; gap: 8px; }
-.why-item { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border-radius: 12px; padding: 12px 14px; }
-.why-item .ic { color: var(--a1-ink); margin-top: 1px; }
-.why-item b { display: block; font: 600 13px/1.35 var(--sans); margin-bottom: 2px; }
-.why-item p { font: 400 13px/1.55 var(--sans); color: var(--muted); }
 
 /* handling codes: where each one lets a parcel go */
 .codes { margin-inline: 0; margin-bottom: 0; }
@@ -664,20 +677,20 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
   .codes td::before { content: attr(data-label) ": "; font-weight: 600; color: var(--ink); }
 }
 
-/* the barriers, split between training and operations */
+/* the barriers, split between training and operations: squares in the section's one color, filled for training and outlined for operations */
 .split { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .split .lab { margin: 0; }
 .sp-bar { display: inline-flex; gap: 8px 14px; flex-wrap: wrap; }
 .sp-bar > span { display: inline-flex; align-items: center; gap: 3px; }
-.sp-bar i { width: 18px; height: 18px; border-radius: 5px; }
-.sp-train i { background: var(--a2-ink); } .sp-ops i { background: var(--a3-ink); }
+.sp-bar i { width: 18px; height: 18px; border-radius: 5px; box-sizing: border-box; border: 2px solid var(--sec); }
+.sp-train i { background: var(--sec); }
 .sp-bar em { font: 400 12px var(--sans); color: var(--muted); margin-left: 6px; }
 
 /* the seven slides */
 .slides { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 .slides li { position: relative; background: var(--surface); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; min-height: 108px; text-align: left; }
 .sl-n { position: absolute; top: 10px; right: 14px; font: 700 18px/1 var(--serif); color: var(--faint); }
-.slides .ic { color: var(--a4-ink); margin-bottom: 4px; }
+.slides .ic { color: var(--sec); margin-bottom: 4px; }
 .slides b { font: 600 13px/1.3 var(--sans); }
 .sl-type { font: 400 12px/1.4 var(--sans); color: var(--muted); }
 .sl-pts { margin-top: auto; align-self: flex-start; font: 500 10px/1 var(--mono); letter-spacing: .08em; color: var(--ink); white-space: nowrap; }

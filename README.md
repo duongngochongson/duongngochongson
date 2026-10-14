@@ -10,15 +10,15 @@ My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and ab
 
 ### [Why Members Are Unhappy](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
 
-- **Problem:** Members of Cozy, a fictional coworking business, grew less satisfied over one year, and complaint handling got the lowest score.
-- **Solution:** I traced the drop to its causes and chose a fix for each, including Hear Them Out, a branching course for front-desk staff.
+- **Problem:** In this concept project, members of Cozy, a coworking business, grew less satisfied over one year, and complaint handling got the lowest score.
+- **Solution:** I traced the drop to its root causes and chose a solution for each: Hear Them Out, a branching course for front-desk staff, with changes to the log, signs in the space and a Wi-Fi checklist.
 - **Goal:** Raise member satisfaction to 4.0/5 within two quarters.
 
 ## Skillset
 
 `Needs analysis` `Action mapping` `Branching scenarios` `Job aids` `Vibe-coded e-learning` `Learning evaluation` `LMS · SCORM & xAPI` `Data analysis`
 
-## The path
+## My path
 
 - **Learning Experience Designer** (Now): Designing learning in code: modules that work on a phone, can be measured and reused, and upload to an LMS as SCORM.
 - **Teacher** (Now): Teaching math and digital skills to students of different ages, in class and online.
