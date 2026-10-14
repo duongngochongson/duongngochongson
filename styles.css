@@ -71,6 +71,7 @@ a, button, summary { touch-action: manipulation; }
   /* the pictures that open the picture pop-up, and the picture of a Home project card */
   .shot:hover img, .tile-thumb:hover, [data-selected-copy] .proj:hover .thumb { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line), var(--lift); }
   .proj:hover h3 { text-decoration: underline 1.5px; text-underline-offset: 5px; }
+  [data-page="portfolio"] .proj:hover { box-shadow: var(--raise), var(--lift); }
   /* arrows nudge 2px the way they point */
   .guide-item:hover .guide-go { transform: translateX(2px); }
   .back:hover .arrow { transform: translateX(-2px); }
@@ -210,7 +211,10 @@ p, dd, li {
   text-decoration: none; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
   background: var(--surface); border-radius: 22px; padding: var(--block-pad); color: inherit; container-type: inline-size;
 }
-[data-page="portfolio"] .proj-list { margin-bottom: 12px; }
+[data-page="portfolio"] .proj-list { margin-bottom: 12px; gap: 16px; }
+/* on Portfolio the cards are white and raised like the project pages' boxes (hairline edge, shadow to the bottom right);
+   on hover they lift a little more, and a press sets them down flat */
+[data-page="portfolio"] .proj { background: var(--card); border: 1px solid var(--line); box-shadow: var(--raise); }
 /* on Home the project sits straight on the Selected work block, with no box of its own (on hover its title underlines and its picture lifts) */
 [data-selected-copy] .proj { background: none; padding: 0; border-radius: 12px; }
 /* 4:3, capped in height when the card is one column wide */
