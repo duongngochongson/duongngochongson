@@ -66,15 +66,16 @@ class Component extends DCLogic {
   renderVals() {
     return {
       beats: [
-        say('First note, before the phone rings', '"Sofia · [call date] · [call time]"'),
+        say('First note, before answering', '"Sofia · [call date] · [call time]"'),
         say('Greeting', '"Cozy front desk, [name] speaking."'),
         dec('1', 'H', 'Hear', 'Talk', '"I\u2019m listening. Tell me what happened, from the start."', ['A yes-or-no question that doubts it happened in Focus', 'The rule, then a question that blames her for sitting in the wrong zone']),
         say('Let her finish', '"Mm-hm. Go on, I\u2019m listening."'),
-        dec('2', 'E', 'Empathize', 'Talk', 'Names her feeling and says her need back', ['"I understand", then a fix that puts the work on her', 'Reassurance that brushes her feeling aside']),
+        dec('2', 'E', 'Empathize', 'Talk', 'Names her feeling and says her need back', ['"I understand", then a solution that puts the work on her', 'Reassurance that brushes her feeling aside']),
         dec('3', 'A', 'Apologize', 'Talk', 'Says nobody followed up on her note, so it happened again, and keeps names private', ['The right apology, but it names Dan', 'A general apology that keeps names private']),
         dec('4', 'R', 'Resolve', 'Resolve', 'A private talk with the member by [day 1], and a call back on [day 2]', ['A talk with the member "soon", with no day and no call back', 'A reminder to every member, with a call back on [day 2]']),
         say('Goodbye', '"Thanks for telling us, Sofia."'),
-        dec('5', 'D', 'Diagnose', 'Resolve', 'The case stays open until Sofia says the fix worked', ['The case is closed before she confirms'])
+        say('End', 'The learner presses End, and the call is over.'),
+        dec('5', 'D', 'Diagnose', 'Resolve', 'The case stays open until Sofia says the solution worked', ['The case is closed before she confirms'])
       ]
     };
   }
