@@ -160,28 +160,8 @@
 <main class="doc-main">
 <section class="doc-sec tone-amber" id="purpose">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-info"/></svg></span><h2><span class="sec-n">1</span>Purpose and scope</h2><span class="sec-line"></span></header>
-  <p>This guide describes the look and the interaction rules of Not-Home Delivery Stop, a short online course, or module, of seven slides. It teaches delivery drivers what to do at a not-home stop, where nobody answers the door. This is a concept project: the parcel company was created for this portfolio.</p>
-  <p>On the slides, the driver puts the six steps of a not-home stop in order and opens the four job aids, short reference cards with what each part of the job needs. The driver then sorts parcels by their handling code, their stop note and what the customer said on the call. After that, the driver takes a phone call with Ms. Rivera, a customer whose parcel needs a signature, and types a call with a second customer, Mr. Hayes. On slide 5, an artificial intelligence model plays Mr. Hayes, and a second model, the grader, checks the call against the three call moves. The slide is not scored, because a model’s feedback can vary. Last, the driver finds a safe place to leave a parcel at a house and handles two stops where each choice changes what happens next.</p>
-  <p>The guide covers the design tokens, the fonts, the components, motion, sound and the words on screen. Every value in it comes from the module’s source code. The colors, sizes and timings are set in <code class="sg-code">src/<wbr>design/<wbr>tokens.json</code>, and the stylesheets take them from there. The rest comes from <code class="sg-code">base.css</code> and <code class="sg-code">contrast.css</code>, from the components in <code class="sg-code">src/<wbr>components/<wbr>ui/</code>, each with its own stylesheet, and from the module’s notes on the design system, the audio and the slides. The component figures are screenshots of the module’s components in their states.</p>
-  <h3>Terms</h3>
-  <div class="table-wrap sg-left sg-lead">
-    <table>
-      <thead><tr><th scope="col">Term</th><th scope="col">Meaning</th></tr></thead>
-      <tbody>
-      <tr><td>Design tokens</td><td>Named values for the colors, type sizes, spacing, lines and motion, kept in one file, <code class="sg-code">tokens.json</code>. Every component takes its values from the tokens, so a change there reaches every screen.</td></tr>
-      <tr><td>WCAG, AA and AAA</td><td>The Web Content Accessibility Guidelines, the standard for accessible web content. Each rule has a level: AA is the level most accessibility policies ask for, and AAA is the stricter level.</td></tr>
-      <tr><td>Contrast ratio</td><td>How much darker one color is than another, from 1:1 (no difference) to 21:1 (black on white).</td></tr>
-      <tr><td>rem</td><td>A size relative to the root font size of the page. In the module, 1rem is 16px, or 18px from 600px wide.</td></tr>
-      <tr><td>LMS and SCORM</td><td>A learning management system (LMS) is the software companies use to give courses to staff. SCORM is a standard format that lets an LMS run the module and save each driver’s progress and score.</td></tr>
-      <tr><td>Live region</td><td>A part of the page whose changes a screen reader reads out loud.</td></tr>
-      <tr><td>WebVTT and cue</td><td>WebVTT is a file format for captions. A cue is one caption with its start and end times.</td></tr>
-      <tr><td>Forced colors</td><td>A high-contrast mode, such as Windows High Contrast, in which the system replaces the page’s colors with the user’s own.</td></tr>
-      <tr><td>Handling code: STD, SIG and AGE</td><td>The code on a parcel’s label that sets where the parcel may go. An STD parcel can go to a neighbor or a pickup point, and to a safe place if the stop note or the customer allows it. A SIG parcel needs a signature. An AGE parcel is age-restricted, so it goes to a pickup point, where the customer shows photo ID.</td></tr>
-      <tr><td>Call moves</td><td>The three things to do on a call: say who you are and what is happening, explain the options the parcel allows, and confirm the plan and the proof of delivery.</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p>The table below lists each slide with its slide type, as the code names it, and its main components.</p>
+  <p>This guide sets the look and the interaction rules of Not-Home Delivery Stop, a seven-slide module that teaches delivery drivers what to do when nobody answers the door. Every value comes from the module’s source code.</p>
+  <p>Each slide, its type and its main components:</p>
   <div class="table-wrap sg-left sg-lead">
     <table>
       <thead><tr><th scope="col">Slide and type</th><th scope="col">Main components</th></tr></thead>
@@ -196,8 +176,7 @@
       </tbody>
     </table>
   </div>
-  <p>Every slide sits in the same frame: the TopBar, a task zone and the ActionBar. The FeedbackPanel rises from the ActionBar after the learner checks an answer, and the job aids open in a Dialog.</p>
-  <div class="callout"><span class="k">Tokens first</span><p>To change a value, edit <code class="sg-code">tokens.json</code> and run <code>npm run tokens</code>. This command runs <code class="sg-code">scripts/<wbr>build-tokens.js</code>, which writes the stylesheet <code class="sg-code">tokens.css</code> from the tokens. The same command also runs before <code class="sg-code">npm run dev</code>, which starts the module on a local server, and before <code class="sg-code">npm run build</code>, which builds it for publishing. Nobody edits <code class="sg-code">tokens.css</code> by hand, and a test fails if it no longer matches <code class="sg-code">tokens.json</code>.</p></div>
+  <p>Every slide sits in the same frame: the TopBar, a task zone and the ActionBar.</p>
 </section>
 <section class="doc-sec tone-blue" id="principles">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-star"/></svg></span><h2><span class="sec-n">2</span>Principles</h2><span class="sec-line"></span></header>
@@ -211,11 +190,10 @@
       </tbody>
     </table>
   </div>
-  <p>The code refers to these principles by their numbers. For example, <code class="sg-code">src/<wbr>design/<wbr>states.js</code> lists every state and how it is shown besides color, and it names P1 to P3 as its reasons. Two tests read that list (see Accessibility).</p>
 </section>
 <section class="doc-sec tone-green" id="color">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-palette"/></svg></span><h2><span class="sec-n">3</span>Color</h2><span class="sec-line"></span></header>
-  <p>The module has a light theme and no dark theme. The palette has seventeen color tokens. Each one has a role in <code class="sg-code">tokens.json</code> and a CSS custom property, a named value the stylesheets use, called <code class="sg-code">--color-&lt;name&gt;</code> in <code class="sg-code">tokens.css</code>. Contrast follows WCAG 2 and is computed with <code class="sg-code">src/<wbr>design/<wbr>contrast.js</code>. Text needs at least 4.5:1, which meets level AA, and body text aims for 7:1, which meets level AAA. Outlines and icons need 3:1.</p>
+  <p>The module has one light theme with seventeen color tokens. Text reaches at least 4.5:1, body text aims for 7:1, and outlines and icons reach 3:1.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-stack">
@@ -256,18 +234,12 @@
     </div>
     <figcaption><b>Figure 1</b>Colors, with their token, value, role and contrast</figcaption>
   </figure>
-  <ul>
-    <li><span><b>Primary</b> #1F4E8C carries the primary buttons, the selection and the focus ring, with white text at 8.31:1. Hover and pressed darken to primary-strong #173C6D (11.03:1). Primary-tint #E5EDF7 fills the selected choice and the driver’s bubble.</span></li>
-    <li><span><b>Accent</b> #F2A900 marks one highlight on each screen. It is used as a fill and not as a text color: ink text on it reaches 7.77:1, but amber text on the white surface would reach 2.01:1, below the 4.5:1 that text needs. Accent-tint #FDF0CC is its soft fill.</span></li>
-    <li><span><b>Success and error</b> mark an answer that is correct or a parcel that is delivered, and an answer that is incorrect or a policy violation, a stop that ends with a broken rule. They color icons and borders (5.35:1 and 6.57:1 on surface). Their tints fill the panels, with ink text at 13.40:1 and 13.23:1. Slate-tint #ECEEF1 does the same for info, returned and disabled.</span></li>
-    <li><span><b>Outline</b> #7D828B draws the control outlines of choice cards and secondary buttons, at 3.86:1 on surface. <b>Divider</b> #E4E0D8 draws 1px dividers and level-1 borders.</span></li>
-    <li><span><b>Disabled text</b> #646A73 sits on disabled controls. It carries an instruction (“Choose an option first”), so it meets the 4.5:1 for text and reaches 4.69:1 on slate-tint.</span></li>
-  </ul>
-  <div class="callout"><span class="k">Illustration</span><p>The doorstep picture on slide 6 uses an ink outline, flat fills from the palette and rounded joins, with no gradients. Outlines stay 2px at any size. Amber, green and red are not used in it, because they are kept for the highlight and for feedback.</p></div>
+  <p>Primary blue carries the buttons, the selection and the focus ring. Amber marks one highlight per screen, as a fill only, because amber text on white would reach only 2.01:1. Green and red mark correct and incorrect, and each always comes with an icon and a word.</p>
+  <div class="callout"><span class="k">Illustration</span><p>The doorstep picture uses an ink outline and flat fills from the palette. It leaves out amber, green and red, which are kept for the highlight and for feedback.</p></div>
 </section>
 <section class="doc-sec tone-red" id="type">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-type"/></svg></span><h2><span class="sec-n">4</span>Type</h2><span class="sec-line"></span></header>
-  <p>Headings are Barlow Semi Condensed in weight 600 (semibold). Body text is Atkinson Hyperlegible Next in 400 (regular) and 700 (bold). Each size is 1.25 times the size below it, starting from a root size of 16px, which becomes 18px from 600px wide. A block of text is at most 65ch wide, about 65 characters. The module uses no italics. Emphasis is bold, and <code class="sg-code">base.css</code> sets <code class="sg-code">em</code>, <code class="sg-code">i</code>, <code class="sg-code">cite</code> and the other italic tags upright.</p>
+  <p>Headings are Barlow Semi Condensed 600, and body text is Atkinson Hyperlegible Next 400 and 700. Each size is 1.25 times the one below, from a 16px root that becomes 18px from 600px wide. There are no italics: emphasis is bold.</p>
   <figure class="fig">
     <div class="fig-panel">
       <ul class="sg-type">
@@ -281,7 +253,7 @@
     <figcaption><b>Figure 2</b>Type scale, each step set in its own font and size, at 16px or 18px to the rem, as in the module</figcaption>
   </figure>
   <h3>Codes and house numbers</h3>
-  <p>In Barlow, the letter O and the digit 0 look alike, and so do the capital I and the small l. For that reason, codes and house numbers are set in Atkinson Hyperlegible Next, in headings too. To do this, wrap them in <code class="sg-code">.ds-code</code>, which switches the font and keeps the size and weight of the text around it. Atkinson comes in 400 and 700, so a code in a 600 heading shows at 700.</p>
+  <p>In Barlow, O and 0 look alike, and so do I and l, so codes and house numbers are set in Atkinson, even in headings, with the .ds-code class.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-legible">
@@ -298,11 +270,11 @@
     </div>
     <figcaption><b>Figure 3</b>Same line in each face, and a Barlow heading with its code and house number in Atkinson</figcaption>
   </figure>
-  <p>Both fonts are served with the module as woff2 files, the compressed format for web fonts. They are the latin and latin-ext subsets from Fontsource 5.3.0, an open-source project that packages fonts for self-hosting. They do not load from a CDN, a shared server that hosts files for many sites, because an LMS can block requests to outside servers, and the SCORM package has to keep working there. Both fonts are under the SIL Open Font License 1.1, and the license texts ship next to the fonts.</p>
+  <p>Both fonts are served with the module, not from a CDN, because an LMS can block outside servers.</p>
 </section>
 <section class="doc-sec tone-purple" id="space">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-layout"/></svg></span><h2><span class="sec-n">5</span>Space, shape and layout</h2><span class="sec-line"></span></header>
-  <p>Space is on a 4px base, in eight steps from <code class="sg-code">--space-1</code> to <code class="sg-code">--space-8</code>. Touch targets are at least 44 × 44px and at least 8px apart. Components take their sizes from these steps. A button has 8px of padding at the top and bottom and 24px at the sides, a flip card is at least 128px tall (two steps of 64px), and the dialog is at most 768px wide (twelve steps of 64px).</p>
+  <p>Space is on a 4px base, in eight steps. Touch targets are at least 44 × 44px and 8px apart.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-stack">
@@ -342,32 +314,15 @@
     </div>
     <figcaption><b>Figure 4</b>Space steps, the three radii, the lines and the two levels of elevation</figcaption>
   </figure>
-  <div class="table-wrap sg-left sg-lead">
-    <table>
-      <thead><tr><th scope="col">Token and value</th><th scope="col">Use</th></tr></thead>
-      <tbody>
-      <tr><td><code>--radius-control</code><br>8px</td><td>Buttons, inputs, choice cards</td></tr>
-      <tr><td><code>--radius-panel</code><br>12px</td><td>Panels, sheets</td></tr>
-      <tr><td><code>--radius-pill</code><br>999px</td><td>Badges</td></tr>
-      <tr><td><code>--stroke-divider</code><br>1px</td><td>Dividers</td></tr>
-      <tr><td><code>--stroke-outline</code><br>2px</td><td>Control outlines</td></tr>
-      <tr><td><code>--stroke-icon</code><br>2px</td><td>Icons</td></tr>
-      <tr><td><code>--focus-width</code><br>2px</td><td>The focus ring, in primary</td></tr>
-      <tr><td><code>--focus-offset</code><br>2px</td><td>The gap between the focus ring and the control</td></tr>
-      <tr><td>Level 1<br>surface, 1px divider border, no shadow</td><td>Cards, panels and bars</td></tr>
-      <tr><td><code>--elevation-2-shadow</code><br>0 4px 12px rgba(28, 36, 48, 0.16)</td><td>A dragged item, the feedback panel and dialogs. Nothing else has a shadow.</td></tr>
-      </tbody>
-    </table>
-  </div>
   <h3>Layout</h3>
-  <p>Content is at most 960px wide and centered, with side margins set by the space tokens, on a grid of 4, 8 or 12 columns (<code class="sg-code">.ds-container</code> and <code class="sg-code">.ds-grid</code> in <code class="sg-code">base.css</code>). The root size changes at the first breakpoint, the first screen width where the layout changes, so all type grows by an eighth from 600px wide.</p>
+  <p>Content is at most 960px wide and centered, and all type grows by an eighth from 600px wide.</p>
   <ul class="sg-bps plain">
     <li><span class="sg-bp-k">Under 600px</span><span>4 columns</span><span>16px side margin</span><span>16px gutter</span><span>16px root size</span></li>
     <li><span class="sg-bp-k">600 to 839px</span><span>8 columns</span><span>24px side margin</span><span>16px gutter</span><span>18px root size</span></li>
     <li><span class="sg-bp-k">840px and up</span><span>12 columns</span><span>32px side margin</span><span>24px gutter</span><span>18px root size</span></li>
   </ul>
   <h3>Screen anatomy</h3>
-  <p>Figure 5 shows one slide on a phone 360px wide, with an answer checked and the feedback panel open. The action bar holds one primary button and, from slide 2 on, a text-style Back button. When the learner goes back to a slide, it shows the checked answer again, and the answer cannot be changed.</p>
+  <p>Figure 5 shows one slide on a 360px phone, with the feedback panel open.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-anatomy">
@@ -384,26 +339,14 @@
 </section>
 <section class="doc-sec tone-brown" id="icons">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-search"/></svg></span><h2><span class="sec-n">6</span>Icons</h2><span class="sec-line"></span></header>
-  <p>The icons come from Lucide, an open-source icon set. They are drawn on a 24px grid with a 2px stroke and used at three sizes: 16, 20 and 24px. Every icon has a text label, either on screen or read out by screen readers. The module uses 35 icons.</p>
-  <div class="table-wrap sg-left sg-lead">
-    <table>
-      <thead><tr><th scope="col">Group</th><th scope="col">Icons and what they mean</th></tr></thead>
-      <tbody>
-      <tr><td><b>States and feedback</b></td><td><code>Check</code> correct, delivered · <code>X</code> incorrect, not quite · <code>Info</code> good to know · <code>TriangleAlert</code> policy violation · <code>Undo2</code> returned to depot · <code>Circle</code> and <code>CircleDot</code> unselected and selected choice · <code>ArrowUp</code> disabled button: do this first</td></tr>
-      <tr><td><b>Codes and job aids</b></td><td><code>Package</code> STD code · <code>PenLine</code> SIG code · <code>IdCard</code> AGE code · <code>BookOpen</code> job aids · <code>BookOpenCheck</code> job-aid card viewed · <code>ListOrdered</code> sequence card · <code>Tags</code> handling-codes card · <code>House</code> safe-place card · <code>Phone</code> call-moves card</td></tr>
-      <tr><td><b>Moving things</b></td><td><code>GripVertical</code> drag handle · <code>ChevronUp</code> and <code>ChevronDown</code> move a step up or down · <code>Move</code> selected to move · <code>ArrowDownToLine</code> put the selected parcel here · <code>RotateCw</code> turn a flip card · <code>ChevronLeft</code> back</td></tr>
-      <tr><td><b>The call and the chat</b></td><td><code>UserRound</code> customer avatar · <code>Play</code> play or replay a spoken line · <code>Square</code> stop the line that is playing, and an unmarked check · <code>VolumeX</code> audio unavailable · <code>Captions</code> and <code>CaptionsOff</code> captions on and off · <code>Send</code> send a chat message</td></tr>
-      <tr><td><b>Results and checks</b></td><td><code>Flag</code> the decision that led to the ending · <code>Minus</code> not reached · <code>CircleDashed</code> not yet · <code>SquareCheck</code> marked</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p>In forced colors mode, an icon takes the color of the text beside it, which the system chooses. That way, a blue or green icon stays visible when the user’s system theme is dark.</p>
+  <p>The 35 icons come from Lucide, on a 24px grid with a 2px stroke, at 16, 20 and 24px. Every icon has a text label, and each state’s icon always comes with its word.</p>
+  <p>In forced colors mode, an icon takes the color of the text beside it.</p>
 </section>
 <section class="doc-sec tone-amber" id="components">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-components"/></svg></span><h2><span class="sec-n">7</span>Components</h2><span class="sec-line"></span></header>
-  <p>The components are written in React, the JavaScript library that draws the module’s screens, and they are kept in <code class="sg-code">src/<wbr>components/<wbr>ui/</code>. Their stylesheets take every color, size and timing from the tokens. Each figure shows a component in its states, as the module draws it in a column about 360px wide, at the 18px root size.</p>
+  <p>The components are written in React and take every value from the tokens. Each figure shows a component in its states, at 360px wide.</p>
   <h3>Button</h3>
-  <p>There are three kinds of button. A primary button is filled, and hover and pressed darken it to primary-strong. A secondary button is outlined. A text button has no fill or border and is used for a secondary action, such as Back beside the primary button. Every button is at least 44 × 44px, with 8px corners and bold body type. A disabled button still says what to do first, with an up arrow and the words, such as “Choose an option first”.</p>
+  <p>Primary buttons are filled, secondary buttons are outlined, and text buttons, such as Back, have neither. A disabled button still says what to do first, such as “Choose an option first”.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-stack">
@@ -430,7 +373,7 @@
     <figcaption><b>Figure 6</b>Button: primary, secondary and text, in each state</figcaption>
   </figure>
   <h3>ChoiceCard</h3>
-  <p>A ChoiceCard is one option of a question with a single answer, on slides 4 and 7. It works as a radio button, so the arrow keys move between the options of a group. Each state shows an icon and a word as well as its color: a filled dot and “Selected”, a check and “Correct”, a cross and “Incorrect”.</p>
+  <p>One option of a single-answer question, on slides 4 and 7. It works as a radio button, and each state shows an icon and a word: “Selected”, “Correct” or “Incorrect”.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-shots sg-shots--grid">
@@ -443,7 +386,7 @@
     <figcaption><b>Figure 7</b>ChoiceCard in its four states</figcaption>
   </figure>
   <h3>FeedbackPanel and OutcomePanel</h3>
-  <p>The FeedbackPanel rises from the action bar after the learner presses Check answer. It has the level 2 shadow, a 2px colored top edge and a title with its icon: “Correct”, “Not quite” or “Good to know”. The OutcomePanel shows how a stop ended, on slide 7 and on the results screen. Its three endings are Delivered, Policy violation and Returned to depot.</p>
+  <p>The FeedbackPanel rises from the action bar after Check answer, titled “Correct”, “Not quite” or “Good to know”. The OutcomePanel shows how a stop on slide 7 ended: Delivered, Policy violation or Returned to depot.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-stack">
@@ -466,7 +409,7 @@
     <figcaption><b>Figure 8</b>FeedbackPanel and OutcomePanel, each in its three variants, labeled by their titles</figcaption>
   </figure>
   <h3>DialogueBubble, PlayLineButton and CaptionBar</h3>
-  <p>These components draw the phone call on slide 4. Every bubble names its speaker. The customer speaks from the left, beside an avatar, and the driver, “You”, speaks from the right on primary-tint. A PlayLineButton plays one spoken line. No sound plays until the learner presses it, which meets WCAG 1.4.2, the rule on sound that plays by itself. The button sits in the bubble of the line it plays, and beside each line the learner can choose, so the learner can hear a line before choosing it.</p>
+  <p>The call on slide 4. Every bubble names its speaker. A PlayLineButton plays one line, and no sound plays until the learner presses it (WCAG 1.4.2).</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-stack">
@@ -484,7 +427,7 @@
     </div>
     <figcaption><b>Figure 9</b>DialogueBubble and PlayLineButton</figcaption>
   </figure>
-  <p>A browser’s <code class="sg-code">&lt;audio&gt;</code> element does not show captions, so the module reads the WebVTT captions file itself and shows the current cue in the CaptionBar, with the speaker’s name. Captions are on by default, and the toggle shows its state as an icon and a word.</p>
+  <p>The CaptionBar shows the current caption with the speaker’s name. Captions are on by default.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-shots sg-shots--grid">
@@ -496,7 +439,7 @@
     <figcaption><b>Figure 10</b>CaptionBar, on and off</figcaption>
   </figure>
   <h3>ChatComposer and CheckCard</h3>
-  <p>These components draw the typed call with Mr. Hayes on slide 5. The ChatComposer is a labeled text field of several lines with a character counter. Enter sends the message, and Shift+Enter starts a new line. The send button is the screen’s primary button, in the ActionBar. If the customer or the grader does not answer, the slide switches to a self-check: the learner reads a model call, written with the recommended lines, and marks the call moves they made on CheckCards. A marked card shows a checked box and the word “Marked”.</p>
+  <p>The typed call with Mr. Hayes on slide 5. If the service does not answer, the slide switches to a self-check, where the learner marks the call moves they made on CheckCards.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-shots sg-shots--grid">
@@ -507,7 +450,7 @@
     <figcaption><b>Figure 11</b>ChatComposer and CheckCard</figcaption>
   </figure>
   <h3>TopBar and ActionBar</h3>
-  <p>The TopBar shows the progress as “3 of 7” over a bar, and the Job aids button. On slide 1 that button is disabled and says “Reach slide 2 first”, because the learner opens the job aids for the first time on slide 2. The ActionBar holds the primary button. Until the learner has made a choice, the button is disabled and says what to do first.</p>
+  <p>The TopBar shows the progress, “3 of 7”, and the Job aids button. The ActionBar holds the primary button, which says what to do first until the learner has chosen.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-shots sg-shots--grid">
@@ -520,8 +463,8 @@
     <figcaption><b>Figure 12</b>TopBar and ActionBar</figcaption>
   </figure>
   <h3>FlipCard, RevealCard and Dialog</h3>
-  <p>A FlipCard turns over in place to show its back on primary-tint. A RevealCard holds a job aid, on slide 2 and in the Job aids dialog. Its front is a disclosure button, a button that shows or hides the content under it. Its back holds lists, so it does not turn over in place: the back turns in below the front. An opened card shows “Viewed” with an icon.</p>
-  <p>The Dialog is a modal panel, which blocks the page behind it until it closes. It has the level 2 shadow and follows the WAI-ARIA dialog pattern, the W3C’s guidance on how a dialog works with a keyboard and a screen reader. Focus moves to its title and stays inside the dialog. Esc, Close or a tap on the backdrop closes it, and focus returns to the button that opened it.</p>
+  <p>A FlipCard turns over in place. A RevealCard holds a job aid, and its back turns in below the front. An opened card shows “Viewed”.</p>
+  <p>The Dialog follows the WAI-ARIA dialog pattern: focus moves to its title and stays inside, and Esc, Close or the backdrop closes it.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-shots sg-shots--grid">
@@ -534,7 +477,7 @@
     <figcaption><b>Figure 13</b>FlipCard and RevealCard, closed and open</figcaption>
   </figure>
   <h3>StepCard, ParcelCard, CodeBadge and Bin</h3>
-  <p>A StepCard is one step in the list the learner puts in order on slide 1. There are four ways to move it: drag its handle, use its up and down buttons, tap it and then tap the step whose place it takes, or use the keyboard, where Space picks it up, the arrow keys move it and Space drops it. After the learner checks the answer, a step in the wrong place says where it belongs and what goes wrong at a real stop in that order.</p>
+  <p>A StepCard is one step to put in order on slide 1. It moves four ways: drag, its up and down buttons, tap and tap, or the keyboard.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-shots sg-shots--grid">
@@ -546,7 +489,7 @@
     </div>
     <figcaption><b>Figure 14</b>StepCard in its four states</figcaption>
   </figure>
-  <p>A ParcelCard on slide 3 shows a parcel’s handling code as a CodeBadge, its stop note and the result of the call to the customer. The learner uses all three to choose the bin the parcel goes in. Every CodeBadge has the same neutral style: the icon and the code tell the codes apart, and the code is set in <code class="sg-code">.ds-code</code>. A Bin lists the parcels in it. While a parcel is selected, the bin’s heading becomes a button that says what it will do, such as “Put Number 22 here”.</p>
+  <p>A ParcelCard on slide 3 shows a parcel’s CodeBadge, its stop note and the call result. While a parcel is selected, each Bin’s heading becomes a button, such as “Put Number 22 here”.</p>
   <figure class="fig">
     <div class="fig-panel">
       <div class="sg-stack">
@@ -577,7 +520,7 @@
     <figcaption><b>Figure 15</b>CodeBadge, ParcelCard and Bin</figcaption>
   </figure>
   <h3>Doorstep scene</h3>
-  <p>The doorstep scene is the picture of a house on slide 6. It is drawn with flat shapes, 2px ink outlines and colors from the tokens. It shows the details that the four safe-place rules depend on: a safe place is hidden from the street, protected from rain, inside the property, and keeps doors and paths clear. Each numbered spot is a 44px button, placed by percent so it stays on its spot at any size of the picture. The selected spot gets the screen’s amber highlight, and a line under the picture names it.</p>
+  <p>The picture of a house on slide 6, in flat shapes and 2px ink outlines. It shows what the four safe-place rules depend on, and each numbered spot is a 44px button.</p>
   <figure class="fig">
     <div class="fig-panel">
       <figure class="sg-shot sg-shot--one"><img src="style-guide/doorstep-scene.webp" width="536" height="436" alt="A flat drawing of a house with a blue door numbered 21, a hedge, a carport with bins and a wall on the left numbered 19. Five numbered circles mark the spots; spot 4, under the carport beside the bins, has an amber ring. Under the picture: “Selected: spot 4, Under the carport, beside the bins”." loading="lazy" decoding="async"></figure>
@@ -600,50 +543,34 @@
       </tbody>
     </table>
   </div>
-  <p>Reduced motion is turned on by the device setting that asks for less movement (<code class="sg-code">prefers-reduced-motion</code>), or for one part of the page with <code class="sg-code">data-motion="reduced"</code>. Then <code class="sg-code">--motion-enter</code> and <code class="sg-code">--motion-flip</code> become 150ms, and <code class="sg-code">--motion-shift</code> becomes 0. The flip card no longer rotates, and its faces cross-fade. With full motion, its faces swap at the half-turn, when the card is edge-on and the swap cannot be seen.</p>
+  <p>With reduced motion, entrances and turns become 150ms fades, and the flip card cross-fades instead of rotating.</p>
 </section>
 <section class="doc-sec tone-green" id="sound">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-captions"/></svg></span><h2><span class="sec-n">9</span>Sound and captions</h2><span class="sec-line"></span></header>
-  <p>Slide 4 has sound, and the other slides are silent. Each line of the call is a short MP3 file with a WebVTT captions file next to it. The command <code>npm run tts</code> makes both from the text in <code class="sg-code">module.json</code>. The speech is synthetic: it is made with Piper, an open-source text-to-speech tool, and no recording of a person is in it.</p>
-  <div class="table-wrap sg-lead">
-    <table>
-      <thead><tr><th scope="col">What</th><th scope="col">Detail</th></tr></thead>
-      <tbody>
-      <tr><td>Voices</td><td>Piper <code>en_US-libritts_r-medium</code>, a model with 904 speakers: speaker 1535 for the driver (“You”, a low voice) and 2254 for Ms. Rivera (a higher voice), both with <code>lengthScale</code> 1.15, Piper’s speed setting, so they speak a little slower than the default</td></tr>
-      <tr><td>Files</td><td>40 kbps mono MP3, one per line, named by line id: <code>opening</code>, <code>&lt;turn&gt;-&lt;choice&gt;</code> for the driver and <code>&lt;turn&gt;-&lt;choice&gt;-reply</code> for Ms. Rivera; all of slide 4 stays under a 2 MB limit</td></tr>
-      <tr><td>The ring</td><td>The phone ringing at the start of the call is a generated tone of 440 and 480 Hz, and its caption reads “[phone rings]”</td></tr>
-      <tr><td>Captions</td><td>Each cue starts with the speaker’s name (“Ms. Rivera: Hello?”) and has at most 2 lines of about 42 characters. Sounds that are not speech are written in brackets.</td></tr>
-      <tr><td>Timing</td><td>Each sentence is made as a separate clip. Its start and end times come from the number of audio samples in the clip, plus the 50 ms of delay an MP3 decoder adds, so the captions stay in time with the speech.</td></tr>
-      </tbody>
-    </table>
-  </div>
+  <p>Only slide 4 has sound. Each line of the call is a short MP3 with a WebVTT captions file, made with Piper, an open-source text-to-speech tool.</p>
   <ul>
-    <li><span><b>No autoplay</b> (WCAG 1.4.2). The page has no <code class="sg-code">&lt;audio&gt;</code> element until the learner presses a Play button. One line plays at a time, and pressing the button again stops it.</span></li>
-    <li><span><b>Captions on by default.</b> Each playing clip has a hidden <code>&lt;track kind="captions"&gt;</code>, its captions file. The module listens for each new cue and shows it in the caption bar. The learner’s choice on the toggle is kept for the session, so it holds on every slide and after a reload.</span></li>
-    <li><span><b>Your own voices.</b> A recording of a line placed in <code class="sg-code">tts-input/<wbr>slide-4/</code> is used in place of the Piper voice for that line, and its captions are still timed from its length. If neither a recording nor Piper is available for a line, the script stops and lists the lines that need a recording. It does not make a placeholder sound.</span></li>
+    <li><span><b>No autoplay</b> (WCAG 1.4.2). Nothing plays until the learner presses Play, and one line plays at a time.</span></li>
+    <li><span><b>Captions on by default.</b> The learner’s choice holds on every slide and after a reload.</span></li>
   </ul>
 </section>
 <section class="doc-sec tone-red" id="voice">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-chat"/></svg></span><h2><span class="sec-n">10</span>Voice and microcopy</h2><span class="sec-line"></span></header>
-  <p>The module talks to a driver between stops, one question per screen, in short, plain US English. Its microcopy, the short text on buttons, labels and messages, follows these rules.</p>
+  <p>The module talks to a driver between stops, in short, plain US English.</p>
   <ul>
     <li><span><b>Buttons say the action</b>: “Check answer”, “Show hint”, “Continue”, “Back”, “Close”, “Try again”, “Improve your score”, “Finish and submit”.</span></li>
     <li><span><b>A disabled control says what to do first</b>: “Choose an option first”, “Reach slide 2 first”.</span></li>
     <li><span><b>States are words</b>, each with its icon: “Selected”, “Correct”, “Incorrect”, “In place”, “Viewed”, “Marked”, “Done”, “Missed”, “Not reached”, “Opens again”, “Captions on”, “Captions off”, “Audio unavailable”.</span></li>
     <li><span><b>Feedback names the result, then the rule</b>: “Not quite” over “A SIG parcel needs a signature, even from a neighbor.” A misplaced item says where it goes: “Goes at step 3”, “Goes in: Pickup point”.</span></li>
-    <li><span><b>The endings</b> are “Delivered”, “Policy violation” and “Returned to depot”.</span></li>
     <li><span><b>Every bubble names its speaker</b> (“You”, “Ms. Rivera”), and so does every caption cue.</span></li>
     <li><span><b>A middle dot joins parts of a label</b>, as in “SIG parcel · house 14”; progress reads “3 of 7”.</span></li>
-    <li><span><b>Moves are announced</b> in a live region as each pick-up, move and drop happens: “Call the customer: step 3 of 6.”</span></li>
-    <li><span><b>Hints sit where they are needed</b>: “Enter sends. Shift+Enter starts a new line.” and “Press Play on a line. Its captions appear here.”</span></li>
     <li><span><b>The same words every time</b>: handling code (STD, SIG, AGE), stop note, safe place, neighbor, pickup point, depot, call moves and job aids.</span></li>
   </ul>
 </section>
 <section class="doc-sec tone-purple" id="access">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-access"/></svg></span><h2><span class="sec-n">11</span>Accessibility</h2><span class="sec-line"></span></header>
-  <p>Drivers use the module on a phone outdoors, so every task works with touch, a pointer and a keyboard, and moves are announced to screen readers. The command <code>npm run test:a11y</code> runs axe-core, an open-source automated accessibility checker, on every slide and state at widths of 360, 600, 840 and 1280px.</p>
+  <p>Every task works with touch, a pointer and a keyboard, and a test runs axe-core on every slide and state at four widths.</p>
   <h3>Every way to move</h3>
-  <p>Drag and drop on slides 1 and 3 runs on one state machine, a piece of code that tracks what state an item is in, such as picked up or dropped, and which events move it to the next state. Every way of moving an item sends the same events, so all four ways give the same result. Two WCAG rules apply here: 2.5.7 asks for a way to do every drag without dragging, and 2.1.1 asks that everything works with a keyboard.</p>
+  <p>Drag and drop on slides 1 and 3 runs on one state machine, so all four ways of moving give the same result (WCAG 2.5.7 and 2.1.1).</p>
   <div class="table-wrap sg-lead">
     <table>
       <thead><tr><th scope="col">Way</th><th scope="col">How</th></tr></thead>
@@ -657,7 +584,7 @@
   </div>
   <p>On slide 6 a text list of the same five spots gives the same answer as the picture, and the figure carries a short description.</p>
   <h3>Contrast modes</h3>
-  <p>The palette is designed for 7:1 on body text. Two device settings ask for more contrast, and <code class="sg-code">src/<wbr>design/<wbr>contrast.css</code> supports both without a second palette. It changes which colors some tokens point to, and it uses the system’s own colors. The first setting, <code class="sg-code">prefers-contrast: more</code>, asks the page for more contrast. The second, <code class="sg-code">forced-colors: active</code>, means the system has replaced the page’s colors (forced colors mode).</p>
+  <p>Two device settings ask for more contrast, and one stylesheet supports both without a second palette.</p>
   <div class="table-wrap sg-lead">
     <table>
       <thead><tr><th scope="col">Setting</th><th scope="col">What changes</th></tr></thead>
@@ -667,11 +594,11 @@
       </tbody>
     </table>
   </div>
-  <div class="callout"><span class="k">Every state shows more than a color</span><p><code class="sg-code">src/<wbr>design/<wbr>states.js</code> lists every state and how it is shown besides color: an icon and a word, or a shape. <code class="sg-code">states.test.js</code> scans the component CSS and fails if a rule gives a state a color, border or shadow that is not in the list. A browser test goes through slides 1 to 7 and fails if a state on screen has no icon or no visible word.</p></div>
+  <div class="callout"><span class="k">Every state shows more than a color</span><p>A list of every state and how it is shown besides color drives two tests, which fail if a state has a color but no icon or no visible word.</p></div>
 </section>
 <section class="doc-sec tone-brown" id="assets">
   <header class="sec-head"><span class="sec-ico"><svg aria-hidden="true"><use href="../frame/icons.svg#i-license"/></svg></span><h2><span class="sec-n">12</span>Assets and licenses</h2><span class="sec-line"></span></header>
-  <p>The voice, the icons and the fonts were made by other people and are shared under open licenses. They are listed on the module’s Credits screen (<code class="sg-code">#/<wbr>credits</code>), which opens from the results screen with the link “Credits for the voices, icons and fonts”, and in the file <code class="sg-code">THIRD_PARTY_LICENSES.md</code>.</p>
+  <p>The voice, the icons and the fonts are shared under open licenses, and the module’s Credits screen lists them.</p>
   <div class="table-wrap sg-left">
     <table>
       <thead><tr><th scope="col">Asset and use</th><th scope="col">License</th></tr></thead>
@@ -684,7 +611,6 @@
     </table>
   </div>
   <div class="callout"><span class="k">Credit for the voice</span><p>Speech generated with a Piper voice trained on LibriTTS-R: Y. Koizumi et al., “LibriTTS-R: A Restored Multi-Speaker Text-to-Speech Corpus”, Interspeech 2023, which restores LibriTTS (H. Zen et al., 2019), built from public-domain LibriVox recordings. CC BY 4.0 is a Creative Commons license that lets anyone use the voice if they credit its makers, so the module’s audio notes ask for this line wherever the audio is published.</p></div>
-  <p>The font files are the latin and latin-ext woff2 subsets. They are served with the module (see Type), and their license texts ship next to them. The type specimens on this page use the module’s own latin files.</p>
 </section>
 </main>
 </div>
