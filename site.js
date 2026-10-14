@@ -179,7 +179,9 @@
   }
 
   // ---- language: English is in the markup, Vietnamese in data-vi ----
+  let greetRun = null;  // (the greeting's decoding, below; a switch ends it first)
   function setLang(lang) {
+    if (greetRun) greetRun.halt();
     document.querySelectorAll('[data-vi]').forEach(n => {
       if (n.dataset.en === undefined) n.dataset.en = n.innerHTML;
       n.innerHTML = lang === 'vi' ? n.dataset.vi : n.dataset.en;
@@ -214,6 +216,22 @@
   const viButton = document.querySelector('[data-lang="vi"]');
   if (viButton && !viButton.hidden && store.get('lang') === 'vi') setLang('vi');
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+  // ---- the greeting: once per page load, its letters are decoded like the About intro's; then "I'm Son." takes its color with a press ----
+  // While the letters settle, the whole line is in the text color; the accent comes on at once, as a pressed key, not as a fade.
+  const greeting = document.querySelector('.side h1');
+  if (greeting && !reduceMotion()) {
+    greeting.classList.add('is-decoding', 'gr-wait');
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => {
+      greetRun = decode([greeting], () => {
+        greetRun = null;
+        setTimeout(() => {
+          greeting.classList.remove('gr-wait');
+          const accent = greeting.querySelector('.accent');
+          if (accent) accent.classList.add('gr-press');
+        }, 260);
+      });
+    }, 250));
+  }
   // ---- copy the email: the button shows a tick and a short note for a moment ----
   document.querySelectorAll('[data-copy]').forEach(btn => {
     const note = btn.parentElement.querySelector('.copy-note');
@@ -234,6 +252,79 @@
       timer = setTimeout(() => { btn.classList.remove('is-done'); if (note) { note.classList.remove('is-shown'); note.textContent = ''; } }, 1800);
     });
   });
+
+  // ---- decoding: a paragraph's letters flicker through other characters and settle, like an old terminal ----
+  // The real paragraph keeps its place with transparent text (.is-decoding). On top of it an aria-hidden layer holds one element per
+  // letter, put where the real letter is (measured once), so nothing moves and the lines break as they do. The layer is removed at the end.
+  const HEAD = 4, STEP = 110, HEAD_MS = (HEAD - 1) * STEP + 150;  // the first characters go one after another; the rest follows together
+  const pool = { n: 'il|!.,:;', m: 'aceonsuvxz0123456789#%&*+=?', w: 'mwMW@%&' };  // by width, so a flicker looks like the letter it hides
+  function layer(p) {
+    const nodes = [], walk = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) if (walk.currentNode.data.trim()) nodes.push(walk.currentNode);
+    if (!nodes.length) return null;
+    const box = p.getBoundingClientRect(), em = parseFloat(getComputedStyle(p).fontSize) || 15;
+    const range = document.createRange(), el = document.createElement('span'), list = [];
+    el.className = 'dc';
+    el.setAttribute('aria-hidden', 'true');
+    const add = (ch, r, w, k) => {
+      const i = document.createElement('i');
+      i.style.cssText = `left:${(r.left - box.left).toFixed(2)}px;top:${(r.top - box.top).toFixed(2)}px;width:${w.toFixed(2)}px;height:${r.height.toFixed(2)}px;line-height:${r.height.toFixed(2)}px`;
+      el.append(i);
+      list.push({ i, ch, k, cls: w < em * .4 ? 'n' : w > em * .78 ? 'w' : 'm', start: 0, end: 0, swap: 0, head: k < HEAD, done: false });
+    };
+    let before = null, base = 0;  // the letter just before this one, when no space is between them; where this text starts in the whole
+    for (const node of nodes) {
+      const text = node.data;
+      for (let k = 0; k < text.length; k++) {
+        if (/\s/.test(text[k])) { before = null; continue; }
+        range.setStart(node, k);
+        range.setEnd(node, k + 1);
+        const r = range.getBoundingClientRect();
+        // the line broke inside the word: the hyphen the browser draws at the end of the line above is drawn too
+        if (before && k && r.top > before.top + r.height / 2 && text[k - 1] !== '-') add('-', { left: before.right, top: before.top, height: before.height }, em * .34, base + k - 1);
+        add(text[k], r, r.width, base + k);
+        before = r;
+      }
+      base += text.length;
+    }
+    p.append(el);
+    return { p, el, list };
+  }
+  function decode(paragraphs, end) {  // the paragraphs one after another: the next one starts as the rest of the last one begins
+    const layers = paragraphs.map(layer).filter(Boolean);
+    const all = [];
+    layers.forEach((L, n) => {
+      const at = n * HEAD_MS;
+      L.list.forEach(g => {
+        if (g.head) { g.start = at + g.k * STEP; g.end = g.start + 150; }
+        else { g.start = at + HEAD_MS + Math.random() * 80; g.end = at + HEAD_MS + 180 + Math.random() * 240; }
+        all.push(g);
+      });
+    });
+    let id = 0, t0 = 0, left = all.length;
+    function halt() {
+      cancelAnimationFrame(id);
+      layers.forEach(L => { L.el.remove(); L.p.classList.remove('is-decoding'); });
+      end();
+    }
+    function tick(now) {
+      t0 = t0 || now;
+      const t = now - t0;
+      for (const g of all) {
+        if (g.done || t < g.start) continue;
+        if (t >= g.end) { g.i.textContent = g.ch; g.i.className = ''; g.done = true; left--; continue; }
+        if (t >= g.swap) {
+          const set = pool[g.cls];
+          g.i.textContent = set[Math.floor(Math.random() * set.length)];
+          g.i.className = g.head ? 'h' : 'r';
+          g.swap = t + 50 + Math.random() * 30;
+        }
+      }
+      if (left) id = requestAnimationFrame(tick); else halt();
+    }
+    id = requestAnimationFrame(tick);
+    return { halt };
+  }
 
   // ---- About: two stages and a scroll bar ----
   // The intro ("So, what is this page about?", in three parts) and the four periods are plain content in the markup. While the About page
@@ -260,74 +351,6 @@
       window.scrollTo(0, y);
       root.style.scrollBehavior = '';
     };
-
-    // ---- decoding: a paragraph's letters flicker through other characters and settle, like an old terminal ----
-    // The real paragraph keeps its place with transparent text (.is-decoding). On top of it an aria-hidden layer holds one element per
-    // letter, put where the real letter is (measured once), so nothing moves and the lines break as they do. The layer is removed at the end.
-    const HEAD = 4, STEP = 110, HEAD_MS = (HEAD - 1) * STEP + 150;  // the first characters go one after another; the rest follows together
-    const pool = { n: 'il|!.,:;', m: 'aceonsuvxz0123456789#%&*+=?', w: 'mwMW@%&' };  // by width, so a flicker looks like the letter it hides
-    function layer(p) {
-      const node = p.firstChild;
-      if (!node || node.nodeType !== 3) return null;
-      const text = node.data, box = p.getBoundingClientRect(), em = parseFloat(getComputedStyle(p).fontSize) || 15;
-      const range = document.createRange(), el = document.createElement('span'), list = [];
-      el.className = 'dc';
-      el.setAttribute('aria-hidden', 'true');
-      const add = (ch, r, w, k) => {
-        const i = document.createElement('i');
-        i.style.cssText = `left:${(r.left - box.left).toFixed(2)}px;top:${(r.top - box.top).toFixed(2)}px;width:${w.toFixed(2)}px;height:${r.height.toFixed(2)}px;line-height:${r.height.toFixed(2)}px`;
-        el.append(i);
-        list.push({ i, ch, k, cls: w < em * .4 ? 'n' : w > em * .78 ? 'w' : 'm', start: 0, end: 0, swap: 0, head: k < HEAD, done: false });
-      };
-      let before = null;  // the letter just before this one, when no space is between them
-      for (let k = 0; k < text.length; k++) {
-        if (/\s/.test(text[k])) { before = null; continue; }
-        range.setStart(node, k);
-        range.setEnd(node, k + 1);
-        const r = range.getBoundingClientRect();
-        // the line broke inside the word: the hyphen the browser draws at the end of the line above is drawn too
-        if (before && r.top > before.top + r.height / 2 && text[k - 1] !== '-') add('-', { left: before.right, top: before.top, height: before.height }, em * .34, k - 1);
-        add(text[k], r, r.width, k);
-        before = r;
-      }
-      p.append(el);
-      return { p, el, list };
-    }
-    function decode(paragraphs, end) {  // the paragraphs one after another: the next one starts as the rest of the last one begins
-      const layers = paragraphs.map(layer).filter(Boolean);
-      const all = [];
-      layers.forEach((L, n) => {
-        const at = n * HEAD_MS;
-        L.list.forEach(g => {
-          if (g.head) { g.start = at + g.k * STEP; g.end = g.start + 150; }
-          else { g.start = at + HEAD_MS + Math.random() * 80; g.end = at + HEAD_MS + 180 + Math.random() * 240; }
-          all.push(g);
-        });
-      });
-      let id = 0, t0 = 0, left = all.length;
-      function halt() {
-        cancelAnimationFrame(id);
-        layers.forEach(L => { L.el.remove(); L.p.classList.remove('is-decoding'); });
-        end();
-      }
-      function tick(now) {
-        t0 = t0 || now;
-        const t = now - t0;
-        for (const g of all) {
-          if (g.done || t < g.start) continue;
-          if (t >= g.end) { g.i.textContent = g.ch; g.i.className = ''; g.done = true; left--; continue; }
-          if (t >= g.swap) {
-            const set = pool[g.cls];
-            g.i.textContent = set[Math.floor(Math.random() * set.length)];
-            g.i.className = g.head ? 'h' : 'r';
-            g.swap = t + 50 + Math.random() * 30;
-          }
-        }
-        if (left) id = requestAnimationFrame(tick); else halt();
-      }
-      id = requestAnimationFrame(tick);
-      return { halt };
-    }
 
     // ---- the intro: the words of each part are decoded, and the fun fact pops in ----
     // A part read before comes back with a short fade instead (it would be tiring to see it decoded again).

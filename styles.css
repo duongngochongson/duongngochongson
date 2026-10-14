@@ -574,6 +574,13 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 /* decoding: the real paragraph keeps its place with transparent text; .dc is a layer of one element per letter, put on the real letters
    (site.js measures them), flickering through other characters until each one settles */
 .stage-track p.is-decoding { position: relative; color: transparent; }
+/* the greeting in the sidebar: decoded once per page load in the text color, then "I'm Son." takes its color at once, with a press */
+.side h1 .accent { display: inline-block; transform-origin: 50% 80%; }
+.side h1.gr-wait .accent { color: var(--ink); }
+.side h1.is-decoding, .side h1.is-decoding .accent { position: relative; color: transparent; }
+.side h1 .dc { color: var(--ink); }
+.side h1 .accent.gr-press { animation: gr-press .34s cubic-bezier(.3, .7, .4, 1.5); }
+@keyframes gr-press { 0% { transform: none; } 35% { transform: scale(.88) translateY(1px); } 100% { transform: none; } }
 .dc { position: absolute; inset: 0; color: var(--muted); pointer-events: none; user-select: none; }
 .dc i { position: absolute; font-style: normal; white-space: pre; }  /* (a letter that has settled starts where the real one does) */
 .dc i.r, .dc i.h { text-align: center; }
