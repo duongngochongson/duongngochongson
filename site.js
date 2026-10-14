@@ -346,6 +346,7 @@
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const tight = matchMedia('(max-height: 479px)');  // too little room for a stage: plain content reads better
     let open = false, frameId = 0, again = 0, maxY = 1, drawn = '', hold = 0;
+    let moved = false;  // (the visitor has scrolled since the page opened: until then only the welcome shows, with its arrow)
     const resizes = new ResizeObserver(() => remeasure());
 
     const jump = y => {  // an instant scroll (the page scrolls smoothly otherwise)
@@ -512,8 +513,8 @@
         // Past the last part, the plain content takes over as soon as the scrolling pauses (nothing for 120ms: switching mid-glide would
         // cancel a smooth scroll that is still on its way, a key press or a link that takes focus).
         if (far > travel + 2) calm = setTimeout(() => finish(items.length - 1), 120);
-        if (!armed) {  // the first part shows once the stage is well into the window
-          if (s < stick - innerHeight * .6) return;
+        if (!armed) {  // the first part shows once the visitor has scrolled a little and the stage is well into the window
+          if (!moved || s < stick - innerHeight * .6) return;
           armed = true;
         }
         let i = items.length - 1;
@@ -658,6 +659,7 @@
     function render() {
       frameId = 0;
       if (hold && scrollY <= maxY - hold) { unhold(); maxY = Math.max(1, root.scrollHeight - root.clientHeight); }
+      if (!moved && scrollY > 8) moved = true;
       stages.forEach(s => s.update());
       const p = Math.min(1, Math.max(0, scrollY / maxY)).toFixed(4);
       if (fill && p !== drawn) { drawn = p; fill.style.transform = `scaleX(${p})`; }
@@ -668,6 +670,7 @@
       if (open) return;
       open = true;
       drawn = '';
+      moved = false;
       jump(0);
       if (!motion.matches && !tight.matches) stages.forEach(s => s.start());
       measureAll();

@@ -471,7 +471,12 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 }
 
 /* ---------- about ---------- */
+.about-hero { position: relative; padding-bottom: calc(var(--block-pad) + 12px); }  /* (room for the arrow under the text) */
 .about-hero h2 { font: 700 30px/1.32 var(--serif); letter-spacing: -.012em; margin: 0 0 14px; }
+/* until the visitor scrolls, only the welcome shows: a small arrow at its foot says there is more below (it goes once the intro starts) */
+.hero-more { position: absolute; left: 50%; bottom: 8px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: 0; pointer-events: none; transition: opacity .5s ease; }
+.hero-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
+[data-page="about"]:has([data-stage="intro"].is-stage:not(.is-live)) .hero-more { opacity: .45; }
 /* the hello: a hand that waves once when the page opens */
 .wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: wave 1.8s ease-in-out .3s 1; }
 @keyframes wave { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-8deg); } 45% { transform: rotate(14deg); } 60% { transform: rotate(-4deg); } 75% { transform: rotate(10deg); } }
@@ -540,6 +545,9 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .stage-pin { display: contents; }
 .stage-track .stage-card { margin-bottom: 0; }
 .stage-more { display: none; }
+/* the intro's card waits, unseen, until its first part comes in (after the visitor's first scroll), then fades in */
+.is-stage .about-intro.stage-card { transition: height .6s cubic-bezier(.4, 0, .2, 1), opacity .5s ease; }
+.is-stage:not(.is-live) .about-intro.stage-card { opacity: 0; }
 /* the rail: one short bar per part along the top of the card; a bar fills when its part comes in (site.js) */
 .stage-rail { display: none; }
 .is-stage .stage-rail { display: flex; gap: 4px; position: absolute; top: 11px; left: var(--block-pad); right: var(--block-pad); pointer-events: none; }
