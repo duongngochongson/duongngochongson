@@ -576,7 +576,7 @@
       <path d="M57.6 6.6A37 37 0 0 1 70.7 20.6 M61.3 .7A44 44 0 0 1 76.8 17.3" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
     </svg>
     <h2 data-vi="Chào bạn, rất vui được gặp bạn ở đây">Hi, welcome here</h2>
-    <p data-vi="Mình rất vui vì bạn đã ghé phần này của trang.&lt;br&gt;Đây là hành trình của riêng mình: những điều mình thích làm, và điều đã đưa mình đến với nghề thiết kế học tập.">I’m glad you found this part of the site.<br>This page is about my own journey: what I like to do, and what drives me to become a learning designer.</p>
+    <p><span class="hero-line" data-vi="Mình rất vui vì bạn đã ghé phần này của trang.">I’m glad you found this part of the site.</span> <span class="hero-line" data-vi="Đây là hành trình của riêng mình: những điều mình thích làm, và điều đã đưa mình đến với nghề thiết kế học tập.">This page is about my own journey: what I like to do, and what drives me to become a learning designer.</span></p>
     <span class="hero-more" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowDown"/></svg></span>
   </div>
 
@@ -604,8 +604,9 @@
     </div>
   </div>
 
-  <!-- The fun fact stands on its own, on the page; it fades in after the intro has finished, when it is in view (site.js, data-reveal). -->
-  <p class="about-fact" data-reveal="pop" data-after="intro"><b>Fun fact:</b> My name is Son, which means Sơn in Vietnamese. I usually go by Son without the diacritic to make things easier, since it’s still close to the original pronunciation.</p>
+  <!-- The fun fact stands on its own, on the page. After the intro has finished, it waits for the visitor to scroll on (data-nudge; the
+       intro's arrow says so), and comes in once it is well up the window (site.js, data-reveal). -->
+  <p class="about-fact" data-reveal="pop" data-after="intro" data-nudge><b>Fun fact:</b> My name is Son, which means Sơn in Vietnamese. I usually go by Son without the diacritic to make things easier, since it’s still close to the original pronunciation.</p>
 
   <!-- The four periods. Pictures: put one file per period in assets/about/ with these names (any shape; each is cropped to the window of an old instant print, 4 wide by 5 high, so a portrait photo fits best):
          2019.webp, 2020-2024.webp, 2025-2026.webp, 2026-now.webp

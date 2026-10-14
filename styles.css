@@ -492,10 +492,18 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .about-hero h2 { font: 700 30px/1.32 var(--serif); letter-spacing: -.012em; margin: 0 0 14px; }
 /* until the visitor scrolls, only the welcome shows: a small arrow at its foot says there is more below (it goes once the intro starts) */
 .hero-more { position: absolute; left: 50%; bottom: 8px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: 0; pointer-events: none; transition: opacity .5s ease; }
-.hero-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
+.hero-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite, arrive .6s ease 1.75s both; }  /* (after the welcome's last line) */
+/* the welcome comes in part by part when the page opens: the hand, the heading, then each line (each over .8s, .35s apart) */
+.about-hero > .wave, .about-hero > h2, .hero-line { animation: hero-in .8s ease-out both; }
+.about-hero > h2 { animation-delay: .35s; }
+.hero-line { display: block; animation-delay: .7s; }
+.hero-line + .hero-line { animation-delay: 1.05s; }
+@keyframes hero-in { from { opacity: 0; transform: translateY(14px); } }
+/* (an arrow fades up to its own opacity) */
+@keyframes arrive { from { opacity: 0; } }
 [data-page="about"]:has([data-stage="intro"].is-stage:not(.is-live)) .hero-more { opacity: .45; }
 /* the hello: a hand that waves once when the page opens */
-.wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: wave 1.8s ease-in-out .3s 1; }
+.about-hero > .wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: hero-in .8s ease-out both, wave 1.8s ease-in-out 1.6s 1; }
 @keyframes wave { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-8deg); } 45% { transform: rotate(14deg); } 60% { transform: rotate(-4deg); } 75% { transform: rotate(10deg); } }
 .about-hero p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
 
@@ -586,6 +594,11 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .is-stage .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: .45; pointer-events: none; transition: opacity .5s ease; }
 .is-stage .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
 .is-stage:not(.is-live) .stage-more, .is-stage.is-last .stage-more { opacity: 0; }
+/* once the intro is one plain block, its arrow comes back (after a moment) until the visitor scrolls on to the fun fact */
+.after-hint .stage-card { position: relative; }
+.after-hint .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: 0; pointer-events: none; transition: opacity .5s ease; }
+.after-hint .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
+.after-hint.wants-more .stage-more { opacity: .45; transition-delay: .6s; }
 @keyframes more-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
 
 /* the intro: the heading stays, the part under it changes. The words are not faded in: they are decoded (below). */
@@ -597,7 +610,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .is-stage .intro-part.is-on.fade { transition: opacity .9s ease; }  /* the second part fades in slowly the first time */
 /* coming into view (site.js adds .reveal-on to the page, then .is-in to each [data-reveal] once it is seen; once per page load) */
 .reveal-on [data-reveal]:not(.is-in) { opacity: 0; }
-.reveal-on [data-reveal="pop"].is-in { animation: pop-in .9s ease .35s both; }  /* the fun fact: a fade and a soft bounce, a moment after the intro */
+.reveal-on [data-reveal="pop"].is-in { animation: pop-in .9s ease .1s both; }  /* the fun fact: a fade and a soft bounce, as the visitor scrolls to it */
 .reveal-on [data-reveal="rise"].is-in { animation: rise-in .8s ease-out .3s both; }
 @keyframes rise-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @keyframes pop-in { 0% { opacity: 0; transform: translateY(18px); } 45% { opacity: 1; } 65% { transform: translateY(-4px); } 100% { opacity: 1; transform: none; } }

@@ -683,6 +683,8 @@
     // (styles.css, data-reveal; once per page load, nothing with reduced motion). One with data-after waits for that stage to finish
     // first, so it comes in after the stage above it has turned into its plain block, not unseen at the bottom of a tall window.
     const reveals = [...page.querySelectorAll('[data-reveal]')];
+    // One with data-nudge (the fun fact) waits longer: once its stage has finished, for the visitor to scroll on (see nudge)
+    const waiting = [];  // { el, track, from: the scroll position when its stage finished }
     if (reveals.length && 'IntersectionObserver' in window && !motion.matches) {
       page.classList.add('reveal-on');
       const above = el => el.dataset.after && page.querySelector(`[data-stage="${el.dataset.after}"]`);
@@ -695,8 +697,25 @@
       reveals.forEach(el => {
         watch.observe(el);
         const t = above(el);  // when that stage finishes, look again (the observer reports where the element is now)
-        if (t) t.addEventListener('stagedone', () => { if (!el.classList.contains('is-in')) { watch.unobserve(el); watch.observe(el); } });
+        if (t) t.addEventListener('stagedone', () => {
+          if (el.classList.contains('is-in')) return;
+          watch.unobserve(el);
+          if (!('nudge' in el.dataset)) { watch.observe(el); return; }
+          t.classList.add('after-hint', 'wants-more');  // (the stage's arrow comes back: there is more below)
+          waiting.push({ el, track: t, from: scrollY });
+        });
       });
+    }
+
+    // It comes in once the visitor has scrolled on (40px or more) and it is well up the window, and the arrow goes.
+    function nudge() {
+      for (let k = waiting.length - 1; k >= 0; k--) {
+        const w = waiting[k];
+        if (scrollY < w.from + 40 || w.el.getBoundingClientRect().top > innerHeight * .72) continue;
+        w.el.classList.add('is-in');
+        w.track.classList.remove('wants-more');
+        waiting.splice(k, 1);
+      }
     }
 
     // ---- the page: the scroll bar, the sizes, start and stop ----
@@ -718,6 +737,7 @@
       if (hold && scrollY <= maxY - hold) { unhold(); maxY = Math.max(1, root.scrollHeight - root.clientHeight); }
       if (!moved && scrollY > 8) moved = true;
       stages.forEach(s => s.update());
+      if (waiting.length) nudge();
       const p = Math.min(1, Math.max(0, scrollY / maxY)).toFixed(4);
       if (fill && p !== drawn) { drawn = p; fill.style.transform = `scaleX(${p})`; }
     }
@@ -729,6 +749,7 @@
       drawn = '';
       moved = false;
       jump(0);
+      waiting.forEach(w => { w.from = -Infinity; });  // (back on the page later, it comes in as soon as it is well up the window)
       if (!motion.matches && !tight.matches) stages.forEach(s => s.start());
       measureAll();
       render();
