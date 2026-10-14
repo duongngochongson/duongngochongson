@@ -375,7 +375,7 @@ p, dd, li, .path .d {
 .fold .row-tag { flex: none; margin-left: 0; }
 .fold :is(.row-ic, .tag) { background: var(--surface); }
 /* the chevron: an icon circle like the hero's arrow, 32px */
-.fold-chev { flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
+.fold-chev { flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
 .fold-chev .ic { transition: transform .25s ease; }
 .fold[open] > summary .fold-chev .ic { transform: rotate(180deg); }
 .fold-body { padding: 2px 17px 17px; }
