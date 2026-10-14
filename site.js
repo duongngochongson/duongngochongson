@@ -218,19 +218,19 @@
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
   // ---- the greeting: once per page load, its letters are decoded like the About intro's; then "I'm Son." takes its color with a press ----
   // While the letters settle, the whole line is in the text color; then, like a pressed key, the color runs to a hot orange and
-  // settles into the accent as the key comes back up, over about two seconds (styles.css, gr-press).
+  // settles into the accent as the key comes back up, over about three seconds (styles.css, gr-press).
   const greeting = document.querySelector('.side h1');
   if (greeting && !reduceMotion()) {
     greeting.classList.add('is-decoding', 'gr-wait');
     (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => {
-      greetRun = decode([greeting], () => {  // (twice as slow as the About intro's)
+      greetRun = decode([greeting], () => {  // (about 2 seconds, slower than the About intro's)
         greetRun = null;
         setTimeout(() => {
           greeting.classList.remove('gr-wait');
           const accent = greeting.querySelector('.accent');
           if (accent) accent.classList.add('gr-press');
         }, 260);
-      }, 2);
+      }, 2.2);
     }, 250));
   }
   // ---- copy the email: the button shows a tick and a short note for a moment ----
@@ -292,7 +292,7 @@
     return { p, el, list };
   }
   function decode(paragraphs, end, pace = 1) {  // the paragraphs one after another: the next one starts as the rest of the last one begins
-    // (pace stretches every time in it: 2 is twice as slow, the flicker included)
+    // (pace stretches every time in it: 2 is twice as slow, the flicker included; the greeting uses 2.2)
     const layers = paragraphs.map(layer).filter(Boolean);
     const all = [];
     layers.forEach((L, n) => {
