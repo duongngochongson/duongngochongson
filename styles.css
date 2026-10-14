@@ -278,9 +278,17 @@ p, dd, li {
 .case { container: case / inline-size; background: var(--surface); border-radius: 22px; padding: var(--block-pad); margin-bottom: 12px; }
 .hero {
   border-radius: 12px; margin-bottom: 16px; padding: 24px; box-sizing: border-box;
-  display: flex; align-items: stretch; gap: 24px;
+  display: flex; align-items: stretch; gap: 24px; position: relative;
 }
-.hero-head { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 18px; }
+/* the title sits at the foot, clear of the notch (52px) by 16px or more */
+.hero-head { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 18px; padding-top: 44px; }
+/* All projects sits flush in the banner's top-left corner, in a notch cut from it: the notch is the page's surface color,
+   8px wider and taller than the pill, with its inner corner round around the pill's end (22 + 8), and the banner's two
+   new corners (where its top and left edges start again) round like its others (12px, painted by the two pseudo-elements) */
+.hero-notch { position: absolute; top: 0; left: 0; z-index: 1; padding: 0 8px 8px 0; background: var(--surface); border-bottom-right-radius: 30px; }
+.hero-notch::before, .hero-notch::after { content: ""; position: absolute; width: 12px; height: 12px; background: radial-gradient(circle at 100% 100%, transparent 11.5px, var(--surface) 12px); pointer-events: none; }
+.hero-notch::before { top: 0; left: 100%; }
+.hero-notch::after { top: 100%; left: 0; }
 .hero .back { background: var(--card); }
 /* the title */
 .hero-title { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -291,12 +299,12 @@ p, dd, li {
 /* side by side as long as the title has room to wrap beside the art; stacked on a phone */
 @container case (max-width: 620px) {
   .hero { padding: 20px; gap: 18px; }
+  .hero-head { padding-top: 48px; }
   .case .hero-head h2 { font-size: 22px; }
 }
 @container case (max-width: 440px) {
-  .hero { flex-direction: column; padding: 18px; gap: 16px; }
+  .hero { flex-direction: column; padding: 66px 18px 18px; gap: 16px; }
   .hero-head { display: contents; }
-  .hero .back { order: 1; align-self: flex-start; }
   .hero-art { order: 2; width: min(100%, 220px); align-self: flex-start; margin: 6px 0; }
   .hero-art.art-delivery { width: min(100%, 130px); }
   .hero-title { order: 3; }
