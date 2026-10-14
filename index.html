@@ -143,8 +143,8 @@
         <h3 id="proj-ds" data-vi="Giao hàng khi khách vắng nhà">Not-Home Delivery Stop</h3>
         <dl class="prs">
           <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd>Fewer than half of a parcel company’s stops where nobody answers end with the parcel delivered on the first attempt.</dd></div>
-          <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd>I mapped what drivers need to do at those stops and built a short module in which they practice it.</dd></div>
-          <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd>Raise first-attempt success at those stops from 45% to 65% within three months.</dd></div>
+          <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd>Not-Home Delivery Stop, a mobile module of seven short slides in which drivers practice four key actions, plus four job aids and two changes in operations.</dd></div>
+          <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd>Raise first-attempt success at those stops from 45% to 65% within three months, with missing-parcel claims at 0.5% or less.</dd></div>
         </dl>
       </div>
     </a>
@@ -391,7 +391,7 @@
       </div>
       <div class="hero-art art-delivery" aria-hidden="true"><svg viewBox="52 25 136 98"><use href="#art-delivery" width="240" height="148"/></svg></div>
     </div>
-    <p class="sum">Discover Not-Home Delivery Stop, a <b>mobile module</b> where drivers practice the four actions an <b>action map</b> showed they need when nobody answers the door. With four job aids and two changes in operations, it helps drivers deliver more parcels on the first attempt, so customers get them when they expect, with no rise in missing parcels.</p>
+    <p class="sum">Discover Not-Home Delivery Stop, a <b>mobile module</b> where drivers practice the four actions an <b>action map</b> showed they need when nobody answers the door. Besides the module, other support tools help drivers deliver more parcels on the first attempt, so customers get them when they expect, with no rise in missing parcels: four job aids (to check the steps, the handling codes, the safe-place rules and what to say on a call) and two changes in operations (the handling code and stop notes on the arrival screen, and a scorecard that counts a neighbor or a pickup point as a success).</p>
     <div class="cta-row">
       <a class="btn btn-primary" href="https://delivery-scenario.vercel.app/" target="_blank" rel="noopener"><span data-vi="Học thử module">Try the module</span><span class="go" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowUpRight"/></svg></span></a>
       <button type="button" class="doc-btn" data-frame="work/not-home-delivery-stop/Diagrams.html#action-map" data-title="Diagrams" data-kicker="NOT-HOME DELIVERY STOP"><span class="doc-ico" aria-hidden="true"></span><span data-vi="Xem action map">See the action map</span></button>
@@ -407,7 +407,7 @@
       </div>
       <div class="sum-box">
         <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-wrench"/></svg><h3 class="lab">TOOLS</h3></div>
-        <ul><li>Claude (analysis and planning)</li><li>Claude Code (web app and SCORM)</li><li>Piper (voices)</li><li>Gemini (practice call)</li><li>Google Workspace (tracking)</li><li>GitHub (code and SCORM builds)</li></ul>
+        <ul><li>GitHub (code and SCORM builds)</li><li>Web languages (JavaScript, JSX, HTML, CSS)</li><li>Piper (voices)</li><li>Claude (Claude, Claude Code)</li><li>Gemini (practice call)</li></ul>
       </div>
     </div>
 
@@ -424,7 +424,8 @@
       <div class="cs-head">
         <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-target"/></svg><h3 class="lab">GOAL</h3></div>
       </div>
-      <p>Within three months, first-attempt success at not-home stops should rise from 45% to <b>65%</b>, while claims for missing parcels stay at <b>0.5% or less</b> of those stops.</p>
+      <p class="keyline">Given this, the company set a goal to deliver more of these parcels on the first attempt, without more missing parcels.</p>
+      <p>Specifically, within three months, first-attempt success at not-home stops should rise from 45% to <b>65%</b>, while claims for missing parcels stay at <b>0.5% or less</b> of those stops.</p>
       <div class="meters"><div class="meter" style="--now:45.0%;--goal:65.0%"><div class="m-head"><span class="m-name">First-attempt success at not-home stops</span></div><div class="m-bar" aria-hidden="true"><span class="m-now"></span><span class="m-gain"></span><span class="m-goal"></span></div><div class="m-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div><ul class="m-keys"><li class="mk-now">Now <b>45%</b></li><li class="mk-goal">Target <b>65%</b> within three months</li></ul><p class="m-how">The share of not-home stops where the parcel reaches an allowed place on the first visit.</p></div></div>
     </section>
 
@@ -432,7 +433,8 @@
       <div class="cs-head">
         <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-search"/></svg><h3 class="lab">FINDING THE ROOT CAUSES</h3></div>
       </div>
-      <p class="keyline">Action mapping found seven barriers behind four key actions: five for training and two for operations.</p>
+      <p class="keyline">With action mapping, I found seven barriers (five for training and two for operations) behind four key actions:</p>
+      <ul><li>Follow the steps in order</li><li>Choose an allowed option</li><li>Agree on an option by phone</li><li>Leave the parcel in a safe place</li></ul>
       <div class="method my-note"><div><div class="lab">HOW I SORTED THE BARRIERS</div><p>Cathy Moore sorts barriers into environment, knowledge, skill and motivation. Training helps with knowledge and skill. Stop notes that are hard to find, or a scorecard that rewards skipping the call, need a change in the work.</p></div><div class="split" role="img" aria-label="7 barriers: 5 for training, 2 for operations"><span class="lab" aria-hidden="true">7 BARRIERS</span><span class="sp-bar" aria-hidden="true"><span class="sp-train"><i></i><i></i><i></i><i></i><i></i><em>Training</em></span><span class="sp-ops"><i></i><i></i><em>Operations</em></span></span></div></div>
       <div class="folds">
         <details class="fold">
@@ -458,18 +460,18 @@
       <div class="cs-head">
         <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-components"/></svg><h3 class="lab">SOLUTION</h3></div>
       </div>
-      <p class="keyline">The solution has three parts: a short module, four job aids and two changes in operations.</p>
+      <p class="keyline">I matched the seven barriers with a solution in three parts:</p>
       <div class="folds">
         <details class="fold">
-          <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-mobile"/></svg></span><span class="fold-name">Not-Home Delivery Stop</span><span class="row-tag"><span class="tag">FOR DRIVERS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
-          <div class="fold-body fold-media"><p>Seven slides on a phone, with one question per screen. Six practice the four actions, and one opens the job aids.</p><button type="button" class="tile-thumb" data-image="assets/projects/ds-screen.webp" data-title="Not-Home Delivery Stop" data-kicker="NOT-HOME DELIVERY STOP" aria-label="Enlarge: A slide of the module, with its parts numbered"><img src="assets/projects/ds-screen.webp" alt="A slide of the module, with its parts numbered" loading="lazy" style="object-position:50% 0%"></button></div>
+          <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-mobile"/></svg></span><span class="fold-name">Practice for the four actions</span><span class="row-tag"><span class="tag">FOR DRIVERS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
+          <div class="fold-body fold-media"><p><b>Not-Home Delivery Stop</b>: seven slides on a phone, with one question per screen. Six practice the four actions, and one opens the job aids.</p><button type="button" class="tile-thumb" data-image="assets/projects/ds-screen.webp" data-title="Practice for the four actions" data-kicker="NOT-HOME DELIVERY STOP" aria-label="Enlarge: A slide of the module, with its parts numbered"><img src="assets/projects/ds-screen.webp" alt="A slide of the module, with its parts numbered" loading="lazy" style="object-position:50% 0%"></button></div>
         </details>
         <details class="fold">
-          <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-cases"/></svg></span><span class="fold-name">Four job aids</span><span class="row-tag"><span class="tag">FOR DRIVERS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
-          <div class="fold-body fold-media"><p>The Sequence, Handling codes, Safe place and Call moves cards. Drivers open them on slide 2, and again from any later slide.</p><button type="button" class="tile-thumb" data-image="assets/projects/ds-job-aid.webp" data-title="Four job aids" data-kicker="NOT-HOME DELIVERY STOP" aria-label="Enlarge: The Sequence card, a job aid"><img src="assets/projects/ds-job-aid.webp" alt="The Sequence card, a job aid" loading="lazy" style="object-position:50% 0%"></button></div>
+          <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-cases"/></svg></span><span class="fold-name">Job aids for what is hard to remember</span><span class="row-tag"><span class="tag">FOR DRIVERS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
+          <div class="fold-body fold-media"><p>The Sequence, Handling codes, Safe place and Call moves cards. Drivers open them on slide 2, and again from any later slide.</p><button type="button" class="tile-thumb" data-image="assets/projects/ds-job-aid.webp" data-title="Job aids for what is hard to remember" data-kicker="NOT-HOME DELIVERY STOP" aria-label="Enlarge: The Sequence card, a job aid"><img src="assets/projects/ds-job-aid.webp" alt="The Sequence card, a job aid" loading="lazy" style="object-position:50% 0%"></button></div>
         </details>
         <details class="fold">
-          <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-layout"/></svg></span><span class="fold-name">Two changes in operations</span><span class="row-tag"><span class="tag">FOR OPERATIONS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
+          <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-layout"/></svg></span><span class="fold-name">Two changes in operations for what training cannot fix</span><span class="row-tag"><span class="tag">FOR OPERATIONS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
           <div class="fold-body"><p>The arrival screen shows the handling code and the stop notes, and the scorecard counts a neighbor or a pickup point as a first-attempt success.</p></div>
         </details>
       </div>
@@ -482,6 +484,14 @@
       <p class="keyline">The module practices the four high-priority actions from the action map in seven short slides on a phone.</p>
       <p>Slide 7 is a <b>branching scenario</b> with two stops that checks the expected outcome. A driver passes with <b>80/100</b> and no broken rule there.</p>
       <div class="folds">
+        <details class="fold">
+          <summary><span class="fold-name">Action map</span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
+          <div class="fold-body">
+            <div class="shots single">
+              <button type="button" class="shot" data-image="assets/projects/ds-action-map.webp" data-title="Action map" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-action-map.webp" alt="The action map of Not-Home Delivery Stop, from the goal to the four actions, with each action's barriers, practice and minimum information." width="1440" height="900" loading="lazy"></button>
+            </div>
+          </div>
+        </details>
         <details class="fold">
           <summary><span class="fold-name">Seven slides</span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
           <div class="fold-body">
@@ -518,9 +528,7 @@
         <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-monitor"/></svg><h3 class="lab">DEVELOPMENT</h3></div>
       </div>
       <p class="keyline">I built the module as a web app that also runs in a learning management system (LMS).</p>
-      <p>React draws the screens, XState runs each slide’s logic, and Zod checks the content files.</p>
-      <p>Each change on GitHub builds a new <b>SCORM 1.2 package</b>, so an LMS can run the module and save each driver’s progress and best score.</p>
-      <p>Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.</p>
+      <p>React draws the screens, XState runs each slide’s logic, and Zod checks the content files. Each change on GitHub builds a new <b>SCORM 1.2 package</b>, so an LMS can run the module and save each driver’s progress and best score. Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.</p>
     </section>
 
 
