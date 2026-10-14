@@ -594,21 +594,70 @@
     <p data-vi="Mình rất vui vì bạn đã ghé phần này của trang. Đây là hành trình của riêng mình: những điều mình thích làm, và điều đã đưa mình đến với nghề thiết kế học tập.">I’m glad you found this part of the site. This page is about my own journey: what I like to do, and what drives me to become a learning designer.</p>
   </div>
 
-  <div class="wide bg-t4" aria-hidden="true">
-    <div class="s" style="left:40px;bottom:-30px;width:150px;height:150px;border-radius:50%;background:var(--a4);opacity:.5"></div>
-    <div class="s" style="left:170px;top:36px;width:70px;height:70px;border-radius:50%;background:var(--a1);opacity:.45"></div>
-    <div class="s" style="right:22%;top:54px;width:84px;height:84px;border-radius:14px;background:var(--a3);opacity:.4;transform:rotate(-8deg)"></div>
-    <div class="s stripes" style="right:40px;bottom:30px;width:120px;height:56px;border-radius:999px"></div>
+  <div class="block bg-surface about-intro">
+    <h2 class="eyebrow"><svg class="ic" aria-hidden="true" style="color:var(--a1-ink)"><use href="work/frame/icons.svg#i-thought"/></svg><span data-vi="VẬY TRANG NÀY NÓI VỀ ĐIỀU GÌ?">So, what is this page about?</span></h2>
+    <p>This page is basically about my career and personal-growth journey toward finding my ikigai in learning in general, and learning experience design in particular.</p>
+    <p>Long story short, it took a series of turning points for me to figure out what I believe is something I want to do in the long run. My journey took me through university, a change of major, and eventually into the working world, where I tried my hand at a few different fields. Each choice helped me narrow down what I genuinely enjoyed and what I was good at. Luckily, after a few turns, I started to see more and more clues. And I bet you can guess where those clues led me: instructional design, or learning experience design!</p>
+    <p class="about-omg">OMG, I’m genuinely passionate about it.</p>
+    <p>This is the kind of work where I can sit down and map out how a learning experience should unfold. I love pretty much every part of the learning design process. From digging into the problem and identifying learning needs and gaps, to deciding which learning activities should take priority, brainstorming the experience’s style and vibe, developing it, and finally choosing the right way to evaluate it.</p>
+    <p>On top of that, I think two things I’ve enjoyed since childhood have helped me in this field: tinkering with computers and technology, and having deep conversations that let me explore an idea with someone and really get to the bottom of it.</p>
+    <p class="about-fact"><b>Fun fact:</b> My name is Son, which means Sơn in Vietnamese. I usually go by Son without the diacritic to make things easier, since it’s still close to the original pronunciation.</p>
   </div>
 
-  <div class="block bg-surface" data-sect="timeline">
-    <h2 class="eyebrow"><svg class="ic" aria-hidden="true" style="color:var(--a1-ink)"><use href="work/frame/icons.svg#i-route"/></svg><span data-vi="ĐƯỜNG ĐI CỦA MÌNH">MY PATH</span></h2>
-    <div class="path">
-      <div class="card"><span class="dot" style="background:var(--a1-ink)"></span><span class="y" data-vi="HIỆN TẠI">NOW</span><div><div class="t">Learning Experience Designer</div><div class="d" data-vi="Thiết kế học tập bằng code: module chạy trên điện thoại, đo được, dùng lại được, và đưa lên LMS dưới dạng SCORM.">Designing learning in code: modules that work on a phone, can be measured and reused, and upload to an LMS as SCORM.</div></div></div>
-      <div class="card"><span class="dot" style="background:var(--a2-ink)"></span><span class="y" data-vi="HIỆN TẠI">NOW</span><div><div class="t" data-vi="Giáo viên">Teacher</div><div class="d" data-vi="Dạy toán và kỹ năng số cho học sinh nhiều lứa tuổi, cả trên lớp lẫn online.">Teaching math and digital skills to students of different ages, in class and online.</div></div></div>
-      <div class="card"><span class="dot" style="background:var(--a3-ink)"></span><span class="y">2024</span><div><div class="t" data-vi="Data Analyst · Unigap">Data Analyst coaching · Unigap</div><div class="d" data-vi="Kèm 1-1: SQL trên dữ liệu Google Analytics trong BigQuery, phân khúc khách hàng RFM bằng Python, dashboard nhà cung cấp trên Power BI.">One-to-one coaching: SQL on Google Analytics data in BigQuery, RFM segmentation in Python, a vendor dashboard in Power BI.</div></div></div>
-      <div class="card"><span class="dot" style="background:var(--a4-ink)"></span><span class="y" data-vi="2020 đến 2024">2020 to 2024</span><div><div class="t" data-vi="Cử nhân Quản trị Kinh doanh · ĐH FPT">BBA · FPT University</div><div class="d" data-vi="Quản trị kinh doanh, GPA 8,2/10.">Bachelor of Business Administration, GPA 8.2/10.</div></div></div>
+  <!-- The four periods. Pictures: put one file per period in assets/about/ with these names (any shape, each is cropped to a circle):
+         2019.webp, 2020-2024.webp, 2025-2026.webp, 2026-now.webp
+       Until a file is there, the circle shows a placeholder. When you add a picture, also write its alt text in the img below.
+       They are a plain list. site.js turns the list into a sticky stage with a split-flap board for the years (not with reduced motion). -->
+  <div class="path-track" data-path>
+    <div class="block bg-t3 about-path">
+      <h2 class="eyebrow"><svg class="ic" aria-hidden="true" style="color:var(--a3-ink)"><use href="work/frame/icons.svg#i-route"/></svg><span data-vi="ĐƯỜNG ĐI CỦA MÌNH">MY PATH</span></h2>
+      <div class="board" aria-hidden="true"></div>
+      <div class="path-view">
+        <ol class="periods">
+          <li class="period">
+            <div class="period-pic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2019.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="period-body">
+              <h3 class="period-title"><span class="period-years">2019</span> <span class="period-name">The first clue</span></h3>
+              <p>I started my journey into adulthood without really knowing what I liked, so I chose electrical and electronics engineering. It wasn’t the best experience, but at least it gave me my first clue: I needed to think more carefully about what I actually wanted to do.</p>
+            </div>
+          </li>
+          <li class="period">
+            <div class="period-pic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2020-2024.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="period-body">
+              <h3 class="period-title"><span class="period-years">2020 - 2024</span> <span class="period-name">Exploring different paths</span></h3>
+              <p>After that, I switched my major to Business Administration, and my university experience got a lot better. I had more opportunities to interact and communicate with others through my studies, and I gained a big-picture understanding of how businesses operate.</p>
+              <p>When I explored marketing and data analysis, I developed valuable skills and ways of thinking. From planning and project management to looking at problems objectively, making data-driven decisions, and developing empathy for people, each experience gave me something useful to carry forward.</p>
+              <p>Even so, something still felt missing. I wanted to do something I genuinely believed was meaningful.</p>
+            </div>
+          </li>
+          <li class="period">
+            <div class="period-pic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2025-2026.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="period-body">
+              <h3 class="period-title"><span class="period-years">2025 - 2026</span> <span class="period-name">Finding something meaningful</span></h3>
+              <p>And that’s where education - and instructional design in particular - came in!</p>
+              <p>During my personal gap year, I worked with an NGO as a community worker and public-school educator. It turned out to be much more than just a job. The friends I made and the memories of living and working alongside others in rural Vietnam are things I’ll always carry with me.</p>
+              <p>From a career perspective, the most valuable thing I discovered was just how much I enjoyed designing learning experiences and creating e-learning materials along the way.</p>
+              <p>As an educator, I had to build lessons and training sessions from scratch. I started by identifying learning needs and gaps in the community where I worked. From there, I defined the program’s learning objectives and expected outcomes. I also had to adapt my approach and materials for different groups of learners, and I got to take part in evaluating the program afterward.</p>
+              <p>I was genuinely happy to discover that my childhood curiosity about computers and technology made creating learning materials much easier. For example, I built interactive slide decks and used AI to vibe-code websites that helped learners understand concepts more easily.</p>
+              <p>These experiences gave me a much more holistic picture of what designing a learning experience actually involves.</p>
+            </div>
+          </li>
+          <li class="period">
+            <div class="period-pic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2026-now.webp" alt="" loading="lazy" decoding="async"></div>
+            <div class="period-body">
+              <h3 class="period-title"><span class="period-years">2026 - Now</span> <span class="period-name">Looking for the next chapter</span></h3>
+              <p>As I look toward the next chapter of my career, I want to put my skills to work designing meaningful learning experiences.</p>
+              <p>To me, a meaningful learning experience goes beyond simply delivering knowledge. It also needs to be designed around the learners themselves - their needs, characteristics, and contexts - in a way that genuinely engages them.</p>
+              <p>I’m excited to work with teammates who are just as driven, and to figure out together what learning can make possible for organizations and their learners.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
     </div>
+  </div>
+
+  <div class="block bg-t1 about-outside">
+    <p>Outside of work, I enjoy watching movies, playing board games, and trying to figure out the secrets behind magic tricks. I guess I’ve always enjoyed exploring how things work, whether it’s a learning experience, a good story, or a clever illusion. If you’re into any of these, we might have something to talk about!</p>
   </div>
 </section>
 

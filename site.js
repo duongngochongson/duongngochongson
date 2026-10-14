@@ -38,6 +38,7 @@
     const page = document.querySelector(`[data-page="${CSS.escape(target)}"]`);
     document.title = page.dataset.title ? `${page.dataset.title} · Son Duong` : baseTitle;
     window.scrollTo(0, 0);  // smooth via CSS scroll-behavior, instant with reduced motion
+    if (target === 'about') about.enter(); else about.leave();
     if (e) {  // on navigation (not first load), put keyboard and screen reader focus on the new page
       page.tabIndex = -1;
       page.focus({ preventScroll: true });
@@ -233,6 +234,216 @@
       timer = setTimeout(() => { btn.classList.remove('is-done'); if (note) { note.classList.remove('is-shown'); note.textContent = ''; } }, 1800);
     });
   });
+
+  // ---- About: the four periods ----
+  // In the markup they are a plain list. While the About page is open, and the visitor has not yet scrolled past the last period,
+  // the list becomes a stage (.is-stage, styles.css): the block sticks to the window while the track gives it scroll, one period shows
+  // at a time, and its years turn over on a split-flap board. Scrolling is never touched: the script only reads the scroll position.
+  // Past the last period the stage turns back into the list for good (until the page is loaded again), once the scrolling has
+  // settled. With reduced motion, or in a window under 480px high (a phone on its side), there is no stage. While the page is
+  // closed nothing runs, and the listeners go with it.
+  const about = (() => {
+    const track = document.querySelector('[data-path]');
+    const none = { enter() {}, leave() {} };
+    if (!track) return none;
+    const block = track.querySelector('.about-path');
+    const board = track.querySelector('.board');
+    const frame = track.querySelector('.periods');
+    const periods = [...track.querySelectorAll('.period')];
+    const labels = periods.map(p => p.querySelector('.period-years').textContent.trim());
+    const size = Math.max(...labels.map(l => l.length));
+    const main = track.closest('.main');
+    const motion = matchMedia('(prefers-reduced-motion: reduce)');
+    const tight = matchMedia('(max-height: 479px)');  // too little room for a stage: the list reads better
+    let running = false, done = false;
+    let pin = 0, top0 = 0, travel = 0, plan = [], armed = false;  // measured: where the stage sticks, how far it travels, each period's stretch of scroll
+    let shown = -1, want = -1, busy = false, gen = 0, frameId = 0, again = 0, calm = 0, hold = 0, flaps = [];
+    const cells = [];
+    const resizes = new ResizeObserver(() => remeasure());
+
+    // The pictures: a period's picture shows when its file loads; if there is none, the placeholder stays and the img is dropped.
+    track.querySelectorAll('.period-pic img').forEach(img => {
+      const ok = () => img.parentElement.classList.add('has-photo');
+      const no = () => img.remove();
+      img.addEventListener('load', ok);
+      img.addEventListener('error', no);
+      if (img.complete) (img.naturalWidth ? ok : no)();
+    });
+
+    const jump = y => {  // an instant scroll (the page scrolls smoothly otherwise)
+      root.style.scrollBehavior = 'auto';
+      window.scrollTo(0, y);
+      root.style.scrollBehavior = '';
+    };
+
+    // ---- the board: one cell per character; a cell flips to its new character (the top flap folds down, the bottom flap drops) ----
+    function build() {
+      board.replaceChildren();
+      cells.length = 0;
+      for (let k = 0; k < size; k++) {
+        const el = document.createElement('span');
+        el.className = 'bd-cell';
+        el.innerHTML = ['top', 'bot', 'fold', 'drop'].map(n => `<span class="bd-half bd-${n}"><i></i></span>`).join('');
+        board.append(el);
+        const c = { ch: ' ' };
+        ['top', 'bot', 'fold', 'drop'].forEach(n => { c[n] = el.querySelector(`.bd-${n}`); });
+        cells.push(c);
+      }
+    }
+    const put = (c, ch, halves) => halves.forEach(n => {
+      const i = c[n].firstChild;
+      i.textContent = ch.trim();
+      i.classList.toggle('bd-letter', /\p{L}/u.test(ch));
+    });
+    function flip(to) {  // resolves when the whole board shows period `to` (-1: blank); the cells start 45ms apart, about 0.85s in all
+      const label = to < 0 ? '' : labels[to];
+      flaps = [];
+      cells.forEach((c, k) => {
+        const next = label[k] || ' ';
+        if (c.ch === ' ' && next === ' ') return;
+        put(c, next, ['top', 'drop']);  // the new character waits under the top flap and on the bottom flap; the old one stays on the rest
+        const d = k * 45;
+        flaps.push(
+          c.fold.animate([{ transform: 'rotateX(0)', filter: 'brightness(1)' }, { transform: 'rotateX(-90deg)', filter: 'brightness(.55)' }], { duration: 180, delay: d, easing: 'ease-in', fill: 'both' }),
+          c.drop.animate([{ transform: 'rotateX(90deg)', filter: 'brightness(.55)' }, { transform: 'rotateX(0)', filter: 'brightness(1)' }], { duration: 220, delay: d + 180, easing: 'ease-out', fill: 'both' })
+        );
+      });
+      const mine = flaps;
+      return Promise.all(mine.map(a => a.finished.catch(() => {}))).then(() => {
+        cells.forEach((c, k) => { c.ch = label[k] || ' '; put(c, c.ch, ['top', 'bot', 'fold', 'drop']); });
+        mine.forEach(a => a.cancel());
+      });
+    }
+    // Go to period i: the old words fade out, the board flips (the picture changes with it), then the new words fade in.
+    // If the visitor moves on while it flips, the board settles on the latest period when it is done.
+    function go(i) {
+      want = i;
+      if (!busy) settle();
+    }
+    function settle() {
+      if (want === shown) return;
+      const to = want, mine = gen;
+      busy = true;
+      if (shown >= 0) periods[shown].classList.remove('is-on', 'is-pic');
+      periods[to].classList.add('is-pic');
+      flip(to).then(() => {
+        if (mine !== gen) return;
+        busy = false;
+        shown = to;
+        if (want === shown) periods[shown].classList.add('is-on'); else settle();
+      });
+    }
+
+    // ---- the scroll: where the stage sticks and how far it travels (measured when the page opens or changes size) ----
+    // A period gets a screen of scroll (85% of the window), and a period taller than the window gets the extra it needs, so its words
+    // can scroll up (only after the first 45% of that screen, so the opening lines can be read first).
+    function measure() {
+      const room = frame.clientHeight, screen = Math.min(900, Math.max(360, innerHeight * .85));
+      let at = 0;
+      plan = periods.map(p => {
+        const over = Math.max(0, Math.ceil(p.offsetHeight - room));
+        const one = { start: at, over, lead: screen * .45 };
+        at += screen + over;
+        return one;
+      });
+      travel = at;
+      track.style.setProperty('--travel', travel + 'px');
+      pin = parseFloat(getComputedStyle(block).top) || 0;
+      top0 = track.getBoundingClientRect().top + scrollY - pin;
+    }
+    function remeasure() {
+      cancelAnimationFrame(again);
+      again = requestAnimationFrame(() => { if (running) { measure(); update(); } });
+    }
+    function update() {
+      frameId = 0;
+      if (!running) return;
+      clearTimeout(calm);
+      const far = scrollY - top0;  // how far the stage has been stuck
+      const s = Math.min(far, travel);  // (past the end it keeps showing the last period as it scrolls away)
+      // Past the last period. The list takes over only when the scrolling has settled (nothing for 120ms): switching mid-glide
+      // would cancel a smooth scroll that is still on its way (a key press, a link that takes focus).
+      if (far > travel + 2) calm = setTimeout(() => finish(periods.length - 1), 120);
+      if (!armed) {  // the first period shows once the stage is well into the window
+        if (s < pin - innerHeight * .6) return;
+        armed = true;
+      }
+      let i = periods.length - 1;
+      while (i > 0 && s < plan[i].start) i--;
+      const shift = Math.min(plan[i].over, Math.max(0, s - plan[i].start - plan[i].lead));
+      const px = shift.toFixed(1);
+      if (periods[i].style.getPropertyValue('--shift') !== px) periods[i].style.setProperty('--shift', px);
+      go(i);
+    }
+    const onScroll = () => { if (!frameId) frameId = requestAnimationFrame(update); };
+
+    // ---- start and stop ----
+    function stop() {
+      running = false;
+      gen++;
+      busy = false;
+      removeEventListener('scroll', onScroll);
+      motion.removeEventListener('change', bail);
+      tight.removeEventListener('change', bail);
+      resizes.disconnect();
+      clearTimeout(calm);
+      cancelAnimationFrame(frameId); cancelAnimationFrame(again);
+      frameId = again = 0;
+      flaps.forEach(a => a.cancel());
+      track.classList.remove('is-stage');
+      track.style.removeProperty('--travel');
+      periods.forEach(p => { p.classList.remove('is-on', 'is-pic'); p.style.removeProperty('--shift'); });
+      board.replaceChildren();
+    }
+    // The stage is gone, so the page is shorter. With a tall window the scroll position that keeps the words where they were can be
+    // lower than the new bottom of the page; the page then gets the missing height as space under the footer (hold), until the visitor
+    // scrolls up past it or leaves.
+    function unhold() {
+      if (!hold) return;
+      hold = 0;
+      main.style.removeProperty('padding-bottom');
+      removeEventListener('scroll', onHold);
+    }
+    function onHold() { if (scrollY + root.clientHeight <= root.scrollHeight - hold) unhold(); }
+    // Back to the list for good. What is on screen stays where it is: period i's words (the one that was showing; the last one when
+    // the stage was scrolled to its end), or, when the stage is out of sight, the block above or below it, keep their place.
+    function finish(i) {
+      const r = track.getBoundingClientRect();
+      const mark = r.bottom <= 0 ? track.nextElementSibling
+        : i >= 0 && r.top < innerHeight ? periods[i].querySelector('.period-body')
+        : track.previousElementSibling;
+      const before = mark.getBoundingClientRect().bottom;
+      done = true;
+      stop();
+      const after = mark.getBoundingClientRect().bottom;  // (measured first: it lays the page out, and the scroll position settles)
+      const goal = Math.max(0, scrollY + after - before);
+      const lack = goal - (root.scrollHeight - root.clientHeight);
+      if (lack > 0) {
+        hold = Math.ceil(lack);
+        main.style.paddingBottom = hold + 'px';
+        addEventListener('scroll', onHold, { passive: true });
+      }
+      jump(goal);
+      track.classList.add('just-done');
+      setTimeout(() => track.classList.remove('just-done'), 700);
+    }
+    const bail = e => { if (e.matches && running) finish(want); };  // reduced motion turned on, or the window got too short: the list, with the period being read kept in place
+    function enter() {
+      if (done || running || motion.matches || tight.matches) return;
+      running = true;
+      shown = want = -1; armed = false;
+      jump(0);
+      track.classList.add('is-stage');
+      build();
+      measure();
+      update();
+      addEventListener('scroll', onScroll, { passive: true });
+      motion.addEventListener('change', bail);
+      tight.addEventListener('change', bail);
+      [block, track.parentElement, ...periods].forEach(n => resizes.observe(n));
+    }
+    return { enter, leave() { if (running) stop(); unhold(); } };
+  })();
 
   route();
 })();

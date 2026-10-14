@@ -5,7 +5,6 @@
   --line: rgba(26,24,21,.14);
   --t1: oklch(.945 .045 150); --t2: oklch(.945 .05 55); --t3: oklch(.945 .045 240); --t4: oklch(.945 .045 310); --tw: oklch(.94 .04 25); --t5: oklch(.96 .07 95); --t6: oklch(.95 .04 355);
   --a1: oklch(.74 .15 55); --a2: oklch(.72 .15 150); --a3: oklch(.7 .15 240); --a4: oklch(.72 .15 310); --a5: oklch(.83 .16 90); --a6: oklch(.72 .16 0);
-  --sA: rgba(255,255,255,.8); --sB: rgba(255,255,255,.3);
   /* darker accents for small text and the focus ring, so they reach 4.5:1 on white */
   --a1-ink: oklch(.48 .14 55); --a2-ink: oklch(.46 .13 150); --a3-ink: oklch(.46 .14 240); --a4-ink: oklch(.47 .15 310);
   --accent-ink: oklch(.6 .15 55);
@@ -25,7 +24,6 @@
   --line: rgba(243,239,233,.14);
   --t1: oklch(.26 .035 150); --t2: oklch(.27 .04 55); --t3: oklch(.26 .035 240); --t4: oklch(.26 .035 310); --tw: oklch(.27 .04 25); --t5: oklch(.28 .045 95); --t6: oklch(.27 .04 355);
   --a1: oklch(.8 .14 55); --a2: oklch(.79 .14 150); --a3: oklch(.77 .14 240); --a4: oklch(.78 .14 310); --a5: oklch(.86 .14 90); --a6: oklch(.78 .13 0);
-  --sA: rgba(255,255,255,.16); --sB: rgba(255,255,255,.04);
   --a1-ink: var(--a1); --a2-ink: var(--a2); --a3-ink: var(--a3); --a4-ink: var(--a4); --accent-ink: var(--a1);
   --shadow: rgba(0,0,0,.35);
   color-scheme: dark;
@@ -94,7 +92,7 @@ a, button, summary { touch-action: manipulation; }
 .go .ic { --ic: 12; }
 
 /* Every small mono caps label shares one look; 8px to its content */
-.eyebrow, .lab, .chips-label, .prs dt, .sb-h, .codes tr:first-child th, .path .y, .m-scale {
+.eyebrow, .lab, .chips-label, .prs dt, .sb-h, .codes tr:first-child th, .period-years, .m-scale {
   font: 400 10px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint);
 }
 .lab { margin: 0 0 8px; }
@@ -110,7 +108,7 @@ a, button, summary { touch-action: manipulation; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 /* Every paragraph is justified, site-wide. Hyphenation keeps the gaps even in narrow columns. */
-p, dd, li, .path .d {
+p, dd, li {
   text-align: justify; -webkit-hyphens: auto; hyphens: auto;
 }
 .page:focus { outline: none; }
@@ -186,7 +184,7 @@ p, dd, li, .path .d {
 .page[hidden] { display: none; }
 .block { border-radius: 22px; padding: var(--block-pad); margin-bottom: 12px; }
 .bg-surface { background: var(--surface); }
-.bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
+.bg-t1 { background: var(--t1); } .bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
 
 /* home */
 .intro p { font: 400 15px/1.7 var(--sans); color: var(--muted); }
@@ -213,7 +211,6 @@ p, dd, li, .path .d {
 [data-selected-copy] .proj { background: none; padding: 0; border-radius: 12px; }
 /* 4:3, capped in height when the card is one column wide */
 .thumb { flex: 1 1 170px; min-width: 170px; max-width: 240px; aspect-ratio: 4 / 3; max-height: 220px; border-radius: 12px; overflow: hidden; }
-.wide .s { position: absolute; }
 /* project art: the SVG symbols at the top of index.html, coloured per project and per theme */
 .art-tile { display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px var(--line); }
 .art-tile svg { width: 100%; height: 100%; display: block; }
@@ -225,7 +222,6 @@ p, dd, li, .path .d {
 :root[data-theme="dark"] .art-tile.art-cozy { background: #1f1a12; }
 :root[data-theme="dark"] .art-delivery { --art-tone: #f5f5f7; }
 :root[data-theme="dark"] .art-tile.art-delivery { background: #2c2c2e; --art-bg: #2c2c2e; }
-.stripes { background: repeating-linear-gradient(135deg, var(--sA) 0 6px, var(--sB) 6px 12px); }
 .proj-body { flex: 999 1 300px; min-width: 0; }
 .proj h3 { font: 700 21px/1.35 var(--serif); letter-spacing: -.01em; margin: 0 0 12px; }
 .prs { display: grid; gap: 7px; font: 400 13px/1.55 var(--sans); color: var(--muted); }
@@ -478,17 +474,78 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: wave 1.8s ease-in-out .3s 1; }
 @keyframes wave { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-8deg); } 45% { transform: rotate(14deg); } 60% { transform: rotate(-4deg); } 75% { transform: rotate(10deg); } }
 .about-hero p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
-.wide { position: relative; height: 220px; border-radius: 22px; overflow: hidden; margin-bottom: 12px; }
-.path { display: grid; gap: 0; }
-/* each step sits straight on the block, with a line between steps */
-/* the dot, the 96px label column, then the step, 8px from its label */
-.path .card { padding: 16px 0; display: grid; grid-template-columns: 16px 96px minmax(0,1fr); gap: 8px; align-items: start; }
-.path .dot { margin-top: 5.5px; }
-.path .y { padding-top: 3.5px; }
-.path .t { font: 700 15px/1.4 var(--serif); margin-bottom: 5px; }
-.path .d { font: 400 13px/1.6 var(--sans); color: var(--muted); }
-.path .card:first-child { padding-top: 0; } .path .card:last-child { padding-bottom: 0; }
-.path .card + .card { border-top: 1px solid var(--line); }
+
+/* the owner's own text before and after the periods: the page's body text, 15px */
+.about-intro p, .about-outside p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
+.about-intro p + p { margin-top: 14px; }
+/* "OMG, I'm genuinely passionate about it." stands out: a larger serif line with the site's orange bar */
+.about-intro .about-omg { margin-block: 26px; padding-left: 16px; border-left: 3px solid var(--a1); font: 700 22px/1.4 var(--serif); letter-spacing: -.01em; color: var(--ink); text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+/* the fun fact is a short note of my own: a dashed blue border (as on the project pages) */
+.about-intro .about-fact { margin-top: 26px; padding: 14.5px 16.5px; border: 1.5px dashed var(--a3); border-radius: 12px; font-size: 13px; line-height: 1.6; }
+.about-fact b { font-weight: 600; color: var(--ink); }
+
+/* ---------- about: the four periods ---------- */
+/* By default (no script, reduced motion, and once the effect is over) the periods are a list: a round picture and the words, one row each.
+   site.js can turn the list into a stage (.is-stage on .path-track): the block sticks to the top of the window while the track gives it
+   scroll, one period shows at a time, and the years turn over on a split-flap board. */
+.path-track { --stage-top: 16px; --stage-h: calc(100vh - 2 * var(--stage-top)); --stage-h: calc(100svh - 2 * var(--stage-top)); margin-bottom: 12px; }
+.path-track > .block { margin-bottom: 0; }
+.about-path { container: path / inline-size; }
+.periods { list-style: none; margin: 0; padding: 0; --pic: clamp(120px, 24cqw, 200px); }
+.period { display: grid; grid-template-columns: var(--pic) minmax(0, 1fr); gap: 20px clamp(20px, 4cqw, 36px); align-items: start; padding: 28px 0; }
+.period + .period { border-top: 1px solid var(--line); }
+.period:first-child { padding-top: 0; } .period:last-child { padding-bottom: 0; }
+/* the picture: a calm placeholder (a dashed ring, a soft fill, a camera) until assets/about/<period>.webp loads, then the picture, cropped to the circle */
+.period-pic { position: relative; width: var(--pic); aspect-ratio: 1; box-sizing: border-box; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--card); border: 1.5px dashed var(--faint); color: var(--faint); }
+.period-pic .ic { --ic: 28; }
+.period-pic img { position: absolute; inset: -1.5px; width: calc(100% + 3px); height: calc(100% + 3px); border-radius: 50%; object-fit: cover; opacity: 0; transition: opacity .5s ease; }
+.period-pic.has-photo { border-color: transparent; }
+.period-pic.has-photo img { opacity: 1; }
+.period-pic.has-photo .ic { display: none; }
+.period-title { margin-bottom: 12px; text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+.period-years { display: block; margin-bottom: 6px; letter-spacing: .04em; text-transform: none; }
+.period-name { display: block; font: 700 21px/1.35 var(--serif); letter-spacing: -.01em; }
+.period-body p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
+.period-body p + p { margin-top: 14px; }
+@container path (max-width: 560px) { .period { grid-template-columns: minmax(0, 1fr); } }
+/* when the list takes over from the stage, the rows above the one being read come in softly */
+.path-track.just-done .period:not(:last-child) { animation: path-in .5s ease both; }
+@keyframes path-in { from { opacity: 0; } }
+
+/* the stage */
+.path-track.is-stage { height: calc(var(--stage-h) + var(--travel, 0px)); }
+.is-stage .about-path { position: sticky; top: var(--stage-top); height: var(--stage-h); box-sizing: border-box; display: flex; flex-direction: column; overflow-anchor: none; }
+/* one period at a time: they sit on top of each other, all from the same top edge, so the picture stays put as the board flips */
+.is-stage .path-view { position: relative; flex: 1 1 0; min-height: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 24px, #000 calc(100% - 24px), transparent); mask-image: linear-gradient(to bottom, transparent, #000 24px, #000 calc(100% - 24px), transparent); }
+.is-stage .periods { position: absolute; inset: 24px 0; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
+.is-stage .period { grid-area: 1 / 1; align-self: start; padding: 0; border: 0; pointer-events: none; }
+.is-stage .period.is-on { pointer-events: auto; }
+/* the board shows the years, so the heading keeps them for screen readers only */
+.is-stage .period-years { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* the picture comes in as the board flips, the words after it; a tall period's words scroll up (--shift, set by the script) as the page does */
+.is-stage .period-pic { opacity: 0; transition: opacity .5s ease; }
+.is-stage .is-pic .period-pic { opacity: 1; }
+.is-stage .period-body { opacity: 0; translate: 0 14px; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease, translate .3s ease; }
+.is-stage .is-on .period-body { opacity: 1; translate: 0 0; transition-duration: .4s; }
+@container path (max-width: 560px) {
+  .is-stage .period-body { transform: none; }
+  .is-stage .period { transform: translateY(calc(var(--shift, 0) * -1px)); }
+}
+
+/* the split-flap board: one cell per character, sized from the block's width. Each cell is four halves: the top and bottom that show,
+   a top flap that folds down, and a bottom flap that drops into place (animated with element.animate in site.js). */
+.board { display: none; }
+.is-stage .board { display: inline-flex; flex: none; align-self: flex-start; margin-bottom: 8px; gap: .1em; padding: .2em; border-radius: .3em; background: var(--ink); color: var(--bg); font: 700 min(40px, calc(100cqw / 10.4))/1 var(--sans); }
+.bd-cell { position: relative; width: .78em; height: 1.2em; perspective: 4em; }
+.bd-cell::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: .04em; margin-top: -.02em; background: var(--ink); z-index: 3; }
+.bd-half { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; background: color-mix(in srgb, var(--ink) 88%, var(--bg)); backface-visibility: hidden; }
+.bd-half i { position: absolute; left: 0; right: 0; height: 200%; display: flex; align-items: center; justify-content: center; font-style: normal; text-transform: uppercase; }
+/* the cell is sized for digits; a letter (site.js sets the class) is squeezed to the cell, as on a real board, so a W is not cut off */
+.bd-half i.bd-letter { transform: scaleX(.6); }
+.bd-top, .bd-fold { top: 0; border-radius: .14em .14em 0 0; } .bd-top i, .bd-fold i { top: 0; }
+.bd-bot, .bd-drop { bottom: 0; border-radius: 0 0 .14em .14em; } .bd-bot i, .bd-drop i { bottom: 0; }
+.bd-fold { transform-origin: 50% 100%; z-index: 2; }
+.bd-drop { transform-origin: 50% 0; transform: rotateX(90deg); z-index: 2; }
 
 /* ---------- footer ---------- */
 /* a light tint like the other blocks, in the sidebar's yellow, with the email on a --card pill */
@@ -519,11 +576,8 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 @media (max-width: 420px) {
   :root { --block-pad: 20px; }
   .site { padding: 10px; }
+  .path-track { --stage-top: 10px; }
   .cs, .sum-box { padding: 18px; }
-  .path .card { grid-template-columns: 16px minmax(0,1fr); }
-  .path .card .y { grid-column: 2; padding-top: 0; }
-  .path .dot { margin-top: 2px; }
-  .path .card > div { grid-column: 2; }
   /* the email and its copy button take the whole row, so the address stays on one line when it fits */
   .mail-row { flex: 1 1 100%; }
   dialog.doc { width: calc(100vw - 20px); }
