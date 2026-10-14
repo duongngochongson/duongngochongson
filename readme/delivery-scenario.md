@@ -12,7 +12,6 @@ This repository holds the code of the module.
 
 - City-route drivers at a parcel company
 - They use the module on a phone, outdoors, between stops
-- Goal: raise first-attempt success at not-home stops from 45% to 65% within three months
 
 **Responsibilities**
 
@@ -26,19 +25,17 @@ This repository holds the code of the module.
 **Tools**
 
 - Claude (analysis and planning)
-- Claude Code (web app and SCORM package)
-- Piper (voices for the phone call)
-- Gemini (practice call and feedback)
-- Google Workspace (notes, asset and license tracking)
-- GitHub (code and automatic SCORM builds)
+- Claude Code (web app and SCORM)
+- Piper (voices)
+- Gemini (practice call)
+- Google Workspace (tracking)
+- GitHub (code and SCORM builds)
 
 ## Problem
 
 At stops where nobody answers the door, too many parcels are not delivered on the first attempt.
 
-At a parcel company, drivers deliver on city routes. When nobody answers the door, the stop is called a not-home stop, and the driver has to decide where the parcel goes: a safe place at the house, a neighbor or a pickup point.
-
-The right choice is **easy to get wrong**, because it depends on three things: the handling code on the parcel’s label, the stop note with the customer’s instructions, and what the customer says when the driver calls. A parcel that goes back to the depot needs another trip, and a parcel left where the rules do not allow **can go missing** and lead to a claim. Each code allows different places:
+When nobody answers the door, the driver decides where the parcel goes: a safe place, a neighbor or a pickup point. The choice depends on the handling code, the stop note and the customer’s answer on the phone, so it is **easy to get wrong**, and a wrong one means another trip or a **missing parcel**.
 
 Where each handling code lets a parcel go:
 
@@ -50,19 +47,17 @@ Where each handling code lets a parcel go:
 
 ## Goal
 
-Within three months of rollout, first-attempt success at not-home stops should rise from 45% to **65%**. At the same time, the share of those stops that lead to a claim for a missing parcel should stay at **0.5% or less**.
+Within three months, first-attempt success at not-home stops should rise from 45% to **65%**, while claims for missing parcels stay at **0.5% or less** of those stops.
 
-- **First-attempt success at not-home stops**: Now **45%**; Target **65%** within three months. First-attempt success is the share of not-home stops where the parcel reaches an allowed place on the first visit and does not go back to the depot.
+- **First-attempt success at not-home stops**: Now **45%**; Target **65%** within three months. The share of not-home stops where the parcel reaches an allowed place on the first visit.
 
 _This is a concept project, so the starting numbers are simulated and no results have been measured yet._
 
 ## Finding the root causes
 
-After analyzing the not-home stop with action mapping, I found seven barriers that keep drivers from four key actions: five that training can remove and two that need changes in operations.
+Action mapping found seven barriers behind four key actions: five for training and two for operations.
 
-**Action mapping**, Cathy Moore’s method for planning training, starts from the business goal and lists what people need to do to reach it. For each action, it names the barriers that keep people from doing it, and asks whether training can remove each one or the work itself should change.
-
-**How I sorted the barriers.** Cathy Moore sorts barriers into four types: environment, knowledge, skill and motivation. Training can help with knowledge and skill. A barrier in the environment, such as stop notes that are hard to find, needs a change in the work, and so does a motivation barrier that comes from the scorecard, such as skipping the call to protect the stop rate.
+**How I sorted the barriers.** Cathy Moore sorts barriers into environment, knowledge, skill and motivation. Training helps with knowledge and skill. Stop notes that are hard to find, or a scorecard that rewards skipping the call, need a change in the work.
 
 7 barriers: 5 for training, 2 for operations.
 
@@ -70,37 +65,35 @@ After analyzing the not-home stop with action mapping, I found seven barriers th
 
 _Motivation + knowledge_
 
-Drivers need to follow the six steps of a not-home stop in order, including the call, before choosing where the parcel goes. Some skip the call to protect their stop rate, a number on the scorecard that tracks their work, and some are unsure of the order.
+Some drivers skip the call to protect their stop rate on the scorecard, and some are unsure of the order of the six steps.
 
 ### Choose an allowed option
 
 _Knowledge + environment_
 
-Drivers need to choose a place that the handling code and the customer’s instructions allow. They are unsure what SIG and AGE parcels allow, and stop notes are hard to find.
+Drivers are unsure what SIG and AGE parcels allow, and stop notes are hard to find.
 
 ### Agree on an option by phone
 
 _Skill_
 
-Drivers need to call the customer and agree on an allowed option within two minutes. Some agree to requests the rules do not allow, and their calls drift away from the point.
+Some drivers agree to requests the rules do not allow, and their calls drift from the point.
 
 ### Leave the parcel in a safe place
 
 _Skill + knowledge_
 
-Drivers need to leave the parcel in a spot that meets four safe-place rules and take a photo that shows the house number. They misjudge whether a spot is hidden, and their photos miss the house number.
+Drivers misjudge whether a spot is hidden, and their photos miss the house number.
 
 ## Solution
 
-I matched the seven barriers with a three-part solution: a short module and four job aids for drivers, and two changes in operations.
-
-The module and the job aids take the five barriers that training can remove, and operations takes the other two. Based on the barriers, the solution has three parts:
+The solution has three parts: a short module, four job aids and two changes in operations.
 
 ### Not-Home Delivery Stop
 
 _For drivers_
 
-The module has seven slides, with one question per screen. Six of them practice the four actions, one opens the job aids, and a results screen shows the score and the slides to try again.
+Seven slides on a phone, with one question per screen. Six practice the four actions, and one opens the job aids.
 
 [A slide of the module, with its parts numbered](https://duongngochongson.vercel.app/assets/projects/ds-screen.webp)
 
@@ -108,7 +101,7 @@ The module has seven slides, with one question per screen. Six of them practice 
 
 _For drivers_
 
-The Sequence, Handling codes, Safe place and Call moves cards hold the steps, what each code allows, the safe-place rules and the call moves. Drivers open them on slide 2 and can open them again from a Job aids button on slides 3 to 7.
+The Sequence, Handling codes, Safe place and Call moves cards. Drivers open them on slide 2, and again from any later slide.
 
 [The Sequence card, a job aid](https://duongngochongson.vercel.app/assets/projects/ds-job-aid.webp)
 
@@ -116,20 +109,13 @@ The Sequence, Handling codes, Safe place and Call moves cards hold the steps, wh
 
 _For operations_
 
-The screen drivers see when they arrive at a stop shows the handling code and the stop notes. The scorecard counts handovers to a neighbor or a pickup point as first-attempt successes, so calling the customer does not count against a driver.
+The arrival screen shows the handling code and the stop notes, and the scorecard counts a neighbor or a pickup point as a first-attempt success.
 
 ## Module: Not-Home Delivery Stop
 
 The module practices the four high-priority actions from the action map in seven short slides on a phone.
 
-Slide 2 opens the job aids, and each of the other six slides practices one or two of the four actions, with the job aid that holds what drivers need:
-
-- Follow the steps in order: slide 1, with the Sequence card
-- Choose an allowed option: slides 3 and 7, with the Handling codes card
-- Agree on an option by phone: slides 4 and 5, with the Call moves card
-- Leave the parcel in a safe place: slides 6 and 7, with the Safe place card
-
-The last slide is a **branching scenario** with two stops, in which each choice changes what happens next. It checks the expected outcome: the driver chooses an allowed option, carries it out and completes the proof of delivery without breaking a rule. A driver passes with **80/100** and no broken rule on that slide, and Try again reopens the slides that lost points.
+Slide 7 is a **branching scenario** with two stops that checks the expected outcome. A driver passes with **80/100** and no broken rule there.
 
 ### Seven slides
 
@@ -154,9 +140,7 @@ The last slide is a **branching scenario** with two stops, in which each choice 
 
 I set the look of the module in a style guide built around one place: a phone, outdoors, between stops.
 
-The style guide has three principles. **Readable on the street**: text is at least 16px, body text reaches 7:1 contrast, and every control is at least 44 × 44px. **One thing per screen**: each screen asks one question and has one main button. **Meaning never by color alone**: every state shows an icon and a word as well as a color.
-
-Each slide has three zones: a top bar with the progress and the job aids, a task zone with one question, and an action bar pinned to the bottom.
+Three principles guide it: **readable on the street** (text of 16px or more, 7:1 contrast for body text, 44px controls), **one thing per screen**, and **meaning never by color alone**.
 
 - [Screen anatomy: the three zones of a slide, on a phone 360px wide.](https://duongngochongson.vercel.app/work/not-home-delivery-stop/style-guide/screen-anatomy.webp)
 - [Branching map: the two stops on slide 7 and where each choice leads.](https://duongngochongson.vercel.app/assets/projects/ds-branching.webp)
@@ -165,18 +149,18 @@ Each slide has three zones: a top bar with the progress and the job aids, a task
 
 I built the module as a web app that also runs in a learning management system (LMS).
 
-React draws the screens, XState runs the logic of each slide, and Zod checks the content files, where the slides, the job aids and the action map are written.
+React draws the screens, XState runs each slide’s logic, and Zod checks the content files.
 
-Each change to the main branch on GitHub builds a new **SCORM 1.2 package** automatically. SCORM is a standard format that lets an LMS run the module and save each driver’s progress and best score.
+Each change on GitHub builds a new **SCORM 1.2 package**, so an LMS can run the module and save each driver’s progress and best score.
 
-The voices on slide 4 are synthetic speech, with captions timed to the audio. On slide 5, an artificial intelligence model plays Mr. Hayes, a customer, and a second model checks the call against the three call moves. The slide has no points, because a model’s feedback can vary, and if the service fails, it switches to a self-check.
+Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.
 
 ## Results and takeaways
 
-The module has not met real drivers yet, so here is what I learned from designing and building it.
+The module has not met real drivers yet, so these are lessons from building it.
 
 - I liked how the action map kept the module small: four actions, seven short slides, and two barriers handed to operations.
-- I built a SCORM package for the first time and saw how an LMS saves each learner’s progress and score.
+- I built a SCORM package for the first time and saw how an LMS saves progress and scores.
 - I put the handling codes on a card once I saw how much drivers would otherwise have to remember.
 
 ## Documents and credits
