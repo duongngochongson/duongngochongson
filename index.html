@@ -608,8 +608,8 @@
     </div>
   </div>
 
-  <!-- The fun fact stands on its own, on the page; it pops in when it comes into view (site.js, data-reveal). -->
-  <p class="about-fact" data-reveal="pop"><b>Fun fact:</b> My name is Son, which means Sơn in Vietnamese. I usually go by Son without the diacritic to make things easier, since it’s still close to the original pronunciation.</p>
+  <!-- The fun fact stands on its own, on the page; it fades in after the intro has finished, when it is in view (site.js, data-reveal). -->
+  <p class="about-fact" data-reveal="pop" data-after="intro"><b>Fun fact:</b> My name is Son, which means Sơn in Vietnamese. I usually go by Son without the diacritic to make things easier, since it’s still close to the original pronunciation.</p>
 
   <!-- The four periods. Pictures: put one file per period in assets/about/ with these names (any shape; each is cropped to the window of an old instant print, 4 wide by 5 high, so a portrait photo fits best):
          2019.webp, 2020-2024.webp, 2025-2026.webp, 2026-now.webp
@@ -665,7 +665,7 @@
     </div>
   </div>
 
-  <div class="block bg-t2 about-outside" data-reveal="rise">
+  <div class="block bg-t2 about-outside" data-reveal="rise" data-after="path">
     <p>Outside of work, I enjoy watching movies, playing board games, and trying to figure out the secrets behind magic tricks. I guess I’ve always enjoyed exploring how things work, whether it’s a learning experience, a good story, or a clever illusion. If you’re into any of these, we might have something to talk about!</p>
   </div>
 </section>

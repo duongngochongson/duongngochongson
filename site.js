@@ -354,9 +354,10 @@
       root.style.scrollBehavior = '';
     };
 
-    // ---- the intro: the words of each part are decoded ----
+    // ---- the intro: the first part's words are decoded, the second part fades in ----
     // A part read before comes back with a short fade instead (it would be tiring to see it decoded again).
     const words = part => [...part.querySelectorAll('p')];
+    const decodes = i => i === 0;
     function introKind(track, items, wait) {
       const frame = track.querySelector('.stage-frame');
       const seen = new Set();
@@ -368,17 +369,18 @@
         stop() {
           calm();
           seen.clear();
-          items.forEach(p => { p.classList.remove('soft'); p.querySelectorAll('p').forEach(q => q.classList.remove('is-decoding')); });
+          items.forEach(p => { p.classList.remove('soft', 'fade'); p.querySelectorAll('p').forEach(q => q.classList.remove('is-decoding')); });
         },
         change(to, from) {  // the old part fades out while the card moves to the height of the new one
           calm();
-          if (from >= 0) items[from].classList.remove('soft');
-          if (!seen.has(to)) words(items[to]).forEach(p => p.classList.add('is-decoding'));
+          if (from >= 0) items[from].classList.remove('soft', 'fade');
+          if (!seen.has(to) && decodes(to)) words(items[to]).forEach(p => p.classList.add('is-decoding'));
           return from < 0 ? Promise.resolve() : wait(300);
         },
         shown(to, alive) {
           if (seen.has(to)) { items[to].classList.add('soft'); return; }
           seen.add(to);
+          if (!decodes(to)) { items[to].classList.add('fade'); return; }  // (a slow fade, styles.css)
           // (after the fonts are in: the letters are put where the real ones are)
           Promise.resolve(document.fonts && document.fonts.ready).then(() => {
             if (!alive()) return;
@@ -612,6 +614,7 @@
         track.classList.toggle('fresh', mark !== part);  // (when no part kept its place, all of them come in softly)
         setTimeout(() => track.classList.remove('just-done', 'fresh'), 700);
         measureAll();  // (the stages after this one now start higher on the page)
+        track.dispatchEvent(new Event('stagedone'));  // (what waits for this stage can come in now)
       }
       return { track, items, start, stop, measure, update, finish, running: () => running, wanted: () => want };
     }
@@ -619,16 +622,23 @@
     const stages = [...page.querySelectorAll('[data-stage]')].map(stage);
 
     // ---- coming into view: the fun fact and the block after the periods come in once each, the first time they are seen ----
-    // (styles.css, data-reveal; once per page load, nothing with reduced motion)
+    // (styles.css, data-reveal; once per page load, nothing with reduced motion). One with data-after waits for that stage to finish
+    // first, so it comes in after the stage above it has turned into its plain block, not unseen at the bottom of a tall window.
     const reveals = [...page.querySelectorAll('[data-reveal]')];
     if (reveals.length && 'IntersectionObserver' in window && !motion.matches) {
       page.classList.add('reveal-on');
+      const above = el => el.dataset.after && page.querySelector(`[data-stage="${el.dataset.after}"]`);
+      const free = el => { const t = above(el); return !t || !t.classList.contains('is-stage'); };
       const watch = new IntersectionObserver(list => list.forEach(e => {
-        if (!e.isIntersecting) return;
+        if (!e.isIntersecting || !free(e.target)) return;
         e.target.classList.add('is-in');
         watch.unobserve(e.target);
       }), { threshold: .25 });
-      reveals.forEach(el => watch.observe(el));
+      reveals.forEach(el => {
+        watch.observe(el);
+        const t = above(el);  // when that stage finishes, look again (the observer reports where the element is now)
+        if (t) t.addEventListener('stagedone', () => { if (!el.classList.contains('is-in')) { watch.unobserve(el); watch.observe(el); } });
+      });
     }
 
     // ---- the page: the scroll bar, the sizes, start and stop ----
