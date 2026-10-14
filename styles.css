@@ -325,8 +325,11 @@ p, dd, li {
 @container case (max-width: 440px) { .summary { grid-template-columns: minmax(0, 1fr); } }
 
 /* a project's sections: full width, one under another (the summary boxes are the same white card) */
-/* white boxes on the page's own ground, raised a little: a hairline edge and a shadow to the bottom right */
-.cs, .sum-box { background: var(--card); border-radius: 12px; padding: 22px; border: 1px solid var(--line); box-shadow: var(--raise); }
+/* white boxes on the page's own ground: the sections raised a little (a hairline edge and a shadow to the bottom right),
+   the three summary boxes with a dashed blue border, like the takeaways */
+.cs, .sum-box { background: var(--card); border-radius: 12px; padding: 22px; }
+.cs { border: 1px solid var(--line); box-shadow: var(--raise); }
+.sum-box { border: 1.5px dashed var(--a3); }
 .cs { margin-top: 16px; }
 /* a section's name: large and bold, so the sections stand apart on the page's ground */
 .cs-head .cs-title { gap: 12px; }
