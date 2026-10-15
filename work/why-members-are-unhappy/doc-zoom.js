@@ -1,4 +1,4 @@
-/* Figure lightbox for the Cozy documents.
+/* Figure lightbox for the Cozy documents (its look uses the named values of doc-text.css).
    Any [data-zoom] figure opens full-screen on a night ground. Progressive: without
    this file the figures still read inline, they just do not enlarge. */
 (function () {
@@ -15,18 +15,18 @@
     overlay.style.cssText = 'position:fixed;inset:0;z-index:90;background:rgba(18,15,10,.93);display:none;align-items:flex-start;justify-content:center;padding:clamp(12px,3vw,40px);overflow:auto;-webkit-font-smoothing:antialiased';
 
     stage = document.createElement('div');
-    stage.style.cssText = 'background:#FBF7EE;border-radius:16px;width:100%;max-width:1400px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);display:flex;flex-direction:column;overflow:hidden';
+    stage.style.cssText = 'background:var(--cz-paper);border-radius:var(--cz-radius-box);width:100%;max-width:1400px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);display:flex;flex-direction:column;overflow:hidden';
 
     var bar = document.createElement('div');
-    bar.style.cssText = "display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-bottom:1.5px solid #E3DACB;background:#F4EFE4";
+    bar.style.cssText = "display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-bottom:var(--cz-border);background:var(--cz-desk)";
 
     cap = document.createElement('span');
-    cap.style.cssText = "font:500 17px/1.35 'IBM Plex Mono',monospace;color:#5E5446;min-width:0";
+    cap.style.cssText = "font:var(--cz-mono-caption);color:var(--cz-ink-soft);min-width:0";
 
     closeBtn = document.createElement('button');
     closeBtn.type = 'button';
     closeBtn.textContent = 'Close';
-    closeBtn.style.cssText = "flex:none;min-height:44px;padding:10px 18px;border:1.5px solid #1F1A12;border-radius:12px;background:#FBF7EE;color:#1F1A12;font:600 16px/24px 'IBM Plex Sans',sans-serif;cursor:pointer";
+    closeBtn.style.cssText = "flex:none;min-height:44px;padding:var(--cz-pad-button);border:var(--cz-border-ink);border-radius:var(--cz-radius-item);background:var(--cz-paper);color:var(--cz-ink);font:var(--cz-sans-strong);cursor:pointer";
     closeBtn.addEventListener('click', close);
 
     body = document.createElement('div');

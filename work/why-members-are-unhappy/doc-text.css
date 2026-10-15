@@ -1,4 +1,93 @@
+/* Shared by every Cozy document in this folder (the .dc.html pages) and by the components they use.
+   The named values come first. A color, radius, border, padding or font setting that the documents
+   repeat is named once here and used by name everywhere else. */
+:root {
+  /* ---- Palette (named once here; each document used to repeat it in its root element) ---- */
+  --cz-night: #1F1A12; --cz-night-deep: #120F0A; --cz-night-surface: #2A2318; --cz-night-raised: #3A3125;
+  --cz-night-line: #4A4235; --cz-night-thought: #E8DFD0; --cz-night-soft: #CFC4B1;
+  --cz-paper: #FBF7EE; --cz-desk: #F4EFE4; --cz-desk-deep: #E9E2D4;
+  --cz-line: #E3DACB; --cz-line-strong: #8C8170;
+  --cz-ink: #1F1A12; --cz-ink-body: #3D352A; --cz-ink-soft: #5E5446;
+  --cz-lamp: #F2A93B; --cz-amber-ink: #8A5300;
+  --cz-right: #2F7A4B; --cz-notyet: #B03A48; --cz-focus: #2F5A9E; --cz-flex: #A3501A;
+  --cz-private: #6A4A8C; --cz-kitchen: #6B5B4B;
+
+  /* ---- Tones: an ink for text and icons, a tint for a fill, a line for an outline ---- */
+  --cz-amber-tint: #FBEFDB;  --cz-amber-line: #F0D5A4;
+  --cz-blue-ink: var(--cz-focus);    --cz-blue-tint: #E9EFF8;   --cz-blue-line: #C3D2EA;
+  --cz-green-ink: var(--cz-right);   --cz-green-tint: #E6F2EA;  --cz-green-line: #BFDFCB;
+  --cz-red-ink: var(--cz-notyet);    --cz-red-tint: #FBEAEC;    --cz-red-line: #EFC6CB;
+  --cz-purple-ink: var(--cz-private); --cz-purple-tint: #F1EAF8; --cz-purple-line: #D6C8E7;
+  --cz-brown-ink: var(--cz-kitchen); --cz-brown-tint: #F1EBE3;  --cz-brown-line: #DCD0C2;
+
+  /* ---- Kinds of section: one color for each, as on the project pages ----
+     problem: the problem and its causes, goal: the goal, measuring, results and takeaways,
+     made: the solution, the course, the storyboard, the design and development, a style guide or a job aid,
+     docs: sources and documents, summary: the opening summary. */
+  --cz-problem-ink: var(--cz-amber-ink); --cz-problem-tint: var(--cz-amber-tint); --cz-problem-line: var(--cz-amber-line);
+  --cz-goal-ink: var(--cz-blue-ink);     --cz-goal-tint: var(--cz-blue-tint);     --cz-goal-line: var(--cz-blue-line);
+  --cz-made-ink: var(--cz-green-ink);    --cz-made-tint: var(--cz-green-tint);    --cz-made-line: var(--cz-green-line);
+  --cz-docs-ink: var(--cz-purple-ink);   --cz-docs-tint: var(--cz-purple-tint);   --cz-docs-line: var(--cz-purple-line);
+  --cz-summary-ink: var(--cz-brown-ink); --cz-summary-tint: var(--cz-brown-tint); --cz-summary-line: var(--cz-brown-line);
+  /* the kind of the section a part sits in (set below from data-kind); amber when it sits in none */
+  --cz-kind-ink: var(--cz-problem-ink); --cz-kind-tint: var(--cz-problem-tint); --cz-kind-line: var(--cz-problem-line);
+
+  /* ---- Corners ---- */
+  --cz-radius-box: 16px;    /* a box on the paper: a card, a table, a figure, a quote, a note */
+  --cz-radius-item: 12px;   /* a part inside a box, and a link button */
+  --cz-radius-fold: 14px;   /* a folding list */
+  --cz-radius-pill: 999px;  /* a pill, a dot, a bar */
+
+  /* ---- Lines ---- */
+  --cz-width-line: 1.5px;   /* the width of an outline, solid or dashed */
+  --cz-border: var(--cz-width-line) solid var(--cz-line);                 /* the outline of a box */
+  --cz-border-ink: var(--cz-width-line) solid var(--cz-ink);              /* the outline of a link button */
+  --cz-border-strong: var(--cz-width-line) solid var(--cz-line-strong);
+  --cz-border-note: var(--cz-width-line) dashed var(--cz-blue-ink);       /* my own notes: dashed blue, no fill */
+  --cz-border-empty: var(--cz-width-line) dashed var(--cz-line-strong);   /* a placeholder */
+  --cz-border-row: 1px solid var(--cz-line);                              /* a divider between rows */
+
+  /* ---- Padding ---- */
+  --cz-pad-shell: clamp(0px, 3vw, 40px);                                        /* the dark ground around the page */
+  --cz-pad-page: clamp(24px, 4vw, 48px) clamp(20px, 4vw, 56px) clamp(32px, 5vw, 64px); /* the page's body */
+  --cz-pad-panel: clamp(16px, 2.5vw, 24px);  /* inside a figure frame or a quote */
+  --cz-pad-callout: 16px 18px;               /* a note or a callout */
+  --cz-pad-card: 18px;                       /* a card */
+  --cz-pad-cell: 14px 16px;                  /* a table cell */
+  --cz-pad-button: 10px 18px;                /* a link button */
+  --cz-pad-chip: 8px 14px;                   /* a small pill button */
+  --cz-gap-stack: 20px;                      /* between the parts of a section */
+
+  /* ---- Type: a face, then a setting for each role. Names begin with the face so that
+     the text rules below can find them: --cz-sans-, --cz-mono- and --cz-display-. ---- */
+  --cz-sans: 'IBM Plex Sans', sans-serif;
+  --cz-mono: 'IBM Plex Mono', monospace;
+  --cz-display: 'Archivo', sans-serif;
+  --cz-sans-body: 400 18px/28px var(--cz-sans);        /* body text */
+  --cz-sans-strong: 600 16px/24px var(--cz-sans);      /* the words of a link button */
+  --cz-mono-label: 500 16px/22px var(--cz-mono);       /* a label, a head cell, a name above a number */
+  --cz-mono-tag: 500 16px/1.2 var(--cz-mono);          /* a tag inside a figure */
+  --cz-mono-caption: 500 17px/1.35 var(--cz-mono);     /* a figure's caption */
+  --cz-mono-count: 500 16px/1 var(--cz-mono);          /* a number in a chip or a list */
+  --cz-display-sub: 600 clamp(20px, 2.4vw, 24px)/1.25 var(--cz-display);  /* a subhead inside a section */
+  --cz-display-key: 600 clamp(19px, 2.2vw, 22px)/1.4 var(--cz-display);   /* a section's key line */
+  --cz-display-card: 600 17px/1.3 var(--cz-display);   /* the title of a box in a figure */
+}
+
+/* The kind of section decides its color (data-kind on the section, as on the project pages). */
+[data-kind="problem"] { --cz-kind-ink: var(--cz-problem-ink); --cz-kind-tint: var(--cz-problem-tint); --cz-kind-line: var(--cz-problem-line); }
+[data-kind="goal"]    { --cz-kind-ink: var(--cz-goal-ink);    --cz-kind-tint: var(--cz-goal-tint);    --cz-kind-line: var(--cz-goal-line); }
+[data-kind="made"]    { --cz-kind-ink: var(--cz-made-ink);    --cz-kind-tint: var(--cz-made-tint);    --cz-kind-line: var(--cz-made-line); }
+[data-kind="docs"]    { --cz-kind-ink: var(--cz-docs-ink);    --cz-kind-tint: var(--cz-docs-tint);    --cz-kind-line: var(--cz-docs-line); }
+[data-kind="summary"] { --cz-kind-ink: var(--cz-summary-ink); --cz-kind-tint: var(--cz-summary-tint); --cz-kind-line: var(--cz-summary-line); }
+
+/* The key line: the one short sentence in bold that opens a section, as on the project pages. */
+.cz-keyline { margin: 0; font: var(--cz-display-key); letter-spacing: -0.005em; color: var(--cz-ink); }
+
 /* Paragraphs are justified, as on the rest of the site. The body text of these documents is set in
    IBM Plex Sans, so text in that face is justified; headings, labels and captions stay left-aligned. */
-p, li, dd, [style*="IBM Plex Sans"] { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
-h1, h2, h3, h4, h5, h6, figcaption, button, summary, [style*="Archivo"], [style*="IBM Plex Mono"] { text-align: start; -webkit-hyphens: manual; hyphens: manual; }
+p, li, dd, [style*="--cz-sans"], [style*="IBM Plex Sans"] { text-align: justify; -webkit-hyphens: auto; hyphens: auto; }
+/* a table's cells and the contents list stay left-aligned: justified, their short lines open wide gaps */
+:is(table, nav[aria-label="Contents"]) :is(p, li, dd, td, th, a, span, [style]) { text-align: left; -webkit-hyphens: manual; hyphens: manual; }
+h1, h2, h3, h4, h5, h6, figcaption, button, summary, .cz-keyline,
+[style*="--cz-display"], [style*="--cz-mono"], [style*="Archivo"], [style*="IBM Plex Mono"] { text-align: start; -webkit-hyphens: manual; hyphens: manual; }

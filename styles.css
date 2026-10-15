@@ -11,11 +11,90 @@
   --shadow: rgba(26,24,21,.1);
   /* the one hover shadow of every control that lifts */
   --lift: 0 8px 20px var(--shadow);
+  /* the resting shadow of the project pages' boxes: a little to the bottom right */
+  --raise: 4px 5px 0 -1px var(--line), 6px 10px 22px -10px var(--shadow);
   --serif: 'Merriweather', Georgia, serif;
   --sans: 'Montserrat', system-ui, sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
   /* the padding of every top-level block (the sidebar, the blocks, the cards, the footer); 20px on phones */
   --block-pad: 28px;
+
+  /* ---- The design tokens. Every rule below uses these names rather than its own values: one look per role. ---- */
+  /* corners */
+  --radius-block: 22px;   /* a top-level block (the sidebar, the blocks, the cards, the footer, the pop-up) */
+  --radius-box: 12px;     /* a box inside a block, a picture, a cell */
+  --radius-pill: 999px;   /* a pill: a button, a tag, a chip, a bar */
+  --radius-round: 50%;    /* a circle */
+  --radius-tick: 2px;     /* a small mark: a tick, a mini square, the document icon */
+  --radius-mark: 5px;     /* a square in a diagram (the barriers) */
+  /* lines and shadows */
+  --line-accent: 1.5px;  /* the width of a colored outline, solid or dashed */
+  --line-mark: 3px;      /* the width of a mark: the quote's bar, the goal's ring */
+  --border-hair: 1px solid var(--line);                  /* an outlined box, a secondary button, a divider */
+  --border-note: var(--line-accent) dashed var(--a3);    /* my own notes and the project summary boxes */
+  --border-empty: var(--line-accent) dashed var(--line); /* a placeholder */
+  --ring: 0 0 0 1px var(--line);             /* the edge of a picture */
+  --shadow-dialog: 0 30px 80px rgba(0,0,0,.28);
+  --backdrop: rgba(20,18,16,.45);
+  /* the padding inside a box */
+  --pad-section: 22px;          /* a project section or summary box, the pop-up's body (18px on phones) */
+  --pad-panel: 16px 18px;       /* a filled panel inside a section */
+  --pad-note: 14.5px 16.5px;    /* a dashed note: the panel's padding less its 1.5px border */
+  --pad-item: 12px 14px;        /* a small box: a problem, a step, a slide, a HEARD step */
+  --pad-cell: 10px 12px;        /* a table cell */
+  --pad-link: 14px 16px;        /* a link card: the sidebar's pages, Home's guide */
+  --pad-tag: 6px 12px;          /* a tag or chip */
+  /* the space between things */
+  --gap-blocks: 12px;    /* between top-level blocks */
+  --gap-sections: 16px;  /* between a project page's parts: the banner, the buttons, the summary boxes, the sections */
+  --gap-head: 16px;      /* from a heading to what it heads */
+  --gap-para: 14px;      /* between paragraphs and blocks inside a box */
+  --gap-boxes: 8px;      /* between boxes of one group */
+  --gap-icon: 10px;      /* between an icon and its text */
+  --gap-lines: 6px;      /* between the lines of a list */
+  /* type */
+  --type-greeting: 700 27px/1.34 var(--serif);  /* the sidebar's hello */
+  --type-hello: 700 30px/1.32 var(--serif);     /* About's welcome */
+  --type-page: 700 26px/1.3 var(--serif);       /* a project's title */
+  --type-title-l: 700 22px/1.3 var(--serif);    /* the pop-up's and the footer's title */
+  --type-title: 700 21px/1.35 var(--serif);     /* a project card's and a period's name */
+  --type-section: 700 19px/1.3 var(--serif);    /* a project section's name */
+  --type-quote: italic 400 19px/1.4 var(--serif);
+  --type-keyline: 700 16.5px/1.55 var(--serif); /* a section's first line */
+  --type-name: 700 15px/1.35 var(--serif);      /* a small title: a fold, a guide link, a persona, a code */
+  --type-letter: 700 26px/1 var(--serif);       /* a big letter (HEARD) */
+  --type-number: 700 18px/1 var(--serif);       /* a slide's number */
+  --type-lead: 400 15px/1.75 var(--sans);       /* the long text of Home, About and a project's summary */
+  --type-body: 400 14px/1.7 var(--sans);        /* a section's text */
+  --type-box: 400 13px/1.6 var(--sans);         /* paragraphs in a box: notes, takeaways, a card's lines */
+  --type-item: 400 13px/1.5 var(--sans);        /* short lines in a box: list items, steps, cells */
+  --type-note: 400 12px/1.6 var(--sans);        /* a small note or caption in sentences */
+  --type-small: 400 12px/1.5 var(--sans);       /* a small line: a key, a sub-line, a picture's caption */
+  --type-strong: 600 13px/1.3 var(--sans);      /* a bold name in a box */
+  --type-chip: 500 12px/1.3 var(--sans);        /* a chip, a diagram cell, a tooltip */
+  --type-brand: 600 15px var(--sans);
+  --type-control: 600 13px var(--sans);         /* a button or link that acts */
+  --type-control-s: 600 12px/1 var(--sans);     /* a small document button */
+  --type-label: 400 10px/1.4 var(--mono);       /* the small caps labels */
+  --type-tag: 500 10px/1.3 var(--mono);         /* a tag, a toggle */
+  --type-contact: 400 10px/1.6 var(--mono);     /* the sidebar's email and links */
+  --track-label: .08em;                         /* the letter spacing of the mono labels and tags */
+  /* motion */
+  --ease-press: .25s ease;  /* hover, press, a chevron */
+  --ease-fade: .5s ease;    /* an arrow or picture fading */
+  --ease-pile: .55s cubic-bezier(.3, .7, .3, 1);  /* a pile of prints opening and closing */
+  /* objects that keep their own colors: the instant prints, the pin, the date stamp, the project art, the split-flap board */
+  --print-paper: #f8f5ee; --print-window: #e7e1d5; --print-ink: rgba(26,24,21,.55);
+  --print-shade: 0 1px 2px rgba(0,0,0,.14), 0 10px 22px -6px rgba(0,0,0,.22);
+  --print-film: radial-gradient(120% 95% at 50% 45%, transparent 55%, rgba(40,25,10,.28) 100%), linear-gradient(rgba(255,200,140,.10), rgba(255,200,140,.10));
+  --print-corner: 3px;
+  --stamp: #ff9a3c; --stamp-glow: rgba(255,120,30,.75);
+  --pin: radial-gradient(circle at 34% 30%, #ff9c8f 0 10%, #e8382f 32%, #b3201a 72%, #7a1210 100%);
+  --pin-shade: 2px 4px 5px rgba(0,0,0,.32), inset -1px -2px 3px rgba(0,0,0,.25);
+  --press-hot: oklch(.72 .2 48); --press-glow: oklch(.75 .19 55 / .45);
+  --cozy-ink: #1f1a12; --cozy-lamp: #f2a93b; --cozy-paper: #fbf7ee; --cozy-light: #fffcf5;
+  --truck-ink: #1d1d1f; --truck-paper: #f5f5f7; --truck-night: #2c2c2e;
+  --board-cell: color-mix(in srgb, var(--ink) 88%, var(--bg));
   color-scheme: light;
 }
 :root[data-theme="dark"] {
@@ -26,6 +105,7 @@
   --a1: oklch(.8 .14 55); --a2: oklch(.79 .14 150); --a3: oklch(.77 .14 240); --a4: oklch(.78 .14 310); --a5: oklch(.86 .14 90); --a6: oklch(.78 .13 0);
   --a1-ink: var(--a1); --a2-ink: var(--a2); --a3-ink: var(--a3); --a4-ink: var(--a4); --accent-ink: var(--a1);
   --shadow: rgba(0,0,0,.35);
+  --print-shade: 0 1px 2px rgba(0,0,0,.5), 0 12px 26px -6px rgba(0,0,0,.6);
   color-scheme: dark;
 }
 
@@ -35,7 +115,7 @@ html:has(dialog[open]) { overflow: hidden; }
   html { scroll-behavior: auto; }
   *, *::before, *::after, ::backdrop { transition: none !important; animation: none !important; }
   /* no lifts or nudges either: the hover shadow and underline stay */
-  :is(.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb, .arrow, .go, .guide-go) { transform: none !important; }
+  :is(.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb, .arrow, .go, .guide-go) { transform: none !important; }
 }
 body { margin: 0; background: var(--bg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
@@ -49,8 +129,8 @@ a, button, summary { touch-action: manipulation; }
   }
 }
 /* one tap area for the small controls: at least 44 by 44, centered on the control (a square, so round buttons count too) */
-.pill button, .cv-link, .doc-btn, .copy-mail, .doc-close { position: relative; }
-:is(.pill button, .cv-link, .doc-btn, .copy-mail, .doc-close)::after {
+.pill button, .cv-link, .doc-btn, .copy-mail, .doc-close, .doc-step { position: relative; }
+:is(.pill button, .cv-link, .doc-btn, .copy-mail, .doc-close, .doc-step)::after {
   content: ""; position: absolute; left: 50%; top: 50%; width: 100%; height: 100%;
   min-width: 44px; min-height: 44px; transform: translate(-50%, -50%);
 }
@@ -58,16 +138,16 @@ a, button, summary { touch-action: manipulation; }
 
 /* Hover and press. Every box-like control lifts 2px with the one --lift shadow (only where a pointer can hover),
    and a press puts it back down. The Home project cards have no box, so their picture lifts instead. */
-.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb {
-  transition: transform .25s ease, box-shadow .25s ease;
+.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb {
+  transition: transform var(--ease-press), box-shadow var(--ease-press);
 }
 /* the controls whose colors change with their state: the current page, the pressed toggle, a fold's chevron on hover */
-.nav a, .pill button, .fold-chev { transition: transform .25s ease, box-shadow .25s ease, background-color .25s, color .25s; }
+.nav a, .pill button, .fold-chev { transition: transform var(--ease-press), box-shadow var(--ease-press), background-color .25s, color .25s; }
 @media (hover: hover) {
-  :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button):hover { transform: translateY(-2px); box-shadow: var(--lift); }
+  :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button):hover { transform: translateY(-2px); box-shadow: var(--lift); }
   .fold > summary:hover .fold-chev { transform: translateY(-2px); box-shadow: var(--lift); color: var(--ink); }
   /* the pictures that open the picture pop-up, and the picture of a Home project card */
-  .shot:hover img, .tile-thumb:hover, [data-selected-copy] .proj:hover .thumb { transform: translateY(-2px); box-shadow: 0 0 0 1px var(--line), var(--lift); }
+  .shot:hover img, .tile-thumb:hover, [data-selected-copy] .proj:hover .thumb { transform: translateY(-2px); box-shadow: var(--ring), var(--lift); }
   .proj:hover h3 { text-decoration: underline 1.5px; text-underline-offset: 5px; }
   /* arrows nudge 2px the way they point */
   .guide-item:hover .guide-go { transform: translateX(2px); }
@@ -76,10 +156,10 @@ a, button, summary { touch-action: manipulation; }
   /* text links: one hover, an underline */
   :is(.contact .mail, .contact .row a, .credit-list a, .credit-line a):hover { text-decoration: underline 1.5px currentColor; }
 }
-:is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .pill button):active,
+:is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button):active,
 .fold > summary:active .fold-chev { transform: none; box-shadow: none; }
-.shot:active img, .tile-thumb:active, [data-selected-copy] .proj:active .thumb { transform: none; box-shadow: 0 0 0 1px var(--line); }
-.arrow, .go, .guide-go { transition: transform .25s ease; }
+.shot:active img, .tile-thumb:active, [data-selected-copy] .proj:active .thumb { transform: none; box-shadow: var(--ring); }
+.arrow, .go, .guide-go { transition: transform var(--ease-press); }
 
 /* Icons: the sprite's symbols, drawn in a 24-unit box. --ic is the size in px; the stroke is worked out from it,
    so the line is 1.5px at every size (vector-effect does not reach the paths inside <use>). 18px in tiles, 20px in headings. */
@@ -93,18 +173,18 @@ a, button, summary { touch-action: manipulation; }
 
 /* Every small mono caps label shares one look; 8px to its content */
 .eyebrow, .lab, .chips-label, .prs dt, .sb-h, .codes tr:first-child th, .period-years, .m-scale {
-  font: 400 10px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--faint);
+  font: var(--type-label); letter-spacing: var(--track-label); text-transform: uppercase; color: var(--faint);
 }
 .lab { margin: 0 0 8px; }
 /* A block's heading: a 20px icon in the section's accent, then its label, 16px above what follows */
-.eyebrow, .cs-title { display: flex; align-items: center; gap: 10px; }
-.eyebrow { margin: 0 0 16px; }
+.eyebrow, .cs-title { display: flex; align-items: center; gap: var(--gap-icon); }
+.eyebrow { margin: 0 0 var(--gap-head); }
 .eyebrow .ic, .cs-title .ic { --ic: 20; }
 .cs-title .ic { color: var(--sec); }
 .cs-title .lab { margin: 0; }
 
 /* Labels that are not controls: a filled pill with no border and no hover (a 1px border is for secondary buttons only) */
-.tag, .chips span, .sl-pts { border: 0; border-radius: 999px; padding: 6px 12px; background: var(--card); }
+.tag, .chips span, .sl-pts { border: 0; border-radius: var(--radius-pill); padding: var(--pad-tag); background: var(--card); }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 /* Every paragraph is justified, site-wide. Hyphenation keeps the gaps even in narrow columns. */
@@ -115,50 +195,52 @@ p, dd, li {
 
 .site {
   background: var(--bg); color: var(--ink);
-  display: grid; grid-template-columns: clamp(310px, 28vw, 360px) minmax(0,1fr); gap: 12px;
+  display: grid; grid-template-columns: clamp(310px, 28vw, 360px) minmax(0,1fr); gap: var(--gap-blocks);
   padding: 16px; align-items: start; min-height: 100vh; box-sizing: border-box;
 }
 
 /* ---------- sidebar ---------- */
 .side {
-  background: var(--t5); border-radius: 22px; padding: var(--block-pad);
+  background: var(--t5); border-radius: var(--radius-block); padding: var(--block-pad);
   display: flex; flex-direction: column; gap: 26px; position: sticky; top: 16px;
 }
 .side-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 /* 24px tall to tap; the negative margin keeps its place */
-.brand { display: flex; align-items: center; gap: 9px; color: inherit; text-decoration: none; padding-block: 3px; margin-block: -3px; }
-.brand-name { font: 600 15px var(--sans); letter-spacing: -.01em; }
+.brand { display: flex; align-items: center; gap: var(--gap-icon); color: inherit; text-decoration: none; padding-block: 3px; margin-block: -3px; }
+.brand-name { font: var(--type-brand); letter-spacing: -.01em; }
 .toggles { display: flex; gap: 4px; }
 /* 30px tall; the buttons sit 46px apart, so each one's 44px tap area stays its own */
-.pill { display: flex; justify-content: center; gap: 6px; padding: 3px; background: var(--card); border-radius: 999px; }
+.pill { display: flex; justify-content: center; gap: 6px; padding: 3px; background: var(--card); border-radius: var(--radius-pill); }
 .pill button {
   border: 0; cursor: pointer; background: transparent; color: var(--faint);
-  font: 500 10px var(--mono); width: 40px; height: 24px; padding: 0;
-  display: flex; align-items: center; justify-content: center; border-radius: 999px;
+  font: var(--type-tag); width: 40px; height: 24px; padding: 0;
+  display: flex; align-items: center; justify-content: center; border-radius: var(--radius-pill);
 }
 .pill button[hidden] { display: none; }
 .pill button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-.ico-sun { width: 10px; height: 10px; border-radius: 50%; background: currentColor; display: block; }
-.ico-moon { width: 10px; height: 10px; border-radius: 50%; box-shadow: inset -3px -2px 0 0 currentColor; display: block; }
+.ico-sun { width: 10px; height: 10px; border-radius: var(--radius-round); background: currentColor; display: block; }
+.ico-moon { width: 10px; height: 10px; border-radius: var(--radius-round); box-shadow: inset -3px -2px 0 0 currentColor; display: block; }
 
-.side h1 { font: 700 27px/1.34 var(--serif); letter-spacing: -.012em; }
+.side h1 { font: var(--type-greeting); letter-spacing: -.012em; }
 .accent { color: var(--accent-ink); }
 
-.nav { display: grid; gap: 8px; }
+.nav { display: grid; gap: var(--gap-boxes); }
 .nav a {
-  text-decoration: none; background: var(--card); color: var(--ink); border-radius: 12px; padding: 14px 16px; min-height: 44px; box-sizing: border-box;
-  font: 600 13px var(--sans); display: flex; align-items: center; gap: 10px;
+  text-decoration: none; background: var(--card); color: var(--ink); border-radius: var(--radius-box); padding: var(--pad-link); min-height: 44px; box-sizing: border-box;
+  font: var(--type-control); display: flex; align-items: center; gap: var(--gap-icon);
 }
 .nav a[aria-current="page"] { background: var(--ink); color: var(--bg); }
-.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+.dot { width: 10px; height: 10px; border-radius: var(--radius-round); display: inline-block; flex: none; }
 
 .contact { display: flex; align-items: center; gap: 12px; }
 .avatar {
   /* 128px; on a narrow sidebar the email breaks before the @ instead of the photo shrinking (the links keep at least 108px, more than the CV pill's 104px) */
-  width: min(128px, calc(100% - 120px)); height: auto; aspect-ratio: 1; border-radius: 50%; object-fit: cover; flex: none; display: block;
-  background: var(--card); box-shadow: 0 0 0 3px var(--card);
+  width: min(128px, calc(100% - 120px)); height: auto; aspect-ratio: 1; border-radius: var(--radius-round); object-fit: cover; flex: none; display: block;
+  background: var(--card); box-shadow: 0 0 0 3px var(--card), 0 0 0 4.5px var(--a3);  /* the white ring, and a thin blue line around it */
+  animation: face-in .9s ease .15s both;  /* a soft fade when the page opens */
 }
-.contact-links { display: flex; flex-direction: column; gap: 6px; min-width: 0; font: 400 10px/1.6 var(--mono); letter-spacing: .02em; }
+@keyframes face-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+.contact-links { display: flex; flex-direction: column; gap: var(--gap-lines); min-width: 0; font: var(--type-contact); letter-spacing: .02em; }
 /* The text links are 24px tall to tap; each negative margin gives back its padding, so nothing moves.
    The padding is split so that no two tap areas meet: 6px from the email to the row, 10px from the row to the CV pill
    (whose own tap area reaches 7px above it), 9px between the two links when the row wraps. */
@@ -173,7 +255,7 @@ p, dd, li {
 /* the CV: a small pill under the links (30px to see, 44px to tap) */
 .cv-link {
   align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-top: 4px;
-  min-height: 30px; box-sizing: border-box; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--ink);
+  min-height: 30px; box-sizing: border-box; padding: 0 12px; border: var(--border-hair); border-radius: var(--radius-pill); background: var(--card); color: var(--ink);
   font: inherit; letter-spacing: inherit; cursor: pointer;
 }
 .cv-link .doc-ico { width: 7px; height: 9px; border-width: 1.2px; background-size: 4px 1.2px, 4px 1.2px; }
@@ -182,49 +264,49 @@ p, dd, li {
 /* no padding: the sidebar and the first block share a top edge, and the gutter is the 12px gap between blocks */
 .main { padding: 0; min-width: 0; }
 .page[hidden] { display: none; }
-.block { border-radius: 22px; padding: var(--block-pad); margin-bottom: 12px; }
+.block { border-radius: var(--radius-block); padding: var(--block-pad); margin-bottom: var(--gap-blocks); }
 .bg-surface { background: var(--surface); }
-.bg-t1 { background: var(--t1); } .bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
+.bg-t1 { background: var(--t1); } .bg-t2 { background: var(--t2); } .bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
 
 /* home */
-.intro p { font: 400 15px/1.7 var(--sans); color: var(--muted); }
-.guide { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 18px; }
+.intro p { font: var(--type-lead); color: var(--muted); }
+.guide { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-boxes); margin-top: 18px; }
 /* the same link card as the sidebar's .nav a: radius 12, padding 14px 16px, 10px from the dot */
 .guide-item {
-  display: flex; gap: 10px; align-items: center; text-decoration: none; color: var(--ink);
-  background: var(--card); border-radius: 12px; padding: 14px 16px;
+  display: flex; gap: var(--gap-icon); align-items: center; text-decoration: none; color: var(--ink);
+  background: var(--card); border-radius: var(--radius-box); padding: var(--pad-link);
 }
-.guide-t { font: 700 15px/1.4 var(--serif); }
+.guide-t { font: var(--type-name); }
 /* → a page inside the site */
 .guide-go { margin-left: auto; color: var(--muted); }
 .guide-go .ic { --ic: 16; }
 
 /* project cards (Home and Portfolio) */
-.proj-list { display: grid; gap: 12px; }
+.proj-list { display: grid; gap: var(--gap-blocks); }
 /* on Portfolio each card is a top-level block */
 .proj {
   text-decoration: none; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;
-  background: var(--surface); border-radius: 22px; padding: var(--block-pad); color: inherit; container-type: inline-size;
+  background: var(--surface); border-radius: var(--radius-block); padding: var(--block-pad); color: inherit; container-type: inline-size;
 }
-[data-page="portfolio"] .proj-list { margin-bottom: 12px; }
+[data-page="portfolio"] .proj-list { margin-bottom: var(--gap-blocks); }
 /* on Home the project sits straight on the Selected work block, with no box of its own (on hover its title underlines and its picture lifts) */
-[data-selected-copy] .proj { background: none; padding: 0; border-radius: 12px; }
+[data-selected-copy] .proj { background: none; padding: 0; border-radius: var(--radius-box); }
 /* 4:3, capped in height when the card is one column wide */
-.thumb { flex: 1 1 170px; min-width: 170px; max-width: 240px; aspect-ratio: 4 / 3; max-height: 220px; border-radius: 12px; overflow: hidden; }
+.thumb { flex: 1 1 170px; min-width: 170px; max-width: 240px; aspect-ratio: 4 / 3; max-height: 220px; border-radius: var(--radius-box); overflow: hidden; }
 /* project art: the SVG symbols at the top of index.html, coloured per project and per theme */
-.art-tile { display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px var(--line); }
+.art-tile { display: flex; align-items: center; justify-content: center; box-shadow: var(--ring); }
 .art-tile svg { width: 100%; height: 100%; display: block; }
-.art-cozy { --cz-letter: #1f1a12; --cz-square: #1f1a12; --cz-disc: #f2a93b; }
-.art-tile.art-cozy { background: #fbf7ee; }
-.art-delivery { --art-tone: #1d1d1f; --art-bg: var(--t3); }
-.art-tile.art-delivery { background: #f5f5f7; --art-bg: #f5f5f7; }
-:root[data-theme="dark"] .art-cozy { --cz-letter: #fffcf5; --cz-square: #fffcf5; }
-:root[data-theme="dark"] .art-tile.art-cozy { background: #1f1a12; }
-:root[data-theme="dark"] .art-delivery { --art-tone: #f5f5f7; }
-:root[data-theme="dark"] .art-tile.art-delivery { background: #2c2c2e; --art-bg: #2c2c2e; }
+.art-cozy { --cz-letter: var(--cozy-ink); --cz-square: var(--cozy-ink); --cz-disc: var(--cozy-lamp); }
+.art-tile.art-cozy { background: var(--cozy-paper); }
+.art-delivery { --art-tone: var(--truck-ink); --art-bg: var(--t3); }
+.art-tile.art-delivery { background: var(--truck-paper); --art-bg: var(--truck-paper); }
+:root[data-theme="dark"] .art-cozy { --cz-letter: var(--cozy-light); --cz-square: var(--cozy-light); }
+:root[data-theme="dark"] .art-tile.art-cozy { background: var(--cozy-ink); }
+:root[data-theme="dark"] .art-delivery { --art-tone: var(--truck-paper); }
+:root[data-theme="dark"] .art-tile.art-delivery { background: var(--truck-night); --art-bg: var(--truck-night); }
 .proj-body { flex: 999 1 300px; min-width: 0; }
-.proj h3 { font: 700 21px/1.35 var(--serif); letter-spacing: -.01em; margin: 0 0 12px; }
-.prs { display: grid; gap: 7px; font: 400 13px/1.55 var(--sans); color: var(--muted); }
+.proj h3 { font: var(--type-title); letter-spacing: -.01em; margin: 0 0 12px; }
+.prs { display: grid; gap: var(--gap-lines); font: var(--type-box); color: var(--muted); }
 /* the label column: 96px, 8px from its text */
 .prs > div { display: grid; grid-template-columns: 96px minmax(0,1fr); gap: 8px; }
 .prs dt { padding-top: 3px; }
@@ -239,10 +321,10 @@ p, dd, li {
   .prs { gap: 12px; } .prs > div { grid-template-columns: minmax(0, 1fr); } .prs dt { padding-top: 0; }
 }
 
-.chips { display: flex; flex-wrap: wrap; gap: 7px; }
-.chips span { font: 500 12px var(--sans); color: var(--muted); white-space: nowrap; }
+.chips { display: flex; flex-wrap: wrap; gap: var(--gap-lines); }
+.chips span { font: var(--type-chip); color: var(--muted); white-space: nowrap; }
 .chips-row {
-  flex-wrap: nowrap; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-block: 4px; margin-block: -4px;
+  flex-wrap: nowrap; gap: var(--gap-lines); overflow-x: auto; scrollbar-width: none; padding-block: 4px; margin-block: -4px;
   margin-inline: calc(-1 * var(--block-pad)); padding-inline: var(--block-pad);
   -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--block-pad), #000 calc(100% - var(--block-pad) - 8px), transparent);
           mask-image: linear-gradient(to right, transparent, #000 var(--block-pad), #000 calc(100% - var(--block-pad) - 8px), transparent);
@@ -253,10 +335,10 @@ p, dd, li {
 }
 .chips-row::-webkit-scrollbar { display: none; }
 /* a phone's row scrolls, so it takes keyboard focus: its ring sits in the row's 4px of block padding, with the fade taken off, so nothing masks it */
-.chips-row:focus-visible { -webkit-mask-image: none; mask-image: none; outline-offset: -2px; border-radius: 12px; }
+.chips-row:focus-visible { -webkit-mask-image: none; mask-image: none; outline-offset: -2px; border-radius: var(--radius-box); }
 .chips-row span { flex: none; }
 /* Credits (in the pop-up): a label, then its links */
-.used { display: grid; gap: 14px; }
+.used { display: grid; gap: var(--gap-para); }
 .used-row { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; align-items: baseline; }
 .used-row .chips-label { padding-top: 2px; }
 /* narrow, on the page or in the pop-up (the nearest container): each label above its links */
@@ -265,58 +347,74 @@ p, dd, li {
 /* ---------- project pages ---------- */
 /* 44px tall; the arrow's 32px circle sits 6px from the edge, like it does from the top and bottom */
 .back {
-  display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
-  background: var(--surface); color: var(--ink); border-radius: 999px; min-height: 44px; box-sizing: border-box; padding: 0 20px 0 6px;
-  font: 600 13px var(--sans); letter-spacing: 0;
+  display: inline-flex; align-items: center; gap: var(--gap-icon); text-decoration: none;
+  background: var(--surface); color: var(--ink); border-radius: var(--radius-pill); min-height: 44px; box-sizing: border-box; padding: 0 20px 0 6px;
+  font: var(--type-control); letter-spacing: 0;
 }
 /* an icon circle inside a control: 32px; ink, so it shows on the light pill */
-.arrow { width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: var(--bg); display: flex; align-items: center; justify-content: center; flex: none; }
+.arrow { width: 32px; height: 32px; border-radius: var(--radius-round); background: var(--ink); color: var(--bg); display: flex; align-items: center; justify-content: center; flex: none; }
 .arrow .ic { --ic: 16; }
 
-.case { container: case / inline-size; background: var(--surface); border-radius: 22px; padding: var(--block-pad); margin-bottom: 12px; }
+.case { container: case / inline-size; margin-bottom: var(--gap-blocks); }
 .hero {
-  border-radius: 12px; margin-bottom: 16px; padding: 24px; box-sizing: border-box;
-  display: flex; align-items: stretch; gap: 24px;
+  border-radius: var(--radius-box); margin-bottom: var(--gap-sections); padding: 24px; box-sizing: border-box;
+  display: flex; align-items: stretch; gap: 24px; position: relative;
 }
-.hero-head { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; gap: 18px; }
-.hero .back { background: var(--card); }
+/* the title sits at the foot, clear of the notch (52px) by 16px or more */
+.hero-head { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 18px; padding-top: 44px; }
+/* All projects sits flush in the banner's top-left corner, in a notch cut from it: the notch is the page's ground color,
+   8px wider and taller than the pill, with its inner corner round around the pill's end (22 + 8), and the banner's two
+   new corners (where its top and left edges start again) round like its others (12px, painted by the two pseudo-elements) */
+.hero-notch { position: absolute; top: 0; left: 0; z-index: 1; padding: 0 8px 8px 0; background: var(--bg); border-bottom-right-radius: 30px; }
+.hero-notch::before, .hero-notch::after { content: ""; position: absolute; width: 12px; height: 12px; background: radial-gradient(circle at 100% 100%, transparent 11.5px, var(--bg) 12px); pointer-events: none; }
+.hero-notch::before { top: 0; left: 100%; }
+.hero-notch::after { top: 100%; left: 0; }
 /* the title, and under it the small "Concept project" tag (a .tag pill) */
 .hero-title { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
-.case .hero-head h2 { font: 700 26px/1.3 var(--serif); letter-spacing: .03em; text-transform: uppercase; }
-.hero-tag { text-transform: uppercase; }
+.case .hero-head h2 { font: var(--type-page); letter-spacing: .03em; text-transform: uppercase; }
+.hero-tag { text-transform: uppercase; background: var(--card); }
 .hero-art { flex: none; width: clamp(170px, 36%, 280px); align-self: center; }
 .hero-art svg { display: block; width: 100%; height: auto; }
 .hero-art.art-delivery { width: clamp(110px, 20%, 150px); }
 /* side by side as long as the title has room to wrap beside the art; stacked on a phone */
 @container case (max-width: 620px) {
   .hero { padding: 20px; gap: 18px; }
+  .hero-head { padding-top: 48px; }
   .case .hero-head h2 { font-size: 22px; }
 }
 @container case (max-width: 440px) {
-  .hero { flex-direction: column; padding: 18px; gap: 16px; }
+  .hero { flex-direction: column; padding: 66px 18px 18px; gap: 16px; }
   .hero-head { display: contents; }
-  .hero .back { order: 1; align-self: flex-start; }
   .hero-art { order: 2; width: min(100%, 220px); align-self: flex-start; margin: 6px 0; }
   .hero-art.art-delivery { width: min(100%, 130px); }
   .hero-title { order: 3; }
 }
-.case .sum { font: 400 15px/1.7 var(--sans); color: var(--muted); }
+.case .sum { font: var(--type-lead); color: var(--muted); }
 .sum b { font-weight: 600; color: var(--ink); }
-.cta-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 16px 0; }
+.cta-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: var(--gap-sections) 0; }
 
 /* The project summary under the buttons: three boxes (Audience, Responsibilities, Tools), each a heading with its icon
    in the text color and a short list. In a row; narrower, Audience on top of the other two; on a phone, one under another. */
-.summary { --sec: var(--ink); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.summary { --sec: var(--ink); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap-sections); }
 .sum-box .cs-title { margin-bottom: 12px; }
-.sum-box ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font: 400 13px/1.55 var(--sans); color: var(--muted); }
+.sum-box ul { margin: 0; padding-left: 18px; display: grid; gap: var(--gap-lines); font: var(--type-item); color: var(--muted); }
 .sum-box li { text-align: left; }
 .sum-box li::marker { color: var(--faint); }
 @container case (max-width: 720px) { .summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sum-box:first-child { grid-column: 1 / -1; } }
 @container case (max-width: 440px) { .summary { grid-template-columns: minmax(0, 1fr); } }
 
 /* a project's sections: full width, one under another (the summary boxes are the same white card) */
-.cs, .sum-box { background: var(--card); border-radius: 12px; padding: 22px; }
-.cs { margin-top: 12px; }
+/* white boxes on the page's own ground: the sections raised a little (a hairline edge and a shadow to the bottom right),
+   the three summary boxes with a dashed blue border, like the takeaways */
+.cs, .sum-box { background: var(--card); border-radius: var(--radius-box); padding: var(--pad-section); }
+.cs { border: var(--border-hair); box-shadow: var(--raise); }
+.sum-box { border: var(--border-note); }
+.cs { margin-top: var(--gap-sections); }
+/* a section's name: large and bold, so the sections stand apart on the page's ground */
+.cs-head .cs-title { gap: 12px; }
+.cs-head .ic { --ic: 22; }
+.cs-head .lab { font: var(--type-section); letter-spacing: .03em; color: var(--ink); }
+@container case (max-width: 440px) { .cs-head .lab { font-size: 17px; } }
 /* Each kind of section has one color, for its heading icon and the icons inside it (data-kind in index.html):
    orange for the problem and its causes, blue for the goal and the results, green for what was made, purple for the documents.
    Right and wrong keep their own colors. */
@@ -325,30 +423,29 @@ p, dd, li {
 .cs[data-kind="goal"] { --sec: var(--a3-ink); }
 .cs[data-kind="made"] { --sec: var(--a2-ink); }
 .cs[data-kind="docs"] { --sec: var(--a4-ink); }
-/* the buttons of the last section, then the All projects link on its own row */
+/* the buttons of the last section */
 .cs .cta-row { margin: 0; }
-.cs > .back { display: flex; width: fit-content; }
-.cs-head { margin-bottom: 16px; }
-.cs > * + * { margin-top: 14px; }
+.cs-head { margin-bottom: var(--gap-head); }
+.cs > * + * { margin-top: var(--gap-para); }
 .cs > .cs-head + * { margin-top: 0; }
 /* an icon in a 32px circle (the left of a fold's title row), and the tag at its right (kind of problem or who it is for) */
-.row-ic { width: 32px; height: 32px; border-radius: 50%; background: var(--card); display: inline-flex; align-items: center; justify-content: center; color: var(--sec); flex: none; }
+.row-ic { width: 32px; height: 32px; border-radius: var(--radius-round); background: var(--card); display: inline-flex; align-items: center; justify-content: center; color: var(--sec); flex: none; }
 .row-tag { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; }
 /* the Six Boxes in small: the three environment boxes, then the three person boxes; the ones that apply are filled */
 .sixmini { display: grid; grid-template-columns: repeat(3, 7px); gap: 2px; }
-.sixmini i { width: 7px; height: 7px; border-radius: 2px; background: var(--line); }
+.sixmini i { width: 7px; height: 7px; border-radius: var(--radius-tick); background: var(--line); }
 .sixmini i.on { background: var(--sec); }
-.tag { font: 500 10px/1.3 var(--mono); letter-spacing: .08em; color: var(--faint); text-align: center; white-space: nowrap; }
+.tag { font: var(--type-tag); letter-spacing: var(--track-label); color: var(--faint); text-align: center; white-space: nowrap; }
 /* a picture beside the text of a fold; it opens the picture pop-up (the same ring and hover as .shot) */
-.tile-thumb { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: 12px; overflow: hidden; background: var(--card); border: 0; padding: 0; cursor: zoom-in; box-shadow: 0 0 0 1px var(--line); }
+.tile-thumb { display: block; width: 100%; aspect-ratio: 4 / 3; border-radius: var(--radius-box); overflow: hidden; background: var(--card); border: 0; padding: 0; cursor: zoom-in; box-shadow: var(--ring); }
 .tile-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap-boxes); }
 .shot {
   border: 0; padding: 0; background: none; cursor: zoom-in; text-align: left; color: inherit; font: inherit;
   display: flex; flex-direction: column; gap: 8px;
 }
-.shot img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; display: block; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); }
-.shot-cap { font: 400 12px/1.45 var(--sans); color: var(--muted); }
+.shot img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; display: block; border-radius: var(--radius-box); box-shadow: var(--ring); }
+.shot-cap { font: var(--type-small); color: var(--muted); }
 /* two pictures side by side (a before and an after), one figure across the whole width, or two figures of different
    shapes side by side (a phone screen and a tall map): the last two are shown whole at their own shape (16:10 until they load) */
 .shots.pair, .shots.whole { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -360,27 +457,30 @@ p, dd, li {
 /* A fold: a block that stays closed until its title row is pressed (a native <details class="fold">, inside .folds).
    An outlined box; the row is the summary: an optional icon in a circle, the name, an optional tag, and a chevron that
    turns when the fold is open. Narrow, the tag moves under the name. */
-.folds { display: grid; gap: 8px; }
-.fold { border: 1px solid var(--line); border-radius: 12px; }
+.folds { display: grid; gap: var(--gap-boxes); }
+.fold { border: var(--border-hair); border-radius: var(--radius-box); }
 .fold > summary {
   list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px 10px;
-  min-height: 44px; box-sizing: border-box; padding: 12px 12px 12px 17px; border-radius: 11px;
+  min-height: 44px; box-sizing: border-box; padding: 12px 12px 12px 17px; border-radius: calc(var(--radius-box) - 1px);
 }
 .fold > summary::-webkit-details-marker { display: none; }
-.fold-name { flex: 1 1 0; min-width: 0; font: 700 15px/1.35 var(--serif); color: var(--ink); }
+.fold-name { flex: 1 1 0; min-width: 0; font: var(--type-name); color: var(--ink); }
 .fold .row-tag { flex: none; margin-left: 0; }
 .fold :is(.row-ic, .tag) { background: var(--surface); }
 /* the chevron: an icon circle like the hero's arrow, 32px */
-.fold-chev { flex: none; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
-.fold-chev .ic { transition: transform .25s ease; }
+.fold-chev { flex: none; width: 32px; height: 32px; border-radius: var(--radius-round); border: var(--border-hair); background: var(--surface); display: inline-flex; align-items: center; justify-content: center; color: var(--muted); }
+.fold-chev .ic { transition: transform var(--ease-press); }
 .fold[open] > summary .fold-chev .ic { transform: rotate(180deg); }
 .fold-body { padding: 2px 17px 17px; }
-.fold-body > * + * { margin-top: 14px; }
+.fold-body > * + * { margin-top: var(--gap-para); }
 .fold[open] > .fold-body { animation: fold-in .35s ease-out; }
 @keyframes fold-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-.fold-body > p, .fold-media > p { font: 400 13px/1.6 var(--sans); color: var(--muted); }
+.fold-body > p, .fold-media > p { font: var(--type-box); color: var(--muted); }
+/* a small source line under a figure (HEARD) */
+.fold-body > .src-note { font: var(--type-note); color: var(--faint); }
+.src-note a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 /* a fold with a picture: the text, and the picture beside it (it opens larger); stacked when narrow */
-.fold-media { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: 14px 18px; align-items: start; }
+.fold-media { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: var(--gap-para) 18px; align-items: start; }
 .fold-media > * + * { margin-top: 0; }
 @container case (max-width: 640px) {
   .fold > summary { flex-wrap: wrap; }
@@ -388,39 +488,39 @@ p, dd, li {
   .fold > summary .row-tag { order: 2; flex: 1 1 100%; padding-left: 42px; box-sizing: border-box; }
 }
 @container case (max-width: 560px) { .fold-media { grid-template-columns: minmax(0, 1fr); } }
-.cs > p:not(.note) { font: 400 14px/1.7 var(--sans); color: var(--muted); }
-.note { font: 400 12px/1.6 var(--sans); color: var(--faint); margin-top: 14px; }
+.cs > p:not(.note) { font: var(--type-body); color: var(--muted); }
+.note { font: var(--type-note); color: var(--faint); margin-top: var(--gap-para); }
 
 /* a button that opens a document in the pop-up: the document icon, never ↗ */
 .doc-btn {
   text-decoration: none;
   display: inline-flex; align-items: center; gap: 6px; cursor: pointer; white-space: nowrap;
-  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
-  border-radius: 999px; padding: 0 12px; min-height: 30px; box-sizing: border-box; font: 600 12px/1 var(--sans);
+  border: var(--border-hair); background: var(--surface); color: var(--ink);
+  border-radius: var(--radius-pill); padding: 0 12px; min-height: 30px; box-sizing: border-box; font: var(--type-control-s);
 }
 .cta-row .btn, .cta-row .doc-btn { min-height: 44px; box-sizing: border-box; padding: 0 20px; font-size: 13px; line-height: 1; gap: 8px; }
 .btn .go .ic { --ic: 14; }
 .doc-ico {
-  width: 9px; height: 11px; border: 1.5px solid currentColor; border-radius: 2px; flex: none;
+  width: 9px; height: 11px; border: 1.5px solid currentColor; border-radius: var(--radius-tick); flex: none;
   background: linear-gradient(currentColor, currentColor) 50% 35% / 5px 1.5px no-repeat,
               linear-gradient(currentColor, currentColor) 50% 70% / 5px 1.5px no-repeat;
 }
 
 /* an action: 44px tall */
 .btn {
-  display: inline-flex; align-items: center; gap: 8px; font: 600 13px var(--sans); text-decoration: none; border: 0; cursor: pointer;
-  min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 8px; font: var(--type-control); text-decoration: none; border: 0; cursor: pointer;
+  min-height: 44px; box-sizing: border-box; padding: 0 20px; border-radius: var(--radius-pill);
 }
 .btn-primary { background: var(--ink); color: var(--bg); }
 
 /* ---------- document pop-up ---------- */
 dialog.doc {
   width: min(760px, calc(100vw - 32px)); max-width: none; max-height: min(86dvh, 920px);
-  padding: 0; border: 1px solid var(--line); border-radius: 22px; overflow: hidden;
-  background: var(--bg); color: var(--ink); box-shadow: 0 30px 80px rgba(0,0,0,.28);
+  padding: 0; border: var(--border-hair); border-radius: var(--radius-block); overflow: hidden;
+  background: var(--bg); color: var(--ink); box-shadow: var(--shadow-dialog);
 }
 dialog.doc[open] { display: flex; flex-direction: column; animation: doc-in .35s cubic-bezier(.2,.7,.2,1); }
-dialog.doc::backdrop { background: rgba(20,18,16,.45); backdrop-filter: blur(3px); animation: doc-dim .35s ease-out; }
+dialog.doc::backdrop { background: var(--backdrop); backdrop-filter: blur(3px); animation: doc-dim .35s ease-out; }
 /* closing (site.js adds .is-closing): a .2s fade with a slight shrink, then the dialog closes */
 dialog.doc.is-closing { animation: doc-out .2s ease-in forwards; }
 dialog.doc.is-closing::backdrop { animation: doc-undim .2s ease-in forwards; }
@@ -431,22 +531,31 @@ dialog.doc.is-closing::backdrop { animation: doc-undim .2s ease-in forwards; }
 @keyframes doc-undim { to { opacity: 0; } }
 .doc-inner { display: flex; flex-direction: column; flex: 1; min-height: 0; }
 /* the label, then the title with the close button beside it, centered on the title's line */
-.doc-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 16px; padding: 16px 22px; border-bottom: 1px solid var(--line); }
+.doc-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 16px; padding: 16px 22px; border-bottom: var(--border-hair); }
 .doc-heading { display: contents; }
 .doc-top .lab { grid-row: 1; grid-column: 1; }
-.doc-top h2 { grid-row: 2; grid-column: 1; min-width: 0; font: 700 22px/1.3 var(--serif); letter-spacing: -.01em; }
-/* 44px; the negative margin lets it reach past the title's line without making the bar taller */
-.doc-close {
-  grid-row: 2; grid-column: 2; margin-block: -8px;
-  width: 44px; height: 44px; border-radius: 50%; border: 0; padding: 0; cursor: pointer;
+.doc-top h2 { grid-row: 2; grid-column: 1; min-width: 0; font: var(--type-title-l); letter-spacing: -.01em; }
+/* 44px; the negative margin lets it reach past the title's line without making the bar taller (the last column, with or without the nav) */
+.doc-close { grid-row: 2; grid-column: -2; justify-self: end; margin-block: -8px; }
+.doc-close, .doc-step {
+  width: 44px; height: 44px; border-radius: var(--radius-round); border: 0; padding: 0; cursor: pointer;
   background: var(--surface); color: var(--ink);
   display: flex; align-items: center; justify-content: center;
 }
-.doc-close .ic { --ic: 20; }
+.doc-close .ic, .doc-step .ic { --ic: 20; }
+/* previous, count, next: on the title's row, 16px from the title and 8px from the close button; the bar has its third column only while the nav shows */
+/* with the nav: the title on the left, the nav in the middle of the bar, the close button on the right */
+.doc-top:has(.doc-nav:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+.doc-top:has(.doc-nav:not([hidden])) .lab { grid-column: 1 / -1; }  /* the label keeps the whole row, so a narrow title column does not break it up */
+.doc-top:has(.doc-nav:not([hidden])) h2 { overflow-wrap: anywhere; }
+.doc-nav { grid-row: 2; grid-column: 2; display: flex; align-items: center; margin-block: -8px; }
+.doc-nav[hidden] { display: none; }
+/* a fixed width, so the buttons stay put as the count changes (the biggest group has 8) */
+.doc-count { min-width: 4.5em; text-align: center; white-space: nowrap; font: var(--type-label); letter-spacing: var(--track-label); color: var(--muted); }
 /* a size container, so what it shows (the credits) can lay itself out by the pop-up's width */
-.doc-body { flex: 1; min-height: 0; overflow-y: auto; padding: 22px; font: 400 14px/1.7 var(--sans); color: var(--muted); container-type: inline-size; }
-.doc-body > * + * { margin-top: 14px; }
-.doc-frame { width: 100%; height: 70dvh; border: 0; border-radius: 12px; background: var(--surface); display: block; }
+.doc-body { flex: 1; min-height: 0; overflow-y: auto; padding: var(--pad-section); font: var(--type-body); color: var(--muted); container-type: inline-size; }
+.doc-body > * + * { margin-top: var(--gap-para); }
+.doc-frame { width: 100%; height: 70dvh; border: 0; border-radius: var(--radius-box); background: var(--surface); display: block; }
 dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dvh - 32px); max-height: none; }
 .doc-wide .doc-top h2 { font-size: 18px; }
 .doc-wide .doc-body { padding: 0; overflow: hidden; position: relative; display: flex; background: var(--surface); }
@@ -455,34 +564,53 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
    and around its card (site.js clears the document's own page color). The documents are light pages, and a frame with the
    same color-scheme stays see-through, in dark theme too. */
 .doc-wide .doc-frame { flex: 1; height: auto; border-radius: 0; color-scheme: light; position: relative; z-index: 1; opacity: 0; transition: opacity .3s; }
-.doc-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 400 10px var(--mono); letter-spacing: .08em; color: var(--faint); background: var(--surface); }
+.doc-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: var(--type-label); letter-spacing: var(--track-label); color: var(--faint); background: var(--surface); }
 .doc-wide .doc-frame.is-ready { opacity: 1; }
 /* once the document is in, the loading text leaves the page and the screen reader's reading (the body behind keeps the color) */
 .doc-body:has(> .doc-frame.is-ready) > .doc-loading { visibility: hidden; }
 .doc-picture { flex: 1; overflow: auto; display: flex; align-items: flex-start; justify-content: center; padding: 16px; background: var(--surface); }
 /* a large picture scrolls, so it takes keyboard focus: the ring sits inside, where the pop-up does not clip it */
 .doc-picture:focus-visible { outline-offset: -4px; }
-.doc-picture img { max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 0 0 1px var(--line); display: block; }
+.doc-picture img { max-width: 100%; height: auto; border-radius: var(--radius-box); box-shadow: var(--ring); display: block; }
+/* A picture: the bar is a white box of its own, and the picture floats 12px under it on the dimmed page, with no frame,
+   fitted whole into the room left (a picture of another shape leaves room on one side rather than spilling over) */
+dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: visible; }
+.doc-pic .doc-top { background: var(--bg); border: var(--border-hair); border-radius: var(--radius-block); box-shadow: var(--shadow-dialog); }
+.doc-wide.doc-pic .doc-body { background: none; padding: 12px 0 0; }
+.doc-pic .doc-picture { background: none; padding: 0; overflow: hidden; align-items: center; min-width: 0; min-height: 0; }
+.doc-pic .doc-picture img { max-width: 100%; max-height: 100%; width: auto; height: auto; min-width: 0; min-height: 0; object-fit: contain; box-shadow: var(--shadow-dialog); }
 .doc-empty {
-  border: 1.5px dashed var(--line); border-radius: 12px; padding: 40px 20px; text-align: center;
-  font: 400 10px var(--mono); letter-spacing: .08em; color: var(--faint);
+  border: var(--border-empty); border-radius: var(--radius-box); padding: 40px 20px; text-align: center;
+  font: var(--type-label); letter-spacing: var(--track-label); color: var(--faint);
 }
 
 /* ---------- about ---------- */
-.about-hero h2 { font: 700 30px/1.32 var(--serif); letter-spacing: -.012em; margin: 0 0 14px; }
+.about-hero { position: relative; padding-bottom: calc(var(--block-pad) + 12px); }  /* (room for the arrow under the text) */
+.about-hero h2 { font: var(--type-hello); letter-spacing: -.012em; margin: 0 0 var(--gap-para); }
+/* until the visitor scrolls, only the welcome shows: a small arrow at its foot says there is more below (it goes once the intro starts) */
+.hero-more { position: absolute; left: 50%; bottom: 8px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: 0; pointer-events: none; transition: opacity var(--ease-fade); }
+.hero-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite, arrive .6s ease 1.75s both; }  /* (after the welcome's last line) */
+/* the welcome comes in part by part when the page opens: the hand, the heading, then each line (each over .8s, .35s apart) */
+.about-hero > .wave, .about-hero > h2, .hero-line { animation: hero-in .8s ease-out both; }
+.about-hero > h2 { animation-delay: .35s; }
+.hero-line { display: block; animation-delay: .7s; }
+.hero-line + .hero-line { animation-delay: 1.05s; }
+@keyframes hero-in { from { opacity: 0; transform: translateY(14px); } }
+/* (an arrow fades up to its own opacity) */
+@keyframes arrive { from { opacity: 0; } }
+[data-page="about"]:has([data-stage="intro"].is-stage:not(.is-live)) .hero-more { opacity: .45; }
 /* the hello: a hand that waves once when the page opens */
-.wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: wave 1.8s ease-in-out .3s 1; }
+.about-hero > .wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: hero-in .8s ease-out both, wave 1.8s ease-in-out 1.6s 1; }
 @keyframes wave { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-8deg); } 45% { transform: rotate(14deg); } 60% { transform: rotate(-4deg); } 75% { transform: rotate(10deg); } }
-.about-hero p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
+.about-hero p { font: var(--type-lead); color: var(--muted); }
 
 /* the owner's own text before and after the periods: the page's body text, 15px */
-.about-intro p, .about-outside p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
-/* the intro is three parts: 14px between paragraphs, and (when it is one block) between parts, with more before the note */
-.intro-part p + p { margin-top: 14px; }
-.stage-track:not(.is-stage) .intro-part + .intro-part { margin-top: 14px; }
-.stage-track:not(.is-stage) .intro-part:last-child { margin-top: 26px; }
-/* the fun fact is a short note of my own: a dashed blue border (as on the project pages) */
-.about-intro .about-fact { padding: 14.5px 16.5px; border: 1.5px dashed var(--a3); border-radius: 12px; font-size: 13px; line-height: 1.6; }
+.about-intro p, .about-outside p { font: var(--type-lead); color: var(--muted); }
+/* the intro is two parts: 14px between paragraphs, and (when it is one block) between the parts */
+.intro-part p + p { margin-top: var(--gap-para); }
+.stage-track:not(.is-stage) .intro-part + .intro-part { margin-top: var(--gap-para); }
+/* the fun fact is a short note of my own, on the page itself: a dashed blue border (as on the project pages) */
+.about-fact { margin: 0 0 var(--gap-blocks); padding: var(--pad-note); border: var(--border-note); border-radius: var(--radius-box); font: var(--type-box); color: var(--muted); }
 .about-fact b { font-weight: 600; color: var(--ink); }
 
 /* the page's scroll bar: a thin line of the site's yellow along the top of the window, filled by site.js as the page is scrolled */
@@ -494,41 +622,56 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .about-path { container: path / inline-size; }
 .periods { list-style: none; margin: 0; padding: 0; --pic: clamp(120px, 24cqw, 200px); }
 .period { display: grid; grid-template-columns: var(--pic) minmax(0, 1fr); gap: 20px clamp(20px, 4cqw, 36px); align-items: start; padding: 28px 0; }
-.period + .period { border-top: 1px solid var(--line); }
+.period + .period { border-top: var(--border-hair); }
 .period:first-child { padding-top: 0; } .period:last-child { padding-bottom: 0; }
-/* the picture: an old instant print, a white frame with a thick bottom edge, a little tilted. Until assets/about/<period>.webp
-   loads, the window shows a soft fill and a camera; the photo gets a faded film look and the period's years as an orange date stamp */
-.period-pic { --w: var(--pic); position: relative; width: var(--w); height: calc(var(--w) * 1.365); box-sizing: border-box; border-radius: 3px;
-  background: #f8f5ee; box-shadow: 0 1px 2px rgba(0,0,0,.14), 0 10px 22px -6px rgba(0,0,0,.22); color: rgba(26,24,21,.55); rotate: -2deg; }
-/* each print sits a little differently, as if dropped on the desk */
-.period:nth-child(4n+1) .period-pic { rotate: -4deg; translate: 2px 4px; }
-.period:nth-child(4n+2) .period-pic { rotate: 3.2deg; translate: 6px 0; }
-.period:nth-child(4n+3) .period-pic { rotate: -1.6deg; translate: -2px 8px; }
-.period:nth-child(4n+4) .period-pic { rotate: 5deg; translate: 4px 2px; }
-.period-pic::before { content: ""; position: absolute; left: 7%; top: calc(var(--w) * .07); width: 86%; height: calc(var(--w) * 1.075); background: #e7e1d5; }
+/* The photos of a period: old instant prints (a white frame with a thick bottom edge) in a messy pile, the first on top, held by
+   a pin. Until a photo loads, its window shows a soft fill and a camera; a photo gets a faded film look and the period's years
+   as an orange date stamp. Each print is a button that opens the photos in the pop-up (site.js groups them by period).
+   Hovered (or a print focused), the pile opens: the prints straighten and slide straight down, as far apart as the words
+   beside them are tall (--fan, set by site.js: the room left beside the words, shared between the prints). */
+.period-pics { position: relative; width: var(--pic); height: calc(var(--pic) * 1.365); --open: 0; --fan: 0px;
+  rotate: calc(var(--sr, -2deg) * (1 - var(--open) * .7)); translate: var(--sx, 0) var(--sy, 0); transition: rotate var(--ease-pile); }
+.period-pic { --w: var(--pic); position: absolute; left: 0; top: 0; z-index: calc(10 - var(--i, 0)); width: var(--w); height: calc(var(--w) * 1.365);
+  box-sizing: border-box; border: 0; padding: 0; margin: 0; font: inherit; cursor: zoom-in; display: block; border-radius: var(--print-corner);
+  background: var(--print-paper); box-shadow: var(--print-shade); color: var(--print-ink);
+  translate: var(--dx, 0) calc(var(--dy, 0px) + var(--fan) * var(--i, 0) * var(--open)); rotate: calc(var(--r, 0deg) * (1 - var(--open) * .8));
+  transition: translate var(--ease-pile), rotate var(--ease-pile); }
+/* each pile sits a little differently, as if dropped on the desk, and the prints under the first stick out at their own angles */
+.period:nth-child(4n+1) .period-pics { --sr: -4deg; --sx: 2px; --sy: 4px; }
+.period:nth-child(4n+2) .period-pics { --sr: 3.2deg; --sx: 6px; }
+.period:nth-child(4n+3) .period-pics { --sr: -1.6deg; --sx: -2px; --sy: 8px; }
+.period:nth-child(4n+4) .period-pics { --sr: 5deg; --sx: 4px; --sy: 2px; }
+.period-pic:nth-child(2) { --dx: 12px; --dy: 8px; --r: 6deg; }
+.period-pic:nth-child(3) { --dx: -10px; --dy: 14px; --r: -7deg; }
+.period-pic:nth-child(4) { --dx: 6px; --dy: 18px; --r: 9deg; }
+@media (hover: hover) { .period-pics:hover, .period-pics:focus-within { --open: 1; } }
+.period-pic::before { content: ""; position: absolute; left: 7%; top: calc(var(--w) * .07); width: 86%; height: calc(var(--w) * 1.075); background: var(--print-window); }
 .period-pic::after { content: ""; position: absolute; left: 7%; top: calc(var(--w) * .07); width: 86%; height: calc(var(--w) * 1.075); pointer-events: none;
-  background: radial-gradient(120% 95% at 50% 45%, transparent 55%, rgba(40,25,10,.28) 100%), linear-gradient(rgba(255,200,140,.10), rgba(255,200,140,.10)); }
+  background: var(--print-film); }
 .period-pic .ic { --ic: 28; position: absolute; left: 50%; top: calc(var(--w) * (.07 + 1.075 / 2)); translate: -50% -50%; }
 .period-pic img { position: absolute; left: 7%; top: calc(var(--w) * .07); width: 86%; height: calc(var(--w) * 1.075); object-fit: cover; opacity: 0;
-  filter: sepia(.2) saturate(.86) contrast(1.06) brightness(1.03); transition: opacity .5s ease; }
+  filter: sepia(.2) saturate(.86) contrast(1.06) brightness(1.03); transition: opacity var(--ease-fade); }
 .pic-stamp { position: absolute; z-index: 1; right: 11%; top: calc(var(--w) * (.07 + 1.075) - 1.9em); font: 700 clamp(9px, calc(var(--w) * .065), 12px)/1 var(--mono);
-  letter-spacing: .06em; color: #ff9a3c; text-shadow: 0 0 3px rgba(255,120,30,.75); white-space: nowrap; }
+  letter-spacing: .06em; color: var(--stamp); text-shadow: 0 0 3px var(--stamp-glow); white-space: nowrap; }
 /* a red push pin holds each print to the wall: a round head with a highlight and a soft shadow on the paper */
-.pic-pin { position: absolute; z-index: 2; top: calc(var(--w) * -.03); left: 50%; width: clamp(12px, calc(var(--w) * .11), 22px); aspect-ratio: 1; translate: -50% 0; border-radius: 50%;
-  background: radial-gradient(circle at 34% 30%, #ff9c8f 0 10%, #e8382f 32%, #b3201a 72%, #7a1210 100%);
-  box-shadow: 2px 4px 5px rgba(0,0,0,.32), inset -1px -2px 3px rgba(0,0,0,.25); }
+.pic-pin { position: absolute; z-index: 2; top: calc(var(--w) * -.03); left: 50%; width: clamp(12px, calc(var(--w) * .11), 22px); aspect-ratio: 1; translate: -50% 0; border-radius: var(--radius-round);
+  background: var(--pin);
+  box-shadow: var(--pin-shade); }
 .period:nth-child(4n+1) .pic-pin { left: 46%; }
 .period:nth-child(4n+2) .pic-pin { left: 55%; }
 .period:nth-child(4n+4) .pic-pin { left: 43%; }
 .period-pic.has-photo img { opacity: 1; }
 .period-pic.has-photo .ic { display: none; }
-[data-theme="dark"] .period-pic { box-shadow: 0 1px 2px rgba(0,0,0,.5), 0 12px 26px -6px rgba(0,0,0,.6); }
+.period-pic:focus-visible { outline-offset: 3px; }
 .period-title { margin-bottom: 12px; text-align: left; -webkit-hyphens: manual; hyphens: manual; }
 .period-years { display: block; margin-bottom: 6px; letter-spacing: .04em; text-transform: none; }
-.period-name { display: block; font: 700 21px/1.35 var(--serif); letter-spacing: -.01em; }
-.period-body p { font: 400 15px/1.75 var(--sans); color: var(--muted); }
-.period-body p + p { margin-top: 14px; }
-@container path (max-width: 560px) { .period { grid-template-columns: minmax(0, 1fr); } .periods { --pic: clamp(96px, 28cqw, 124px); } }
+.period-name { display: block; font: var(--type-title); letter-spacing: -.01em; }
+.period-body p { font: var(--type-lead); color: var(--muted); }
+.period-body p + p { margin-top: var(--gap-para); }
+@container path (max-width: 560px) {
+  .period { grid-template-columns: minmax(0, 1fr); } .periods { --pic: clamp(96px, 28cqw, 124px); }
+  .period-pics:hover, .period-pics:focus-within { --open: 0; }  /* (the words are under the pile here, so it stays closed) */
+}
 
 /* ---------- about: the stages ---------- */
 /* The intro (three parts) and the four periods are each a "stage". By default a stage is plain content. site.js can turn it into a stage
@@ -539,6 +682,14 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .stage-pin { display: contents; }
 .stage-track .stage-card { margin-bottom: 0; }
 .stage-more { display: none; }
+/* the intro's card waits, unseen, until its first part comes in (after the visitor's first scroll), then fades in */
+.is-stage .about-intro.stage-card { transition: height .6s cubic-bezier(.4, 0, .2, 1), opacity var(--ease-fade); }
+.is-stage:not(.is-live) .about-intro.stage-card { opacity: 0; }
+/* the rail: one short bar per part along the top of the card; a bar fills when its part comes in (site.js) */
+.stage-rail { display: none; }
+.is-stage .stage-rail { display: flex; gap: 4px; position: absolute; top: 11px; left: var(--block-pad); right: var(--block-pad); pointer-events: none; }
+.stage-rail i { flex: 1 1 0; height: 3px; border-radius: var(--radius-tick); overflow: hidden; background: var(--line); }
+.stage-rail b { display: block; height: 100%; background: var(--ink); opacity: .55; transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
 /* when the plain content takes over from the stage, the parts above the one being read (all of them, when none is in view) come in softly */
 .stage-track.just-done:not(.fresh) .stage-item:not(:last-child), .stage-track.just-done.fresh .stage-item { animation: stage-in .5s ease both; }
 @keyframes stage-in { from { opacity: 0; } }
@@ -552,9 +703,21 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .is-stage .stage-frame { position: absolute; inset: var(--fade) 0; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
 .is-stage .stage-item { grid-area: 1 / 1; align-self: start; padding: 0; border: 0; pointer-events: none; }
 .is-stage .stage-item.is-on { pointer-events: auto; }
-.is-stage .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: .45; pointer-events: none; transition: opacity .5s ease; }
+.is-stage .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: .45; pointer-events: none; transition: opacity var(--ease-fade); }
 .is-stage .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
-.is-stage:not(.is-live) .stage-more, .is-stage.is-last .stage-more { opacity: 0; }
+.is-stage:not(.is-live) .stage-more { opacity: 0; }
+/* once the intro is one plain block, its arrow comes back (after a moment) until the visitor scrolls on to the fun fact */
+.after-hint .stage-card { position: relative; }
+.after-hint .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: 0; pointer-events: none; transition: opacity var(--ease-fade); }
+.after-hint .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
+.after-hint.wants-more .stage-more { opacity: .45; transition-delay: .6s; }
+/* the page's own arrow: sticky at the foot of the window, in the middle of the page's column, on a small round of the page's
+   ground so it reads over the words; shown by site.js (.is-shown) while there is more below and no other arrow is in view */
+.page-more { position: sticky; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: block; height: 0; z-index: 5; pointer-events: none; }
+.page-more-dot { position: absolute; left: 50%; bottom: 0; width: 28px; height: 28px; margin-left: -14px; border-radius: var(--radius-round);
+  background: var(--bg); box-shadow: var(--ring); color: var(--ink); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--ease-fade); }
+.page-more-dot .ic { --ic: 16; opacity: .55; animation: more-bob 1.9s ease-in-out infinite; }
+.page-more.is-shown .page-more-dot { opacity: 1; }
 @keyframes more-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
 
 /* the intro: the heading stays, the part under it changes. The words are not faded in: they are decoded (below). */
@@ -563,12 +726,29 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .is-stage .intro-part { opacity: 0; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease; }
 .is-stage .intro-part.is-on { opacity: 1; transition: none; }
 .is-stage .intro-part.is-on.soft { transition: opacity .4s ease; }  /* a part read before comes back with a short fade */
-.intro-part.pop .about-fact { animation: pop-in .65s ease both; }  /* the fun fact: a soft bounce (it rises a little past its place and settles) */
+.is-stage .intro-part.is-on.fade { transition: opacity .9s ease; }  /* the second part fades in slowly the first time */
+/* coming into view (site.js adds .reveal-on to the page, then .is-in to each [data-reveal] once it is seen; once per page load) */
+.reveal-on [data-reveal]:not(.is-in) { opacity: 0; }
+.reveal-on [data-reveal="pop"].is-in { animation: pop-in .9s ease .1s both; }  /* the fun fact: a fade and a soft bounce, as the visitor scrolls to it */
+.reveal-on [data-reveal="rise"].is-in { animation: rise-in .8s ease-out .3s both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @keyframes pop-in { 0% { opacity: 0; transform: translateY(18px); } 45% { opacity: 1; } 65% { transform: translateY(-4px); } 100% { opacity: 1; transform: none; } }
 
 /* decoding: the real paragraph keeps its place with transparent text; .dc is a layer of one element per letter, put on the real letters
    (site.js measures them), flickering through other characters until each one settles */
 .stage-track p.is-decoding { position: relative; color: transparent; }
+/* the greeting in the sidebar: decoded once per page load in the text color, then "I'm Son." takes its color at once, with a press */
+.side h1 .accent { display: inline-block; transform-origin: 50% 80%; }
+.side h1.gr-wait .accent { color: var(--ink); }
+.side h1.is-decoding, .side h1.is-decoding .accent { position: relative; color: transparent; }
+.side h1 .dc { color: var(--ink); }
+/* the press: on the way down the color runs quickly to a hot orange with a glow, on the way back it settles into the accent */
+.side h1 .accent.gr-press { animation: gr-press 3s cubic-bezier(.3, .7, .4, 1.25); }
+@keyframes gr-press {
+  0% { transform: none; color: var(--ink); }
+  38% { transform: scale(.88) translateY(1px); color: var(--press-hot); text-shadow: 0 0 12px var(--press-glow); }
+  100% { transform: none; color: var(--accent-ink); text-shadow: none; }
+}
 .dc { position: absolute; inset: 0; color: var(--muted); pointer-events: none; user-select: none; }
 .dc i { position: absolute; font-style: normal; white-space: pre; }  /* (a letter that has settled starts where the real one does) */
 .dc i.r, .dc i.h { text-align: center; }
@@ -577,8 +757,8 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 
 /* the periods: the picture comes in as the board flips, the words after it */
 .is-stage .period-years { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-.is-stage .period-pic { opacity: 0; transition: opacity .5s ease; }
-.is-stage .is-pic .period-pic { opacity: 1; }
+.is-stage .period-pics { opacity: 0; transition: opacity var(--ease-fade), rotate var(--ease-pile); }
+.is-stage .is-pic .period-pics { opacity: 1; }
 .is-stage .period-body { opacity: 0; translate: 0 14px; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease, translate .3s ease; }
 .is-stage .is-on .period-body { opacity: 1; translate: 0 0; transition-duration: .4s; }
 @container path (max-width: 560px) {
@@ -592,7 +772,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .is-stage .board { display: inline-flex; flex: none; align-self: flex-start; margin-bottom: 8px; gap: .1em; padding: .2em; border-radius: .3em; background: var(--ink); color: var(--bg); font: 700 min(40px, calc(100cqw / 10.4))/1 var(--sans); }
 .bd-cell { position: relative; width: .78em; height: 1.2em; perspective: 4em; }
 .bd-cell::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: .04em; margin-top: -.02em; background: var(--ink); z-index: 3; }
-.bd-half { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; background: color-mix(in srgb, var(--ink) 88%, var(--bg)); backface-visibility: hidden; }
+.bd-half { position: absolute; left: 0; right: 0; height: 50%; overflow: hidden; background: var(--board-cell); backface-visibility: hidden; }
 .bd-half i { position: absolute; left: 0; right: 0; height: 200%; display: flex; align-items: center; justify-content: center; font-style: normal; text-transform: uppercase; }
 /* the cell is sized for digits; a letter (site.js sets the class) is squeezed to the cell, as on a real board, so a W is not cut off */
 .bd-half i.bd-letter { transform: scaleX(.6); }
@@ -604,20 +784,20 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 /* ---------- footer ---------- */
 /* a light tint like the other blocks, in the sidebar's yellow, with the email on a --card pill */
 .footer {
-  background: var(--t5); color: var(--ink); border-radius: 22px; padding: var(--block-pad);
-  display: flex; align-items: center; justify-content: space-between; gap: 14px 24px; flex-wrap: wrap;
+  background: var(--t5); color: var(--ink); border-radius: var(--radius-block); padding: var(--block-pad);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--gap-para) 24px; flex-wrap: wrap;
 }
-.footer h2 { font: 700 22px/1.3 var(--serif); }
+.footer h2 { font: var(--type-title-l); }
 /* the email and a round button that copies it */
-.mail-row { position: relative; display: flex; align-items: center; gap: 6px; min-width: 0; max-width: 100%; }
+.mail-row { position: relative; display: flex; align-items: center; gap: var(--gap-lines); min-width: 0; max-width: 100%; }
 .footer .btn-mail { background: var(--card); color: var(--ink); min-width: 0; text-align: center; overflow-wrap: anywhere; }
 .copy-mail {
-  width: 44px; height: 44px; flex: none; border: 0; border-radius: 50%; padding: 0; cursor: pointer;
+  width: 44px; height: 44px; flex: none; border: 0; border-radius: var(--radius-round); padding: 0; cursor: pointer;
   background: var(--card); color: var(--ink); display: inline-flex; align-items: center; justify-content: center;
 }
 .copy-mail .ic-done { display: none; color: var(--a2-ink); }
 .copy-mail.is-done .ic-copy { display: none; } .copy-mail.is-done .ic-done { display: block; }
-.copy-note { position: absolute; right: 0; bottom: calc(100% + 8px); font: 500 12px var(--sans); color: var(--bg); background: var(--ink); padding: 5px 9px; border-radius: 12px; white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; pointer-events: none; }
+.copy-note { position: absolute; right: 0; bottom: calc(100% + 8px); font: var(--type-chip); color: var(--bg); background: var(--ink); padding: 5px 9px; border-radius: var(--radius-box); white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; pointer-events: none; }
 .copy-note.is-shown { opacity: 1; transform: none; }
 
 /* ---------- small screens ---------- */
@@ -628,10 +808,9 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
   .side { position: static; }
 }
 @media (max-width: 420px) {
-  :root { --block-pad: 20px; }
+  :root { --block-pad: 20px; --pad-section: 18px; }
   .site { padding: 10px; }
   .stage-track { --stage-top: 10px; }
-  .cs, .sum-box { padding: 18px; }
   /* the email and its copy button take the whole row, so the address stays on one line when it fits */
   .mail-row { flex: 1 1 100%; }
   dialog.doc { width: calc(100vw - 20px); }
@@ -642,51 +821,58 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
   /* 100%, not 100vw and 100dvh: a classic scrollbar's gutter never covers the close button */
   dialog.doc.doc-wide { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; border-radius: 0; border: 0; }
   .doc-wide .doc-top .lab { display: none; }
+  /* with the nav: a tighter bar, so the title, the nav and the close button stay on one row down to 320px (the title may wrap) */
+  .doc-top:has(.doc-nav:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto; padding-inline: 16px; }
+  .doc-nav { grid-row: 3; grid-column: 1 / -1; justify-self: center; margin: 10px 0 -6px; }
+  .doc-pic .doc-top { border-width: 0 0 1px; border-radius: 0 0 var(--radius-block) var(--radius-block); }
+  .doc-wide.doc-pic .doc-body { padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
+  .doc-count { min-width: 3.6em; }
 }
 
 /* ---------- project pages: the blocks that tell the story ---------- */
 .cs b { font-weight: 600; color: var(--ink); }
-.cs > p.keyline { font: 700 16.5px/1.55 var(--serif); color: var(--ink); letter-spacing: -.005em; }
-/* Two box styles, both radius 12: filled (--surface, no border) and outlined (1px solid --line; the folds).
-   A dashed blue border marks my own notes (.my-note, .takeaways); .doc-empty is the one dashed placeholder; .pull is the one quote. */
+.cs > p.keyline { font: var(--type-keyline); color: var(--ink); letter-spacing: -.005em; }
+/* Box styles (all --radius-box): filled (--surface, no border), outlined (--border-hair: the folds, the lanes) and raised
+   (the sections: --border-hair and --raise). --border-note marks my own notes and the summary boxes; .doc-empty is the one
+   dashed placeholder; .pull is the one quote. */
 
 /* the problems */
 .issues, .persona ul, .heard, .slides, .flow ol, .credit-list, .takeaways, .m-keys { list-style: none; margin: 0; padding: 0; }
 /* a list straight inside a section keeps the section's 14px space above it */
-.cs > :is(.issues, .heard, .slides, .takeaways, ul:not([class])) { margin-top: 14px; }
-.issues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
-.issues li { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: var(--surface); font: 400 13px/1.5 var(--sans); color: var(--muted); text-align: left; }
+.cs > :is(.issues, .heard, .slides, .takeaways, ul:not([class])) { margin-top: var(--gap-para); }
+.issues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-boxes); }
+.issues li { display: flex; gap: var(--gap-icon); align-items: flex-start; padding: var(--pad-item); border-radius: var(--radius-box); background: var(--surface); font: var(--type-item); color: var(--muted); text-align: left; }
 .issues .ic { color: var(--sec); margin-top: 1px; }
 @container case (max-width: 560px) { .issues { grid-template-columns: minmax(0, 1fr); } }
 
 /* a plain list in a section's text (the five actions): a dot in the section's color */
-.cs > ul:not([class]) { margin-bottom: 0; padding-left: 20px; display: grid; gap: 6px; font: 400 14px/1.7 var(--sans); color: var(--muted); }
+.cs > ul:not([class]) { margin-bottom: 0; padding-left: 20px; display: grid; gap: var(--gap-lines); font: var(--type-body); color: var(--muted); }
 .cs > ul:not([class]) li::marker { color: var(--sec); }
 
-/* my own notes: a dashed blue border. How I sorted the causes keeps a light blue fill, so it reads apart from the boxes under it;
-   the takeaways are text only, three in a row, one under another when narrow */
-.method.my-note { border: 1.5px dashed var(--a3); background: var(--t3); padding: 14.5px 16.5px; }
-.takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-.takeaways li { border: 1.5px dashed var(--a3); border-radius: 12px; padding: 14.5px 16.5px; font: 400 13px/1.6 var(--sans); color: var(--muted); text-align: left; }
+/* my own notes: a dashed blue border and no fill; the takeaways are three in a row, one under another when narrow */
+.method.my-note { border: var(--border-note); background: none; padding: var(--pad-note); }  /* (the border only, on the section's white) */
+.takeaways { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap-boxes); }
+.takeaways li { border: var(--border-note); border-radius: var(--radius-box); padding: var(--pad-note); font: var(--type-box); color: var(--muted); text-align: left; }
+.takeaways b { color: var(--ink); }
 @container case (max-width: 640px) { .takeaways { grid-template-columns: minmax(0, 1fr); } }
 
 /* a quote */
-.pull { margin-inline: 0; margin-bottom: 0; display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-left: 3px solid var(--a1); background: var(--surface); border-radius: 12px; }
+.pull { margin-inline: 0; margin-bottom: 0; display: flex; gap: var(--gap-para); align-items: center; padding: var(--pad-panel); border-left: var(--line-mark) solid var(--a1); background: var(--surface); border-radius: var(--radius-box); }
 .pull blockquote { margin: 0; }
-.pull blockquote p { font: italic 400 19px/1.4 var(--serif); color: var(--ink); text-align: left; }
-.pull figcaption { margin-top: 6px; font: 400 12px/1.6 var(--sans); color: var(--faint); }
+.pull blockquote p { font: var(--type-quote); color: var(--ink); text-align: left; }
+.pull figcaption { margin-top: 6px; font: var(--type-note); color: var(--faint); }
 
 /* goals: where a number is now and where it should go. The bar, five marks under it (a score of 1 to 5, or 0% to 100%),
    a key for what the bar shows, and a line that says how it is measured */
-.meters { display: grid; gap: 8px; }
-.meter { background: var(--surface); border-radius: 12px; padding: 16px 18px; }
-.m-head { font: 600 13px/1.35 var(--sans); color: var(--ink); margin-bottom: 12px; }
-.m-bar { position: relative; height: 10px; border-radius: 999px; background: var(--card); box-shadow: inset 0 0 0 1px var(--line); }
-.m-now { position: absolute; left: 0; top: 0; bottom: 0; width: var(--now); border-radius: 999px; background: var(--ink); opacity: .5; }
-.m-gain { position: absolute; top: 0; bottom: 0; left: var(--now); width: calc(var(--goal) - var(--now)); background: var(--a2); border-radius: 0 999px 999px 0; }
-.meter:not(:has(.m-now)) .m-gain { border-radius: 999px; background: repeating-linear-gradient(-45deg, var(--a2) 0 4px, transparent 4px 8px); opacity: .8; }
-.m-mid { position: absolute; top: -4px; bottom: -4px; left: var(--mid); width: 2px; margin-left: -1px; background: var(--ink); border-radius: 2px; }
-.m-goal { position: absolute; top: 50%; left: var(--goal); width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--card); border: 3px solid var(--a2-ink); box-sizing: border-box; }
+.meters { display: grid; gap: var(--gap-boxes); }
+.meter { background: var(--surface); border-radius: var(--radius-box); padding: var(--pad-panel); }
+.m-head { font: var(--type-strong); color: var(--ink); margin-bottom: 12px; }
+.m-bar { position: relative; height: 10px; border-radius: var(--radius-pill); background: var(--card); box-shadow: inset var(--ring); }
+.m-now { position: absolute; left: 0; top: 0; bottom: 0; width: var(--now); border-radius: var(--radius-pill); background: var(--ink); opacity: .5; }
+.m-gain { position: absolute; top: 0; bottom: 0; left: var(--now); width: calc(var(--goal) - var(--now)); background: var(--a2); border-radius: 0 var(--radius-pill) var(--radius-pill) 0; }
+.meter:not(:has(.m-now)) .m-gain { border-radius: var(--radius-pill); background: repeating-linear-gradient(-45deg, var(--a2) 0 4px, transparent 4px 8px); opacity: .8; }
+.m-mid { position: absolute; top: -4px; bottom: -4px; left: var(--mid); width: 2px; margin-left: -1px; background: var(--ink); border-radius: var(--radius-tick); }
+.m-goal { position: absolute; top: 50%; left: var(--goal); width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: var(--radius-round); background: var(--card); border: var(--line-mark) solid var(--a2-ink); box-sizing: border-box; }
 /* the five marks sit at 0, 25, 50, 75 and 100% of the bar, each centered on its tick */
 .m-scale { position: relative; height: 24px; margin-top: 6px; }
 .m-scale span { position: absolute; top: 0; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 3px; }
@@ -694,22 +880,22 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .m-scale span:nth-child(1) { left: 0; } .m-scale span:nth-child(2) { left: 25%; } .m-scale span:nth-child(3) { left: 50%; }
 .m-scale span:nth-child(4) { left: 75%; } .m-scale span:nth-child(5) { left: 100%; }
 /* the key: a small sample of each mark on the bar, then what it says */
-.m-keys { display: flex; flex-wrap: wrap; gap: 6px 20px; margin-top: 10px; font: 400 12px/1.45 var(--sans); color: var(--muted); }
+.m-keys { display: flex; flex-wrap: wrap; gap: var(--gap-lines) 20px; margin-top: 10px; font: var(--type-small); color: var(--muted); }
 .m-keys li { display: flex; align-items: center; gap: 8px; text-align: left; }
 .m-keys li::before { content: ""; flex: none; box-sizing: border-box; }
-.mk-now::before { width: 16px; height: 6px; border-radius: 999px; background: var(--ink); opacity: .5; }
-.mk-mid::before { width: 2px; height: 12px; border-radius: 2px; background: var(--ink); }
-.mk-goal::before { width: 12px; height: 12px; border-radius: 50%; background: var(--card); border: 3px solid var(--a2-ink); }
-.m-how { margin-top: 12px; font: 400 12px/1.6 var(--sans); color: var(--muted); }
+.mk-now::before { width: 16px; height: 6px; border-radius: var(--radius-pill); background: var(--ink); opacity: .5; }
+.mk-mid::before { width: 2px; height: 12px; border-radius: var(--radius-tick); background: var(--ink); }
+.mk-goal::before { width: 12px; height: 12px; border-radius: var(--radius-round); background: var(--card); border: var(--line-mark) solid var(--a2-ink); }
+.m-how { margin-top: 12px; font: var(--type-note); color: var(--muted); }
 
 /* the Six Boxes: a 96px label column, then cells that are part of a diagram, not controls (filled, no border) */
-.method { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 350px); gap: 16px 22px; align-items: center; background: var(--surface); border-radius: 12px; padding: 16px 18px; }
-.method p { font: 400 13px/1.6 var(--sans); color: var(--muted); }
+.method { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 350px); gap: 16px 22px; align-items: center; background: var(--surface); border-radius: var(--radius-box); padding: var(--pad-panel); }
+.method p { font: var(--type-box); color: var(--muted); }
 /* the barriers: the text, then the bar under it, across the whole box */
 .method:has(> .split) { grid-template-columns: minmax(0, 1fr); align-items: start; }
-.sixbox { display: grid; grid-template-columns: 96px repeat(3, minmax(0, 1fr)); gap: 8px; }
+.sixbox { display: grid; grid-template-columns: 96px repeat(3, minmax(0, 1fr)); gap: var(--gap-boxes); }
 .sb-h { align-self: center; }
-.sb-c { font: 500 11px/1.2 var(--sans); color: var(--muted); background: var(--card); border-radius: 12px; padding: 8px 2px; text-align: center; overflow-wrap: anywhere; -webkit-hyphens: auto; hyphens: auto; }
+.sb-c { font: var(--type-chip); color: var(--muted); background: var(--surface); border-radius: var(--radius-box); padding: 8px 2px; text-align: center; overflow-wrap: anywhere; -webkit-hyphens: auto; hyphens: auto; }
 @container case (max-width: 720px) { .method { grid-template-columns: minmax(0, 1fr); } }
 @container case (max-width: 420px) {
   .row-tag { margin-left: 0; } .tag { white-space: normal; text-align: left; }
@@ -717,15 +903,15 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 }
 
 /* the persona and what follows from her */
-.persona { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 8px; align-items: stretch; }
-.pe-card { background: var(--surface); border-radius: 12px; padding: 16px 18px; }
-.pe-who { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 12px; }
+.persona { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: var(--gap-boxes); align-items: stretch; }
+.pe-card { background: var(--surface); border-radius: var(--radius-box); padding: var(--pad-panel); }
+.pe-who { display: flex; gap: var(--gap-icon); align-items: flex-start; margin-bottom: 12px; }
 /* an 18px icon in a 32px circle */
-.pe-who > .ic { padding: 7px; box-sizing: content-box; border-radius: 50%; background: var(--card); color: var(--sec); }
-.pe-who b { display: block; font: 700 15px/1.3 var(--serif); }
-.pe-who span span { display: block; margin-top: 2px; font: 400 12px/1.45 var(--sans); color: var(--muted); }
+.pe-who > .ic { padding: 7px; box-sizing: content-box; border-radius: var(--radius-round); background: var(--card); color: var(--sec); }
+.pe-who b { display: block; font: var(--type-name); }
+.pe-who span span { display: block; margin-top: 2px; font: var(--type-small); color: var(--muted); }
 .persona ul { display: grid; gap: 8px; }
-.persona li { display: flex; gap: 10px; align-items: flex-start; font: 400 13px/1.5 var(--sans); color: var(--muted); }
+.persona li { display: flex; gap: var(--gap-icon); align-items: flex-start; font: var(--type-item); color: var(--muted); }
 .persona li .ic { --ic: 16; margin-top: 2px; color: var(--muted); }
 .pe-so li .ic { color: var(--a2-ink); }
 .pe-arrow { align-self: center; color: var(--faint); }
@@ -733,24 +919,27 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 @container case (max-width: 600px) { .persona { grid-template-columns: minmax(0, 1fr); } .pe-arrow { justify-self: center; transform: rotate(90deg); } }
 
 /* HEARD, one step per column */
-.heard { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
-.heard li { background: var(--surface); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; text-align: left; }
-.h-l { font: 700 26px/1 var(--serif); color: var(--sec); margin-bottom: 4px; }
-.heard b { font: 600 13px/1.3 var(--sans); }
-.heard li > span:last-child { font: 400 12px/1.45 var(--sans); color: var(--muted); }
+.heard { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--gap-boxes); }
+.heard li { background: var(--surface); border-radius: var(--radius-box); padding: var(--pad-item); display: flex; flex-direction: column; gap: 4px; text-align: left; }
+.h-l { font: var(--type-letter); color: var(--sec); margin-bottom: 4px; }
+.heard b { font: var(--type-strong); }
+.heard li > span:last-child { font: var(--type-small); color: var(--muted); }
 @container case (max-width: 640px) {
   .heard { grid-template-columns: minmax(0, 1fr); }
-  .heard li { display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: 10px; }
+  .heard li { display: grid; grid-template-columns: 30px minmax(0, 1fr); column-gap: var(--gap-icon); }
   .h-l { grid-row: span 2; margin: 0; }
 }
 
 /* the learner's path: the call, two ways on, then practice */
 .flow { display: grid; }
-.f-step { display: flex; gap: 10px; align-items: flex-start; background: var(--surface); border-radius: 12px; padding: 12px 14px; font: 400 13px/1.5 var(--sans); color: var(--muted); text-align: left; position: relative; }
+.f-step { display: flex; gap: var(--gap-icon); align-items: flex-start; background: var(--surface); border-radius: var(--radius-box); padding: var(--pad-item); font: var(--type-item); color: var(--muted); text-align: left; position: relative; }
 .f-step .ic { margin-top: 1px; color: var(--sec); }
-.f-lanes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 22px 0; position: relative; }
-.f-lane { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; align-content: start; }
+.f-lanes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 22px 0; position: relative; }
+.f-lane { border: var(--border-hair); border-radius: var(--radius-box); padding: var(--pad-item); display: grid; gap: 8px; align-content: start; }
 .f-lane .lab { margin: 0; }
+/* the way on to Part 2 stands out: a green border and a line that names it */
+.f-right { border: var(--line-accent) solid var(--a2); }
+.f-go { margin: 0; font: var(--type-item); color: var(--ink); }
 .f-lane ol { display: grid; gap: 16px; }
 /* ↓ from one step to the next: icons, hidden from screen readers, centered in the gap */
 .f-lanes > .f-down, .f-step > .f-down { position: absolute; margin: 0; color: var(--faint); }
@@ -758,28 +947,27 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .f-lanes > .f-down:first-child { top: -18px; } .f-lanes > .f-down:last-child { bottom: -18px; }
 .f-step > .f-down { --ic: 12; top: -14px; left: 17px; }
 .f-wrong .lab { color: var(--a1-ink); } .f-right .lab { color: var(--a2-ink); }
-@container case (max-width: 560px) { .f-lanes { grid-template-columns: minmax(0, 1fr); } }
 
 /* handling codes: where each one lets a parcel go */
 .codes { margin-inline: 0; margin-bottom: 0; }
 .codes table { width: calc(100% + 16px); table-layout: fixed; border-collapse: separate; border-spacing: 8px; margin: -8px; }
-.codes th, .codes td { background: var(--surface); border-radius: 12px; padding: 10px 12px; vertical-align: top; text-align: left; font: 400 13px/1.45 var(--sans); color: var(--muted); }
+.codes th, .codes td { background: var(--surface); border-radius: var(--radius-box); padding: var(--pad-cell); vertical-align: top; text-align: left; font: var(--type-item); color: var(--muted); }
 .codes tr:first-child th { background: none; padding: 0 12px; vertical-align: bottom; }
 .codes tr:first-child th .ic { --ic: 20; margin-bottom: 6px; color: var(--ink); }
 .codes th[scope="row"] { width: 22%; }
-.codes th[scope="row"] b { display: block; font: 700 15px/1.2 var(--serif); }
-.codes th[scope="row"] span { font: 400 12px/1.4 var(--sans); color: var(--muted); }
+.codes th[scope="row"] b { display: block; font: var(--type-name); }
+.codes th[scope="row"] span { font: var(--type-small); color: var(--muted); }
 .codes td .ic { --ic: 16; display: inline-block; vertical-align: -3px; margin-right: 6px; }
 .codes td.yes .ic { color: var(--a2-ink); }
 /* an outlined cell: the border takes the place of 1px of padding, so the text stays where it was */
-.codes td.no { background: none; border: 1px solid var(--line); padding: 9px 11px; color: var(--faint); }
+.codes td.no { background: none; border: var(--border-hair); padding: 9px 11px; color: var(--faint); }
 /* narrow: one card per code, each place on its own line */
 @container case (max-width: 560px) {
   .codes table { width: 100%; margin: 0; border-spacing: 0; table-layout: auto; }
   .codes table, .codes tbody, .codes tr, .codes th, .codes td { display: block; }
   .codes tr:first-child { display: none; }
-  .codes tr { background: var(--surface); border-radius: 12px; padding: 12px 14px; }
-  .codes tr + tr { margin-top: 8px; }
+  .codes tr { background: var(--surface); border-radius: var(--radius-box); padding: var(--pad-item); }
+  .codes tr + tr { margin-top: var(--gap-boxes); }
   .codes th[scope="row"] { width: auto; background: none; padding: 0 0 6px; }
   .codes td, .codes td.no { background: none; border: 0; border-radius: 0; padding: 4px 0; }
   .codes td::before { content: attr(data-label) ": "; font-weight: 600; color: var(--ink); }
@@ -790,30 +978,30 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .split .lab { margin: 0; }
 .sp-bar { display: inline-flex; gap: 8px 14px; flex-wrap: wrap; }
 .sp-bar > span { display: inline-flex; align-items: center; gap: 3px; }
-.sp-bar i { width: 18px; height: 18px; border-radius: 5px; box-sizing: border-box; border: 2px solid var(--sec); }
+.sp-bar i { width: 18px; height: 18px; border-radius: var(--radius-mark); box-sizing: border-box; border: var(--line-accent) solid var(--sec); }
 .sp-train i { background: var(--sec); }
-.sp-bar em { font: 400 12px var(--sans); color: var(--muted); margin-left: 6px; }
+.sp-bar em { font: var(--type-small); color: var(--muted); margin-left: 6px; }
 
 /* the seven slides */
-.slides { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
-.slides li { position: relative; background: var(--surface); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 3px; min-height: 108px; text-align: left; }
-.sl-n { position: absolute; top: 10px; right: 14px; font: 700 18px/1 var(--serif); color: var(--faint); }
+.slides { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-boxes); }
+.slides li { position: relative; background: var(--surface); border-radius: var(--radius-box); padding: var(--pad-item); display: flex; flex-direction: column; gap: 3px; min-height: 108px; text-align: left; }
+.sl-n { position: absolute; top: 10px; right: 14px; font: var(--type-number); color: var(--faint); }
 .slides .ic { color: var(--sec); margin-bottom: 4px; }
-.slides b { font: 600 13px/1.3 var(--sans); }
-.sl-type { font: 400 12px/1.4 var(--sans); color: var(--muted); }
-.sl-pts { margin-top: auto; align-self: flex-start; font: 500 10px/1 var(--mono); letter-spacing: .08em; color: var(--ink); white-space: nowrap; }
+.slides b { font: var(--type-strong); }
+.sl-type { font: var(--type-small); color: var(--muted); }
+.sl-pts { margin-top: auto; align-self: flex-start; font: var(--type-tag); letter-spacing: var(--track-label); color: var(--ink); white-space: nowrap; }
 .sl-free .sl-pts { color: var(--faint); }
 .slides .sl-end { background: var(--ink); }
 .sl-end b, .sl-end .sl-type, .sl-end .ic { color: var(--bg); }
 @container case (max-width: 560px) { .slides { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* credits */
-.credits-intro { font: 400 13px/1.6 var(--sans); color: var(--muted); }
-.credit-list { display: grid; gap: 6px; }
-.credit-list li { font: 400 13px/1.5 var(--sans); color: var(--muted); text-align: left; }
+.credits-intro { font: var(--type-box); color: var(--muted); }
+.credit-list { display: grid; gap: var(--gap-lines); }
+.credit-list li { font: var(--type-item); color: var(--muted); text-align: left; }
 /* the padding makes each link 24px tall to tap (a link is inline, so its lines do not move); position keeps that area above the text of the next line */
 .credit-list a { position: relative; color: var(--ink); font-weight: 600; text-decoration: underline 1px var(--a2); text-underline-offset: 3px; padding-block: 4px; }
-.credit-line { font: 400 12px/1.6 var(--sans); color: var(--faint); }
+.credit-line { font: var(--type-note); color: var(--faint); }
 /* 12px links: 4.5px each side makes them 24px tall to tap, without moving the lines */
 .credit-line a { position: relative; color: inherit; padding-block: 4.5px; }
 .credit-list .go, .credit-line .go { margin-left: 3px; }

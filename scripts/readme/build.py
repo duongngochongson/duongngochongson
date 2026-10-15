@@ -223,7 +223,8 @@ def block_md(n):
         mains = [x for x in n.elements() if x.has('f-main')]
         out.append(f'- {t(mains[0])}')
         for lane in n.find_all(by_class('f-lane')):
-            out.append(f'- {tag_case(t(lane.find(by_class("lab"))))}:')
+            go = lane.find(by_class('f-go'))  # the line that says where this way leads (Part 2)
+            out.append(f'- {tag_case(t(lane.find(by_class("lab"))))}:' + (f' {t(go)}' if go is not None else ''))
             for i, step in enumerate(lane.find(lambda x: x.tag == 'ol').elements(), 1):
                 out.append(f'  {i}. {t(step)}')
             alt = lane.find(by_class('f-alt'))

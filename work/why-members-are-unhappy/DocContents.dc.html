@@ -12,26 +12,26 @@
 </helmet>
 <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
 <nav aria-label="Contents" style="display:flex;flex-direction:column;gap:14px;padding:0 0 0 2px">
-<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300;letter-spacing:.02em">Contents</span>
-<ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;border-left:1.5px solid #E3DACB">
+<span style="font:var(--cz-mono-label);color:var(--cz-amber-ink);letter-spacing:.02em">Contents</span>
+<ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;border-left:var(--cz-border)">
 <sc-for list="{{ links }}" as="it" hint-placeholder-count="8">
-<li style="display:flex"><a href="{{ it.href }}" aria-current="{{ it.current }}" style="display:flex;align-items:baseline;gap:10px;padding:7px 10px 7px 12px;margin-left:-1.5px;border-left:3px solid {{ it.mark }};font:{{ it.weight }} 16px/21px 'IBM Plex Sans',sans-serif;color:{{ it.color }};text-decoration:none;min-height:36px;" style-hover="color:#1F1A12;background:#F4EFE4"><span style="flex:none;width:8px;height:8px;margin-top:6px;border-radius:999px;background:{{ it.dot }}"></span><span style="font:500 16px/21px 'IBM Plex Mono',monospace;color:{{ it.ink }};flex:none;min-width:14px">{{ it.num }}</span>{{ it.label }}</a></li>
+<li style="display:flex"><a href="{{ it.href }}" aria-current="{{ it.current }}" style="display:flex;align-items:baseline;gap:10px;padding:7px 10px 7px 12px;margin-left:-1.5px;border-left:3px solid {{ it.mark }};font:{{ it.weight }} 16px/21px var(--cz-sans);color:{{ it.color }};text-decoration:none;min-height:36px;" style-hover="color:var(--cz-ink);background:var(--cz-desk)"><span style="flex:none;width:8px;height:8px;margin-top:6px;border-radius:var(--cz-radius-pill);background:{{ it.dot }}"></span><span style="font:500 16px/21px var(--cz-mono);color:{{ it.ink }};flex:none;min-width:14px">{{ it.num }}</span>{{ it.label }}</a></li>
 </sc-for>
 </ol>
 </nav>
 </sc-if>
 <sc-if value="{{ narrow }}">
-<details style="background:#FBF7EE;border:1.5px solid #E3DACB;border-radius:10px;overflow:hidden">
-<summary style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:12px 16px;cursor:pointer;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:#1F1A12;background:#F4EFE4;list-style:none">Contents<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:#8A5300">{{ count }}</span></summary>
+<details style="background:var(--cz-paper);border:var(--cz-border);border-radius:10px;overflow:hidden">
+<summary style="display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;padding:12px 16px;cursor:pointer;font:var(--cz-sans-strong);color:var(--cz-ink);background:var(--cz-desk);list-style:none">Contents<span style="font:var(--cz-mono-label);color:var(--cz-amber-ink)">{{ count }}</span></summary>
 <ol style="list-style:none;margin:0;padding:8px;display:flex;flex-direction:column;gap:2px">
 <sc-for list="{{ links }}" as="it" hint-placeholder-count="8">
-<li style="display:flex"><a href="{{ it.href }}" aria-current="{{ it.current }}" style="display:flex;align-items:baseline;gap:10px;padding:10px 12px;border-radius:8px;font:{{ it.weight }} 16px/22px 'IBM Plex Sans',sans-serif;color:{{ it.color }};text-decoration:none;width:100%;min-height:44px"><span style="flex:none;width:8px;height:8px;margin-top:7px;border-radius:999px;background:{{ it.ink }}"></span><span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:{{ it.ink }};flex:none;min-width:14px">{{ it.num }}</span>{{ it.label }}</a></li>
+<li style="display:flex"><a href="{{ it.href }}" aria-current="{{ it.current }}" style="display:flex;align-items:baseline;gap:10px;padding:10px 12px;border-radius:8px;font:{{ it.weight }} 16px/22px var(--cz-sans);color:{{ it.color }};text-decoration:none;width:100%;min-height:44px"><span style="flex:none;width:8px;height:8px;margin-top:7px;border-radius:var(--cz-radius-pill);background:{{ it.ink }}"></span><span style="font:var(--cz-mono-label);color:{{ it.ink }};flex:none;min-width:14px">{{ it.num }}</span>{{ it.label }}</a></li>
 </sc-for>
 </ol>
 </details>
 </sc-if>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:280,&quot;height&quot;:420},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{id:string,num?:string,label:string}[]&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:280,&quot;height&quot;:420},&quot;items&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;{id:string,num?:string,label:string,kind:string}[]&quot;}}">
 class Component extends DCLogic {
   state = { wide: true, active: '' };
 
@@ -58,18 +58,18 @@ class Component extends DCLogic {
   renderVals() {
     const items = this.props.items || [];
     const active = this.state.active;
-    const TONES = { amber:'#8A5300', blue:'#2F5A9E', green:'#2F7A4B', red:'#B03A48', purple:'#6A4A8C', brown:'#6B5B4B' };
     const links = items.map(it => {
       const on = it.id === active;
-      const ink = TONES[it.accent] || '#8A5300';
+      // The number takes the color of the section's kind: problem, goal, made, docs or summary (see doc-text.css).
+      const ink = 'var(--cz-' + (it.kind || 'problem') + '-ink)';
       return {
         ...it,
         href: '#' + it.id,
         num: it.num || '',
         ink,
-        dot: on ? ink : '#E3DACB',
+        dot: on ? ink : 'var(--cz-line)',
         mark: on ? ink : 'transparent',
-        color: on ? '#1F1A12' : '#5E5446',
+        color: on ? 'var(--cz-ink)' : 'var(--cz-ink-soft)',
         weight: on ? 600 : 400,
         current: on ? 'true' : undefined
       };

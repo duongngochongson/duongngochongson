@@ -53,10 +53,22 @@
     const body = dialog.querySelector('[data-doc-body]');
     const vi = () => root.lang === 'vi';
 
-    function open({ heading, label, wide }) {
+    // Previous and next: the pictures and documents of the same section as the button that opened the pop-up (its group).
+    const nav = dialog.querySelector('[data-doc-nav]');
+    const prev = dialog.querySelector('[data-doc-prev]');
+    const next = dialog.querySelector('[data-doc-next]');
+    const count = dialog.querySelector('[data-doc-count]');
+    const say = document.createElement('div');  // inside the dialog: the page behind a modal dialog is inert, so a region there is not read
+    say.className = 'sr-only';
+    say.setAttribute('aria-live', 'polite');
+    dialog.append(say);
+    let group = [], at = 0, opener = null;
+
+    function open({ heading, label, wide, picture }) {
       title.textContent = heading || '';
       kicker.textContent = label || '';
       dialog.classList.toggle('doc-wide', !!wide);
+      dialog.classList.toggle('doc-pic', !!picture);  // (a picture floats under the bar, fitted whole: styles.css)
       body.scrollTop = 0;
       if (!dialog.open) dialog.showModal();
     }
@@ -90,8 +102,9 @@
           win.location.replace(url.href);
         }
       }, true);
-      doc.addEventListener('keydown', e => {  // Escape closes the pop-up, unless the document's own figure viewer is open
-        if (e.key === 'Escape' && !doc.querySelector('[aria-modal="true"]')) { e.preventDefault(); shut(); }
+      doc.addEventListener('keydown', e => {  // Escape closes the pop-up, Left and Right move through the section; not while the document's own figure viewer is open
+        if (doc.querySelector('[aria-modal="true"]')) return;
+        if (e.key === 'Escape') { e.preventDefault(); shut(); } else arrowKey(e);
       }, true);
     }
 
@@ -112,7 +125,7 @@
     function openImage(btn) {
       const img = btn.querySelector('img');
       const src = new URL(btn.dataset.image, location.href).href;
-      open({ heading: btn.dataset.title, label: btn.dataset.kicker, wide: true });
+      open({ heading: btn.dataset.title, label: btn.dataset.kicker, wide: true, picture: true });
       const wrap = document.createElement('div');
       wrap.className = 'doc-picture';
       const big = document.createElement('img');
@@ -133,16 +146,63 @@
       if (vi()) body.querySelectorAll('[data-vi]').forEach(n => { n.innerHTML = n.dataset.vi; });
     }
 
+    const items = '[data-frame], [data-image], [data-doc]';
+
+    // Show one item and the controls around it. A move keeps the dialog open: the new body fades in, and screen readers hear where they are.
+    function present(btn, moved) {
+      if (btn.matches('[data-frame]')) openFrame(btn);
+      else if (btn.matches('[data-image]')) openImage(btn);
+      else openTemplate(btn);
+      if (!dialog.open) return;
+      body.scrollTop = 0;  // a move starts at the top of the picture or document
+      nav.hidden = group.length < 2;  // a lone item, or one outside a section, has nothing to move to
+      prev.setAttribute('aria-label', vi() ? 'Trước' : 'Previous');
+      next.setAttribute('aria-label', vi() ? 'Tiếp theo' : 'Next');
+      count.textContent = `${at + 1} / ${group.length}`;
+      if (!moved) return;
+      if (!reduceMotion()) body.animate({ opacity: [0, 1] }, { duration: 250, easing: 'ease-out' });
+      say.textContent = `${title.textContent}, ${at + 1} ${vi() ? 'trên' : 'of'} ${group.length}`;
+    }
+    // The ends wrap round, so the buttons are never disabled.
+    function move(by) {
+      if (group.length < 2 || !dialog.open || dialog.classList.contains('is-closing')) return;
+      at = (at + by + group.length) % group.length;
+      // focus inside the old body (a document's frame, a picture) goes with it: it moves to the matching step button instead
+      const lost = body.contains(document.activeElement);
+      present(group[at], true);
+      if (lost) (by > 0 ? next : prev).focus({ preventScroll: true });
+    }
+    // Left and Right, from the page or from inside a document's frame (wireFrame passes its own key events here).
+    function arrowKey(e) {
+      const by = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!by || e.repeat || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || group.length < 2) return;
+      const t = e.target;
+      if (t.isContentEditable || /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) return;  // arrows belong to the field
+      e.preventDefault();
+      move(by);
+    }
+    document.addEventListener('keydown', e => { if (dialog.open) arrowKey(e); });
+    // A swipe across a picture moves too: sideways by 50px or more, and more sideways than up or down.
+    let swipe = null;
+    body.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && body.querySelector('.doc-picture')) swipe = { x: e.clientX, y: e.clientY }; });
+    body.addEventListener('pointerup', e => {
+      if (!swipe) return;
+      const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y;
+      swipe = null;
+      if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.5) move(dx < 0 ? 1 : -1);
+    });
+    body.addEventListener('pointercancel', () => { swipe = null; });
+    prev.addEventListener('click', () => move(-1));
+    next.addEventListener('click', () => move(1));
+
     document.addEventListener('click', e => {
-      const el = e.target.closest('[data-frame], [data-image], [data-doc]');
+      const el = e.target.closest(items);
       if (!el) return;
-      if (el.matches('[data-frame]')) {
-        openFrame(el);
-      } else if (el.matches('[data-image]')) {
-        openImage(el);
-      } else {
-        openTemplate(el);
-      }
+      const section = el.closest('section.cs, [data-group]');  // folds count too: a closed fold's buttons are still in the section
+      group = section ? [...section.querySelectorAll(items)] : [el];
+      at = group.indexOf(el);
+      opener = el;
+      present(el, false);
     });
     // Closing fades out over .2s (styles.css, .is-closing), then the dialog closes and focus goes back; at once with reduced motion.
     let closeTimer = 0;
@@ -161,7 +221,9 @@
     dialog.querySelector('[data-doc-close]').addEventListener('click', shut);
     // A click on the dimmed area around the box closes it, but only if the press started there too
     // (so selecting text and letting go outside the box keeps it open).
+    // (around a picture, the dimmed page shows through the pop-up itself, so a press there counts as outside too)
     const outside = e => {
+      if (dialog.classList.contains('doc-pic') && e.target.matches && e.target.matches('.doc-inner, .doc-body, .doc-picture')) return true;
       const r = dialog.getBoundingClientRect();
       return e.target === dialog && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom);
     };
@@ -173,13 +235,23 @@
     });
     dialog.addEventListener('close', () => {
       clearTimeout(closeTimer);
-      dialog.classList.remove('is-closing', 'doc-wide');
+      dialog.classList.remove('is-closing', 'doc-wide', 'doc-pic');
       body.replaceChildren();
+      // After moves, focus goes to the item last shown if it is on screen (not in a closed fold or a hidden page);
+      // if not, it stays where the browser put it, on the button that opened the pop-up.
+      const last = group[at];
+      if (last && last !== opener && !last.closest('[hidden], details:not([open])')) last.focus({ preventScroll: true });
+      group = [];
+      at = 0;
+      opener = null;
+      say.textContent = '';
     });
   }
 
   // ---- language: English is in the markup, Vietnamese in data-vi ----
+  let greetRun = null;  // (the greeting's decoding, below; a switch ends it first)
   function setLang(lang) {
+    if (greetRun) greetRun.halt();
     document.querySelectorAll('[data-vi]').forEach(n => {
       if (n.dataset.en === undefined) n.dataset.en = n.innerHTML;
       n.innerHTML = lang === 'vi' ? n.dataset.vi : n.dataset.en;
@@ -214,6 +286,23 @@
   const viButton = document.querySelector('[data-lang="vi"]');
   if (viButton && !viButton.hidden && store.get('lang') === 'vi') setLang('vi');
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+  // ---- the greeting: once per page load, its letters are decoded like the About intro's; then "I'm Son." takes its color with a press ----
+  // While the letters settle, the whole line is in the text color; then, like a pressed key, the color runs to a hot orange and
+  // settles into the accent as the key comes back up, over about three seconds (styles.css, gr-press).
+  const greeting = document.querySelector('.side h1');
+  if (greeting && !reduceMotion()) {
+    greeting.classList.add('is-decoding', 'gr-wait');
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => {
+      greetRun = decode([greeting], () => {  // (about 2 seconds, slower than the About intro's)
+        greetRun = null;
+        setTimeout(() => {
+          greeting.classList.remove('gr-wait');
+          const accent = greeting.querySelector('.accent');
+          if (accent) accent.classList.add('gr-press');
+        }, 260);
+      }, 2.2);
+    }, 250));
+  }
   // ---- copy the email: the button shows a tick and a short note for a moment ----
   document.querySelectorAll('[data-copy]').forEach(btn => {
     const note = btn.parentElement.querySelector('.copy-note');
@@ -235,6 +324,80 @@
     });
   });
 
+  // ---- decoding: a paragraph's letters flicker through other characters and settle, like an old terminal ----
+  // The real paragraph keeps its place with transparent text (.is-decoding). On top of it an aria-hidden layer holds one element per
+  // letter, put where the real letter is (measured once), so nothing moves and the lines break as they do. The layer is removed at the end.
+  const HEAD = 4, STEP = 110, HEAD_MS = (HEAD - 1) * STEP + 150;  // the first characters go one after another; the rest follows together
+  const pool = { n: 'il|!.,:;', m: 'aceonsuvxz0123456789#%&*+=?', w: 'mwMW@%&' };  // by width, so a flicker looks like the letter it hides
+  function layer(p) {
+    const nodes = [], walk = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) if (walk.currentNode.data.trim()) nodes.push(walk.currentNode);
+    if (!nodes.length) return null;
+    const box = p.getBoundingClientRect(), em = parseFloat(getComputedStyle(p).fontSize) || 15;
+    const range = document.createRange(), el = document.createElement('span'), list = [];
+    el.className = 'dc';
+    el.setAttribute('aria-hidden', 'true');
+    const add = (ch, r, w, k) => {
+      const i = document.createElement('i');
+      i.style.cssText = `left:${(r.left - box.left).toFixed(2)}px;top:${(r.top - box.top).toFixed(2)}px;width:${w.toFixed(2)}px;height:${r.height.toFixed(2)}px;line-height:${r.height.toFixed(2)}px`;
+      el.append(i);
+      list.push({ i, ch, k, cls: w < em * .4 ? 'n' : w > em * .78 ? 'w' : 'm', start: 0, end: 0, swap: 0, head: k < HEAD, done: false });
+    };
+    let before = null, base = 0;  // the letter just before this one, when no space is between them; where this text starts in the whole
+    for (const node of nodes) {
+      const text = node.data;
+      for (let k = 0; k < text.length; k++) {
+        if (/\s/.test(text[k])) { before = null; continue; }
+        range.setStart(node, k);
+        range.setEnd(node, k + 1);
+        const r = range.getBoundingClientRect();
+        // the line broke inside the word: the hyphen the browser draws at the end of the line above is drawn too
+        if (before && k && r.top > before.top + r.height / 2 && text[k - 1] !== '-') add('-', { left: before.right, top: before.top, height: before.height }, em * .34, base + k - 1);
+        add(text[k], r, r.width, base + k);
+        before = r;
+      }
+      base += text.length;
+    }
+    p.append(el);
+    return { p, el, list };
+  }
+  function decode(paragraphs, end, pace = 1) {  // the paragraphs one after another: the next one starts as the rest of the last one begins
+    // (pace stretches every time in it: 2 is twice as slow, the flicker included; the greeting uses 2.2)
+    const layers = paragraphs.map(layer).filter(Boolean);
+    const all = [];
+    layers.forEach((L, n) => {
+      const at = n * HEAD_MS * pace;
+      L.list.forEach(g => {
+        if (g.head) { g.start = at + g.k * STEP * pace; g.end = g.start + 150 * pace; }
+        else { g.start = at + (HEAD_MS + Math.random() * 80) * pace; g.end = at + (HEAD_MS + 180 + Math.random() * 240) * pace; }
+        all.push(g);
+      });
+    });
+    let id = 0, t0 = 0, left = all.length;
+    function halt() {
+      cancelAnimationFrame(id);
+      layers.forEach(L => { L.el.remove(); L.p.classList.remove('is-decoding'); });
+      end();
+    }
+    function tick(now) {
+      t0 = t0 || now;
+      const t = now - t0;
+      for (const g of all) {
+        if (g.done || t < g.start) continue;
+        if (t >= g.end) { g.i.textContent = g.ch; g.i.className = ''; g.done = true; left--; continue; }
+        if (t >= g.swap) {
+          const set = pool[g.cls];
+          g.i.textContent = set[Math.floor(Math.random() * set.length)];
+          g.i.className = g.head ? 'h' : 'r';
+          g.swap = t + (50 + Math.random() * 30) * pace;
+        }
+      }
+      if (left) id = requestAnimationFrame(tick); else halt();
+    }
+    id = requestAnimationFrame(tick);
+    return { halt };
+  }
+
   // ---- About: two stages and a scroll bar ----
   // The intro ("So, what is this page about?", in three parts) and the four periods are plain content in the markup. While the About page
   // is open, and the visitor has not yet scrolled past one of them, it becomes a stage (.is-stage, styles.css): a card that sticks to the
@@ -253,6 +416,7 @@
     const motion = matchMedia('(prefers-reduced-motion: reduce)');
     const tight = matchMedia('(max-height: 479px)');  // too little room for a stage: plain content reads better
     let open = false, frameId = 0, again = 0, maxY = 1, drawn = '', hold = 0;
+    let moved = false;  // (the visitor has scrolled since the page opened: until then only the welcome shows, with its arrow)
     const resizes = new ResizeObserver(() => remeasure());
 
     const jump = y => {  // an instant scroll (the page scrolls smoothly otherwise)
@@ -261,77 +425,10 @@
       root.style.scrollBehavior = '';
     };
 
-    // ---- decoding: a paragraph's letters flicker through other characters and settle, like an old terminal ----
-    // The real paragraph keeps its place with transparent text (.is-decoding). On top of it an aria-hidden layer holds one element per
-    // letter, put where the real letter is (measured once), so nothing moves and the lines break as they do. The layer is removed at the end.
-    const HEAD = 4, STEP = 110, HEAD_MS = (HEAD - 1) * STEP + 150;  // the first characters go one after another; the rest follows together
-    const pool = { n: 'il|!.,:;', m: 'aceonsuvxz0123456789#%&*+=?', w: 'mwMW@%&' };  // by width, so a flicker looks like the letter it hides
-    function layer(p) {
-      const node = p.firstChild;
-      if (!node || node.nodeType !== 3) return null;
-      const text = node.data, box = p.getBoundingClientRect(), em = parseFloat(getComputedStyle(p).fontSize) || 15;
-      const range = document.createRange(), el = document.createElement('span'), list = [];
-      el.className = 'dc';
-      el.setAttribute('aria-hidden', 'true');
-      const add = (ch, r, w, k) => {
-        const i = document.createElement('i');
-        i.style.cssText = `left:${(r.left - box.left).toFixed(2)}px;top:${(r.top - box.top).toFixed(2)}px;width:${w.toFixed(2)}px;height:${r.height.toFixed(2)}px;line-height:${r.height.toFixed(2)}px`;
-        el.append(i);
-        list.push({ i, ch, k, cls: w < em * .4 ? 'n' : w > em * .78 ? 'w' : 'm', start: 0, end: 0, swap: 0, head: k < HEAD, done: false });
-      };
-      let before = null;  // the letter just before this one, when no space is between them
-      for (let k = 0; k < text.length; k++) {
-        if (/\s/.test(text[k])) { before = null; continue; }
-        range.setStart(node, k);
-        range.setEnd(node, k + 1);
-        const r = range.getBoundingClientRect();
-        // the line broke inside the word: the hyphen the browser draws at the end of the line above is drawn too
-        if (before && r.top > before.top + r.height / 2 && text[k - 1] !== '-') add('-', { left: before.right, top: before.top, height: before.height }, em * .34, k - 1);
-        add(text[k], r, r.width, k);
-        before = r;
-      }
-      p.append(el);
-      return { p, el, list };
-    }
-    function decode(paragraphs, end) {  // the paragraphs one after another: the next one starts as the rest of the last one begins
-      const layers = paragraphs.map(layer).filter(Boolean);
-      const all = [];
-      layers.forEach((L, n) => {
-        const at = n * HEAD_MS;
-        L.list.forEach(g => {
-          if (g.head) { g.start = at + g.k * STEP; g.end = g.start + 150; }
-          else { g.start = at + HEAD_MS + Math.random() * 80; g.end = at + HEAD_MS + 180 + Math.random() * 240; }
-          all.push(g);
-        });
-      });
-      let id = 0, t0 = 0, left = all.length;
-      function halt() {
-        cancelAnimationFrame(id);
-        layers.forEach(L => { L.el.remove(); L.p.classList.remove('is-decoding'); });
-        end();
-      }
-      function tick(now) {
-        t0 = t0 || now;
-        const t = now - t0;
-        for (const g of all) {
-          if (g.done || t < g.start) continue;
-          if (t >= g.end) { g.i.textContent = g.ch; g.i.className = ''; g.done = true; left--; continue; }
-          if (t >= g.swap) {
-            const set = pool[g.cls];
-            g.i.textContent = set[Math.floor(Math.random() * set.length)];
-            g.i.className = g.head ? 'h' : 'r';
-            g.swap = t + 50 + Math.random() * 30;
-          }
-        }
-        if (left) id = requestAnimationFrame(tick); else halt();
-      }
-      id = requestAnimationFrame(tick);
-      return { halt };
-    }
-
-    // ---- the intro: the words of each part are decoded, and the fun fact pops in ----
+    // ---- the intro: the first part's words are decoded, the second part fades in ----
     // A part read before comes back with a short fade instead (it would be tiring to see it decoded again).
-    const words = part => [...part.querySelectorAll('p:not(.about-fact)')];
+    const words = part => [...part.querySelectorAll('p')];
+    const decodes = i => i === 0;
     function introKind(track, items, wait) {
       const frame = track.querySelector('.stage-frame');
       const seen = new Set();
@@ -343,18 +440,18 @@
         stop() {
           calm();
           seen.clear();
-          items.forEach(p => { p.classList.remove('soft', 'pop'); p.querySelectorAll('p').forEach(q => q.classList.remove('is-decoding')); });
+          items.forEach(p => { p.classList.remove('soft', 'fade'); p.querySelectorAll('p').forEach(q => q.classList.remove('is-decoding')); });
         },
         change(to, from) {  // the old part fades out while the card moves to the height of the new one
           calm();
-          if (from >= 0) items[from].classList.remove('soft', 'pop');
-          if (!seen.has(to)) words(items[to]).forEach(p => p.classList.add('is-decoding'));
+          if (from >= 0) items[from].classList.remove('soft', 'fade');
+          if (!seen.has(to) && decodes(to)) words(items[to]).forEach(p => p.classList.add('is-decoding'));
           return from < 0 ? Promise.resolve() : wait(300);
         },
         shown(to, alive) {
           if (seen.has(to)) { items[to].classList.add('soft'); return; }
           seen.add(to);
-          items[to].classList.add('pop');
+          if (!decodes(to)) { items[to].classList.add('fade'); return; }  // (a slow fade, styles.css)
           // (after the fonts are in: the letters are put where the real ones are)
           Promise.resolve(document.fonts && document.fonts.ready).then(() => {
             if (!alive()) return;
@@ -363,7 +460,8 @@
           });
         },
         relayout() { if (run && sign() !== sig) run.halt(); },  // the real text moved (a resize, a font): show it as it is
-        anchor: i => items[i]
+        anchor: i => items[i],
+        keepsTop: true
       };
     }
 
@@ -374,15 +472,6 @@
       const size = Math.max(...labels.map(l => l.length));
       const cells = [];
       let flaps = [];
-
-      // The pictures: a period's picture shows when its file loads; if there is none, the placeholder stays and the img is dropped.
-      track.querySelectorAll('.period-pic img').forEach(img => {
-        const ok = () => img.parentElement.classList.add('has-photo');
-        const no = () => img.remove();
-        img.addEventListener('load', ok);
-        img.addEventListener('error', no);
-        if (img.complete) (img.naturalWidth ? ok : no)();
-      });
 
       // A cell flips to its new character: the top flap folds down, the bottom flap drops.
       function build() {
@@ -446,20 +535,27 @@
       let running = false, done = false, armed = false;
       let stick = 0, top0 = 0, travel = 0, plan = [];  // measured: where the card sticks, where the track starts, how far it travels, each part's stretch of scroll
       let shown = -1, want = -1, busy = false, turn = 0, calm = 0;
+      // The rail: one short bar per part along the top of the card; a bar fills when its part comes in (one step at a time).
+      const rail = document.createElement('div');
+      rail.className = 'stage-rail';
+      rail.setAttribute('aria-hidden', 'true');
+      const bars = items.map(() => { const bar = document.createElement('i'), fill = document.createElement('b'); bar.append(fill); rail.append(bar); return fill; });
+      const filled = items.map(() => -1);
+      card.append(rail);
 
       // ---- the scroll: where the stage sticks and how far it travels (measured when the page opens or changes size) ----
-      // A part gets a screen of scroll (85% of the window), and a part taller than the room the card has gets the extra it needs, so its
-      // words can scroll up (only after the first 45% of that screen, so the opening lines can be read first). The card is as tall as
-      // its part and what is around it (chrome), but never taller than the window gives it.
+      // A part gets a short stretch of scroll (a quarter of the window, 140 to 240px), so one light scroll brings the next part; a part
+      // taller than the room the card has gets the extra it needs, and its words scroll up with the finger until its end, then the next
+      // part comes. The card is as tall as its part and what is around it (chrome), but never taller than the window gives it.
       const fit = i => track.style.setProperty('--card-h', plan[i].card + 'px');
       function measure() {
         if (!running) return;
         const full = pinEl.offsetHeight, chrome = card.offsetHeight - frame.clientHeight, room = full - chrome;
-        const screen = Math.min(900, Math.max(360, innerHeight * .85));
+        const screen = Math.min(240, Math.max(140, innerHeight * .24));
         let at = 0;
         plan = items.map(p => {
           const h = p.offsetHeight, over = Math.max(0, Math.ceil(h - room));
-          const one = { start: at, over, lead: screen * .45, card: Math.min(full, Math.ceil(chrome + h)) };
+          const one = { start: at, over, card: Math.min(full, Math.ceil(chrome + h)) };
           at += screen + over;
           return one;
         });
@@ -475,20 +571,23 @@
         clearTimeout(calm);
         const far = scrollY - top0;  // how far the card has been stuck
         const s = Math.min(far, travel);  // (past the end it keeps showing the last part as it scrolls away)
-        // Past the last part. The plain content takes over only when the scrolling has settled (nothing for 120ms): switching mid-glide
-        // would cancel a smooth scroll that is still on its way (a key press, a link that takes focus). And it waits until the card has
-        // scrolled out of the window (or the page can go no further), so that nothing in view has to move.
-        const out = far - travel >= stick + plan[items.length - 1].card;
-        if (far > travel + 2 && (out || scrollY >= maxY - 2)) calm = setTimeout(() => finish(items.length - 1), 120);
-        if (!armed) {  // the first part shows once the stage is well into the window
-          if (s < stick - innerHeight * .6) return;
+        // Past the last part, the plain content takes over as soon as the scrolling pauses (nothing for 120ms: switching mid-glide would
+        // cancel a smooth scroll that is still on its way, a key press or a link that takes focus).
+        if (far > travel + 2) calm = setTimeout(() => finish(items.length - 1), 120);
+        if (!armed) {  // the first part shows once the visitor has scrolled a little and the stage is well into the window
+          if (!moved || s < stick - innerHeight * .6) return;
           armed = true;
         }
         let i = items.length - 1;
         while (i > 0 && s < plan[i].start) i--;
-        const shift = Math.min(plan[i].over, Math.max(0, s - plan[i].start - plan[i].lead));
+        // a part taller than its room moves with the scroll until its end; a short one stays still
+        const shift = Math.min(plan[i].over, Math.max(0, s - plan[i].start));
         const px = shift.toFixed(1);
         if (items[i].style.getPropertyValue('--shift') !== px) items[i].style.setProperty('--shift', px);
+        bars.forEach((fill, k) => {
+          const v = k <= i ? 1 : 0;
+          if (filled[k] !== v) { filled[k] = v; fill.style.transform = `scaleX(${v})`; }
+        });
         go(i);
       }
 
@@ -542,6 +641,7 @@
         track.style.removeProperty('--travel');
         track.style.removeProperty('--card-h');
         items.forEach(p => { p.classList.remove('is-on'); p.style.removeProperty('--shift'); });
+        bars.forEach((fill, k) => { filled[k] = -1; fill.style.removeProperty('transform'); });
       }
       // Back to plain content for good. What is on screen stays where it is: the block after the stage when the card has scrolled out
       // or the page is at its end (the stage's empty room under the card goes, and what is after it must not move), otherwise the part
@@ -550,13 +650,19 @@
         const r = track.getBoundingClientRect(), c = card.getBoundingClientRect();
         const part = i >= 0 ? kind.anchor(i) : null;
         const end = scrollY >= root.scrollHeight - root.clientHeight - 2;
-        const mark = r.bottom <= 0 || c.bottom <= 0 || end ? track.nextElementSibling
+        const seen = c.bottom > 0 && c.top < innerHeight;
+        // the intro: its heading stays at the top and the whole block shows under it, so the visitor sees all of it before going on
+        const top = kind.keepsTop && seen;
+        const mark = top ? card
+          : r.bottom <= 0 || c.bottom <= 0 || end ? track.nextElementSibling
           : part && r.top < innerHeight ? part
           : track.previousElementSibling;
-        const before = mark.getBoundingClientRect().bottom;
+        const edge = el => top ? el.getBoundingClientRect().top : el.getBoundingClientRect().bottom;
+        // (the intro's heading goes back to where the card stuck, in case the page moved on a little before the scrolling paused)
+        const before = top ? stick : edge(mark);
         done = true;
         stop();
-        const after = mark.getBoundingClientRect().bottom;  // (measured first: it lays the page out, and the scroll position settles)
+        const after = edge(mark);  // (measured first: it lays the page out, and the scroll position settles)
         const goal = Math.max(0, scrollY + after - before);
         // The page is shorter now. With a tall window the scroll position that keeps the words where they were can be lower than the new
         // bottom of the page; the page then gets the missing height as space under the footer (hold), until the visitor scrolls up past it or leaves.
@@ -570,11 +676,75 @@
         track.classList.toggle('fresh', mark !== part);  // (when no part kept its place, all of them come in softly)
         setTimeout(() => track.classList.remove('just-done', 'fresh'), 700);
         measureAll();  // (the stages after this one now start higher on the page)
+        track.dispatchEvent(new Event('stagedone'));  // (what waits for this stage can come in now)
       }
       return { track, items, start, stop, measure, update, finish, running: () => running, wanted: () => want };
     }
 
+    // ---- the periods' photos ----
+    // A photo shows when its file loads; if it does not, the print keeps its placeholder and the img is dropped.
+    page.querySelectorAll('.period-pic img').forEach(img => {
+      const ok = () => img.parentElement.classList.add('has-photo');
+      const no = () => img.remove();
+      img.addEventListener('load', ok);
+      img.addEventListener('error', no);
+      if (img.complete) (img.naturalWidth ? ok : no)();
+    });
+    // A pile opens as far as the words beside it are tall: the room under the top print is shared between the others
+    // (at least 18px each, so a short period still shows its photos apart, and at most about half a print, so a long period's
+    // pile does not spread too far). styles.css, .period-pics and --fan.
+    const piles = [...page.querySelectorAll('.period-pics')].filter(p => p.children.length > 1);
+    const fan = () => piles.forEach(pile => {
+      const words = pile.closest('.period').querySelector('.period-body');
+      const room = Math.max(0, words.offsetHeight - pile.offsetHeight);
+      const most = Math.round(pile.offsetHeight * .45);
+      pile.style.setProperty('--fan', Math.min(most, Math.max(18, Math.round(room / (pile.children.length - 1)))) + 'px');
+    });
+    if (piles.length && 'ResizeObserver' in window) {
+      const sizes = new ResizeObserver(fan);
+      piles.forEach(pile => { sizes.observe(pile); sizes.observe(pile.closest('.period').querySelector('.period-body')); });
+    }
+
     const stages = [...page.querySelectorAll('[data-stage]')].map(stage);
+
+    // ---- coming into view: the fun fact and the block after the periods come in once each, the first time they are seen ----
+    // (styles.css, data-reveal; once per page load, nothing with reduced motion). One with data-after waits for that stage to finish
+    // first, so it comes in after the stage above it has turned into its plain block, not unseen at the bottom of a tall window.
+    const reveals = [...page.querySelectorAll('[data-reveal]')];
+    // One with data-nudge (the fun fact) waits longer: once its stage has finished, for the visitor to scroll on (see nudge)
+    const waiting = [];  // { el, track, from: the scroll position when its stage finished }
+    if (reveals.length && 'IntersectionObserver' in window && !motion.matches) {
+      page.classList.add('reveal-on');
+      const above = el => el.dataset.after && page.querySelector(`[data-stage="${el.dataset.after}"]`);
+      const free = el => { const t = above(el); return !t || !t.classList.contains('is-stage'); };
+      const watch = new IntersectionObserver(list => list.forEach(e => {
+        if (!e.isIntersecting || !free(e.target)) return;
+        e.target.classList.add('is-in');
+        watch.unobserve(e.target);
+      }), { threshold: .25 });
+      reveals.forEach(el => {
+        watch.observe(el);
+        const t = above(el);  // when that stage finishes, look again (the observer reports where the element is now)
+        if (t) t.addEventListener('stagedone', () => {
+          if (el.classList.contains('is-in')) return;
+          watch.unobserve(el);
+          if (!('nudge' in el.dataset)) { watch.observe(el); return; }
+          t.classList.add('after-hint', 'wants-more');  // (the stage's arrow comes back: there is more below)
+          waiting.push({ el, track: t, from: scrollY });
+        });
+      });
+    }
+
+    // It comes in once the visitor has scrolled on (40px or more) and it is well up the window, and the arrow goes.
+    function nudge() {
+      for (let k = waiting.length - 1; k >= 0; k--) {
+        const w = waiting[k];
+        if (scrollY < w.from + 40 || w.el.getBoundingClientRect().top > innerHeight * .72) continue;
+        w.el.classList.add('is-in');
+        w.track.classList.remove('wants-more');
+        waiting.splice(k, 1);
+      }
+    }
 
     // ---- the page: the scroll bar, the sizes, start and stop ----
     function unhold() {
@@ -593,9 +763,28 @@
     function render() {
       frameId = 0;
       if (hold && scrollY <= maxY - hold) { unhold(); maxY = Math.max(1, root.scrollHeight - root.clientHeight); }
+      if (!moved && scrollY > 8) moved = true;
       stages.forEach(s => s.update());
+      if (waiting.length) nudge();
       const p = Math.min(1, Math.max(0, scrollY / maxY)).toFixed(4);
       if (fill && p !== drawn) { drawn = p; fill.style.transform = `scaleX(${p})`; }
+      arrow();
+    }
+    // The page's own arrow (index.html, .page-more): shown while there is more below and none of the other arrows (the welcome's,
+    // a stage's) is in view, so there is always one until the page's end. Looked at as the page scrolls, and now and then, since a
+    // stage's arrow also comes and goes on its own.
+    const pageMore = page.querySelector('.page-more');
+    const arrows = [...page.querySelectorAll('.hero-more, .stage-more')];
+    let arrowTimer = 0;
+    function arrow() {
+      if (!pageMore) return;
+      // (a stage's arrow counts by what it is going to: shown while its stage is live, or while the intro asks for one more scroll)
+      const on = a => a.classList.contains('hero-more') ? +getComputedStyle(a).opacity >= .4 : a.closest('.stage-track').matches('.is-stage.is-live, .after-hint.wants-more');
+      const other = arrows.some(a => {
+        const r = a.getBoundingClientRect();
+        return r.height > 0 && r.bottom > 0 && r.top < innerHeight && on(a);
+      });
+      pageMore.classList.toggle('is-shown', open && scrollY < maxY - 48 && !other);
     }
     const onScroll = () => { if (!frameId) frameId = requestAnimationFrame(render); };
     const bail = e => { if (e.matches && open) stages.forEach(s => s.running() && s.finish(s.wanted())); };  // reduced motion turned on, or the window got too short: plain content, with the part being read kept in place
@@ -603,7 +792,9 @@
       if (open) return;
       open = true;
       drawn = '';
+      moved = false;
       jump(0);
+      waiting.forEach(w => { w.from = -Infinity; });  // (back on the page later, it comes in as soon as it is well up the window)
       if (!motion.matches && !tight.matches) stages.forEach(s => s.start());
       measureAll();
       render();
@@ -611,6 +802,7 @@
       motion.addEventListener('change', bail);
       tight.addEventListener('change', bail);
       [page, ...stages.flatMap(s => [s.track.querySelector('.stage-pin'), ...s.items])].forEach(n => resizes.observe(n));
+      arrowTimer = setInterval(arrow, 400);
     }
     function leave() {
       unhold();
@@ -624,6 +816,8 @@
       cancelAnimationFrame(frameId);
       cancelAnimationFrame(again);
       frameId = again = 0;
+      clearInterval(arrowTimer);
+      if (pageMore) pageMore.classList.remove('is-shown');
     }
     return { enter, leave };
   })();

@@ -8,6 +8,7 @@
 <script src="./vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
 <script src="./doc-anchor.js"></script>
+<script src="./doc-type.js"></script>
 <link rel="stylesheet" href="./doc-text.css">
 </head>
 <body>
@@ -23,20 +24,20 @@ button{font-family:inherit}
 </style>
 <script src="doc-zoom.js"></script>
 </helmet>
-<div style="--cz-night:#1F1A12;--cz-night-surface:#2A2318;--cz-night-soft:#CFC4B1;--cz-night-thought:#E8DFD0;--cz-night-line:#4A4235;--cz-paper:#FBF7EE;--cz-desk:#F4EFE4;--cz-line:#E3DACB;--cz-line-strong:#8C8170;--cz-ink:#1F1A12;--cz-ink-body:#3D352A;--cz-ink-soft:#5E5446;--cz-lamp:#F2A93B;--cz-amber-ink:#8A5300;--cz-right:#2F7A4B;--cz-notyet:#B03A48;--cz-focus:#2F5A9E;--cz-flex:#A3501A;--cz-private:#6A4A8C;--cz-kitchen:#6B5B4B;background:var(--cz-night);min-height:100vh;padding:clamp(0px,3vw,40px);display:flex;justify-content:center;font-family:'IBM Plex Sans',sans-serif">
-<article style="width:100%;max-width:1240px;background:var(--cz-paper);border-radius:16px">
+<div style="background:var(--cz-night);min-height:100vh;padding:var(--cz-pad-shell);display:flex;justify-content:center;font-family:'IBM Plex Sans',sans-serif">
+<article style="width:100%;max-width:1240px;background:var(--cz-paper);border-radius:var(--cz-radius-box)">
 
 <dc-import name="DocHeader" project="Why Members Are Unhappy" doc-type="Cozy in 60 seconds" doc-title="Cozy in 60 seconds" subtitle="A short guide that new members see in the Cozy app on their first day." author="Son Duong" hint-size="100%,340px"></dc-import>
 
-<div style="padding:clamp(24px,4vw,48px) clamp(20px,4vw,56px) clamp(32px,5vw,64px);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,40px);align-items:flex-start">
+<div style="padding:var(--cz-pad-page);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,40px);align-items:flex-start">
 
 <div style="flex:1 1 300px;min-width:0;max-width:520px;display:flex;flex-direction:column;gap:18px">
 <dc-import name="DocCallout" tone="amber" label="Note" icon="info" text="Cozy is a business with three coworking spaces, where members rent desks and rooms on monthly plans. Each space has three zones. Focus is a silent zone, Flex is for desk work, calls and meetings, and Private has closed rooms. This is a concept project: Cozy and its data were created for this portfolio. The data is based on real public sources: surveys of coworking members, public reviews of coworking spaces and studies of how businesses handle complaints." hint-size="100%,200px"></dc-import>
 <p style="margin:0;font:400 18px/28px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Cozy in 60 seconds is a guide of eight short screens in the Cozy app, made for a phone. In about a minute, a new member learns the three zones, where to take a call, how the kitchen works and the signs they will see in the space, so they recognize the signs later. The guide shows one screen at a time and moves on when the member taps.</p>
-<p style="margin:0;font:400 18px/28px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">The guide and the signs are Cozy's solution to two problems that members wrote about in the member survey: noise and phone calls in Focus, and the shared kitchen and fridge. Members were unsure which zone they were in, what its rules were and when the fridge was cleared. Focus and Flex looked the same, and the rules were written in the handbook that members get when they join. The signs put the rules where members work, and the guide shows them on a new member's first day. The guide starts by asking how the member works, and the zone map then marks the zone that suits them: Focus for deep work, or Flex for calls.</p>
+<p style="margin:0;font:400 18px/28px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">The guide and the signs are Cozy’s solution to two problems that members wrote about in the member survey: noise and phone calls in Focus, and the shared kitchen and fridge. Members were unsure which zone they were in, what its rules were and when the fridge was cleared. Focus and Flex looked the same, and the rules were written in the handbook that members get when they join. The signs put the rules where members work, and the guide shows them on a new member’s first day. The guide starts by asking how the member works, and the zone map then marks the zone that suits them: Focus for deep work, or Flex for calls.</p>
 <div style="display:flex;flex-direction:column;gap:10px;background:var(--cz-desk);border-left:4px solid var(--cz-lamp);border-radius:4px 12px 12px 4px;padding:18px 20px">
 <span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">The four rules behind the guide and the signs</span>
-<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Each sign is placed where the behavior happens, such as the Focus sign where Focus starts. Each sign and screen says what to do, and next to that what to do instead, such as "Calls and meetings in Flex". Every sign and screen uses the same icon, word and color for each zone. Members see the rules on their first day, in this guide.</p>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Each sign is placed where the behavior happens, such as the Focus sign where Focus starts. Each sign and screen says what to do, and next to that what to do instead, such as “Calls and meetings in Flex”. Every sign and screen uses the same icon, word and color for each zone. Members see the rules on their first day, in this guide.</p>
 </div>
 <p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft);">Tap through the eight screens to try the guide. Each screen stays in place until you tap to go on, so you can read at your own pace.</p>
 <button type="button" onClick="{{ restart }}" style="align-self:flex-start;min-height:44px;display:flex;align-items:center;gap:10px;padding:10px 18px;background:none;border:1.5px solid var(--cz-line-strong);border-radius:12px;font:600 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink);cursor:pointer" style-hover="background:var(--cz-desk)">Start again<dc-import name="Icon" icon="rewind" size="18" color="#1F1A12" hint-size="18px,18px"></dc-import></button>
@@ -62,7 +63,7 @@ button{font-family:inherit}
 <div style="flex:1;display:flex;flex-direction:column;gap:18px;justify-content:center;align-items:flex-start">
 <dc-import name="Logo" variant="symbol" tone="light" size="64" hint-size="64px,64px"></dc-import>
 <h2 style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">Welcome to Cozy, {{ name }}.</h2>
-<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Here's the space in 60 seconds: where to work, where to call, and how the kitchen works.</p>
+<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Here’s the space in 60 seconds: where to work, where to call, and how the kitchen works.</p>
 </div>
 <button type="button" onClick="{{ next }}" style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Start<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
 </sc-if>
@@ -94,13 +95,13 @@ button{font-family:inherit}
 <sc-if value="{{ s4 }}">
 <h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">Taking a call?</h2>
 <p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Calls and meetings go in Flex. Need a door? Book a Private room by the hour.</p>
-<p style="margin:0;font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">You'll see these signs in the space:</p>
+<p style="margin:0;font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">You’ll see these signs in the space:</p>
 <div style="display:flex;flex-direction:column;gap:10px">
 <span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);"><b style="font-weight:600;color:var(--cz-ink)">The Focus sign,</b> where Focus starts:</span>
 <dc-import name="CozySign" kind="focusSign" hint-size="100%,280px"></dc-import>
 </div>
 <div style="display:flex;flex-direction:column;gap:10px">
-<span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);"><b style="font-weight:600;color:var(--cz-ink)">The floor tape,</b> along each zone's edge:</span>
+<span style="font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);"><b style="font-weight:600;color:var(--cz-ink)">The floor tape,</b> along each zone’s edge:</span>
 <dc-import name="CozySign" kind="floorTape" zone="focus" hint-size="100%,50px"></dc-import>
 <dc-import name="CozySign" kind="floorTape" zone="flex" hint-size="100%,50px"></dc-import>
 </div>
@@ -130,11 +131,11 @@ button{font-family:inherit}
 <h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">Questions? Ask at the front desk.</h2>
 <div style="display:flex;gap:12px;align-items:flex-start">
 <span style="flex:none;padding-top:3px"><dc-import name="Icon" icon="desk" size="22" color="#1F1A12" hint-size="22px,22px"></dc-import></span>
-<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Something not right? Tell us at the front desk. We'll note it and get back to you on the day we say.</p>
+<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Something not right? Tell us at the front desk. We’ll note it and get back to you on the day we say.</p>
 </div>
 <div style="display:flex;gap:12px;align-items:flex-start">
 <span style="flex:none;padding-top:3px"><dc-import name="Icon" icon="wifi" size="22" color="#1F1A12" hint-size="22px,22px"></dc-import></span>
-<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Wi-Fi down? We'll tell you within 10 minutes, and update you every 15 minutes until it's back.</p>
+<p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Wi-Fi down? We’ll tell you within 10 minutes, and update you every 15 minutes until it’s back.</p>
 </div>
 <button type="button" onClick="{{ next }}" style="margin-top:auto;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Next<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
 </sc-if>
@@ -161,8 +162,8 @@ button{font-family:inherit}
 <sc-if value="{{ s8 }}">
 <div style="flex:1;display:flex;flex-direction:column;gap:18px;justify-content:center;align-items:flex-start">
 <dc-import name="Logo" variant="lockup" tone="light" size="34" hint-size="124px,34px"></dc-import>
-<h2 style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">That's Cozy. Welcome in, {{ name }}.</h2>
-<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft);">Cozy in 60 seconds stays in the app's menu, to open again any time.</p>
+<h2 style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">That’s Cozy. Welcome in, {{ name }}.</h2>
+<p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft);">Cozy in 60 seconds stays in the app’s menu, to open again any time.</p>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:12px">
 <button type="button" onClick="{{ restart }}" style="flex:1 1 150px;min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Done</button>

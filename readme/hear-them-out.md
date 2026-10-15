@@ -2,7 +2,7 @@
 
 _Concept project_
 
-Discover Hear Them Out, a **scenario-based course** that trains front-desk staff at Cozy, a coworking business, in what a **root-cause analysis** showed they needed: handling a complaint call and following it through. With signs, a Wi-Fi checklist and a better issue log, it helps Cozy solve members’ problems and win back their satisfaction.
+Discover Hear Them Out, a **scenario-based course** that trains front-desk staff at Cozy, a coworking business, in what a **root-cause analysis** showed they needed: handling a complaint call, then following up with a clear process so no complaint gets missed. Besides the course, other support tools help Cozy solve members’ problems and win back their satisfaction: signs and a first-day guide (to show members the space rules), a Wi-Fi checklist (to handle every outage the same way) and an updated issue log (to give every case a next step, an owner and a date).
 
 This repository holds the code of Hear Them Out, the course this project led to.
 
@@ -25,18 +25,16 @@ This repository holds the code of Hear Them Out, the course this project led to.
 
 **Tools**
 
-- Claude (analysis and documents)
-- Claude Design (brand and mockups)
-- Claude Code (web app)
+- GitHub (code and version control)
+- Web languages (JavaScript, JSX, HTML, CSS)
+- Claude (Claude, Claude Code, Claude Design)
 - Gemini (voice and practice call)
-- Google Workspace (tracking)
-- Vercel (hosting)
 
 ## Problem
 
 Cozy’s members were growing less satisfied, and they gave the way Cozy handles complaints the lowest score of all.
 
-Cozy has three coworking spaces for freelancers, remote workers and small teams. **Many complaints had no written next step**, and some members waited weeks for a reply. Four problems pulled satisfaction down:
+They felt **unheard** and, at times, even treated unfairly. Many of their complaints were never followed up on or resolved. Four problems came up the most:
 
 - Noise and phone calls in Focus, the silent zone
 - The shared kitchen and fridge
@@ -45,40 +43,42 @@ Cozy has three coworking spaces for freelancers, remote workers and small teams.
 
 > “We’ll look into it.”
 >
-> How complaint calls often ended, with no option for the member and no date
+> A typical vague reply members heard whenever they called to complain
 
 ## Goal
 
-Within two quarters, overall satisfaction should rise from 3.2/5 to **4.0/5**, and the complaint score from 2.7/5 to **3.8/5**. Each week, managers check that **9 in 10 complaints** have a dated next step.
+Given this, Cozy’s board set a goal to raise member satisfaction, especially the complaint score.
+
+Specifically, within two quarters, overall satisfaction should rise from 3.2/5 to **4.0/5**, and the complaint score from 2.7/5 to **3.8/5**. Each week, managers check that **9 in 10 complaints** have a dated next step.
 
 - **Overall member satisfaction**: Now **3.2/5**; **3.5/5** after the first quarter; Target **4.0/5**. Measured by Cozy’s quarterly member survey, from 1 (very dissatisfied) to 5 (very satisfied).
 
-_This is a concept project, so the starting numbers are simulated and no results have been measured yet._
-
 ## Finding the root causes
 
-With the Behavior Engineering Model, I found three root causes: no follow-up process or call practice for complaints, space rules members could not see, and no set steps for Wi-Fi outages.
+With the Behavior Engineering Model (BEM), I found three root causes:
 
-The evidence: survey comments, the issue and outage logs, shift interviews and a visit to one space.
+- No follow-up process or call practice for complaints
+- Space rules members could not see
+- No set steps for Wi-Fi outages
 
-**How I sorted the causes.** I used Carl Binder’s **Six Boxes** and checked the environment first, because changing it costs less than training. For each cause, I asked Mager and Pipe’s question: could people do it if they had to? If so, a course would not help.
+**How I sorted the causes.** I sorted each cause into the BEM’s **six cells** and checked the environment first, because changing it costs less than training. For each cause, I asked Mager and Pipe’s question: could people do it if they had to? If so, a course would not help.
 
 - Environment: Information, Tools, Incentives
 - Person: Knowledge, Capacity, Motives
 
-### Complaint handling
+### No follow-up process or call practice for complaints
 
 _Environment + knowledge_
 
 The log asked for no follow-up date or owner, and open cases passed between shifts by word of mouth. On calls, staff explained the rules first. Calming an upset member takes practice.
 
-### Noise and the kitchen
+### Space rules members could not see
 
 _Information_
 
 Focus and Flex, the zone for calls, looked the same, and the rules sat in the handbook. Members could follow the rules, so they need to see them where they work.
 
-### Wi-Fi outages
+### No set steps for Wi-Fi outages
 
 _Information + tools_
 
@@ -86,11 +86,9 @@ Each shift handled an outage in its own order, and most waited for the cause bef
 
 ## Solution
 
-I matched each root cause with a solution, and only one of them is a course.
+I matched each root cause with a solution, and only one of them is a course:
 
-Signs and a checklist work sooner and **cost less than a course**.
-
-### Hear Them Out and log changes
+### A follow-up process and call practice for complaints
 
 _For front-desk staff and managers_
 
@@ -98,7 +96,7 @@ _For front-desk staff and managers_
 
 [The log card, a job aid from the course](https://duongngochongson.vercel.app/assets/projects/wmu-log-card.webp)
 
-### Signs and Cozy in 60 seconds
+### Space rules members can see
 
 _For members_
 
@@ -106,7 +104,7 @@ A sign, zone tape and kitchen labels, and Cozy in 60 seconds, eight short screen
 
 [The Focus sign, the zone bands and the kitchen labels](https://duongngochongson.vercel.app/assets/projects/wmu-signs.webp)
 
-### Wi-Fi Down card
+### Set steps for Wi-Fi outages
 
 _For front-desk staff and operations_
 
@@ -124,7 +122,7 @@ Following **Merrill’s first principles**, the course starts with the call and 
 
 ### Action map
 
-[Action map: the goal, the five actions, and the practice and minimum information for each.](https://duongngochongson.vercel.app/assets/projects/wmu-action-map.webp)
+[The action map of Hear Them Out, from the goal to the five actions.](https://duongngochongson.vercel.app/assets/projects/wmu-action-map.webp)
 
 ### Jane, the persona
 
@@ -148,6 +146,8 @@ Based on the shift interviews and the issue log.
 - **Resolve**: Agree on one next step, with an owner and a day
 - **Diagnose**: Keep the case open until she says it worked
 
+_Source: HEARD, a service recovery technique taught by the [Disney Institute](https://www.landscapemanagement.net/?p=72027)._
+
 ### Two parts of the course
 
 - **Part 1, the call.** Five decisions, one for each step of HEARD
@@ -155,11 +155,11 @@ Based on the shift interviews and the issue log.
   1. A week later, Sofia scores Cozy in the survey
   2. A debrief marks each decision, and the learner rewinds to the first one that went wrong
   - If the learner hangs up on Sofia twice, the call starts again.
-- If all five went right:
-  1. **Part 2.** The learner logs the case in Cozy Desk from the call note
+- If all five went right: The learner moves on to **Part 2**.
+  1. The learner logs the case in Cozy Desk from the call note
   2. The course moves ahead to the call back on the promised day
   3. Sofia scores Cozy **5/5**
-- **Practice.** A new call, a private talk and a log entry to write
+- After the course, the learner can **practice more** if they want, in three ways: a new call, a private talk and a log entry to write
 
 ### Screens from the course
 
@@ -167,13 +167,11 @@ Based on the shift interviews and the issue log.
 - [Part 2, logging the case from the note](https://duongngochongson.vercel.app/assets/projects/wmu-log.webp)
 - [The debrief after a call that went wrong](https://duongngochongson.vercel.app/assets/projects/wmu-debrief.webp)
 
-## Storyboard and visual design
+## Storyboard & visual design
 
 I wrote the lines and screens in a text-based storyboard first, then designed the look of the course and the Cozy brand.
 
 Before building, I made **mockups of the 16 screens** and a clickable prototype, then cut the call from eight decisions to five, one for each step of HEARD.
-
-The course looks like **a desk at night**: text on light boxes on a dark ground, like paper under a lamp.
 
 [Storyboard: decision 1 of the call, with each option, Sofia’s reply and Son’s line.](https://duongngochongson.vercel.app/assets/projects/wmu-storyboard.webp)
 
@@ -186,23 +184,19 @@ The course looks like **a desk at night**: text on light boxes on a dark ground,
 
 I built Hear Them Out as a web app, so it runs in a browser on a computer or a phone.
 
-React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations.
+React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations. Sofia’s lines are synthetic speech, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member. **Browser tests** run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.
 
-Sofia’s lines are synthetic speech, also shown on screen. In a **practice call** after the course, an AI model plays Omar, a member.
+## Results & takeaways
 
-## Results and takeaways
+I put a lot of time and effort into this project, and it taught me many lessons.
 
-The course has not met real learners yet, so these are lessons from building it.
+- **Plan slow, build fast.** Planning every line and screen before building felt slow at first, but it saved a lot of time later, when I had to change things.
+- **Plan for the unplanned.** However carefully I planned, small issues still came up that I only found after building the prototype, so I now leave buffer time to fix them.
+- **Go beyond drag and drop.** Artificial intelligence is a great assistant. With it, I could build a voiced phone call and an open practice call, things that traditional drag-and-drop authoring tools make hard.
 
-- I learned to look at the workplace before planning a course. Signs and a checklist solved two of the three causes, so the course could focus on the call.
-- Writing every line in the storyboard before building felt slow, and it saved a lot of time when I changed things late.
-- I found that a wrong choice teaches more when the learner sees what it caused before anyone explains it.
-
-## Documents and credits
+## Documents & credits
 
 [Try the course](https://hear-them-out.vercel.app/) · [Case study](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Case%20Study.dc.html) · [Storyboard](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Storyboard.dc.html) · [Design document](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Design%20Document.dc.html) · [Style guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Style%20Guide.dc.html) · [Diagrams](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Diagrams.html) · [Job aids](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Job%20Aids.dc.html) · [First-day guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Cozy%20in%2060%20Seconds.dc.html)
-
-[All projects](https://duongngochongson.vercel.app/#portfolio)
 
 ## Credits
 
