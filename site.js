@@ -138,10 +138,7 @@
     function openTemplate(btn) {
       const tpl = document.getElementById(btn.dataset.doc);
       if (!tpl) return;
-      open({
-        heading: (vi() && tpl.dataset.titleVi) || tpl.dataset.title || btn.textContent.trim(),
-        label: (vi() && tpl.dataset.kickerVi) || tpl.dataset.kicker || ''
-      });
+      open({ heading: tpl.dataset.title || btn.textContent.trim(), label: tpl.dataset.kicker || '' });
       body.replaceChildren(tpl.content.cloneNode(true));
       if (vi()) body.querySelectorAll('[data-vi]').forEach(n => { n.innerHTML = n.dataset.vi; });
     }
@@ -282,7 +279,14 @@
     store.set('theme', b.dataset.themeSet);
   }));
 
-  // Vietnamese only applies while its button is shown (it is hidden in index.html for now).
+  // Vietnamese only applies while its button is shown (it is hidden in index.html for now; the list of what is still English in the
+  // markup is there, at the button). Still English only in this script, and to do before the button goes back on:
+  // - the email note, 'Email copied' and 'Copy did not work' (the copy button below);
+  // - the pop-up's heading and label: openFrame, openImage and openTemplate take them from data-title and data-kicker as they are,
+  //   so each needs a Vietnamese attribute (for example data-title-vi) and a test of vi() like the ones for the loading text and the
+  //   Previous and Next buttons;
+  // - the page title in route() (data-title).
+  // Both lists leave out the documents in work/, which are English only.
   const viButton = document.querySelector('[data-lang="vi"]');
   if (viButton && !viButton.hidden && store.get('lang') === 'vi') setLang('vi');
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
@@ -417,7 +421,8 @@
     const tight = matchMedia('(max-height: 479px)');  // too little room for a stage: plain content reads better
     let open = false, frameId = 0, again = 0, maxY = 1, drawn = '', hold = 0;
     let moved = false;  // (the visitor has scrolled since the page opened: until then only the welcome shows, with its arrow)
-    const resizes = new ResizeObserver(() => remeasure());
+    // (guarded like the piles' observer below: without ResizeObserver the sizes are measured once, when the page opens)
+    const resizes = 'ResizeObserver' in window ? new ResizeObserver(() => remeasure()) : { observe() {}, disconnect() {} };
 
     const jump = y => {  // an instant scroll (the page scrolls smoothly otherwise)
       root.style.scrollBehavior = 'auto';
@@ -517,6 +522,7 @@
         change(to, from) {  // the old words fade out, the board flips (the picture changes with it), then the new words fade in
           if (from >= 0) items[from].classList.remove('is-pic');
           items[to].classList.add('is-pic');
+          fetchPhotos(items[to]);  // (its photos start loading as the board flips)
           return flip(to);
         },
         shown() {},
@@ -604,7 +610,6 @@
         if (from >= 0) items[from].classList.remove('is-on');
         fit(to);
         track.classList.add('is-live');
-        track.classList.toggle('is-last', to === items.length - 1);  // (the arrow that says there is more goes away on the last part)
         kind.change(to, from).then(() => {
           if (mine !== turn) return;
           busy = false;
@@ -637,7 +642,7 @@
         timers.forEach(clearTimeout);
         timers.clear();
         kind.stop();
-        track.classList.remove('is-stage', 'is-live', 'is-last', 'no-tween');
+        track.classList.remove('is-stage', 'is-live', 'no-tween');
         track.style.removeProperty('--travel');
         track.style.removeProperty('--card-h');
         items.forEach(p => { p.classList.remove('is-on'); p.style.removeProperty('--shift'); });
@@ -662,6 +667,7 @@
         const before = top ? stick : edge(mark);
         done = true;
         stop();
+        fetchPhotos(track, false);  // (plain content now: every photo of this stage gets its file, and loads as it nears the window)
         const after = edge(mark);  // (measured first: it lays the page out, and the scroll position settles)
         const goal = Math.max(0, scrollY + after - before);
         // The page is shorter now. With a tall window the scroll position that keeps the words where they were can be lower than the new
@@ -683,13 +689,25 @@
 
     // ---- the periods' photos ----
     // A photo shows when its file loads; if it does not, the print keeps its placeholder and the img is dropped.
+    // The first period's photo has its src in the markup. The others keep it in data-src, because a stage stacks the periods in one
+    // grid cell, so lazy loading would see them all at once: fetchPhotos sets the src when a period comes in (periodsKind.change),
+    // and for all of them at once when there is no stage (enter) or the stage is over (finish). In a stage they load now; in a plain
+    // list, lazy loading works again, so they load by position.
     page.querySelectorAll('.period-pic img').forEach(img => {
       const ok = () => img.parentElement.classList.add('has-photo');
       const no = () => img.remove();
       img.addEventListener('load', ok);
       img.addEventListener('error', no);
-      if (img.complete) (img.naturalWidth ? ok : no)();
+      if (img.getAttribute('src') && img.complete) (img.naturalWidth ? ok : no)();  // (no src yet: complete is true, and it would be dropped)
     });
+    function fetchPhotos(scope, now = true) {
+      scope.querySelectorAll('.period-pic img').forEach(img => {
+        if (now) img.loading = 'eager';  // (a lazy img with its src waits until it is near the window; a stage's are wanted now)
+        if (!img.dataset.src) return;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      });
+    }
     // A pile opens as far as the words beside it are tall: the room under the top print is shared between the others
     // (at least 18px each, so a short period still shows its photos apart, and at most about half a print, so a long period's
     // pile does not spread too far). styles.css, .period-pics and --fan.
@@ -796,6 +814,7 @@
       jump(0);
       waiting.forEach(w => { w.from = -Infinity; });  // (back on the page later, it comes in as soon as it is well up the window)
       if (!motion.matches && !tight.matches) stages.forEach(s => s.start());
+      else stages.forEach(s => fetchPhotos(s.track, false));  // no stage: the periods are a plain list, and each photo loads as it nears the window
       measureAll();
       render();
       addEventListener('scroll', onScroll, { passive: true });

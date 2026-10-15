@@ -1,9 +1,33 @@
 /* Son Duong: personal site. */
+
+/* ---------- fonts ----------
+   Merriweather, Montserrat and JetBrains Mono, served from assets/fonts (SIL Open Font License 1.1; the licence texts sit beside the
+   files). Only the faces the rules below use: Merriweather 700 and italic 400 (a font shorthand with --serif), Montserrat 400 to 700
+   and JetBrains Mono 400 to 500 (one variable file per subset each). JetBrains Mono 700 (the date stamps) is the browser's bold of the 500,
+   as it was with Google Fonts. Latin and Vietnamese only, with Google's own unicode ranges (the Vietnamese file also holds U+01A0-01A1,
+   the o with a horn in "Sơn"). Add a weight or a style here before a rule uses it, and a subset before a page needs it. */
+@font-face { font-family: 'Merriweather'; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/merriweather-700-vietnamese.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Merriweather'; font-style: normal; font-weight: 700; font-display: swap; src: url(assets/fonts/merriweather-700-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Merriweather'; font-style: italic; font-weight: 400; font-display: swap; src: url(assets/fonts/merriweather-italic-400-vietnamese.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Merriweather'; font-style: italic; font-weight: 400; font-display: swap; src: url(assets/fonts/merriweather-italic-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(assets/fonts/montserrat-vietnamese.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 400 700; font-display: swap; src: url(assets/fonts/montserrat-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 500; font-display: swap; src: url(assets/fonts/jetbrains-mono-vietnamese.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400 500; font-display: swap; src: url(assets/fonts/jetbrains-mono-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 :root {
   --bg: #ffffff; --surface: #f6f3ee; --card: #ffffff;
   --ink: #1a1815; --muted: rgba(26,24,21,.78); --faint: rgba(26,24,21,.62);
   --line: rgba(26,24,21,.14);
-  --t1: oklch(.945 .045 150); --t2: oklch(.945 .05 55); --t3: oklch(.945 .045 240); --t4: oklch(.945 .045 310); --tw: oklch(.94 .04 25); --t5: oklch(.96 .07 95); --t6: oklch(.95 .04 355);
+  --t2: oklch(.945 .05 55); --t3: oklch(.945 .045 240); --t4: oklch(.945 .045 310); --t5: oklch(.96 .07 95); --t6: oklch(.95 .04 355);
   --a1: oklch(.74 .15 55); --a2: oklch(.72 .15 150); --a3: oklch(.7 .15 240); --a4: oklch(.72 .15 310); --a5: oklch(.83 .16 90); --a6: oklch(.72 .16 0);
   /* darker accents for small text and the focus ring, so they reach 4.5:1 on white */
   --a1-ink: oklch(.48 .14 55); --a2-ink: oklch(.46 .13 150); --a3-ink: oklch(.46 .14 240); --a4-ink: oklch(.47 .15 310);
@@ -19,7 +43,10 @@
   /* the padding of every top-level block (the sidebar, the blocks, the cards, the footer); 20px on phones */
   --block-pad: 28px;
 
-  /* ---- The design tokens. Every rule below uses these names rather than its own values: one look per role. ---- */
+  /* ---- The design tokens: one look per role. A rule uses the token for the role its comment names. A raw value is one of three kinds:
+          a one-off (the 16px page gutter, a list indent, a tap-area offset, the 17px and 26px sizes, a single object's own measure),
+          a value that only equals a token's by chance (it stays raw: a rule that means something else does not follow the token), or
+          an object that keeps its own look (the prints, the board, the project art, below). Add a token when a role repeats. ---- */
   /* corners */
   --radius-block: 22px;   /* a top-level block (the sidebar, the blocks, the cards, the footer, the pop-up) */
   --radius-box: 12px;     /* a box inside a block, a picture, a cell */
@@ -79,9 +106,19 @@
   --type-tag: 500 10px/1.3 var(--mono);         /* a tag, a toggle */
   --type-contact: 400 10px/1.6 var(--mono);     /* the sidebar's email and links */
   --track-label: .08em;                         /* the letter spacing of the mono labels and tags */
-  /* motion */
-  --ease-press: .25s ease;  /* hover, press, a chevron */
-  --ease-fade: .5s ease;    /* an arrow or picture fading */
+  /* motion: the durations, then the easing, then the pairs that rules share (a duration with its easing). A new movement takes a name
+     from here; a one-off stays in its rule (.4s, .55s, the delays, the wave's 1.8s and the press's 3s). */
+  --time-brief: .2s;          /* leaving: the pop-up closing, the copy note */
+  --time-quick: .25s;         /* hover, press, a chevron, a color */
+  --time-short: .3s;          /* a crossfade: an intro part, a period's words, a document's frame */
+  --time-base: .35s;          /* a fold or the pop-up opening, the theme fade, a rail bar */
+  --time-slow: .6s;           /* a stage card changing height, the welcome's arrow */
+  --time-enter: .8s;          /* the welcome, and the last block, coming in */
+  --time-enter-slow: .9s;     /* the portrait, the fun fact, the intro's second part */
+  --time-loop: 1.9s;          /* the arrows' bob */
+  --ease-out: cubic-bezier(.4, 0, .2, 1);  /* a card changing height */
+  --ease-press: var(--time-quick) ease;    /* hover, press, a chevron */
+  --ease-fade: .5s ease;                   /* an arrow or picture fading */
   --ease-pile: .55s cubic-bezier(.3, .7, .3, 1);  /* a pile of prints opening and closing */
   /* objects that keep their own colors: the instant prints, the pin, the date stamp, the project art, the split-flap board */
   --print-paper: #f8f5ee; --print-window: #e7e1d5; --print-ink: rgba(26,24,21,.55);
@@ -101,7 +138,7 @@
   --bg: #131211; --surface: #1b1a18; --card: #211f1c;
   --ink: #f3efe9; --muted: rgba(243,239,233,.78); --faint: rgba(243,239,233,.6);
   --line: rgba(243,239,233,.14);
-  --t1: oklch(.26 .035 150); --t2: oklch(.27 .04 55); --t3: oklch(.26 .035 240); --t4: oklch(.26 .035 310); --tw: oklch(.27 .04 25); --t5: oklch(.28 .045 95); --t6: oklch(.27 .04 355);
+  --t2: oklch(.27 .04 55); --t3: oklch(.26 .035 240); --t4: oklch(.26 .035 310); --t5: oklch(.28 .045 95); --t6: oklch(.27 .04 355);
   --a1: oklch(.8 .14 55); --a2: oklch(.79 .14 150); --a3: oklch(.77 .14 240); --a4: oklch(.78 .14 310); --a5: oklch(.86 .14 90); --a6: oklch(.78 .13 0);
   --a1-ink: var(--a1); --a2-ink: var(--a2); --a3-ink: var(--a3); --a4-ink: var(--a4); --accent-ink: var(--a1);
   --shadow: rgba(0,0,0,.35);
@@ -114,8 +151,6 @@ html:has(dialog[open]) { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after, ::backdrop { transition: none !important; animation: none !important; }
-  /* no lifts or nudges either: the hover shadow and underline stay */
-  :is(.proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb, .arrow, .go, .guide-go) { transform: none !important; }
 }
 body { margin: 0; background: var(--bg); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
@@ -125,7 +160,7 @@ a, button, summary { touch-action: manipulation; }
 /* Switching the theme: site.js puts this class on <html> for 400ms, so every color fades at once (no fade with reduced motion) */
 @media (prefers-reduced-motion: no-preference) {
   .theme-fading, .theme-fading *, .theme-fading *::before, .theme-fading *::after {
-    transition: background-color .35s, color .35s, border-color .35s, fill .35s, stroke .35s, box-shadow .35s !important;
+    transition: background-color var(--time-base), color var(--time-base), border-color var(--time-base), fill var(--time-base), stroke var(--time-base), box-shadow var(--time-base) !important;
   }
 }
 /* one tap area for the small controls: at least 44 by 44, centered on the control (a square, so round buttons count too) */
@@ -137,24 +172,30 @@ a, button, summary { touch-action: manipulation; }
 :focus-visible { outline: 2px solid var(--a3-ink); outline-offset: 2px; }
 
 /* Hover and press. Every box-like control lifts 2px with the one --lift shadow (only where a pointer can hover),
-   and a press puts it back down. The Home project cards have no box, so their picture lifts instead. */
+   and a press puts it back down. The Home project cards have no box, so their picture lifts instead.
+   The shadow shows with reduced motion too; the lifts and nudges (the transforms) only with no-preference. */
 .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button, .fold-chev, .shot img, .tile-thumb, .thumb {
   transition: transform var(--ease-press), box-shadow var(--ease-press);
 }
 /* the controls whose colors change with their state: the current page, the pressed toggle, a fold's chevron on hover */
-.nav a, .pill button, .fold-chev { transition: transform var(--ease-press), box-shadow var(--ease-press), background-color .25s, color .25s; }
+.nav a, .pill button, .fold-chev { transition: transform var(--ease-press), box-shadow var(--ease-press), background-color var(--time-quick), color var(--time-quick); }
 @media (hover: hover) {
-  :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button):hover { transform: translateY(-2px); box-shadow: var(--lift); }
-  .fold > summary:hover .fold-chev { transform: translateY(-2px); box-shadow: var(--lift); color: var(--ink); }
+  :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button):hover { box-shadow: var(--lift); }
+  .fold > summary:hover .fold-chev { box-shadow: var(--lift); color: var(--ink); }
   /* the pictures that open the picture pop-up, and the picture of a Home project card */
-  .shot:hover img, .tile-thumb:hover, [data-selected-copy] .proj:hover .thumb { transform: translateY(-2px); box-shadow: var(--ring), var(--lift); }
+  .shot:hover img, .tile-thumb:hover, [data-selected-copy] .proj:hover .thumb { box-shadow: var(--ring), var(--lift); }
   .proj:hover h3 { text-decoration: underline 1.5px; text-underline-offset: 5px; }
+  /* text links: one hover, an underline */
+  :is(.contact .mail, .contact .row a, .credit-list a, .credit-line a):hover { text-decoration: underline 1.5px currentColor; }
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button):hover { transform: translateY(-2px); }
+  .fold > summary:hover .fold-chev { transform: translateY(-2px); }
+  .shot:hover img, .tile-thumb:hover, [data-selected-copy] .proj:hover .thumb { transform: translateY(-2px); }
   /* arrows nudge 2px the way they point */
   .guide-item:hover .guide-go { transform: translateX(2px); }
   .back:hover .arrow { transform: translateX(-2px); }
   a:hover .go { transform: translate(2px, -2px); }
-  /* text links: one hover, an underline */
-  :is(.contact .mail, .contact .row a, .credit-list a, .credit-line a):hover { text-decoration: underline 1.5px currentColor; }
 }
 :is([data-page="portfolio"] .proj, .nav a, .guide-item, .back, .btn, .doc-btn, .cv-link, .copy-mail, .doc-close, .doc-step, .pill button):active,
 .fold > summary:active .fold-chev { transform: none; box-shadow: none; }
@@ -180,6 +221,15 @@ a, button, summary { touch-action: manipulation; }
 .eyebrow, .cs-title { display: flex; align-items: center; gap: var(--gap-icon); }
 .eyebrow { margin: 0 0 var(--gap-head); }
 .eyebrow .ic, .cs-title .ic { --ic: 20; }
+/* Where an accent goes. index.html says which accent an element wears (data-accent="a1" to "a6", the --a1 to --a6 colors above);
+   the color is set here, so every accent is found in this file: a dot, an eyebrow's icon and a card's labels (the dark ink of a1
+   to a3, which reaches 4.5:1 on white). The two heroes take a tint with the .bg-t2 and .bg-t3 classes. */
+[data-accent="a1"] { --pick: var(--a1); --pick-ink: var(--a1-ink); }
+[data-accent="a2"] { --pick: var(--a2); --pick-ink: var(--a2-ink); }
+[data-accent="a3"] { --pick: var(--a3); --pick-ink: var(--a3-ink); }
+[data-accent="a5"] { --pick: var(--a5); }
+[data-accent="a6"] { --pick: var(--a6); }
+.eyebrow .ic[data-accent], .prs dt[data-accent] { color: var(--pick-ink); }
 .cs-title .ic { color: var(--sec); }
 .cs-title .lab { margin: 0; }
 
@@ -230,14 +280,14 @@ p, dd, li {
   font: var(--type-control); display: flex; align-items: center; gap: var(--gap-icon);
 }
 .nav a[aria-current="page"] { background: var(--ink); color: var(--bg); }
-.dot { width: 10px; height: 10px; border-radius: var(--radius-round); display: inline-block; flex: none; }
+.dot { width: 10px; height: 10px; border-radius: var(--radius-round); display: inline-block; flex: none; background: var(--pick); }
 
 .contact { display: flex; align-items: center; gap: 12px; }
 .avatar {
   /* 128px; on a narrow sidebar the email breaks before the @ instead of the photo shrinking (the links keep at least 108px, more than the CV pill's 104px) */
   width: min(128px, calc(100% - 120px)); height: auto; aspect-ratio: 1; border-radius: var(--radius-round); object-fit: cover; flex: none; display: block;
   background: var(--card); box-shadow: 0 0 0 3px var(--card), 0 0 0 4.5px var(--a3);  /* the white ring, and a thin blue line around it */
-  animation: face-in .9s ease .15s both;  /* a soft fade when the page opens */
+  animation: face-in var(--time-enter-slow) ease .15s both;  /* a soft fade when the page opens */
 }
 @keyframes face-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 .contact-links { display: flex; flex-direction: column; gap: var(--gap-lines); min-width: 0; font: var(--type-contact); letter-spacing: .02em; }
@@ -266,7 +316,7 @@ p, dd, li {
 .page[hidden] { display: none; }
 .block { border-radius: var(--radius-block); padding: var(--block-pad); margin-bottom: var(--gap-blocks); }
 .bg-surface { background: var(--surface); }
-.bg-t1 { background: var(--t1); } .bg-t2 { background: var(--t2); } .bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
+.bg-t2 { background: var(--t2); } .bg-t3 { background: var(--t3); } .bg-t4 { background: var(--t4); } .bg-t6 { background: var(--t6); }
 
 /* home */
 .intro p { font: var(--type-lead); color: var(--muted); }
@@ -310,13 +360,12 @@ p, dd, li {
 /* the label column: 96px, 8px from its text */
 .prs > div { display: grid; grid-template-columns: 96px minmax(0,1fr); gap: 8px; }
 .prs dt { padding-top: 3px; }
-/* a narrow card (after the rules above, so it wins): the picture takes the full width,
-   and each label sits above its text, so the justified text has the full width too */
+/* a narrow card (after the rules above, so it wins): the picture takes the full width */
 @container (max-width: 489.98px) {
   .thumb { max-width: none; flex-basis: 100%; }
-  .prs { gap: 12px; } .prs > div { grid-template-columns: minmax(0, 1fr); } .prs dt { padding-top: 0; }
 }
-/* a card a little wider keeps its picture beside the text, but the labels still sit above, so the text is not squeezed */
+/* a card up to 560px wide, the narrow one included: each label sits above its text, so the justified text has the full width.
+   Between 490px and 560px the picture still sits beside the text. */
 @container (max-width: 559.98px) {
   .prs { gap: 12px; } .prs > div { grid-template-columns: minmax(0, 1fr); } .prs dt { padding-top: 0; }
 }
@@ -447,11 +496,12 @@ p, dd, li {
 .shot img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top left; display: block; border-radius: var(--radius-box); box-shadow: var(--ring); }
 .shot-cap { font: var(--type-small); color: var(--muted); }
 /* two pictures side by side (a before and an after), one figure across the whole width, or two figures of different
-   shapes side by side (a phone screen and a tall map): the last two are shown whole at their own shape (16:10 until they load) */
+   shapes side by side (a phone screen and a tall map): the last two are shown whole at their own shape (16:10 until they load,
+   or the --shape set on the img, as on the action maps, so their box does not grow when the picture arrives) */
 .shots.pair, .shots.whole { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .shots.single { grid-template-columns: minmax(0, 1fr); }
 .shots.whole { align-items: start; }
-.shots.single .shot img, .shots.whole .shot img { aspect-ratio: auto 16 / 10; object-fit: contain; }
+.shots.single .shot img, .shots.whole .shot img { aspect-ratio: auto var(--shape, 16 / 10); object-fit: contain; }
 @container case (max-width: 560px) { .shots, .shots.pair, .shots.whole { grid-template-columns: minmax(0, 1fr); } }
 
 /* A fold: a block that stays closed until its title row is pressed (a native <details class="fold">, inside .folds).
@@ -473,7 +523,7 @@ p, dd, li {
 .fold[open] > summary .fold-chev .ic { transform: rotate(180deg); }
 .fold-body { padding: 2px 17px 17px; }
 .fold-body > * + * { margin-top: var(--gap-para); }
-.fold[open] > .fold-body { animation: fold-in .35s ease-out; }
+.fold[open] > .fold-body { animation: fold-in var(--time-base) ease-out; }
 @keyframes fold-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
 .fold-body > p, .fold-media > p { font: var(--type-box); color: var(--muted); }
 /* a small source line under a figure (HEARD) */
@@ -519,11 +569,11 @@ dialog.doc {
   padding: 0; border: var(--border-hair); border-radius: var(--radius-block); overflow: hidden;
   background: var(--bg); color: var(--ink); box-shadow: var(--shadow-dialog);
 }
-dialog.doc[open] { display: flex; flex-direction: column; animation: doc-in .35s cubic-bezier(.2,.7,.2,1); }
-dialog.doc::backdrop { background: var(--backdrop); backdrop-filter: blur(3px); animation: doc-dim .35s ease-out; }
-/* closing (site.js adds .is-closing): a .2s fade with a slight shrink, then the dialog closes */
-dialog.doc.is-closing { animation: doc-out .2s ease-in forwards; }
-dialog.doc.is-closing::backdrop { animation: doc-undim .2s ease-in forwards; }
+dialog.doc[open] { display: flex; flex-direction: column; animation: doc-in var(--time-base) cubic-bezier(.2,.7,.2,1); }
+dialog.doc::backdrop { background: var(--backdrop); backdrop-filter: blur(3px); animation: doc-dim var(--time-base) ease-out; }
+/* closing (site.js adds .is-closing): a brief fade (--time-brief, .2s) with a slight shrink, then the dialog closes */
+dialog.doc.is-closing { animation: doc-out var(--time-brief) ease-in forwards; }
+dialog.doc.is-closing::backdrop { animation: doc-undim var(--time-brief) ease-in forwards; }
 @keyframes doc-in { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
 @keyframes doc-out { to { opacity: 0; transform: scale(.98); } }
 @keyframes doc-dim { from { opacity: 0; } }
@@ -563,7 +613,7 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 /* The two wide pop-ups have one body color, the theme's --surface: behind a picture, and behind a document while it loads
    and around its card (site.js clears the document's own page color). The documents are light pages, and a frame with the
    same color-scheme stays see-through, in dark theme too. */
-.doc-wide .doc-frame { flex: 1; height: auto; border-radius: 0; color-scheme: light; position: relative; z-index: 1; opacity: 0; transition: opacity .3s; }
+.doc-wide .doc-frame { flex: 1; height: auto; border-radius: 0; color-scheme: light; position: relative; z-index: 1; opacity: 0; transition: opacity var(--time-short); }
 .doc-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: var(--type-label); letter-spacing: var(--track-label); color: var(--faint); background: var(--surface); }
 .doc-wide .doc-frame.is-ready { opacity: 1; }
 /* once the document is in, the loading text leaves the page and the screen reader's reading (the body behind keeps the color) */
@@ -589,9 +639,9 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
 .about-hero h2 { font: var(--type-hello); letter-spacing: -.012em; margin: 0 0 var(--gap-para); }
 /* until the visitor scrolls, only the welcome shows: a small arrow at its foot says there is more below (it goes once the intro starts) */
 .hero-more { position: absolute; left: 50%; bottom: 8px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: 0; pointer-events: none; transition: opacity var(--ease-fade); }
-.hero-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite, arrive .6s ease 1.75s both; }  /* (after the welcome's last line) */
+.hero-more .ic { --ic: 16; animation: more-bob var(--time-loop) ease-in-out infinite, arrive var(--time-slow) ease 1.75s both; }  /* (after the welcome's last line) */
 /* the welcome comes in part by part when the page opens: the hand, the heading, then each line (each over .8s, .35s apart) */
-.about-hero > .wave, .about-hero > h2, .hero-line { animation: hero-in .8s ease-out both; }
+.about-hero > .wave, .about-hero > h2, .hero-line { animation: hero-in var(--time-enter) ease-out both; }
 .about-hero > h2 { animation-delay: .35s; }
 .hero-line { display: block; animation-delay: .7s; }
 .hero-line + .hero-line { animation-delay: 1.05s; }
@@ -600,7 +650,7 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
 @keyframes arrive { from { opacity: 0; } }
 [data-page="about"]:has([data-stage="intro"].is-stage:not(.is-live)) .hero-more { opacity: .45; }
 /* the hello: a hand that waves once when the page opens */
-.about-hero > .wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: hero-in .8s ease-out both, wave 1.8s ease-in-out 1.6s 1; }
+.about-hero > .wave { color: var(--ink); display: block; width: 64px; height: auto; margin-bottom: 14px; overflow: visible; transform-origin: 45% 85%; animation: hero-in var(--time-enter) ease-out both, wave 1.8s ease-in-out 1.6s 1; }
 @keyframes wave { 0%, 100% { transform: rotate(0); } 15% { transform: rotate(14deg); } 30% { transform: rotate(-8deg); } 45% { transform: rotate(14deg); } 60% { transform: rotate(-4deg); } 75% { transform: rotate(10deg); } }
 .about-hero p { font: var(--type-lead); color: var(--muted); }
 
@@ -683,54 +733,55 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
 .stage-track .stage-card { margin-bottom: 0; }
 .stage-more { display: none; }
 /* the intro's card waits, unseen, until its first part comes in (after the visitor's first scroll), then fades in */
-.is-stage .about-intro.stage-card { transition: height .6s cubic-bezier(.4, 0, .2, 1), opacity var(--ease-fade); }
+.is-stage .about-intro.stage-card { transition: height var(--time-slow) var(--ease-out), opacity var(--ease-fade); }
 .is-stage:not(.is-live) .about-intro.stage-card { opacity: 0; }
 /* the rail: one short bar per part along the top of the card; a bar fills when its part comes in (site.js) */
 .stage-rail { display: none; }
 .is-stage .stage-rail { display: flex; gap: 4px; position: absolute; top: 11px; left: var(--block-pad); right: var(--block-pad); pointer-events: none; }
 .stage-rail i { flex: 1 1 0; height: 3px; border-radius: var(--radius-tick); overflow: hidden; background: var(--line); }
-.stage-rail b { display: block; height: 100%; background: var(--ink); opacity: .55; transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
+.stage-rail b { display: block; height: 100%; background: var(--ink); opacity: .55; transform: scaleX(0); transform-origin: left; transition: transform var(--time-base) ease; }
 /* when the plain content takes over from the stage, the parts above the one being read (all of them, when none is in view) come in softly */
-.stage-track.just-done:not(.fresh) .stage-item:not(:last-child), .stage-track.just-done.fresh .stage-item { animation: stage-in .5s ease both; }
+.stage-track.just-done:not(.fresh) .stage-item:not(:last-child), .stage-track.just-done.fresh .stage-item { animation: stage-in var(--ease-fade) both; }
 @keyframes stage-in { from { opacity: 0; } }
 
 .stage-track.is-stage { height: calc(var(--stage-h) + var(--travel, 0px)); }
 .is-stage > .stage-pin { display: block; position: sticky; top: var(--stage-top); height: var(--stage-h); overflow-anchor: none; }
-.is-stage .stage-card { position: relative; height: var(--card-h, 100%); max-height: 100%; box-sizing: border-box; display: flex; flex-direction: column; transition: height .6s cubic-bezier(.4, 0, .2, 1); }
+.is-stage .stage-card { position: relative; height: var(--card-h, 100%); max-height: 100%; box-sizing: border-box; display: flex; flex-direction: column; transition: height var(--time-slow) var(--ease-out); }
 .is-stage.no-tween .stage-card { transition: none; }
 /* one part at a time: they sit on top of each other, all from the same top edge */
 .is-stage .stage-view { --fade: 24px; position: relative; flex: 1 1 0; min-height: 0; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to bottom, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); }
 .is-stage .stage-frame { position: absolute; inset: var(--fade) 0; display: grid; grid-template: minmax(0, 1fr) / minmax(0, 1fr); }
 .is-stage .stage-item { grid-area: 1 / 1; align-self: start; padding: 0; border: 0; pointer-events: none; }
 .is-stage .stage-item.is-on { pointer-events: auto; }
+/* the arrow stays on a stage's last part too: it goes only when the stage does (commit 4db56b3 took out the rule that hid it there, on purpose) */
 .is-stage .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: .45; pointer-events: none; transition: opacity var(--ease-fade); }
-.is-stage .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
+.is-stage .stage-more .ic { --ic: 16; animation: more-bob var(--time-loop) ease-in-out infinite; }
 .is-stage:not(.is-live) .stage-more { opacity: 0; }
 /* once the intro is one plain block, its arrow comes back (after a moment) until the visitor scrolls on to the fun fact */
 .after-hint .stage-card { position: relative; }
 .after-hint .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: 0; pointer-events: none; transition: opacity var(--ease-fade); }
-.after-hint .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
+.after-hint .stage-more .ic { --ic: 16; animation: more-bob var(--time-loop) ease-in-out infinite; }
 .after-hint.wants-more .stage-more { opacity: .45; transition-delay: .6s; }
 /* the page's own arrow: sticky at the foot of the window, in the middle of the page's column, on a small round of the page's
    ground so it reads over the words; shown by site.js (.is-shown) while there is more below and no other arrow is in view */
 .page-more { position: sticky; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: block; height: 0; z-index: 5; pointer-events: none; }
 .page-more-dot { position: absolute; left: 50%; bottom: 0; width: 28px; height: 28px; margin-left: -14px; border-radius: var(--radius-round);
   background: var(--bg); box-shadow: var(--ring); color: var(--ink); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--ease-fade); }
-.page-more-dot .ic { --ic: 16; opacity: .55; animation: more-bob 1.9s ease-in-out infinite; }
+.page-more-dot .ic { --ic: 16; opacity: .55; animation: more-bob var(--time-loop) ease-in-out infinite; }
 .page-more.is-shown .page-more-dot { opacity: 1; }
 @keyframes more-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
 
 /* the intro: the heading stays, the part under it changes. The words are not faded in: they are decoded (below). */
 .is-stage .about-intro .stage-view { --fade: 16px; }  /* (the 16px under the heading is the fade, so the first line is where it is in the plain block) */
 .is-stage .about-intro .eyebrow { margin-bottom: 0; }
-.is-stage .intro-part { opacity: 0; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease; }
+.is-stage .intro-part { opacity: 0; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity var(--time-short) ease; }
 .is-stage .intro-part.is-on { opacity: 1; transition: none; }
 .is-stage .intro-part.is-on.soft { transition: opacity .4s ease; }  /* a part read before comes back with a short fade */
-.is-stage .intro-part.is-on.fade { transition: opacity .9s ease; }  /* the second part fades in slowly the first time */
+.is-stage .intro-part.is-on.fade { transition: opacity var(--time-enter-slow) ease; }  /* the second part fades in slowly the first time */
 /* coming into view (site.js adds .reveal-on to the page, then .is-in to each [data-reveal] once it is seen; once per page load) */
 .reveal-on [data-reveal]:not(.is-in) { opacity: 0; }
-.reveal-on [data-reveal="pop"].is-in { animation: pop-in .9s ease .1s both; }  /* the fun fact: a fade and a soft bounce, as the visitor scrolls to it */
-.reveal-on [data-reveal="rise"].is-in { animation: rise-in .8s ease-out .3s both; }
+.reveal-on [data-reveal="pop"].is-in { animation: pop-in var(--time-enter-slow) ease .1s both; }  /* the fun fact: a fade and a soft bounce, as the visitor scrolls to it */
+.reveal-on [data-reveal="rise"].is-in { animation: rise-in var(--time-enter) ease-out .3s both; }
 @keyframes rise-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @keyframes pop-in { 0% { opacity: 0; transform: translateY(18px); } 45% { opacity: 1; } 65% { transform: translateY(-4px); } 100% { opacity: 1; transform: none; } }
 
@@ -759,7 +810,7 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
 .is-stage .period-years { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .is-stage .period-pics { opacity: 0; transition: opacity var(--ease-fade), rotate var(--ease-pile); }
 .is-stage .is-pic .period-pics { opacity: 1; }
-.is-stage .period-body { opacity: 0; translate: 0 14px; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease, translate .3s ease; }
+.is-stage .period-body { opacity: 0; translate: 0 14px; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity var(--time-short) ease, translate var(--time-short) ease; }
 .is-stage .is-on .period-body { opacity: 1; translate: 0 0; transition-duration: .4s; }
 @container path (max-width: 560px) {
   .is-stage .period-body { transform: none; }
@@ -797,7 +848,7 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
 }
 .copy-mail .ic-done { display: none; color: var(--a2-ink); }
 .copy-mail.is-done .ic-copy { display: none; } .copy-mail.is-done .ic-done { display: block; }
-.copy-note { position: absolute; right: 0; bottom: calc(100% + 8px); font: var(--type-chip); color: var(--bg); background: var(--ink); padding: 5px 9px; border-radius: var(--radius-box); white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; pointer-events: none; }
+.copy-note { position: absolute; right: 0; bottom: calc(100% + 8px); font: var(--type-chip); color: var(--bg); background: var(--ink); padding: 5px 9px; border-radius: var(--radius-box); white-space: nowrap; opacity: 0; transform: translateY(4px); transition: opacity var(--time-brief), transform var(--time-brief); pointer-events: none; }
 .copy-note.is-shown { opacity: 1; transform: none; }
 
 /* ---------- small screens ---------- */
@@ -1005,3 +1056,21 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
 /* 12px links: 4.5px each side makes them 24px tall to tap, without moving the lines */
 .credit-line a { position: relative; color: inherit; padding-block: 4.5px; }
 .credit-list .go, .credit-line .go { margin-left: 3px; }
+
+/* ---------- forced colors (Windows High Contrast and the like) ---------- */
+/* The browser replaces every background, border and shadow color with the system's, so a state shown only by a background would
+   vanish: the current page, the pressed toggles, the toggles' sun and moon, the six-box marks, the meters' bars and the dots.
+   The current page and the pressed toggles get an outline (outlines stay); the marks keep their shape and take system colors
+   (forced-color-adjust: none lets them, and nothing else, keep their own colors). A focused one shows the focus ring as usual. */
+@media (forced-colors: active) {
+  .nav a[aria-current="page"], .pill button[aria-pressed="true"] { outline: 2px solid; outline-offset: -3px; }
+  .nav a[aria-current="page"]:focus-visible, .pill button[aria-pressed="true"]:focus-visible { outline-offset: 2px; }
+  .ico-sun, .ico-moon, .dot { forced-color-adjust: none; }
+  .sixmini i, .m-bar span, .m-keys li::before { forced-color-adjust: none; }
+  .sixmini i { box-sizing: border-box; border: 1px solid CanvasText; background: Canvas; }
+  .sixmini i.on, .m-mid, .mk-mid::before { background: CanvasText; }
+  .m-bar { outline: 1px solid CanvasText; outline-offset: -1px; }
+  .m-now, .mk-now::before { background: CanvasText; }
+  .m-gain { background: Highlight; }
+  .m-goal, .mk-goal::before { background: Canvas; border-color: CanvasText; }
+}

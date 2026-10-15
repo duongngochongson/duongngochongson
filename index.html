@@ -7,6 +7,8 @@
 <meta name="description" content="Son Duong is a learning experience designer from Vietnam. This site has Son’s portfolio, career journey and a bit of personal development so far.">
 <meta property="og:title" content="Son Duong · Learning Experience Designer">
 <meta property="og:description" content="Hello, nice to meet you here, I'm Son.">
+<meta property="og:url" content="https://duongngochongson.vercel.app/">
+<link rel="canonical" href="https://duongngochongson.vercel.app/">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -17,8 +19,10 @@
   // Light by default. Dark only when the visitor picked it before (applied before paint, so no flash).
   try { if (localStorage.getItem('theme') === 'dark') document.documentElement.dataset.theme = 'dark'; } catch (e) {}
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- The fonts are in styles.css (@font-face, files in assets/fonts). These three load on every page, so they start with the page. -->
+<link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/merriweather-700-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -67,7 +71,19 @@
     <a class="brand" href="#home"><span class="brand-name">Son Duong</span></a>
     <div class="toggles">
       <div class="pill" role="group" aria-label="Language">
-        <!-- Vietnamese is off for now. To turn it back on, delete "hidden" below. -->
+        <!-- Vietnamese is off for now. To turn it back on, delete "hidden" below, but not before this is translated: the page would
+             show Vietnamese in some places and English in the rest. Done so far (the 38 data-vi strings): the greeting, the nav, the CV
+             button and its note, Home's intro, headings and some skills, the project titles, card labels and main buttons, About's
+             headings and welcome, and the footer heading.
+             Still English only, in the markup:
+             - About: the intro in two parts, the fun fact, the four periods, and the Outside of work text (the owner's own words);
+             - Home and Portfolio: the cards' Problem, Solution and Goal text, and the skills without data-vi;
+             - the two project pages: the summaries, the section headings, the folds, the lists, the captions and the credits;
+             - the pop-up's titles and labels (data-title and data-kicker, on the buttons and the templates);
+             - the alt text of every picture, every aria-label, and the title text of the buttons;
+             - the page titles (data-title on each section) and the description in the head;
+             - the documents in work/, which open in their own pages.
+             site.js has more (the email note and the pop-up titles): see the comment at "Vietnamese only applies" there. -->
         <button type="button" data-lang="vi" aria-pressed="false" title="Tiếng Việt" hidden>VI</button>
         <button type="button" data-lang="en" aria-pressed="true" title="English">EN</button>
       </div>
@@ -81,9 +97,9 @@
   <h1><span data-vi="Xin chào, rất vui được gặp bạn ở đây, ">Hello, nice to meet you here, </span><span class="accent" data-vi="mình là Son.">I'm Son.</span></h1>
 
   <nav class="nav" aria-label="Pages">
-    <a href="#home" data-nav="home"><span class="dot" style="background:var(--a5)"></span><span data-vi="Trang chủ">Home</span></a>
-    <a href="#portfolio" data-nav="portfolio"><span class="dot" style="background:var(--a3)"></span><span>Portfolio</span></a>
-    <a href="#about" data-nav="about"><span class="dot" style="background:var(--a6)"></span><span data-vi="Về mình">About me</span></a>
+    <a href="#home" data-nav="home"><span class="dot" data-accent="a5"></span><span data-vi="Trang chủ">Home</span></a>
+    <a href="#portfolio" data-nav="portfolio"><span class="dot" data-accent="a3"></span><span>Portfolio</span></a>
+    <a href="#about" data-nav="about"><span class="dot" data-accent="a6"></span><span data-vi="Về mình">About me</span></a>
   </nav>
 
   <div class="contact">
@@ -104,19 +120,19 @@
   <div class="block bg-t4 intro">
     <p data-vi="Mình là Son Duong, đến từ Việt Nam. Mình đam mê việc học và việc thiết kế trải nghiệm học tập, và mình muốn giúp mọi người xây kỹ năng và đi qua những thay đổi. Trang web này có portfolio của mình, hành trình sự nghiệp và một chút về quá trình phát triển bản thân của mình cho đến bây giờ.">My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and about designing learning experiences, and I want to help people build skills and navigate change. This site has my portfolio, my career journey and a bit of my personal development so far.</p>
     <div class="guide">
-      <a class="guide-item" href="#portfolio"><span class="dot" style="background:var(--a3)"></span><span class="guide-t">Portfolio</span><span class="guide-go" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowRight"/></svg></span></a>
-      <a class="guide-item" href="#about"><span class="dot" style="background:var(--a6)"></span><span class="guide-t" data-vi="Về mình">About me</span><span class="guide-go" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowRight"/></svg></span></a>
+      <a class="guide-item" href="#portfolio"><span class="dot" data-accent="a3"></span><span class="guide-t">Portfolio</span><span class="guide-go" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowRight"/></svg></span></a>
+      <a class="guide-item" href="#about"><span class="dot" data-accent="a6"></span><span class="guide-t" data-vi="Về mình">About me</span><span class="guide-go" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowRight"/></svg></span></a>
     </div>
   </div>
 
   <!-- Selected work: copies of the cards marked data-selected in the Portfolio list (site.js), so a project is added there only. -->
   <div class="block bg-t3">
-    <h2 class="eyebrow"><svg class="ic" aria-hidden="true" style="color:var(--a3-ink)"><use href="work/frame/icons.svg#i-star"/></svg><span data-vi="DỰ ÁN TIÊU BIỂU">SELECTED WORK</span></h2>
+    <h2 class="eyebrow"><svg class="ic" aria-hidden="true" data-accent="a3"><use href="work/frame/icons.svg#i-star"/></svg><span data-vi="DỰ ÁN TIÊU BIỂU">SELECTED WORK</span></h2>
     <div class="proj-list" data-selected-copy></div>
   </div>
 
   <div class="block bg-surface">
-    <h2 class="eyebrow"><svg class="ic" aria-hidden="true" style="color:var(--a2-ink)"><use href="work/frame/icons.svg#i-components"/></svg><span data-vi="KỸ NĂNG">SKILLSET</span></h2>
+    <h2 class="eyebrow"><svg class="ic" aria-hidden="true" data-accent="a2"><use href="work/frame/icons.svg#i-components"/></svg><span data-vi="KỸ NĂNG">SKILLSET</span></h2>
     <div class="chips chips-row"><span data-vi="Phân tích nhu cầu">Needs analysis</span><span>Action mapping</span><span data-vi="Tình huống phân nhánh">Branching scenarios</span><span data-vi="Đánh giá hiệu quả học tập">Learning evaluation</span><span>Job aids</span><span>Vibe-coded e-learning</span><span>LMS · SCORM &amp; xAPI</span><span data-vi="Phân tích dữ liệu">Data analysis</span></div>
   </div>
 </section>
@@ -131,9 +147,9 @@
       <div class="proj-body">
         <h3 id="proj-wmu" data-vi="Why Members Are Unhappy">Why Members Are Unhappy</h3>
         <dl class="prs">
-          <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd>Members of Cozy, a coworking business, grew less satisfied over one year, especially with the way complaints were handled.</dd></div>
-          <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd>Hear Them Out, a training course for front-desk staff that combines a branching scenario with a software tutorial, plus support tools for staff and members: an updated issue log, signs in the space, a first-day guide and a Wi-Fi checklist.</dd></div>
-          <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd>Raise member satisfaction to 4.0/5 within two quarters, with the complaint score rising from 2.7/5 to 3.8/5.</dd></div>
+          <div><dt data-accent="a1" data-vi="VẤN ĐỀ">PROBLEM</dt><dd>Members of Cozy, a coworking business, grew less satisfied over one year, especially with the way complaints were handled.</dd></div>
+          <div><dt data-accent="a2" data-vi="GIẢI PHÁP">SOLUTION</dt><dd>Hear Them Out, a training course for front-desk staff that combines a branching scenario with a software tutorial, plus support tools for staff and members: an updated issue log, signs in the space, a first-day guide and a Wi-Fi checklist.</dd></div>
+          <div><dt data-accent="a3" data-vi="MỤC TIÊU">GOAL</dt><dd>Raise member satisfaction to 4.0/5 within two quarters, with the complaint score rising from 2.7/5 to 3.8/5.</dd></div>
         </dl>
       </div>
     </a>
@@ -143,9 +159,9 @@
       <div class="proj-body">
         <h3 id="proj-ds" data-vi="Giao hàng khi khách vắng nhà">Not-Home Delivery Stop</h3>
         <dl class="prs">
-          <div><dt style="color:var(--a1-ink)" data-vi="VẤN ĐỀ">PROBLEM</dt><dd>Fewer than half of a parcel company’s stops where nobody answers end with the parcel delivered on the first attempt.</dd></div>
-          <div><dt style="color:var(--a2-ink)" data-vi="GIẢI PHÁP">SOLUTION</dt><dd>Not-Home Delivery Stop, a mobile module of seven short slides in which drivers practice four key actions, plus four job aids and two changes in operations.</dd></div>
-          <div><dt style="color:var(--a3-ink)" data-vi="MỤC TIÊU">GOAL</dt><dd>Raise first-attempt success at those stops from 45% to 65% within three months, with missing-parcel claims at 0.5% or less.</dd></div>
+          <div><dt data-accent="a1" data-vi="VẤN ĐỀ">PROBLEM</dt><dd>Fewer than half of a parcel company’s stops where nobody answers end with the parcel delivered on the first attempt.</dd></div>
+          <div><dt data-accent="a2" data-vi="GIẢI PHÁP">SOLUTION</dt><dd>Not-Home Delivery Stop, a mobile module of seven short slides in which drivers practice four key actions, plus four job aids and two changes in operations.</dd></div>
+          <div><dt data-accent="a3" data-vi="MỤC TIÊU">GOAL</dt><dd>Raise first-attempt success at those stops from 45% to 65% within three months, with missing-parcel claims at 0.5% or less.</dd></div>
         </dl>
       </div>
     </a>
@@ -168,7 +184,7 @@
      <template class="credits"> in the same pop-up. -->
 <section class="page" data-page="portfolio/why-members-are-unhappy" data-title="Why Members Are Unhappy" hidden>
   <article class="case">
-    <div class="hero" style="background:var(--t2)">
+    <div class="hero bg-t2">
       <div class="hero-head">
         <div class="hero-notch"><a class="back" href="#portfolio"><span class="arrow" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowLeft"/></svg></span><span data-vi="Tất cả dự án">All projects</span></a></div>
         <div class="hero-title">
@@ -256,15 +272,15 @@
       <div class="folds">
         <details class="fold">
           <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-phone"/></svg></span><span class="fold-name">A follow-up process and call practice for complaints</span><span class="row-tag"><span class="tag">FOR FRONT-DESK STAFF AND MANAGERS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
-          <div class="fold-body fold-media"><p><b>Hear Them Out</b> trains staff to handle a complaint call. Managers make the follow-up date and the owner required in the log, with a reminder and a check at each shift change.</p><button type="button" class="tile-thumb" data-image="assets/projects/wmu-log-card.webp" data-title="A follow-up process and call practice for complaints" data-kicker="WHY MEMBERS ARE UNHAPPY" aria-label="Enlarge: The log card, a job aid from the course"><img src="assets/projects/wmu-log-card.webp" alt="The log card, a job aid from the course" loading="lazy" style="object-position:50% 0%"></button></div>
+          <div class="fold-body fold-media"><p><b>Hear Them Out</b> trains staff to handle a complaint call. Managers make the follow-up date and the owner required in the log, with a reminder and a check at each shift change.</p><button type="button" class="tile-thumb" data-image="assets/projects/wmu-log-card.webp" data-title="A follow-up process and call practice for complaints" data-kicker="WHY MEMBERS ARE UNHAPPY" aria-label="Enlarge: The log card, a job aid from the course"><img src="assets/projects/wmu-log-card-thumb.webp" alt="The log card, a job aid from the course" loading="lazy" style="object-position:50% 0%"></button></div>
         </details>
         <details class="fold">
           <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-focus"/></svg></span><span class="fold-name">Space rules members can see</span><span class="row-tag"><span class="tag">FOR MEMBERS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
-          <div class="fold-body fold-media"><p>A sign, zone tape and kitchen labels, and Cozy in 60 seconds, eight short screens that show a new member the same rules.</p><button type="button" class="tile-thumb" data-image="assets/projects/wmu-signs.webp" data-title="Space rules members can see" data-kicker="WHY MEMBERS ARE UNHAPPY" aria-label="Enlarge: The Focus sign, the zone bands and the kitchen labels"><img src="assets/projects/wmu-signs.webp" alt="The Focus sign, the zone bands and the kitchen labels" loading="lazy" style="object-position:0% 0%"></button></div>
+          <div class="fold-body fold-media"><p>A sign, zone tape and kitchen labels, and Cozy in 60 seconds, eight short screens that show a new member the same rules.</p><button type="button" class="tile-thumb" data-image="assets/projects/wmu-signs.webp" data-title="Space rules members can see" data-kicker="WHY MEMBERS ARE UNHAPPY" aria-label="Enlarge: The Focus sign, the zone bands and the kitchen labels"><img src="assets/projects/wmu-signs-thumb.webp" alt="The Focus sign, the zone bands and the kitchen labels" loading="lazy" style="object-position:0% 0%"></button></div>
         </details>
         <details class="fold">
           <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-wifi"/></svg></span><span class="fold-name">Set steps for Wi-Fi outages</span><span class="row-tag"><span class="tag">FOR FRONT-DESK STAFF AND OPERATIONS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
-          <div class="fold-body fold-media"><p>A one-page checklist: tell members within <b>10 minutes</b>, send an update every <b>15 minutes</b> and give everyone the same compensation. The backup line also switches on by itself.</p><button type="button" class="tile-thumb" data-image="assets/projects/wmu-wifi-card.webp" data-title="Set steps for Wi-Fi outages" data-kicker="WHY MEMBERS ARE UNHAPPY" aria-label="Enlarge: The Wi-Fi Down card"><img src="assets/projects/wmu-wifi-card.webp" alt="The Wi-Fi Down card" loading="lazy" style="object-position:50% 0%"></button></div>
+          <div class="fold-body fold-media"><p>A one-page checklist: tell members within <b>10 minutes</b>, send an update every <b>15 minutes</b> and give everyone the same compensation. The backup line also switches on by itself.</p><button type="button" class="tile-thumb" data-image="assets/projects/wmu-wifi-card.webp" data-title="Set steps for Wi-Fi outages" data-kicker="WHY MEMBERS ARE UNHAPPY" aria-label="Enlarge: The Wi-Fi Down card"><img src="assets/projects/wmu-wifi-card-thumb.webp" alt="The Wi-Fi Down card" loading="lazy" style="object-position:50% 0%"></button></div>
         </details>
       </div>
     </section>
@@ -281,7 +297,7 @@
           <summary><span class="fold-name">Action map</span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
           <div class="fold-body">
             <div class="shots single">
-              <button type="button" class="shot" data-image="assets/projects/wmu-action-map.webp" data-title="Action map" data-kicker="WHY MEMBERS ARE UNHAPPY"><img src="assets/projects/wmu-action-map.webp" alt="The action map of Hear Them Out, from the goal to the five actions." width="1440" height="900" loading="lazy"></button>
+              <button type="button" class="shot" data-image="assets/projects/wmu-action-map.webp" data-title="Action map" data-kicker="WHY MEMBERS ARE UNHAPPY"><img src="assets/projects/wmu-action-map.webp" alt="The action map of Hear Them Out, from the goal to the five actions." width="1376" height="4300" style="--shape:1376 / 4300" loading="lazy"></button>
             </div>
           </div>
         </details>
@@ -308,9 +324,9 @@
           <summary><span class="fold-name">Screens from the course</span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
           <div class="fold-body">
             <div class="shots">
-              <button type="button" class="shot" data-image="assets/projects/wmu-call.webp" data-title="Call with Sofia" data-kicker="WHY MEMBERS ARE UNHAPPY"><img src="assets/projects/wmu-call.webp" alt="Decision 1 of the call: Sofia's phone, her opening lines, and three replies to choose from, with Son's guide bar." width="1440" height="900" loading="lazy"><span class="shot-cap">The call, at one of its five decisions</span></button>
-              <button type="button" class="shot" data-image="assets/projects/wmu-log.webp" data-title="Log in Cozy Desk" data-kicker="WHY MEMBERS ARE UNHAPPY"><img src="assets/projects/wmu-log.webp" alt="The log entry in Cozy Desk, filled in from the learner's call note." width="1440" height="900" loading="lazy"><span class="shot-cap">Part 2, logging the case from the note</span></button>
-              <button type="button" class="shot" data-image="assets/projects/wmu-debrief.webp" data-title="Debrief" data-kicker="WHY MEMBERS ARE UNHAPPY"><img src="assets/projects/wmu-debrief.webp" alt="The debrief after a weak choice, with a button to rewind to that decision." width="1440" height="900" loading="lazy"><span class="shot-cap">The debrief after a call that went wrong</span></button>
+              <button type="button" class="shot" data-image="assets/projects/wmu-call.webp" data-title="Call with Sofia" data-kicker="WHY MEMBERS ARE UNHAPPY"><img src="assets/projects/wmu-call-800.webp" alt="Decision 1 of the call: Sofia's phone, her opening lines, and three replies to choose from, with Son's guide bar." width="800" height="500" loading="lazy"><span class="shot-cap">The call, at one of its five decisions</span></button>
+              <button type="button" class="shot" data-image="assets/projects/wmu-log.webp" data-title="Log in Cozy Desk" data-kicker="WHY MEMBERS ARE UNHAPPY"><img src="assets/projects/wmu-log-800.webp" alt="The log entry in Cozy Desk, filled in from the learner's call note." width="800" height="500" loading="lazy"><span class="shot-cap">Part 2, logging the case from the note</span></button>
+              <button type="button" class="shot" data-image="assets/projects/wmu-debrief.webp" data-title="Debrief" data-kicker="WHY MEMBERS ARE UNHAPPY"><img src="assets/projects/wmu-debrief-800.webp" alt="The debrief after a weak choice, with a button to rewind to that decision." width="800" height="500" loading="lazy"><span class="shot-cap">The debrief after a call that went wrong</span></button>
             </div>
           </div>
         </details>
@@ -380,7 +396,7 @@
 
 <section class="page" data-page="portfolio/delivery-scenario" data-title="Not-Home Delivery Stop" hidden>
   <article class="case">
-    <div class="hero" style="background:var(--t3)">
+    <div class="hero bg-t3">
       <div class="hero-head">
         <div class="hero-notch"><a class="back" href="#portfolio"><span class="arrow" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowLeft"/></svg></span><span data-vi="Tất cả dự án">All projects</span></a></div>
         <div class="hero-title">
@@ -434,7 +450,7 @@
       </div>
       <p class="keyline">With action mapping, I found seven barriers (five for training and two for operations) behind four key actions:</p>
       <ul><li>Follow the steps in order</li><li>Choose an allowed option</li><li>Agree on an option by phone</li><li>Leave the parcel in a safe place</li></ul>
-      <div class="method my-note"><div><div class="lab">HOW I SORTED THE BARRIERS</div><p>Cathy Moore sorts barriers into environment, knowledge, skill and motivation. Training helps with knowledge and skill. Stop notes that are hard to find, or a scorecard that rewards skipping the call, need a change in the work.</p></div><div class="split" role="img" aria-label="7 barriers: 5 for training, 2 for operations"><span class="lab" aria-hidden="true">7 BARRIERS</span><span class="sp-bar" aria-hidden="true"><span class="sp-train"><i></i><i></i><i></i><i></i><i></i><em>Training</em></span><span class="sp-ops"><i></i><i></i><em>Operations</em></span></span></div></div>
+      <div class="method my-note"><div><div class="lab">HOW I SORTED THE BARRIERS</div><p>Cathy Moore sorts barriers into environment, knowledge, skill and motivation. Training helps with knowledge and skill. Stop notes that are hard to find, or a scorecard that rewards skipping the call, need a change in the work.</p></div><div class="split" role="img" aria-label="7 barriers: 5 for training, 2 for operations"><span class="lab" aria-hidden="true">7 BARRIERS</span><span class="sp-bar" aria-hidden="true"><span class="sp-train"><i></i><i></i><i></i><i></i><i></i><em>Training</em></span><span><i></i><i></i><em>Operations</em></span></span></div></div>
       <div class="folds">
         <details class="fold">
           <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-route"/></svg></span><span class="fold-name">Follow the steps in order</span><span class="row-tag"><span class="tag">MOTIVATION + KNOWLEDGE</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
@@ -463,11 +479,11 @@
       <div class="folds">
         <details class="fold">
           <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-mobile"/></svg></span><span class="fold-name">Practice for the four actions</span><span class="row-tag"><span class="tag">FOR DRIVERS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
-          <div class="fold-body fold-media"><p><b>Not-Home Delivery Stop</b>: seven slides on a phone, with one question per screen. Six practice the four actions, and one opens the job aids.</p><button type="button" class="tile-thumb" data-image="assets/projects/ds-screen.webp" data-title="Practice for the four actions" data-kicker="NOT-HOME DELIVERY STOP" aria-label="Enlarge: A slide of the module, with its parts numbered"><img src="assets/projects/ds-screen.webp" alt="A slide of the module, with its parts numbered" loading="lazy" style="object-position:50% 0%"></button></div>
+          <div class="fold-body fold-media"><p><b>Not-Home Delivery Stop</b>: seven slides on a phone, with one question per screen. Six practice the four actions, and one opens the job aids.</p><button type="button" class="tile-thumb" data-image="assets/projects/ds-screen.webp" data-title="Practice for the four actions" data-kicker="NOT-HOME DELIVERY STOP" aria-label="Enlarge: A slide of the module, with its parts numbered"><img src="assets/projects/ds-screen-thumb.webp" alt="A slide of the module, with its parts numbered" loading="lazy" style="object-position:50% 0%"></button></div>
         </details>
         <details class="fold">
           <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-cases"/></svg></span><span class="fold-name">Job aids for what is hard to remember</span><span class="row-tag"><span class="tag">FOR DRIVERS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
-          <div class="fold-body fold-media"><p>The Sequence, Handling codes, Safe place and Call moves cards. Drivers open them on slide 2, and again from any later slide.</p><button type="button" class="tile-thumb" data-image="assets/projects/ds-job-aid.webp" data-title="Job aids for what is hard to remember" data-kicker="NOT-HOME DELIVERY STOP" aria-label="Enlarge: The Sequence card, a job aid"><img src="assets/projects/ds-job-aid.webp" alt="The Sequence card, a job aid" loading="lazy" style="object-position:50% 0%"></button></div>
+          <div class="fold-body fold-media"><p>The Sequence, Handling codes, Safe place and Call moves cards. Drivers open them on slide 2, and again from any later slide.</p><button type="button" class="tile-thumb" data-image="assets/projects/ds-job-aid.webp" data-title="Job aids for what is hard to remember" data-kicker="NOT-HOME DELIVERY STOP" aria-label="Enlarge: The Sequence card, a job aid"><img src="assets/projects/ds-job-aid-thumb.webp" alt="The Sequence card, a job aid" loading="lazy" style="object-position:50% 0%"></button></div>
         </details>
         <details class="fold">
           <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-layout"/></svg></span><span class="fold-name">Two changes in operations for what training cannot fix</span><span class="row-tag"><span class="tag">FOR OPERATIONS</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
@@ -487,7 +503,7 @@
           <summary><span class="fold-name">Action map</span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
           <div class="fold-body">
             <div class="shots single">
-              <button type="button" class="shot" data-image="assets/projects/ds-action-map.webp" data-title="Action map" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-action-map.webp" alt="The action map of Not-Home Delivery Stop, from the goal to the four actions, with each action's barriers, practice and minimum information." width="1440" height="900" loading="lazy"></button>
+              <button type="button" class="shot" data-image="assets/projects/ds-action-map.webp" data-title="Action map" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-action-map.webp" alt="The action map of Not-Home Delivery Stop, from the goal to the four actions, with each action's barriers, practice and minimum information." width="1376" height="4078" style="--shape:1376 / 4078" loading="lazy"></button>
             </div>
           </div>
         </details>
@@ -501,9 +517,9 @@
           <summary><span class="fold-name">Screens from the module</span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
           <div class="fold-body">
             <div class="shots">
-              <button type="button" class="shot" data-image="assets/projects/ds-sequence.webp" data-title="Put the steps in order" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-sequence.webp" alt="Slide 1: the six steps of a not-home stop, to drag into order." width="1440" height="900" loading="lazy"><span class="shot-cap">Slide 1, putting the steps in order</span></button>
-              <button type="button" class="shot" data-image="assets/projects/ds-call.webp" data-title="Take the call" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-call.webp" alt="Slide 4: the phone call with Ms. Rivera, with captions and a Play button on each line." width="1440" height="900" loading="lazy"><span class="shot-cap">Slide 4, the phone call with captions</span></button>
-              <button type="button" class="shot" data-image="assets/projects/ds-safe-place.webp" data-title="Find the safe place" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-safe-place.webp" alt="Slide 6: a drawing of a house with numbered spots to choose the safe place." width="1440" height="900" loading="lazy"><span class="shot-cap">Slide 6, finding the safe place</span></button>
+              <button type="button" class="shot" data-image="assets/projects/ds-sequence.webp" data-title="Put the steps in order" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-sequence-800.webp" alt="Slide 1: the six steps of a not-home stop, to drag into order." width="800" height="500" loading="lazy"><span class="shot-cap">Slide 1, putting the steps in order</span></button>
+              <button type="button" class="shot" data-image="assets/projects/ds-call.webp" data-title="Take the call" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-call-800.webp" alt="Slide 4: the phone call with Ms. Rivera, with captions and a Play button on each line." width="800" height="500" loading="lazy"><span class="shot-cap">Slide 4, the phone call with captions</span></button>
+              <button type="button" class="shot" data-image="assets/projects/ds-safe-place.webp" data-title="Find the safe place" data-kicker="NOT-HOME DELIVERY STOP"><img src="assets/projects/ds-safe-place-800.webp" alt="Slide 6: a drawing of a house with numbered spots to choose the safe place." width="800" height="500" loading="lazy"><span class="shot-cap">Slide 6, finding the safe place</span></button>
             </div>
           </div>
         </details>
@@ -587,7 +603,7 @@
   <div class="stage-track" data-stage="intro">
     <div class="stage-pin">
       <div class="block bg-surface about-intro stage-card">
-        <h2 class="eyebrow"><svg class="ic" aria-hidden="true" style="color:var(--a1-ink)"><use href="work/frame/icons.svg#i-thought"/></svg><span data-vi="VẬY TRANG NÀY NÓI VỀ ĐIỀU GÌ?">So, what is this page about?</span></h2>
+        <h2 class="eyebrow"><svg class="ic" aria-hidden="true" data-accent="a1"><use href="work/frame/icons.svg#i-thought"/></svg><span data-vi="VẬY TRANG NÀY NÓI VỀ ĐIỀU GÌ?">So, what is this page about?</span></h2>
         <div class="stage-view">
           <div class="stage-frame">
             <div class="stage-item intro-part">
@@ -613,6 +629,8 @@
   <!-- The four periods. Pictures: put one file per period in assets/about/ with these names (any shape; each is cropped to the window of an old instant print, 4 wide by 5 high, so a portrait photo fits best):
          2019.webp, 2020-2024.webp, 2025-2026.webp, 2026-now.webp
        Until a file is there, the print shows a placeholder. When you add a picture, also write its alt text in the img below.
+       The first period's img has its src; the others have data-src, which site.js turns into src when the period comes in (or for all
+       of them when there is no stage), so a visitor who never reaches the periods does not download their photos.
        They are a plain list. site.js turns the list into a sticky stage with a split-flap board for the years (not with reduced motion). -->
   <div class="stage-track" data-stage="path">
     <div class="stage-pin">
@@ -628,7 +646,7 @@
               </div>
             </li>
             <li class="period stage-item" data-group>
-              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2020-2024-1-large.webp" data-title="Exploring different paths" data-kicker="ABOUT ME · 2020 - 2024" aria-label="Open photo 1 of 3: Me working on a laptop in a café"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2020-2024-1.webp" alt="Me working on a laptop in a café" loading="lazy" decoding="async" style="object-position:50% 40%"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></button><button type="button" class="period-pic" style="--i:1" data-image="assets/about/2020-2024-2-large.webp" data-title="Exploring different paths" data-kicker="ABOUT ME · 2020 - 2024" aria-label="Open photo 2 of 3: Me waving at a table during a team dinner"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2020-2024-2.webp" alt="Me waving at a table during a team dinner" loading="lazy" decoding="async" style="object-position:38% 40%"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></button><button type="button" class="period-pic" style="--i:2" data-image="assets/about/2020-2024-3-large.webp" data-title="Exploring different paths" data-kicker="ABOUT ME · 2020 - 2024" aria-label="Open photo 3 of 3: Me speaking with a microphone at an event at FPT University"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2020-2024-3.webp" alt="Me speaking with a microphone at an event at FPT University" loading="lazy" decoding="async" style="object-position:50% 35%"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></button></div>
+              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2020-2024-1-large.webp" data-title="Exploring different paths" data-kicker="ABOUT ME · 2020 - 2024" aria-label="Open photo 1 of 3: Me working on a laptop in a café"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img data-src="assets/about/2020-2024-1.webp" alt="Me working on a laptop in a café" decoding="async" style="object-position:50% 40%"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></button><button type="button" class="period-pic" style="--i:1" data-image="assets/about/2020-2024-2-large.webp" data-title="Exploring different paths" data-kicker="ABOUT ME · 2020 - 2024" aria-label="Open photo 2 of 3: Me waving at a table during a team dinner"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img data-src="assets/about/2020-2024-2.webp" alt="Me waving at a table during a team dinner" decoding="async" style="object-position:38% 40%"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></button><button type="button" class="period-pic" style="--i:2" data-image="assets/about/2020-2024-3-large.webp" data-title="Exploring different paths" data-kicker="ABOUT ME · 2020 - 2024" aria-label="Open photo 3 of 3: Me speaking with a microphone at an event at FPT University"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img data-src="assets/about/2020-2024-3.webp" alt="Me speaking with a microphone at an event at FPT University" decoding="async" style="object-position:50% 35%"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></button></div>
               <div class="period-body">
                 <h3 class="period-title"><span class="period-years">2020 - 2024</span> <span class="period-name">Exploring different paths</span></h3>
                 <p>After that, I switched my major to Business Administration, and my university experience got a lot better. I had more opportunities to interact and communicate with others through my studies, and I gained a big-picture understanding of how businesses operate.</p>
@@ -637,7 +655,7 @@
               </div>
             </li>
             <li class="period stage-item" data-group>
-              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2025-2026-1-large.webp" data-title="Finding something meaningful" data-kicker="ABOUT ME · 2025 - 2026" aria-label="Open photo 1 of 3: Me teaching a class of students at a public school"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2025-2026-1.webp" alt="Me teaching a class of students at a public school" loading="lazy" decoding="async" style="object-position:70% 45%"><span class="pic-stamp" aria-hidden="true">2025 - 2026</span></button><button type="button" class="period-pic" style="--i:1" data-image="assets/about/2025-2026-2-large.webp" data-title="Finding something meaningful" data-kicker="ABOUT ME · 2025 - 2026" aria-label="Open photo 2 of 3: Me with the team on a hill in the highlands"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2025-2026-2.webp" alt="Me with the team on a hill in the highlands" loading="lazy" decoding="async" style="object-position:50% 75%"><span class="pic-stamp" aria-hidden="true">2025 - 2026</span></button><button type="button" class="period-pic" style="--i:2" data-image="assets/about/2025-2026-3-large.webp" data-title="Finding something meaningful" data-kicker="ABOUT ME · 2025 - 2026" aria-label="Open photo 3 of 3: Me with children at a community activity"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2025-2026-3.webp" alt="Me with children at a community activity" loading="lazy" decoding="async" style="object-position:62% 35%"><span class="pic-stamp" aria-hidden="true">2025 - 2026</span></button></div>
+              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2025-2026-1-large.webp" data-title="Finding something meaningful" data-kicker="ABOUT ME · 2025 - 2026" aria-label="Open photo 1 of 3: Me teaching a class of students at a public school"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img data-src="assets/about/2025-2026-1.webp" alt="Me teaching a class of students at a public school" decoding="async" style="object-position:70% 45%"><span class="pic-stamp" aria-hidden="true">2025 - 2026</span></button><button type="button" class="period-pic" style="--i:1" data-image="assets/about/2025-2026-2-large.webp" data-title="Finding something meaningful" data-kicker="ABOUT ME · 2025 - 2026" aria-label="Open photo 2 of 3: Me with the team on a hill in the highlands"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img data-src="assets/about/2025-2026-2.webp" alt="Me with the team on a hill in the highlands" decoding="async" style="object-position:50% 75%"><span class="pic-stamp" aria-hidden="true">2025 - 2026</span></button><button type="button" class="period-pic" style="--i:2" data-image="assets/about/2025-2026-3-large.webp" data-title="Finding something meaningful" data-kicker="ABOUT ME · 2025 - 2026" aria-label="Open photo 3 of 3: Me with children at a community activity"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img data-src="assets/about/2025-2026-3.webp" alt="Me with children at a community activity" decoding="async" style="object-position:62% 35%"><span class="pic-stamp" aria-hidden="true">2025 - 2026</span></button></div>
               <div class="period-body">
                 <h3 class="period-title"><span class="period-years">2025 - 2026</span> <span class="period-name">Finding something meaningful</span></h3>
                 <p>And that’s where education - and instructional design in particular - came in!</p>
@@ -649,7 +667,7 @@
               </div>
             </li>
             <li class="period stage-item" data-group>
-              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2026-now-1-large.webp" data-title="Looking for the next chapter" data-kicker="ABOUT ME · 2026 - NOW" aria-label="Open the photo: A portrait of me"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2026-now-1.webp" alt="A portrait of me" loading="lazy" decoding="async" style="object-position:48% 35%"><span class="pic-stamp" aria-hidden="true">2026 - Now</span></button></div>
+              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2026-now-1-large.webp" data-title="Looking for the next chapter" data-kicker="ABOUT ME · 2026 - NOW" aria-label="Open the photo: A portrait of me"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img data-src="assets/about/2026-now-1.webp" alt="A portrait of me" decoding="async" style="object-position:48% 35%"><span class="pic-stamp" aria-hidden="true">2026 - Now</span></button></div>
               <div class="period-body">
                 <h3 class="period-title"><span class="period-years">2026 - Now</span> <span class="period-name">Looking for the next chapter</span></h3>
                 <p>As I look toward the next chapter of my career, I want to put my skills to work designing meaningful learning experiences.</p>
@@ -665,7 +683,7 @@
   </div>
 
   <div class="block bg-t2 about-outside" data-reveal="rise" data-after="path">
-    <p>Outside of work, I enjoy watching movies <span class="emoji" aria-hidden="true">🎬</span>, playing board games <span class="emoji" aria-hidden="true">🎲</span>, and trying to figure out the secrets behind magic tricks <span class="emoji" aria-hidden="true">🪄</span>. I guess I’ve always enjoyed exploring how things work, whether it’s a learning experience, a good story, or a clever illusion. If you’re into any of these, we might have something to talk about!</p>
+    <p>Outside of work, I enjoy watching movies <span aria-hidden="true">🎬</span>, playing board games <span aria-hidden="true">🎲</span>, and trying to figure out the secrets behind magic tricks <span aria-hidden="true">🪄</span>. I guess I’ve always enjoyed exploring how things work, whether it’s a learning experience, a good story, or a clever illusion. If you’re into any of these, we might have something to talk about!</p>
   </div>
   <!-- A small arrow at the foot of the window while there is more below and no other arrow is in view (site.js), until the page's end -->
   <span class="page-more" aria-hidden="true"><span class="page-more-dot"><svg class="ic"><use href="work/frame/icons.svg#i-arrowDown"/></svg></span></span>
