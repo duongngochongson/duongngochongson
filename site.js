@@ -763,6 +763,23 @@
       if (waiting.length) nudge();
       const p = Math.min(1, Math.max(0, scrollY / maxY)).toFixed(4);
       if (fill && p !== drawn) { drawn = p; fill.style.transform = `scaleX(${p})`; }
+      arrow();
+    }
+    // The page's own arrow (index.html, .page-more): shown while there is more below and none of the other arrows (the welcome's,
+    // a stage's) is in view, so there is always one until the page's end. Looked at as the page scrolls, and now and then, since a
+    // stage's arrow also comes and goes on its own.
+    const pageMore = page.querySelector('.page-more');
+    const arrows = [...page.querySelectorAll('.hero-more, .stage-more')];
+    let arrowTimer = 0;
+    function arrow() {
+      if (!pageMore) return;
+      // (a stage's arrow counts by what it is going to: shown while its stage is live, or while the intro asks for one more scroll)
+      const on = a => a.classList.contains('hero-more') ? +getComputedStyle(a).opacity >= .4 : a.closest('.stage-track').matches('.is-stage.is-live, .after-hint.wants-more');
+      const other = arrows.some(a => {
+        const r = a.getBoundingClientRect();
+        return r.height > 0 && r.bottom > 0 && r.top < innerHeight && on(a);
+      });
+      pageMore.classList.toggle('is-shown', open && scrollY < maxY - 48 && !other);
     }
     const onScroll = () => { if (!frameId) frameId = requestAnimationFrame(render); };
     const bail = e => { if (e.matches && open) stages.forEach(s => s.running() && s.finish(s.wanted())); };  // reduced motion turned on, or the window got too short: plain content, with the part being read kept in place
@@ -780,6 +797,7 @@
       motion.addEventListener('change', bail);
       tight.addEventListener('change', bail);
       [page, ...stages.flatMap(s => [s.track.querySelector('.stage-pin'), ...s.items])].forEach(n => resizes.observe(n));
+      arrowTimer = setInterval(arrow, 400);
     }
     function leave() {
       unhold();
@@ -793,6 +811,8 @@
       cancelAnimationFrame(frameId);
       cancelAnimationFrame(again);
       frameId = again = 0;
+      clearInterval(arrowTimer);
+      if (pageMore) pageMore.classList.remove('is-shown');
     }
     return { enter, leave };
   })();

@@ -697,12 +697,19 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .is-stage .stage-item.is-on { pointer-events: auto; }
 .is-stage .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: .45; pointer-events: none; transition: opacity var(--ease-fade); }
 .is-stage .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
-.is-stage:not(.is-live) .stage-more, .is-stage.is-last .stage-more { opacity: 0; }
+.is-stage:not(.is-live) .stage-more { opacity: 0; }
 /* once the intro is one plain block, its arrow comes back (after a moment) until the visitor scrolls on to the fun fact */
 .after-hint .stage-card { position: relative; }
 .after-hint .stage-more { display: block; position: absolute; left: 50%; bottom: 7px; width: 16px; height: 16px; margin-left: -8px; color: var(--ink); opacity: 0; pointer-events: none; transition: opacity var(--ease-fade); }
 .after-hint .stage-more .ic { --ic: 16; animation: more-bob 1.9s ease-in-out infinite; }
 .after-hint.wants-more .stage-more { opacity: .45; transition-delay: .6s; }
+/* the page's own arrow: sticky at the foot of the window, in the middle of the page's column, on a small round of the page's
+   ground so it reads over the words; shown by site.js (.is-shown) while there is more below and no other arrow is in view */
+.page-more { position: sticky; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: block; height: 0; z-index: 5; pointer-events: none; }
+.page-more-dot { position: absolute; left: 50%; bottom: 0; width: 28px; height: 28px; margin-left: -14px; border-radius: var(--radius-round);
+  background: var(--bg); box-shadow: var(--ring); color: var(--ink); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity var(--ease-fade); }
+.page-more-dot .ic { --ic: 16; opacity: .55; animation: more-bob 1.9s ease-in-out infinite; }
+.page-more.is-shown .page-more-dot { opacity: 1; }
 @keyframes more-bob { 0%, 100% { transform: translateY(-2px); } 50% { transform: translateY(3px); } }
 
 /* the intro: the heading stays, the part under it changes. The words are not faded in: they are decoded (below). */
