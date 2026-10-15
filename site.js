@@ -691,12 +691,14 @@
       if (img.complete) (img.naturalWidth ? ok : no)();
     });
     // A pile opens as far as the words beside it are tall: the room under the top print is shared between the others
-    // (at least 18px each, so a short period still shows its photos apart). styles.css, .period-pics and --fan.
+    // (at least 18px each, so a short period still shows its photos apart, and at most about half a print, so a long period's
+    // pile does not spread too far). styles.css, .period-pics and --fan.
     const piles = [...page.querySelectorAll('.period-pics')].filter(p => p.children.length > 1);
     const fan = () => piles.forEach(pile => {
       const words = pile.closest('.period').querySelector('.period-body');
       const room = Math.max(0, words.offsetHeight - pile.offsetHeight);
-      pile.style.setProperty('--fan', Math.max(18, Math.round(room / (pile.children.length - 1))) + 'px');
+      const most = Math.round(pile.offsetHeight * .45);
+      pile.style.setProperty('--fan', Math.min(most, Math.max(18, Math.round(room / (pile.children.length - 1)))) + 'px');
     });
     if (piles.length && 'ResizeObserver' in window) {
       const sizes = new ResizeObserver(fan);
