@@ -181,13 +181,23 @@
       move(by);
     }
     document.addEventListener('keydown', e => { if (dialog.open) arrowKey(e); });
+    // A swipe across a picture moves too: sideways by 50px or more, and more sideways than up or down.
+    let swipe = null;
+    body.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && body.querySelector('.doc-picture')) swipe = { x: e.clientX, y: e.clientY }; });
+    body.addEventListener('pointerup', e => {
+      if (!swipe) return;
+      const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y;
+      swipe = null;
+      if (Math.abs(dx) >= 50 && Math.abs(dx) > Math.abs(dy) * 1.5) move(dx < 0 ? 1 : -1);
+    });
+    body.addEventListener('pointercancel', () => { swipe = null; });
     prev.addEventListener('click', () => move(-1));
     next.addEventListener('click', () => move(1));
 
     document.addEventListener('click', e => {
       const el = e.target.closest(items);
       if (!el) return;
-      const section = el.closest('section.cs');  // folds count too: a closed fold's buttons are still in the section
+      const section = el.closest('section.cs, [data-group]');  // folds count too: a closed fold's buttons are still in the section
       group = section ? [...section.querySelectorAll(items)] : [el];
       at = group.indexOf(el);
       opener = el;
@@ -460,15 +470,6 @@
       const cells = [];
       let flaps = [];
 
-      // The pictures: a period's picture shows when its file loads; if there is none, the placeholder stays and the img is dropped.
-      track.querySelectorAll('.period-pic img').forEach(img => {
-        const ok = () => img.parentElement.classList.add('has-photo');
-        const no = () => img.remove();
-        img.addEventListener('load', ok);
-        img.addEventListener('error', no);
-        if (img.complete) (img.naturalWidth ? ok : no)();
-      });
-
       // A cell flips to its new character: the top flap folds down, the bottom flap drops.
       function build() {
         board.replaceChildren();
@@ -675,6 +676,28 @@
         track.dispatchEvent(new Event('stagedone'));  // (what waits for this stage can come in now)
       }
       return { track, items, start, stop, measure, update, finish, running: () => running, wanted: () => want };
+    }
+
+    // ---- the periods' photos ----
+    // A photo shows when its file loads; if it does not, the print keeps its placeholder and the img is dropped.
+    page.querySelectorAll('.period-pic img').forEach(img => {
+      const ok = () => img.parentElement.classList.add('has-photo');
+      const no = () => img.remove();
+      img.addEventListener('load', ok);
+      img.addEventListener('error', no);
+      if (img.complete) (img.naturalWidth ? ok : no)();
+    });
+    // A pile opens as far as the words beside it are tall: the room under the top print is shared between the others
+    // (at least 18px each, so a short period still shows its photos apart). styles.css, .period-pics and --fan.
+    const piles = [...page.querySelectorAll('.period-pics')].filter(p => p.children.length > 1);
+    const fan = () => piles.forEach(pile => {
+      const words = pile.closest('.period').querySelector('.period-body');
+      const room = Math.max(0, words.offsetHeight - pile.offsetHeight);
+      pile.style.setProperty('--fan', Math.max(18, Math.round(room / (pile.children.length - 1))) + 'px');
+    });
+    if (piles.length && 'ResizeObserver' in window) {
+      const sizes = new ResizeObserver(fan);
+      piles.forEach(pile => { sizes.observe(pile); sizes.observe(pile.closest('.period').querySelector('.period-body')); });
     }
 
     const stages = [...page.querySelectorAll('[data-stage]')].map(stage);

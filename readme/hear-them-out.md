@@ -1,5 +1,7 @@
 # Why Members Are Unhappy
 
+_Concept project_
+
 Discover Hear Them Out, a **scenario-based course** that trains front-desk staff at Cozy, a coworking business, in what a **root-cause analysis** showed they needed: handling a complaint call, then following up with a clear process so no complaint gets missed. Besides the course, other support tools help Cozy solve members’ problems and win back their satisfaction: signs and a first-day guide (to show members the space rules), a Wi-Fi checklist (to handle every outage the same way) and an updated issue log (to give every case a next step, an owner and a date).
 
 This repository holds the code of Hear Them Out, the course this project led to.

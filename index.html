@@ -154,7 +154,7 @@
 
 <!-- ---------- PORTFOLIO: one page per project ----------
      The same template for every project:
-     - the hero: All projects in a notch cut from its top-left corner, the title under it, the project art on the right;
+     - the hero: All projects in a notch cut from its top-left corner, the title and its small Concept project tag under it, the project art on the right;
      - the two-sentence summary (p.sum), the main buttons (.cta-row), then the three summary boxes (.summary: Audience,
        Responsibilities, Tools, each a .sum-box with a .cs-title and a <ul>);
      - full-width sections (section.cs): Problem, Goal, Finding the root causes, Solution, the course or module itself,
@@ -173,6 +173,7 @@
         <div class="hero-notch"><a class="back" href="#portfolio"><span class="arrow" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowLeft"/></svg></span><span data-vi="Tất cả dự án">All projects</span></a></div>
         <div class="hero-title">
           <h2 data-vi="Why Members Are Unhappy">Why Members Are Unhappy</h2>
+          <p class="tag hero-tag">Concept project</p>
         </div>
       </div>
       <div class="hero-art art-cozy" aria-hidden="true"><svg viewBox="46 53.5 148 41"><use href="#art-cozy" width="240" height="148"/></svg></div>
@@ -384,6 +385,7 @@
         <div class="hero-notch"><a class="back" href="#portfolio"><span class="arrow" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-arrowLeft"/></svg></span><span data-vi="Tất cả dự án">All projects</span></a></div>
         <div class="hero-title">
           <h2 data-vi="Giao hàng khi khách vắng nhà">Not-Home Delivery Stop</h2>
+          <p class="tag hero-tag">Concept project</p>
         </div>
       </div>
       <div class="hero-art art-delivery" aria-hidden="true"><svg viewBox="52 25 136 98"><use href="#art-delivery" width="240" height="148"/></svg></div>
@@ -618,15 +620,15 @@
         <div class="board" aria-hidden="true"></div>
         <div class="stage-view">
           <ol class="periods stage-frame">
-            <li class="period stage-item">
-              <div class="period-pic"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2019.webp" alt="" loading="lazy" decoding="async"><span class="pic-stamp" aria-hidden="true">2019</span></div>
+            <li class="period stage-item" data-group>
+              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2019-1-large.webp" data-title="The first clue" data-kicker="ABOUT ME · 2019" aria-label="Open the photo: A selfie of me at home"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2019-1.webp" alt="A selfie of me at home" loading="lazy" decoding="async" style="object-position:50% 40%"><span class="pic-stamp" aria-hidden="true">2019</span></button></div>
               <div class="period-body">
                 <h3 class="period-title"><span class="period-years">2019</span> <span class="period-name">The first clue</span></h3>
                 <p>I started my journey into adulthood without really knowing what I liked, so I chose electrical and electronics engineering. It wasn’t the best experience, but at least it gave me my first clue: I needed to think more carefully about what I actually wanted to do.</p>
               </div>
             </li>
-            <li class="period stage-item">
-              <div class="period-pic"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2020-2024.webp" alt="" loading="lazy" decoding="async"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></div>
+            <li class="period stage-item" data-group>
+              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2020-2024-1-large.webp" data-title="Exploring different paths" data-kicker="ABOUT ME · 2020 - 2024" aria-label="Open photo 1 of 2: Me speaking with a microphone at an event at FPT University"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2020-2024-1.webp" alt="Me speaking with a microphone at an event at FPT University" loading="lazy" decoding="async" style="object-position:50% 35%"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></button><button type="button" class="period-pic" style="--i:1" data-image="assets/about/2020-2024-2-large.webp" data-title="Exploring different paths" data-kicker="ABOUT ME · 2020 - 2024" aria-label="Open photo 2 of 2: Me waving at a table during a team dinner"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2020-2024-2.webp" alt="Me waving at a table during a team dinner" loading="lazy" decoding="async" style="object-position:38% 40%"><span class="pic-stamp" aria-hidden="true">2020 - 2024</span></button></div>
               <div class="period-body">
                 <h3 class="period-title"><span class="period-years">2020 - 2024</span> <span class="period-name">Exploring different paths</span></h3>
                 <p>After that, I switched my major to Business Administration, and my university experience got a lot better. I had more opportunities to interact and communicate with others through my studies, and I gained a big-picture understanding of how businesses operate.</p>
@@ -634,8 +636,8 @@
                 <p>Even so, something still felt missing. I wanted to do something I genuinely believed was meaningful.</p>
               </div>
             </li>
-            <li class="period stage-item">
-              <div class="period-pic"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2025-2026.webp" alt="" loading="lazy" decoding="async"><span class="pic-stamp" aria-hidden="true">2025 - 2026</span></div>
+            <li class="period stage-item" data-group>
+              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2025-2026-1-large.webp" data-title="Finding something meaningful" data-kicker="ABOUT ME · 2025 - 2026" aria-label="Open the photo: Me teaching a class of students at a public school"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2025-2026-1.webp" alt="Me teaching a class of students at a public school" loading="lazy" decoding="async" style="object-position:70% 45%"><span class="pic-stamp" aria-hidden="true">2025 - 2026</span></button></div>
               <div class="period-body">
                 <h3 class="period-title"><span class="period-years">2025 - 2026</span> <span class="period-name">Finding something meaningful</span></h3>
                 <p>And that’s where education - and instructional design in particular - came in!</p>
@@ -646,8 +648,8 @@
                 <p>These experiences gave me a much more holistic picture of what designing a learning experience actually involves.</p>
               </div>
             </li>
-            <li class="period stage-item">
-              <div class="period-pic"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2026-now.webp" alt="" loading="lazy" decoding="async"><span class="pic-stamp" aria-hidden="true">2026 - Now</span></div>
+            <li class="period stage-item" data-group>
+              <div class="period-pics"><button type="button" class="period-pic" style="--i:0" data-image="assets/about/2026-now-1-large.webp" data-title="Looking for the next chapter" data-kicker="ABOUT ME · 2026 - NOW" aria-label="Open the photo: Me working on a laptop in a café"><span class="pic-pin" aria-hidden="true"></span><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-camera"/></svg><img src="assets/about/2026-now-1.webp" alt="Me working on a laptop in a café" loading="lazy" decoding="async" style="object-position:50% 40%"><span class="pic-stamp" aria-hidden="true">2026 - Now</span></button></div>
               <div class="period-body">
                 <h3 class="period-title"><span class="period-years">2026 - Now</span> <span class="period-name">Looking for the next chapter</span></h3>
                 <p>As I look toward the next chapter of my career, I want to put my skills to work designing meaningful learning experiences.</p>

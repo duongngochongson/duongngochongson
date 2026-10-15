@@ -82,6 +82,7 @@
   /* motion */
   --ease-press: .25s ease;  /* hover, press, a chevron */
   --ease-fade: .5s ease;    /* an arrow or picture fading */
+  --ease-pile: .55s cubic-bezier(.3, .7, .3, 1);  /* a pile of prints opening and closing */
   /* objects that keep their own colors: the instant prints, the pin, the date stamp, the project art, the split-flap board */
   --print-paper: #f8f5ee; --print-window: #e7e1d5; --print-ink: rgba(26,24,21,.55);
   --print-shade: 0 1px 2px rgba(0,0,0,.14), 0 10px 22px -6px rgba(0,0,0,.22);
@@ -368,9 +369,10 @@ p, dd, li {
 .hero-notch::before, .hero-notch::after { content: ""; position: absolute; width: 12px; height: 12px; background: radial-gradient(circle at 100% 100%, transparent 11.5px, var(--bg) 12px); pointer-events: none; }
 .hero-notch::before { top: 0; left: 100%; }
 .hero-notch::after { top: 100%; left: 0; }
-/* the title */
+/* the title, and under it the small "Concept project" tag (a .tag pill) */
 .hero-title { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .case .hero-head h2 { font: var(--type-page); letter-spacing: .03em; text-transform: uppercase; }
+.hero-tag { text-transform: uppercase; background: var(--card); }
 .hero-art { flex: none; width: clamp(170px, 36%, 280px); align-self: center; }
 .hero-art svg { display: block; width: 100%; height: auto; }
 .hero-art.art-delivery { width: clamp(110px, 20%, 150px); }
@@ -614,15 +616,27 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .period { display: grid; grid-template-columns: var(--pic) minmax(0, 1fr); gap: 20px clamp(20px, 4cqw, 36px); align-items: start; padding: 28px 0; }
 .period + .period { border-top: var(--border-hair); }
 .period:first-child { padding-top: 0; } .period:last-child { padding-bottom: 0; }
-/* the picture: an old instant print, a white frame with a thick bottom edge, a little tilted. Until assets/about/<period>.webp
-   loads, the window shows a soft fill and a camera; the photo gets a faded film look and the period's years as an orange date stamp */
-.period-pic { --w: var(--pic); position: relative; width: var(--w); height: calc(var(--w) * 1.365); box-sizing: border-box; border-radius: var(--print-corner);
-  background: var(--print-paper); box-shadow: var(--print-shade); color: var(--print-ink); rotate: -2deg; }
-/* each print sits a little differently, as if dropped on the desk */
-.period:nth-child(4n+1) .period-pic { rotate: -4deg; translate: 2px 4px; }
-.period:nth-child(4n+2) .period-pic { rotate: 3.2deg; translate: 6px 0; }
-.period:nth-child(4n+3) .period-pic { rotate: -1.6deg; translate: -2px 8px; }
-.period:nth-child(4n+4) .period-pic { rotate: 5deg; translate: 4px 2px; }
+/* The photos of a period: old instant prints (a white frame with a thick bottom edge) in a messy pile, the first on top, held by
+   a pin. Until a photo loads, its window shows a soft fill and a camera; a photo gets a faded film look and the period's years
+   as an orange date stamp. Each print is a button that opens the photos in the pop-up (site.js groups them by period).
+   Hovered (or a print focused), the pile opens: the prints straighten and slide straight down, as far apart as the words
+   beside them are tall (--fan, set by site.js: the room left beside the words, shared between the prints). */
+.period-pics { position: relative; width: var(--pic); height: calc(var(--pic) * 1.365); --open: 0; --fan: 0px;
+  rotate: calc(var(--sr, -2deg) * (1 - var(--open) * .7)); translate: var(--sx, 0) var(--sy, 0); transition: rotate var(--ease-pile); }
+.period-pic { --w: var(--pic); position: absolute; left: 0; top: 0; z-index: calc(10 - var(--i, 0)); width: var(--w); height: calc(var(--w) * 1.365);
+  box-sizing: border-box; border: 0; padding: 0; margin: 0; font: inherit; cursor: zoom-in; display: block; border-radius: var(--print-corner);
+  background: var(--print-paper); box-shadow: var(--print-shade); color: var(--print-ink);
+  translate: var(--dx, 0) calc(var(--dy, 0px) + var(--fan) * var(--i, 0) * var(--open)); rotate: calc(var(--r, 0deg) * (1 - var(--open) * .8));
+  transition: translate var(--ease-pile), rotate var(--ease-pile); }
+/* each pile sits a little differently, as if dropped on the desk, and the prints under the first stick out at their own angles */
+.period:nth-child(4n+1) .period-pics { --sr: -4deg; --sx: 2px; --sy: 4px; }
+.period:nth-child(4n+2) .period-pics { --sr: 3.2deg; --sx: 6px; }
+.period:nth-child(4n+3) .period-pics { --sr: -1.6deg; --sx: -2px; --sy: 8px; }
+.period:nth-child(4n+4) .period-pics { --sr: 5deg; --sx: 4px; --sy: 2px; }
+.period-pic:nth-child(2) { --dx: 12px; --dy: 8px; --r: 6deg; }
+.period-pic:nth-child(3) { --dx: -10px; --dy: 14px; --r: -7deg; }
+.period-pic:nth-child(4) { --dx: 6px; --dy: 18px; --r: 9deg; }
+@media (hover: hover) { .period-pics:hover, .period-pics:focus-within { --open: 1; } }
 .period-pic::before { content: ""; position: absolute; left: 7%; top: calc(var(--w) * .07); width: 86%; height: calc(var(--w) * 1.075); background: var(--print-window); }
 .period-pic::after { content: ""; position: absolute; left: 7%; top: calc(var(--w) * .07); width: 86%; height: calc(var(--w) * 1.075); pointer-events: none;
   background: var(--print-film); }
@@ -640,12 +654,16 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 .period:nth-child(4n+4) .pic-pin { left: 43%; }
 .period-pic.has-photo img { opacity: 1; }
 .period-pic.has-photo .ic { display: none; }
+.period-pic:focus-visible { outline-offset: 3px; }
 .period-title { margin-bottom: 12px; text-align: left; -webkit-hyphens: manual; hyphens: manual; }
 .period-years { display: block; margin-bottom: 6px; letter-spacing: .04em; text-transform: none; }
 .period-name { display: block; font: var(--type-title); letter-spacing: -.01em; }
 .period-body p { font: var(--type-lead); color: var(--muted); }
 .period-body p + p { margin-top: var(--gap-para); }
-@container path (max-width: 560px) { .period { grid-template-columns: minmax(0, 1fr); } .periods { --pic: clamp(96px, 28cqw, 124px); } }
+@container path (max-width: 560px) {
+  .period { grid-template-columns: minmax(0, 1fr); } .periods { --pic: clamp(96px, 28cqw, 124px); }
+  .period-pics:hover, .period-pics:focus-within { --open: 0; }  /* (the words are under the pile here, so it stays closed) */
+}
 
 /* ---------- about: the stages ---------- */
 /* The intro (three parts) and the four periods are each a "stage". By default a stage is plain content. site.js can turn it into a stage
@@ -724,8 +742,8 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 
 /* the periods: the picture comes in as the board flips, the words after it */
 .is-stage .period-years { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
-.is-stage .period-pic { opacity: 0; transition: opacity var(--ease-fade); }
-.is-stage .is-pic .period-pic { opacity: 1; }
+.is-stage .period-pics { opacity: 0; transition: opacity var(--ease-fade), rotate var(--ease-pile); }
+.is-stage .is-pic .period-pics { opacity: 1; }
 .is-stage .period-body { opacity: 0; translate: 0 14px; transform: translateY(calc(var(--shift, 0) * -1px)); transition: opacity .3s ease, translate .3s ease; }
 .is-stage .is-on .period-body { opacity: 1; translate: 0 0; transition-duration: .4s; }
 @container path (max-width: 560px) {
