@@ -64,10 +64,11 @@
     dialog.append(say);
     let group = [], at = 0, opener = null;
 
-    function open({ heading, label, wide }) {
+    function open({ heading, label, wide, picture }) {
       title.textContent = heading || '';
       kicker.textContent = label || '';
       dialog.classList.toggle('doc-wide', !!wide);
+      dialog.classList.toggle('doc-pic', !!picture);  // (a picture floats under the bar, fitted whole: styles.css)
       body.scrollTop = 0;
       if (!dialog.open) dialog.showModal();
     }
@@ -124,7 +125,7 @@
     function openImage(btn) {
       const img = btn.querySelector('img');
       const src = new URL(btn.dataset.image, location.href).href;
-      open({ heading: btn.dataset.title, label: btn.dataset.kicker, wide: true });
+      open({ heading: btn.dataset.title, label: btn.dataset.kicker, wide: true, picture: true });
       const wrap = document.createElement('div');
       wrap.className = 'doc-picture';
       const big = document.createElement('img');
@@ -220,7 +221,9 @@
     dialog.querySelector('[data-doc-close]').addEventListener('click', shut);
     // A click on the dimmed area around the box closes it, but only if the press started there too
     // (so selecting text and letting go outside the box keeps it open).
+    // (around a picture, the dimmed page shows through the pop-up itself, so a press there counts as outside too)
     const outside = e => {
+      if (dialog.classList.contains('doc-pic') && e.target.matches && e.target.matches('.doc-inner, .doc-body, .doc-picture')) return true;
       const r = dialog.getBoundingClientRect();
       return e.target === dialog && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom);
     };
@@ -232,7 +235,7 @@
     });
     dialog.addEventListener('close', () => {
       clearTimeout(closeTimer);
-      dialog.classList.remove('is-closing', 'doc-wide');
+      dialog.classList.remove('is-closing', 'doc-wide', 'doc-pic');
       body.replaceChildren();
       // After moves, focus goes to the item last shown if it is on screen (not in a closed fold or a hidden page);
       // if not, it stays where the browser put it, on the button that opened the pop-up.

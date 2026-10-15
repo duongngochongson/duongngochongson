@@ -536,7 +536,7 @@ dialog.doc.is-closing::backdrop { animation: doc-undim .2s ease-in forwards; }
 .doc-top .lab { grid-row: 1; grid-column: 1; }
 .doc-top h2 { grid-row: 2; grid-column: 1; min-width: 0; font: var(--type-title-l); letter-spacing: -.01em; }
 /* 44px; the negative margin lets it reach past the title's line without making the bar taller (the last column, with or without the nav) */
-.doc-close { grid-row: 2; grid-column: -2; margin-block: -8px; }
+.doc-close { grid-row: 2; grid-column: -2; justify-self: end; margin-block: -8px; }
 .doc-close, .doc-step {
   width: 44px; height: 44px; border-radius: var(--radius-round); border: 0; padding: 0; cursor: pointer;
   background: var(--surface); color: var(--ink);
@@ -544,10 +544,11 @@ dialog.doc.is-closing::backdrop { animation: doc-undim .2s ease-in forwards; }
 }
 .doc-close .ic, .doc-step .ic { --ic: 20; }
 /* previous, count, next: on the title's row, 16px from the title and 8px from the close button; the bar has its third column only while the nav shows */
-.doc-top:has(.doc-nav:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto auto; column-gap: 0; }
+/* with the nav: the title on the left, the nav in the middle of the bar, the close button on the right */
+.doc-top:has(.doc-nav:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
 .doc-top:has(.doc-nav:not([hidden])) .lab { grid-column: 1 / -1; }  /* the label keeps the whole row, so a narrow title column does not break it up */
 .doc-top:has(.doc-nav:not([hidden])) h2 { overflow-wrap: anywhere; }
-.doc-nav { grid-row: 2; grid-column: 2; display: flex; align-items: center; margin: -8px 8px -8px 16px; }
+.doc-nav { grid-row: 2; grid-column: 2; display: flex; align-items: center; margin-block: -8px; }
 .doc-nav[hidden] { display: none; }
 /* a fixed width, so the buttons stay put as the count changes (the biggest group has 8) */
 .doc-count { min-width: 4.5em; text-align: center; white-space: nowrap; font: var(--type-label); letter-spacing: var(--track-label); color: var(--muted); }
@@ -571,6 +572,13 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
 /* a large picture scrolls, so it takes keyboard focus: the ring sits inside, where the pop-up does not clip it */
 .doc-picture:focus-visible { outline-offset: -4px; }
 .doc-picture img { max-width: 100%; height: auto; border-radius: var(--radius-box); box-shadow: var(--ring); display: block; }
+/* A picture: the bar is a white box of its own, and the picture floats 12px under it on the dimmed page, with no frame,
+   fitted whole into the room left (a picture of another shape leaves room on one side rather than spilling over) */
+dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: visible; }
+.doc-pic .doc-top { background: var(--bg); border: var(--border-hair); border-radius: var(--radius-block); box-shadow: var(--shadow-dialog); }
+.doc-wide.doc-pic .doc-body { background: none; padding: 12px 0 0; }
+.doc-pic .doc-picture { background: none; padding: 0; overflow: hidden; align-items: center; min-width: 0; min-height: 0; }
+.doc-pic .doc-picture img { max-width: 100%; max-height: 100%; width: auto; height: auto; min-width: 0; min-height: 0; object-fit: contain; box-shadow: var(--shadow-dialog); }
 .doc-empty {
   border: var(--border-empty); border-radius: var(--radius-box); padding: 40px 20px; text-align: center;
   font: var(--type-label); letter-spacing: var(--track-label); color: var(--faint);
@@ -806,7 +814,6 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
   /* the email and its copy button take the whole row, so the address stays on one line when it fits */
   .mail-row { flex: 1 1 100%; }
   dialog.doc { width: calc(100vw - 20px); }
-  dialog.doc:not(.doc-wide) .doc-top:has(.doc-nav:not([hidden])) h2 { font-size: 20px; }  /* "Credits" next to the nav at 320px */
   .guide { grid-template-columns: minmax(0, 1fr); }
 }
 /* documents and pictures fill a phone screen */
@@ -815,8 +822,10 @@ dialog.doc.doc-wide { width: min(1280px, calc(100vw - 32px)); height: calc(100dv
   dialog.doc.doc-wide { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; border-radius: 0; border: 0; }
   .doc-wide .doc-top .lab { display: none; }
   /* with the nav: a tighter bar, so the title, the nav and the close button stay on one row down to 320px (the title may wrap) */
-  .doc-top:has(.doc-nav:not([hidden])) { padding-inline: 16px; }
-  .doc-nav { margin-left: 12px; }
+  .doc-top:has(.doc-nav:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto; padding-inline: 16px; }
+  .doc-nav { grid-row: 3; grid-column: 1 / -1; justify-self: center; margin: 10px 0 -6px; }
+  .doc-pic .doc-top { border-width: 0 0 1px; border-radius: 0 0 var(--radius-block) var(--radius-block); }
+  .doc-wide.doc-pic .doc-body { padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
   .doc-count { min-width: 3.6em; }
 }
 
