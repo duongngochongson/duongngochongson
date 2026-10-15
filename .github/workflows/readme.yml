@@ -1,11 +1,14 @@
 # Writes README.md and readme/*.md from index.html whenever the site changes, so GitHub shows the same
 # words as the site. The project repositories copy their file from readme/ (see readme-sync.yml there).
+# Before it writes, it checks that every local link of the site (pages, documents, pictures, fonts, icons) points at a file
+# that exists, so a renamed file fails this run with its name. A build that cannot find a part of the page fails too:
+# nothing is written, so no shortened README is committed or copied on.
 name: READMEs from the site
 
 on:
   push:
     branches: [main, personal-site]
-    paths: [index.html, scripts/readme/**]
+    paths: [index.html, assets/**, work/**, scripts/readme/**]
   workflow_dispatch:
 
 permissions:
@@ -16,6 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check the local links
+        run: python3 scripts/readme/check_links.py
       - name: Write the READMEs
         run: python3 scripts/readme/build.py
       - name: Commit them if they changed
