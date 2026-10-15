@@ -184,7 +184,7 @@ Before building, I made **mockups of the 16 screens** and a clickable prototype,
 
 I built Hear Them Out as a web app, so it runs in a browser on a computer or a phone.
 
-React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations. Sofia’s lines are synthetic speech, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member.
+React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations. Sofia’s lines are synthetic speech, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member. **Browser tests** run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.
 
 ## Results & takeaways
 
