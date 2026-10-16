@@ -42,13 +42,17 @@ To look at it, run `python3 -m http.server` in the repo root. Work on a branch a
 - The About text is Son's own words (the intro, the fun fact, the four periods, Outside of work). Never reword it.
 - A value that repeats in a role gets a name in the `:root` block (`doc-text.css` or `frame.css` for documents). A raw value is for a one-off.
 - One pop-up. Previous and next step through the pictures and documents of the section the button sits in (`section.cs` or a `data-group`
-  box), so a new picture or document goes inside the section and joins its group by itself.
+  box), so a new picture or document goes inside the section and joins its group by itself. A picture also gets zoom out, the
+  whole picture and zoom in beside them (and the keys +, - and 0); a document does not.
 - The About stages keep their arrow: it stays on a stage's last part and goes only when the stage turns into plain content (commit 4db56b3
   removed the rule that hid it there, on purpose).
 - Pictures carry no EXIF (`convert in.jpg -strip out.jpg`). Check the real width and height before writing the attributes.
 - After a content edit in `index.html`, run `build.py` and commit `README.md` and `readme/` with it. Never edit those by hand.
-- Before a pull request, look at light and dark and at 320 px wide: contrast 4.5:1 or more, real buttons and labels, no sideways scroll,
-  keyboard and screen readers working. The pages' look changes only when the task says so.
+- Checks, by what changed. After every change: `check_links.py`, `build.py`, and a look at the changed parts (a few screenshots at 320,
+  390 and 1280 wide, light and dark, with no console errors). Before a pull request: contrast 4.5:1 or more, real buttons and labels,
+  no sideways scroll, keyboard and screen readers working. A before-and-after sweep of every page only for a site-wide change (the
+  token block, the fonts, shared rules in `styles.css`, or the routes and the pop-up in `site.js`). The pages' look changes only when
+  the task says so.
 - Never push to main. Never commit secrets.
 
 ## The Vietnamese layer
