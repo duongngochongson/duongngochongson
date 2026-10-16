@@ -249,6 +249,8 @@ def block_md(n):
         return links[0] if len(links) == 1 else bullets(links)
     if 'tile-thumb' in c:
         return picture_md(n)
+    if 'tile-pair' in c:   # two pictures for one fold: a list, like several shots
+        return bullets(picture_md(b) for b in n.elements())
     if 'issues' in c:
         return bullets(t(li) for li in n.elements())
     if 'pull' in c:

@@ -284,10 +284,18 @@ p, dd, li {
 
 .contact { display: flex; align-items: center; gap: 12px; }
 .avatar {
-  /* 128px; on a narrow sidebar the email breaks before the @ instead of the photo shrinking (the links keep at least 108px, more than the CV pill's 104px) */
-  width: min(128px, calc(100% - 120px)); height: auto; aspect-ratio: 1; border-radius: var(--radius-round); object-fit: cover; flex: none; display: block;
-  background: var(--card); box-shadow: 0 0 0 3px var(--card), 0 0 0 4.5px var(--a3);  /* the white ring, and a thin blue line around it */
+  /* 128px; on a narrow sidebar the email breaks before the @ instead of the photo shrinking (the links keep at least 108px, more than the CV button's 104px) */
+  width: min(128px, calc(100% - 120px)); aspect-ratio: 1; flex: none; display: block; position: relative;
   animation: face-in var(--time-enter-slow) ease .15s both;  /* a soft fade when the page opens */
+}
+.avatar img {
+  width: 100%; height: 100%; border-radius: var(--radius-round); object-fit: cover; display: block;
+  background: var(--card); box-shadow: 0 0 0 3px var(--card), 0 0 0 4.5px var(--a3);  /* the white ring, and a thin blue line around it */
+}
+/* the "online" dot: on the circle's edge at the bottom right (50% + 50% × cos 45°), ringed in the card's color like the photo */
+.avatar .online {
+  position: absolute; width: 18px; height: 18px; left: calc(85.36% - 9px); top: calc(85.36% - 9px);
+  border-radius: var(--radius-round); background: var(--a2); box-shadow: 0 0 0 3px var(--card);
 }
 @keyframes face-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
 .contact-links { display: flex; flex-direction: column; gap: var(--gap-lines); min-width: 0; font: var(--type-contact); letter-spacing: .02em; }
@@ -302,13 +310,12 @@ p, dd, li {
 .contact .row a { color: var(--muted); text-decoration: none; text-underline-offset: 4px; padding-block: 5.5px 2.5px; margin-block: -5.5px -2.5px; }
 .contact .row .go { margin-left: 4px; }
 .contact .row .go .ic { --ic: 9; }
-/* the CV: a small pill under the links (30px to see, 44px to tap) */
+/* the CV: a small button under the links in the nav's look, a white box with the sans (34px to see, 44px to tap) */
 .cv-link {
-  align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-top: 4px;
-  min-height: 30px; box-sizing: border-box; padding: 0 12px; border: var(--border-hair); border-radius: var(--radius-pill); background: var(--card); color: var(--ink);
-  font: inherit; letter-spacing: inherit; cursor: pointer;
+  align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; margin-top: 4px;
+  min-height: 34px; box-sizing: border-box; padding: 0 12px; border: 0; border-radius: var(--radius-box); background: var(--card); color: var(--ink);
+  font: var(--type-control-s); letter-spacing: 0; cursor: pointer;
 }
-.cv-link .doc-ico { width: 7px; height: 9px; border-width: 1.2px; background-size: 4px 1.2px, 4px 1.2px; }
 
 /* ---------- main ---------- */
 /* no padding: the sidebar and the first block share a top edge, and the gutter is the 12px gap between blocks */
@@ -532,12 +539,16 @@ p, dd, li {
 /* a fold with a picture: the text, and the picture beside it (it opens larger); stacked when narrow */
 .fold-media { display: grid; grid-template-columns: minmax(0, 1fr) 200px; gap: var(--gap-para) 18px; align-items: start; }
 .fold-media > * + * { margin-top: 0; }
+/* two pictures for one fold: side by side in a wider picture column, and under the text once the block is narrow */
+.fold-media:has(> .tile-pair) { grid-template-columns: minmax(0, 1fr) 360px; }
+.tile-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
 @container case (max-width: 640px) {
   .fold > summary { flex-wrap: wrap; }
   .fold > summary .fold-chev { order: 1; }
   .fold > summary .row-tag { order: 2; flex: 1 1 100%; padding-left: 42px; box-sizing: border-box; }
 }
 @container case (max-width: 560px) { .fold-media { grid-template-columns: minmax(0, 1fr); } }
+@container case (max-width: 760px) { .fold-media:has(> .tile-pair) { grid-template-columns: minmax(0, 1fr); } .tile-pair { max-width: 360px; } }
 .cs > p:not(.note) { font: var(--type-body); color: var(--muted); }
 .note { font: var(--type-note); color: var(--faint); margin-top: var(--gap-para); }
 
@@ -593,13 +604,19 @@ dialog.doc.is-closing::backdrop { animation: doc-undim var(--time-brief) ease-in
   display: flex; align-items: center; justify-content: center;
 }
 .doc-close .ic, .doc-step .ic { --ic: 20; }
-/* previous, count, next: on the title's row, 16px from the title and 8px from the close button; the bar has its third column only while the nav shows */
-/* with the nav: the title on the left, the nav in the middle of the bar, the close button on the right */
-.doc-top:has(.doc-nav:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
-.doc-top:has(.doc-nav:not([hidden])) .lab { grid-column: 1 / -1; }  /* the label keeps the whole row, so a narrow title column does not break it up */
-.doc-top:has(.doc-nav:not([hidden])) h2 { overflow-wrap: anywhere; }
-.doc-nav { grid-row: 2; grid-column: 2; display: flex; align-items: center; margin-block: -8px; }
-.doc-nav[hidden] { display: none; }
+/* the tools, on the title's row: previous, count and next, then for a picture zoom out, the whole picture and zoom in;
+   with them the title is on the left, the tools in the middle of the bar and the close button on the right */
+.doc-top:has(.doc-tools:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); }
+.doc-top:has(.doc-tools:not([hidden])) .lab { grid-column: 1 / -1; }  /* the label keeps the whole row, so a narrow title column does not break it up */
+.doc-top:has(.doc-tools:not([hidden])) h2 { overflow-wrap: anywhere; }
+.doc-tools { grid-row: 2; grid-column: 2; display: flex; align-items: center; gap: 16px; margin-block: -8px; }
+.doc-nav, .doc-zoom { display: flex; align-items: center; }
+.doc-zoom { gap: 4px; }
+.doc-tools[hidden], .doc-nav[hidden], .doc-zoom[hidden] { display: none; }
+/* a hairline between the two groups, when both show */
+.doc-nav:not([hidden]) + .doc-zoom:not([hidden]) { border-left: var(--border-hair); padding-left: 16px; }
+/* nothing to do (the whole picture already, or the closest zoom): dimmed, and a press does nothing (site.js) */
+.doc-tools .doc-step[aria-disabled="true"] { opacity: .4; cursor: default; box-shadow: none; transform: none; }  /* (beats the shared hover lift) */
 /* a fixed width, so the buttons stay put as the count changes (the biggest group has 8) */
 .doc-count { min-width: 4.5em; text-align: center; white-space: nowrap; font: var(--type-label); letter-spacing: var(--track-label); color: var(--muted); }
 /* a size container, so what it shows (the credits) can lay itself out by the pop-up's width */
@@ -629,6 +646,11 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
 .doc-wide.doc-pic .doc-body { background: none; padding: 12px 0 0; }
 .doc-pic .doc-picture { background: none; padding: 0; overflow: hidden; align-items: center; min-width: 0; min-height: 0; }
 .doc-pic .doc-picture img { max-width: 100%; max-height: 100%; width: auto; height: auto; min-width: 0; min-height: 0; object-fit: contain; box-shadow: var(--shadow-dialog); }
+/* zoomed in: the picture takes the size site.js gives it, and the room around it scrolls (a mouse drags it, a finger
+   pans it); margin: auto keeps it in the middle while it is smaller than the room on one side */
+.doc-pic .doc-picture.is-zoomed { display: grid; overflow: auto; overscroll-behavior: contain; cursor: grab; }
+.doc-pic .doc-picture.is-zoomed.is-dragging { cursor: grabbing; }
+.doc-pic .doc-picture.is-zoomed img { max-width: none; max-height: none; margin: auto; }
 .doc-empty {
   border: var(--border-empty); border-radius: var(--radius-box); padding: 40px 20px; text-align: center;
   font: var(--type-label); letter-spacing: var(--track-label); color: var(--faint);
@@ -872,9 +894,12 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
   /* 100%, not 100vw and 100dvh: a classic scrollbar's gutter never covers the close button */
   dialog.doc.doc-wide { width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; border-radius: 0; border: 0; }
   .doc-wide .doc-top .lab { display: none; }
-  /* with the nav: a tighter bar, so the title, the nav and the close button stay on one row down to 320px (the title may wrap) */
-  .doc-top:has(.doc-nav:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto; padding-inline: 16px; }
-  .doc-nav { grid-row: 3; grid-column: 1 / -1; justify-self: center; margin: 10px 0 -6px; }
+  /* with the tools: a tighter bar, the title and the close button on one row (the title may wrap), and the tools on a row of
+     their own, in the middle; both groups fit side by side down to 320px */
+  .doc-top:has(.doc-tools:not([hidden])) { grid-template-columns: minmax(0, 1fr) auto; padding-inline: 16px; }
+  .doc-tools { grid-row: 3; grid-column: 1 / -1; justify-self: center; margin: 10px 0 -6px; gap: 8px; }
+  .doc-zoom { gap: 0; }
+  .doc-nav:not([hidden]) + .doc-zoom:not([hidden]) { padding-left: 8px; }
   .doc-pic .doc-top { border-width: 0 0 1px; border-radius: 0 0 var(--radius-block) var(--radius-block); }
   .doc-wide.doc-pic .doc-body { padding: 12px 12px calc(12px + env(safe-area-inset-bottom, 0px)); }
   .doc-count { min-width: 3.6em; }

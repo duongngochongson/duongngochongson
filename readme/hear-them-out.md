@@ -12,6 +12,7 @@ This repository holds the code of Hear Them Out, the course this project led to.
 
 - Front-desk staff at Cozy, a coworking business
 - 20 to 30 minutes for learning in quiet periods, on a computer or a phone
+- Cozy’s members, for the signs and the first-day guide
 
 **Responsibilities**
 
@@ -34,7 +35,7 @@ This repository holds the code of Hear Them Out, the course this project led to.
 
 Cozy’s members were growing less satisfied, and they gave the way Cozy handles complaints the lowest score of all.
 
-They felt **unheard** and, at times, even treated unfairly. Many of their complaints were never followed up on or resolved. Four problems came up the most:
+They felt **unheard** and, at times, even **treated unfairly**. Many of their complaints were **never followed up on or resolved**. **Four problems** came up the most:
 
 - Noise and phone calls in Focus, the silent zone
 - The shared kitchen and fridge
@@ -61,28 +62,28 @@ With the Behavior Engineering Model (BEM), I found three root causes:
 - Space rules members could not see
 - No set steps for Wi-Fi outages
 
-**How I sorted the causes.** I sorted each cause into the BEM’s **six cells** and checked the environment first, because changing it costs less than training. For each cause, I asked Mager and Pipe’s question: could people do it if they had to? If so, a course would not help.
+**How I sorted the causes.** I sorted each cause into the BEM’s **six cells** and checked **the environment first**, because changing it **costs less than training**. For each cause, I asked **Mager and Pipe’s question**: could people do it if they had to? If so, **a course would not help**.
 
 - Environment: Information, Tools, Incentives
 - Person: Knowledge, Capacity, Motives
 
 ### No follow-up process or call practice for complaints
 
-_Environment + knowledge_
+_Information + tools + knowledge_
 
-The log asked for no follow-up date or owner, and open cases passed between shifts by word of mouth. On calls, staff explained the rules first. Calming an upset member takes practice.
+The log asked for **no follow-up date or owner**, and open cases passed between shifts **by word of mouth**. On calls, staff **explained the rules first**. Calming an upset member **takes practice**.
 
 ### Space rules members could not see
 
 _Information_
 
-Focus and Flex, the zone for calls, looked the same, and the rules sat in the handbook. Members could follow the rules, so they need to see them where they work.
+Focus and Flex, the zone for calls, **looked the same**, and the rules **sat in the handbook**. Members could follow the rules, so they need to **see them where they work**.
 
 ### No set steps for Wi-Fi outages
 
 _Information + tools_
 
-Each shift handled an outage in its own order, and most waited for the cause before telling members. Staff could do each step, but outages are rare and stressful.
+Each shift handled an outage **in its own order**, and most **waited for the cause** before telling members. Staff could do each step, but outages are **rare and stressful**.
 
 ## Solution
 
@@ -92,15 +93,16 @@ I matched each root cause with a solution, and only one of them is a course:
 
 _For front-desk staff and managers_
 
-**Hear Them Out** trains staff to handle a complaint call. Managers make the follow-up date and the owner required in the log, with a reminder and a check at each shift change.
+**Hear Them Out** trains staff to **handle a complaint call**. Managers make **the follow-up date and the owner required** in the log, with a reminder and **a check at each shift change**.
 
-[The log card, a job aid from the course](https://duongngochongson.vercel.app/assets/projects/wmu-log-card.webp)
+- [The call with Sofia in Hear Them Out, at its first decision](https://duongngochongson.vercel.app/assets/projects/wmu-call.webp)
+- [The log card, a job aid from the course](https://duongngochongson.vercel.app/assets/projects/wmu-log-card.webp)
 
 ### Space rules members can see
 
 _For members_
 
-A sign, zone tape and kitchen labels, and Cozy in 60 seconds, eight short screens that show a new member the same rules.
+**A sign, zone tape and kitchen labels**, and **Cozy in 60 seconds**, eight short screens that show a new member the same rules.
 
 [The Focus sign, the zone bands and the kitchen labels](https://duongngochongson.vercel.app/assets/projects/wmu-signs.webp)
 
@@ -108,7 +110,7 @@ A sign, zone tape and kitchen labels, and Cozy in 60 seconds, eight short screen
 
 _For front-desk staff and operations_
 
-A one-page checklist: tell members within **10 minutes**, send an update every **15 minutes** and give everyone the same compensation. The backup line also switches on by itself.
+A one-page checklist: tell members within **10 minutes**, send an update every **15 minutes** and give everyone **the same compensation**. The backup line also **switches on by itself**.
 
 [The Wi-Fi Down card](https://duongngochongson.vercel.app/assets/projects/wmu-wifi-card.webp)
 
@@ -116,9 +118,9 @@ A one-page checklist: tell members within **10 minutes**, send an update every *
 
 With action mapping, I chose five actions that resolve a complaint, and Hear Them Out practices all five in one call and its follow-up.
 
-Sofia, a member, calls because another member took a half-hour call next to her in Focus, two weeks after she reported calls there. The call follows **HEARD**, a five-step way of handling complaints, with one decision for each step. Son, a guide, describes her mood after each reply, because on the phone the learner cannot see her face.
+Sofia, a member, calls because another member took **a half-hour call next to her in Focus**, two weeks after she reported calls there. The call follows **HEARD**, a five-step way of handling complaints, with **one decision for each step**. Son, a guide, describes **her mood after each reply**, because on the phone the learner cannot see her face.
 
-Following **Merrill’s first principles**, the course starts with the call and leaves the rules for later.
+Following **Merrill’s first principles**, the course **starts with the call** and leaves the rules for later.
 
 ### Action map
 
@@ -146,7 +148,7 @@ Based on the shift interviews and the issue log.
 - **Resolve**: Agree on one next step, with an owner and a day
 - **Diagnose**: Keep the case open until she says it worked
 
-_Source: HEARD, a service recovery technique taught by the [Disney Institute](https://www.landscapemanagement.net/?p=72027)._
+_HEARD is a service recovery technique taught by the [Disney Institute](https://www.landscapemanagement.net/?p=72027)._
 
 ### Two parts of the course
 
@@ -171,7 +173,7 @@ _Source: HEARD, a service recovery technique taught by the [Disney Institute](ht
 
 I wrote the lines and screens in a text-based storyboard first, then designed the look of the course and the Cozy brand.
 
-Before building, I made **mockups of the 16 screens** and a clickable prototype, then cut the call from eight decisions to five, one for each step of HEARD.
+Before building, I made **mockups of the 16 screens** and **a clickable prototype**, then **cut the call from eight decisions to five**, one for each step of HEARD.
 
 [Storyboard: decision 1 of the call, with each option, Sofia’s reply and Son’s line.](https://duongngochongson.vercel.app/assets/projects/wmu-storyboard.webp)
 
@@ -184,11 +186,11 @@ Before building, I made **mockups of the 16 screens** and a clickable prototype,
 
 I built Hear Them Out as a web app, so it runs in a browser on a computer or a phone.
 
-React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations. Sofia’s lines are synthetic speech, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member. **Browser tests** run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.
+React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations. Sofia’s lines are **synthetic speech**, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member. **Browser tests** run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.
 
 ## Results & takeaways
 
-I put a lot of time and effort into this project, and it taught me many lessons.
+I had put a lot of time and effort into this project, and it taught me many lessons.
 
 - **Plan slow, build fast.** Planning every line and screen before building felt slow at first, but it saved a lot of time later, when I had to change things.
 - **Plan for the unplanned.** However carefully I planned, small issues still came up that I only found after building the prototype, so I now leave buffer time to fix them.

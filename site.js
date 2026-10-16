@@ -58,6 +58,7 @@
     const prev = dialog.querySelector('[data-doc-prev]');
     const next = dialog.querySelector('[data-doc-next]');
     const count = dialog.querySelector('[data-doc-count]');
+    const tools = dialog.querySelector('[data-doc-tools]');  // (previous and next, and zoom, in the middle of the bar)
     const say = document.createElement('div');  // inside the dialog: the page behind a modal dialog is inert, so a region there is not read
     say.className = 'sr-only';
     say.setAttribute('aria-live', 'polite');
@@ -131,9 +132,80 @@
       const big = document.createElement('img');
       big.src = src;
       big.alt = img ? img.alt : '';
+      big.draggable = false;  // (a drag pans a zoomed picture instead of lifting it out)
       wrap.append(big);
       body.replaceChildren(wrap);
+      zoom = 0;  // every picture opens whole
     }
+
+    // Zoom, for a picture: out, back to the whole picture, and in, by steps of its fitted size. Zoomed in, the picture takes
+    // its new size and the room around it scrolls (a mouse drags it, a finger pans it); the spot in the middle of the view
+    // stays in the middle as it grows or shrinks.
+    const zoomBox = dialog.querySelector('[data-doc-zoom]');
+    const zoomOut = dialog.querySelector('[data-zoom-out]');
+    const zoomFit = dialog.querySelector('[data-zoom-fit]');
+    const zoomIn = dialog.querySelector('[data-zoom-in]');
+    const STEPS = [1, 1.5, 2, 3, 4];
+    let zoom = 0, fitted = null;  // the step (0 is the whole picture), and the picture's size when whole
+    function zoomState() {
+      zoomOut.setAttribute('aria-label', vi() ? 'Thu nhỏ' : 'Zoom out');
+      zoomFit.setAttribute('aria-label', vi() ? 'Cả bức ảnh' : 'Whole picture');
+      zoomIn.setAttribute('aria-label', vi() ? 'Phóng to' : 'Zoom in');
+      zoomOut.setAttribute('aria-disabled', String(zoom === 0));
+      zoomFit.setAttribute('aria-disabled', String(zoom === 0));
+      zoomIn.setAttribute('aria-disabled', String(zoom === STEPS.length - 1));
+    }
+    function setZoom(to) {
+      const wrap = body.querySelector('.doc-picture');
+      const img = wrap && wrap.querySelector('img');
+      to = Math.max(0, Math.min(STEPS.length - 1, to));
+      if (!img || !img.naturalWidth || to === zoom) return;
+      if (zoom === 0) { const r = img.getBoundingClientRect(); fitted = { w: r.width, h: r.height }; }
+      const view = wrap.getBoundingClientRect();
+      const was = img.getBoundingClientRect();
+      // where the middle of the view is on the picture, as a share of its width and height
+      const fx = (view.left + wrap.clientWidth / 2 - was.left) / was.width;
+      const fy = (view.top + wrap.clientHeight / 2 - was.top) / was.height;
+      zoom = to;
+      wrap.classList.toggle('is-zoomed', zoom > 0);
+      img.style.width = zoom ? `${Math.round(fitted.w * STEPS[zoom])}px` : '';
+      img.style.height = zoom ? `${Math.round(fitted.h * STEPS[zoom])}px` : '';
+      if (zoom) {
+        const now = img.getBoundingClientRect();
+        wrap.scrollLeft += now.left + fx * now.width - (view.left + wrap.clientWidth / 2);
+        wrap.scrollTop += now.top + fy * now.height - (view.top + wrap.clientHeight / 2);
+      }
+      zoomState();
+      say.textContent = zoom ? `${Math.round(STEPS[zoom] * 100)}%` : (vi() ? 'Cả bức ảnh' : 'Whole picture');
+    }
+    zoomOut.addEventListener('click', () => setZoom(zoom - 1));
+    zoomFit.addEventListener('click', () => setZoom(0));
+    zoomIn.addEventListener('click', () => setZoom(zoom + 1));
+    // + and - zoom, 0 shows the whole picture (with Ctrl or Cmd, the browser's own zoom stays the browser's)
+    function zoomKey(e) {
+      if (!dialog.classList.contains('doc-pic') || e.altKey || e.ctrlKey || e.metaKey) return;
+      const by = { '+': 1, '=': 1, '-': -1, '_': -1 }[e.key];
+      if (by) { e.preventDefault(); setZoom(zoom + by); } else if (e.key === '0') { e.preventDefault(); setZoom(0); }
+    }
+    // a mouse drags a zoomed picture around
+    let drag = null;
+    body.addEventListener('pointerdown', e => {
+      const wrap = e.target.closest && e.target.closest('.doc-picture.is-zoomed');
+      if (!wrap || e.pointerType !== 'mouse' || e.button !== 0) return;
+      e.preventDefault();
+      drag = { x: e.clientX, y: e.clientY, left: wrap.scrollLeft, top: wrap.scrollTop, wrap };
+      wrap.classList.add('is-dragging');
+    });
+    window.addEventListener('pointermove', e => {
+      if (!drag) return;
+      drag.wrap.scrollLeft = drag.left - (e.clientX - drag.x);
+      drag.wrap.scrollTop = drag.top - (e.clientY - drag.y);
+    });
+    window.addEventListener('pointerup', () => {
+      if (!drag) return;
+      drag.wrap.classList.remove('is-dragging');
+      drag = null;
+    });
 
     function openTemplate(btn) {
       const tpl = document.getElementById(btn.dataset.doc);
@@ -153,6 +225,9 @@
       if (!dialog.open) return;
       body.scrollTop = 0;  // a move starts at the top of the picture or document
       nav.hidden = group.length < 2;  // a lone item, or one outside a section, has nothing to move to
+      zoomBox.hidden = !dialog.classList.contains('doc-pic');  // zoom is for pictures
+      tools.hidden = nav.hidden && zoomBox.hidden;
+      zoomState();
       prev.setAttribute('aria-label', vi() ? 'Trước' : 'Previous');
       next.setAttribute('aria-label', vi() ? 'Tiếp theo' : 'Next');
       count.textContent = `${at + 1} / ${group.length}`;
@@ -178,10 +253,11 @@
       e.preventDefault();
       move(by);
     }
-    document.addEventListener('keydown', e => { if (dialog.open) arrowKey(e); });
+    document.addEventListener('keydown', e => { if (dialog.open) { arrowKey(e); zoomKey(e); } });
     // A swipe across a picture moves too: sideways by 50px or more, and more sideways than up or down.
     let swipe = null;
-    body.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && body.querySelector('.doc-picture')) swipe = { x: e.clientX, y: e.clientY }; });
+    // (not while zoomed in: then a finger pans the picture)
+    body.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && !zoom && body.querySelector('.doc-picture')) swipe = { x: e.clientX, y: e.clientY }; });
     body.addEventListener('pointerup', e => {
       if (!swipe) return;
       const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y;
@@ -220,7 +296,8 @@
     // (so selecting text and letting go outside the box keeps it open).
     // (around a picture, the dimmed page shows through the pop-up itself, so a press there counts as outside too)
     const outside = e => {
-      if (dialog.classList.contains('doc-pic') && e.target.matches && e.target.matches('.doc-inner, .doc-body, .doc-picture')) return true;
+      // (zoomed in, the picture's room is for panning, so only the space around it counts)
+      if (dialog.classList.contains('doc-pic') && e.target.matches && e.target.matches(zoom ? '.doc-inner, .doc-body' : '.doc-inner, .doc-body, .doc-picture')) return true;
       const r = dialog.getBoundingClientRect();
       return e.target === dialog && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom);
     };
@@ -241,6 +318,7 @@
       group = [];
       at = 0;
       opener = null;
+      zoom = 0;
       say.textContent = '';
     });
   }
