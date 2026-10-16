@@ -8,7 +8,7 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="../frame/fonts/fonts.css">
 </helmet>
 <div ref="{{ rootRef }}" style="width:100%;min-width:0">
 <sc-if value="{{ wide }}" hint-placeholder-val="{{ true }}">
@@ -89,7 +89,7 @@ class Component extends DCLogic {
       href: s.href || '',
       w: s.b || first ? 600 : 400,
       f: s.m ? "'IBM Plex Mono',monospace" : "'IBM Plex Sans',sans-serif",
-      c: s.b && first ? '#1F1A12' : (first ? '#1F1A12' : (s.b ? '#1F1A12' : '#3D352A'))
+      c: s.b || first ? '#1F1A12' : '#3D352A'
     }));
   }
 

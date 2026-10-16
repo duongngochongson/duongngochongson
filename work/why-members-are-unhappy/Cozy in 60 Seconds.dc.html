@@ -4,20 +4,22 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cozy in 60 seconds · Why Members Are Unhappy · Son Duong</title>
+<link rel="preload" href="../frame/fonts/Archivo-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../frame/fonts/IBMPlexSans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./doc-text.css">
+<link rel="stylesheet" href="../frame/fonts/fonts.css">
 <script src="./vendor/react.production.min.js"></script>
 <script src="./vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
 <script src="./doc-anchor.js"></script>
 <script src="./doc-type.js"></script>
-<link rel="stylesheet" href="./doc-text.css">
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#1F1A12;-webkit-font-smoothing:antialiased}
+body{margin:0;-webkit-font-smoothing:antialiased}
 a{color:#1F1A12}
 a:hover{color:#8A5300}
 button{font-family:inherit}
@@ -27,7 +29,7 @@ button{font-family:inherit}
 <div style="background:var(--cz-night);min-height:100vh;padding:var(--cz-pad-shell);display:flex;justify-content:center;font-family:'IBM Plex Sans',sans-serif">
 <article style="width:100%;max-width:1240px;background:var(--cz-paper);border-radius:var(--cz-radius-box)">
 
-<dc-import name="DocHeader" project="Why Members Are Unhappy" doc-type="Cozy in 60 seconds" doc-title="Cozy in 60 seconds" subtitle="A short guide that new members see in the Cozy app on their first day." author="Son Duong" hint-size="100%,340px"></dc-import>
+<dc-import name="DocHeader" project="Why Members Are Unhappy" doc-type="Cozy in 60 seconds" subtitle="A short guide that new members see in the Cozy app on their first day." hint-size="100%,340px"></dc-import>
 
 <div style="padding:var(--cz-pad-page);display:flex;flex-wrap:wrap;gap:clamp(24px,3vw,40px);align-items:flex-start">
 
@@ -44,7 +46,7 @@ button{font-family:inherit}
 </div>
 
 <div style="flex:1 1 360px;min-width:0;display:flex;justify-content:center">
-<div style="width:100%;max-width:392px;background:var(--cz-night-surface);border-radius:44px;padding:12px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)">
+<div data-phone style="width:100%;max-width:392px;background:var(--cz-night-surface);border-radius:44px;padding:12px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)">
 <div style="background:var(--cz-paper);border-radius:34px;overflow:hidden;display:flex;flex-direction:column;min-height:640px">
 
 <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px 10px">
@@ -62,14 +64,14 @@ button{font-family:inherit}
 <sc-if value="{{ s1 }}" hint-placeholder-val="{{ true }}">
 <div style="flex:1;display:flex;flex-direction:column;gap:18px;justify-content:center;align-items:flex-start">
 <dc-import name="Logo" variant="symbol" tone="light" size="64" hint-size="64px,64px"></dc-import>
-<h2 style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">Welcome to Cozy, {{ name }}.</h2>
+<h2 data-step-focus style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">Welcome to Cozy, {{ name }}.</h2>
 <p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Here’s the space in 60 seconds: where to work, where to call, and how the kitchen works.</p>
 </div>
 <button type="button" onClick="{{ next }}" style="min-height:56px;display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;background:var(--cz-ink);border:none;border-radius:14px;font:600 20px/24px 'Archivo',sans-serif;color:var(--cz-paper);cursor:pointer">Start<dc-import name="Icon" icon="arrowRight" size="20" color="#FBF7EE" hint-size="20px,20px"></dc-import></button>
 </sc-if>
 
 <sc-if value="{{ s2 }}">
-<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">How do you work most days?</h2>
+<h2 data-step-focus style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">How do you work most days?</h2>
 <p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft)">Pick the answer closest to how you work.</p>
 <div style="display:flex;flex-direction:column;gap:12px">
 <sc-for list="{{ workChoices }}" as="c" hint-placeholder-count="3">
@@ -79,7 +81,7 @@ button{font-family:inherit}
 </sc-if>
 
 <sc-if value="{{ s3 }}">
-<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">The zones</h2>
+<h2 data-step-focus style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">The zones</h2>
 <dc-import name="FloorPlan" hereLabel="You are here" focusTag="{{ focusTag }}" flexTag="{{ flexTag }}" hint-size="100%,300px"></dc-import>
 <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px">
 <sc-for list="{{ zoneRows }}" as="z" hint-placeholder-count="3">
@@ -93,7 +95,7 @@ button{font-family:inherit}
 </sc-if>
 
 <sc-if value="{{ s4 }}">
-<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">Taking a call?</h2>
+<h2 data-step-focus style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">Taking a call?</h2>
 <p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Calls and meetings go in Flex. Need a door? Book a Private room by the hour.</p>
 <p style="margin:0;font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">You’ll see these signs in the space:</p>
 <div style="display:flex;flex-direction:column;gap:10px">
@@ -113,7 +115,7 @@ button{font-family:inherit}
 </sc-if>
 
 <sc-if value="{{ s5 }}">
-<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">The kitchen</h2>
+<h2 data-step-focus style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink)">The kitchen</h2>
 <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:16px">
 <sc-for list="{{ kitchenRows }}" as="k" hint-placeholder-count="4">
 <li style="display:flex;gap:12px;align-items:flex-start">
@@ -128,7 +130,7 @@ button{font-family:inherit}
 </sc-if>
 
 <sc-if value="{{ s6 }}">
-<h2 style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">Questions? Ask at the front desk.</h2>
+<h2 data-step-focus style="margin:0;font:700 26px/1.15 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">Questions? Ask at the front desk.</h2>
 <div style="display:flex;gap:12px;align-items:flex-start">
 <span style="flex:none;padding-top:3px"><dc-import name="Icon" icon="desk" size="22" color="#1F1A12" hint-size="22px,22px"></dc-import></span>
 <p style="margin:0;font:400 18px/27px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-body);">Something not right? Tell us at the front desk. We’ll note it and get back to you on the day we say.</p>
@@ -141,7 +143,7 @@ button{font-family:inherit}
 </sc-if>
 
 <sc-if value="{{ s7 }}">
-<span style="font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">Quick check · {{ qStep }} of 2</span>
+<span data-step-focus style="font:500 16px/22px 'IBM Plex Mono',monospace;color:var(--cz-amber-ink)">Quick check · {{ qStep }} of 2</span>
 <p style="margin:0;font:500 20px/28px 'Archivo',sans-serif;color:var(--cz-ink);">{{ qText }}</p>
 <div style="display:flex;flex-direction:column;gap:12px">
 <sc-for list="{{ qChoices }}" as="c" hint-placeholder-count="3">
@@ -162,7 +164,7 @@ button{font-family:inherit}
 <sc-if value="{{ s8 }}">
 <div style="flex:1;display:flex;flex-direction:column;gap:18px;justify-content:center;align-items:flex-start">
 <dc-import name="Logo" variant="lockup" tone="light" size="34" hint-size="124px,34px"></dc-import>
-<h2 style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">That’s Cozy. Welcome in, {{ name }}.</h2>
+<h2 data-step-focus style="margin:0;font:700 28px/1.12 'Archivo',sans-serif;letter-spacing:-0.02em;color:var(--cz-ink);">That’s Cozy. Welcome in, {{ name }}.</h2>
 <p style="margin:0;font:400 16px/24px 'IBM Plex Sans',sans-serif;color:var(--cz-ink-soft);">Cozy in 60 seconds stays in the app’s menu, to open again any time.</p>
 </div>
 <div style="display:flex;flex-wrap:wrap;gap:12px">
@@ -214,7 +216,22 @@ const KITCHEN = [
 class Component extends DCLogic {
   state = { i: 0, work: '', qi: 0, picked: -1 };
 
-  go = n => this.setState({ i: n, picked: -1 });
+  // When the step changes, the button that was pressed is gone, so focus goes to the new step's first line (the one marked
+  // data-step-focus): a keyboard or screen reader user stays in the guide and hears where it went. Not when the person
+  // pressed a button outside the phone (Start again), and the line is not a tab stop (tabindex -1).
+  stepKey = () => this.state.i + ':' + this.state.qi;
+  componentDidMount() { this.shown = this.stepKey(); }
+  componentDidUpdate() {
+    const key = this.stepKey();
+    if (key === this.shown) return;
+    this.shown = key;
+    const to = document.querySelector('[data-step-focus]');
+    const phone = to && to.closest('[data-phone]');
+    const now = document.activeElement;
+    if (!phone || (now && now !== document.body && !phone.contains(now))) return;
+    to.setAttribute('tabindex', '-1');
+    to.focus();
+  }
 
   next = () => {
     const { i, qi, picked } = this.state;
