@@ -177,8 +177,8 @@ The look started from Cozy’s lamp: **a front desk at night, lit by one warm li
 
 [Storyboard: decision 1 of the call, with each option, Sofia’s reply and Son’s line.](https://duongngochongson.vercel.app/assets/projects/wmu-storyboard.webp)
 
-- [Before: eight decisions, and Sofia’s lines in dark bubbles.](https://duongngochongson.vercel.app/assets/projects/wmu-call-before.webp)
-- [After: five decisions, and her lines on light paper.](https://duongngochongson.vercel.app/assets/projects/wmu-call.webp)
+- [Before: Sofia’s lines in dark bubbles.](https://duongngochongson.vercel.app/assets/projects/wmu-call-before.webp)
+- [After: her lines on light paper.](https://duongngochongson.vercel.app/assets/projects/wmu-call.webp)
 
 [Style guide: the colors, each with its value and role, and some of the icons.](https://duongngochongson.vercel.app/assets/projects/wmu-style-guide.webp)
 
