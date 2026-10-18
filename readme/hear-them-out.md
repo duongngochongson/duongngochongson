@@ -173,14 +173,14 @@ _HEARD is a service recovery technique taught by the [Disney Institute](https://
 
 I wrote the lines and screens in a text-based storyboard first, then designed the look of the course and the Cozy brand.
 
-Before building, I made **mockups of the 16 screens** and **a clickable prototype**, then **cut the call from eight decisions to five**, one for each step of HEARD.
+The look started from Cozy’s lamp: **a front desk at night, lit by one warm light**. I gathered references, such as phone call screens and front-desk software, and chose **a dark ground, light paper boxes and an amber lamp color** that ties back to the Cozy logo. Since staff take complaints by phone and log them on the desk computer, the course looks like those two tools: **a phone for the call** and **a desk computer for Cozy Desk**. I then made **mockups of the 16 screens** and **a clickable prototype**, where the learner gets through **five decisions, one for each step of HEARD**.
 
 [Storyboard: decision 1 of the call, with each option, Sofia’s reply and Son’s line.](https://duongngochongson.vercel.app/assets/projects/wmu-storyboard.webp)
 
 - [Before: eight decisions, and Sofia’s lines in dark bubbles.](https://duongngochongson.vercel.app/assets/projects/wmu-call-before.webp)
 - [After: five decisions, and her lines on light paper.](https://duongngochongson.vercel.app/assets/projects/wmu-call.webp)
 
-[Style guide: the colors of the dark ground and the paper, each with its contrast.](https://duongngochongson.vercel.app/assets/projects/wmu-style-guide.webp)
+[Style guide: the colors, each with its value and role, and some of the icons.](https://duongngochongson.vercel.app/assets/projects/wmu-style-guide.webp)
 
 ## Development
 
