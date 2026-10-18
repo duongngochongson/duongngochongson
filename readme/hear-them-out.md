@@ -173,7 +173,7 @@ _HEARD is a service recovery technique taught by the [Disney Institute](https://
 
 I wrote the lines and screens in a text-based storyboard first, then designed the look of the course and the Cozy brand.
 
-I began with **a mood board**: photos of coworking spaces set the warm, lamp-lit mood, while phone call screens and front-desk software shaped the interface, since the course happens on **a phone for the call** and **a desk computer for Cozy Desk**. I then set the look in **a style guide**: a dark ground like a desk at night, light paper boxes for every line, an amber lamp color from the Cozy logo, and **faces with a word for each mood**, so learners can tell how Sofia feels on a call they cannot see. Next, I made **mockups of the 16 screens** and **a clickable prototype**, where the learner gets through **five decisions, one for each step of HEARD**. **After the first prototype**, I found what to improve, such as Sofia’s lines, which moved from dark bubbles to light paper, and refined the screens.
+I began with **a mood board** of coworking spaces, phone call screens and front-desk software, since the course happens on **a phone** and **a desk computer**. I then set the look in **a style guide**: a dark ground, light paper boxes, an amber lamp color and **faces with a word for each mood**. Next, I made **mockups of the 16 screens** and **a clickable prototype** with **five decisions, one for each step of HEARD**, and refined them after the first round.
 
 [Storyboard: decision 1 of the call, with each option, Sofia’s reply and Son’s line.](https://duongngochongson.vercel.app/assets/projects/wmu-storyboard.webp)
 
