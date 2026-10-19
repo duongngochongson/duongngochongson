@@ -448,6 +448,9 @@ p, dd, li {
 .case .sum { font: var(--type-lead); color: var(--muted); }
 .sum b { font-weight: 600; color: var(--ink); }
 .cta-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: var(--gap-sections) 0; }
+/* The slides at the top of a project page: one button opens them in the pop-up, and the other slides wait hidden in the same group,
+   so previous and next step through them all. The box itself takes no room, so the button sits in the row like the others. */
+.slide-set { display: contents; }
 
 /* The project summary under the buttons: three boxes (Audience, Responsibilities, Tools), each a heading with its icon
    in the text color and a short list. In a row; narrower, Audience on top of the other two; on a phone, one under another. */

@@ -331,9 +331,14 @@ def doc_links(row):
     links = []
     for el in row.elements():
         if el.tag == 'a':
-            links.append(f'[{clean(text(el, False)).replace(" ↗", "")}]({el.attrs["href"]})')
+            href = el.attrs["href"]
+            if not href.startswith(('http://', 'https://')):  # a file of this site, such as the slides' PDF
+                href = doc_link(href)
+            links.append(f'[{clean(text(el, False)).replace(" ↗", "")}]({href})')
         elif el.has('doc-btn') and 'data-frame' in el.attrs:
             links.append(f'[{t(el)}]({doc_link(el.attrs["data-frame"])})')
+        elif el.has('slide-set'):  # the slides open in the pop-up on the page; the README links their PDF
+            links.append(f'[{t(el.find(by_class("doc-btn")))}]({doc_link(el.attrs["data-pdf"])})')
     return links
 
 

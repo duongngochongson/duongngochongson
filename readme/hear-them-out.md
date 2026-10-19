@@ -6,7 +6,7 @@ Discover Hear Them Out, a **scenario-based course** that trains front-desk staff
 
 This repository holds the code of Hear Them Out, the course this project led to.
 
-[Try the course](https://hear-them-out.vercel.app/) · [Read the case study](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Case%20Study.dc.html) · [The project page](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
+[Try the course](https://hear-them-out.vercel.app/) · [View the slides](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Why%20Members%20Are%20Unhappy%20Slides.pdf) · [The project page](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
 
 **Audience**
 
@@ -198,7 +198,7 @@ I had put a lot of time and effort into this project, and it taught me many less
 
 ## Documents & credits
 
-[Try the course](https://hear-them-out.vercel.app/) · [Case study](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Case%20Study.dc.html) · [Storyboard](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Storyboard.dc.html) · [Design document](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Design%20Document.dc.html) · [Style guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Style%20Guide.dc.html) · [Diagrams](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Diagrams.html) · [Job aids](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Job%20Aids.dc.html) · [First-day guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Cozy%20in%2060%20Seconds.dc.html)
+[Try the course](https://hear-them-out.vercel.app/) · [Slides (PDF)](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Why%20Members%20Are%20Unhappy%20Slides.pdf) · [Case study](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Case%20Study.dc.html) · [Storyboard](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Storyboard.dc.html) · [Design document](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Design%20Document.dc.html) · [Style guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Style%20Guide.dc.html) · [Diagrams](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Diagrams.html) · [Job aids](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Job%20Aids.dc.html) · [First-day guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Cozy%20in%2060%20Seconds.dc.html)
 
 ## Credits
 

@@ -3,7 +3,7 @@
     python3 scripts/readme/check_links.py
 
 It reads index.html, every page and component in work/ (.html and .dc.html) and every stylesheet (styles.css and work/**/*.css), and
-checks each href, src, srcset, poster, data-frame and data-image that points inside the repository, each url() in a stylesheet, each
+checks each href, src, srcset, poster, data-frame, data-image and data-pdf that points inside the repository, each url() in a stylesheet, each
 <dc-import name="..."> (it must have a <name>.dc.html next to the page), each data-doc (it must be an id in index.html), each icon of the sprite (href="file.svg#i-name" needs
 id="i-name" in that file), and each link into another page's anchor (Diagrams.html#action-map needs id="action-map" there).
 Links to other sites, mailto: links, data: URLs, same-page #anchors and values with a {{ binding }} are skipped.
@@ -16,7 +16,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-PATH_ATTRS = {'href', 'src', 'poster', 'data-frame', 'data-image'}
+PATH_ATTRS = {'href', 'src', 'poster', 'data-frame', 'data-image', 'data-pdf'}
 SKIP_SCHEMES = ('http:', 'https:', 'mailto:', 'tel:', 'data:', 'javascript:', 'blob:', '//')
 CSS_URL = re.compile(r'url\(\s*([\'"]?)(.*?)\1\s*\)')
 
