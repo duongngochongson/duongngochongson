@@ -62,7 +62,7 @@ With the Behavior Engineering Model (BEM), I found three root causes:
 - Space rules members could not see
 - No set steps for Wi-Fi outages
 
-**How I sorted the causes.** I sorted each cause into the BEM’s **six cells** and checked **the environment first**, because changing it **costs less than training**. For each cause, I asked **Mager and Pipe’s question**: could people do it if they had to? If so, **a course would not help**.
+**How I sorted the causes.** I sorted each cause into the BEM’s **six cells**. For each cause, I asked **Mager and Pipe’s question**: could people do it if they had to? If so, the fix is in the work around them. If not, **practice** helps.
 
 - Environment: Information, Tools, Incentives
 - Person: Knowledge, Capacity, Motives
@@ -87,7 +87,7 @@ Each shift handled an outage **in its own order**, and most **waited for the cau
 
 ## Solution
 
-I matched each root cause with a solution, and only one of them is a course:
+I matched each root cause with a solution:
 
 ### A follow-up process and call practice for complaints
 

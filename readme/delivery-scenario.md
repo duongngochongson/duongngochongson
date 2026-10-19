@@ -109,7 +109,7 @@ The Sequence, Handling codes, Safe place and Call moves cards. Drivers open them
 
 [The Sequence card, a job aid](https://duongngochongson.vercel.app/assets/projects/ds-job-aid.webp)
 
-### Two changes in operations for what training cannot fix
+### Two changes in operations for barriers in the work itself
 
 _For operations_
 
