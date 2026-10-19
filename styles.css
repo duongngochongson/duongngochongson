@@ -451,6 +451,8 @@ p, dd, li {
 /* The slides at the top of a project page: one button opens them in the pop-up, and the other slides wait hidden in the same group,
    so previous and next step through them all. The box itself takes no room, so the button sits in the row like the others. */
 .slide-set { display: contents; }
+/* its button comes first: in capitals, with the dashed blue border of the summary boxes under it */
+.cta-row .overall-btn { border: var(--border-note); text-transform: uppercase; letter-spacing: .04em; }
 
 /* The project summary under the buttons: three boxes (Audience, Responsibilities, Tools), each a heading with its icon
    in the text color and a short list. In a row; narrower, Audience on top of the other two; on a phone, one under another. */

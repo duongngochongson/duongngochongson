@@ -6,7 +6,7 @@ Discover Hear Them Out, a **scenario-based course** that trains front-desk staff
 
 This repository holds the code of Hear Them Out, the course this project led to.
 
-[Try the course](https://hear-them-out.vercel.app/) · [See the overall picture](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Why%20Members%20Are%20Unhappy%20Slides.pdf) · [The project page](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
+[See the overall picture](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Why%20Members%20Are%20Unhappy%20Slides.pdf) · [Try the course](https://hear-them-out.vercel.app/) · [The project page](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
 
 **Audience**
 
