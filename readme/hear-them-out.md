@@ -120,7 +120,7 @@ With action mapping, I chose five actions that resolve a complaint, and Hear The
 
 Sofia, a member, calls because another member took **a half-hour call next to her in Focus**, two weeks after she reported calls there. The call follows **HEARD**, a five-step way of handling complaints, with **one decision for each step**. Son, a guide, describes **her mood after each reply**, because on the phone the learner cannot see her face.
 
-Following **Merrill’s first principles**, the course **starts with the call** and leaves the rules for later.
+Following **Merrill’s first principles** and **Knowles’s andragogy**, the course starts with a call from the job and leaves the rules for later.
 
 ### Action map
 
