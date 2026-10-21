@@ -251,8 +251,8 @@ def block_md(n):
         return picture_md(n)
     if 'tile-pair' in c:   # two pictures for one fold: a list, like several shots
         return bullets(picture_md(b) for b in n.elements())
-    if 'issues' in c:
-        return bullets(t(li) for li in n.elements())
+    if 'issues' in c:   # each problem, then where it was found (its tag) in brackets
+        return bullets(f'{t(li.elements()[1])} ({t(li.find(by_class("tag")))})' for li in n.elements())
     if 'pull' in c:
         q = t(n.find(by_tag('blockquote')))
         cap = t(n.find(by_tag('figcaption')))

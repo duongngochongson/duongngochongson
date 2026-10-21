@@ -921,10 +921,17 @@ dialog.doc.doc-pic { background: none; border: 0; box-shadow: none; overflow: vi
 .issues, .persona ul, .heard, .slides, .flow ol, .credit-list, .takeaways, .m-keys { list-style: none; margin: 0; padding: 0; }
 /* a list straight inside a section keeps the section's 14px space above it */
 .cs > :is(.issues, .heard, .slides, .takeaways, ul:not([class])) { margin-top: var(--gap-para); }
-.issues { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-boxes); }
-.issues li { display: flex; gap: var(--gap-icon); align-items: flex-start; padding: var(--pad-item); border-radius: var(--radius-box); background: var(--surface); font: var(--type-item); color: var(--muted); text-align: left; }
-.issues .ic { color: var(--sec); margin-top: 1px; }
-@container case (max-width: 560px) { .issues { grid-template-columns: minmax(0, 1fr); } }
+/* three boxes in a row: the icon in its circle, the text, and at the foot a small tag for where the problem was found;
+   one under another on a phone, with the icon beside the text and the tag under it */
+.issues { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap-boxes); }
+.issues li { display: flex; flex-direction: column; align-items: flex-start; gap: var(--gap-icon); padding: var(--pad-item); border-radius: var(--radius-box); background: var(--surface); font: var(--type-item); color: var(--muted); text-align: left; }
+.issues .tag { margin-top: auto; text-transform: uppercase; }
+@container case (max-width: 640px) {
+  .issues { grid-template-columns: minmax(0, 1fr); }
+  .issues li { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; column-gap: var(--gap-icon); row-gap: var(--gap-lines); }
+  .issues .row-ic { grid-row: span 2; }
+  .issues .tag { grid-column: 2; justify-self: start; margin-top: 0; }
+}
 
 /* a plain list in a section's text (the five actions): a dot in the section's color */
 .cs > ul:not([class]) { margin-bottom: 0; padding-left: 20px; display: grid; gap: var(--gap-lines); font: var(--type-body); color: var(--muted); }

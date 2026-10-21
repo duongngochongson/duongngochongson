@@ -2,7 +2,7 @@
 
 _Concept project_
 
-Discover Hear Them Out, a **scenario-based course** that trains front-desk staff at Cozy, a coworking business, in what a **root-cause analysis** showed they needed: handling a complaint call, then following up with a clear process so no complaint gets missed. Besides the course, other support tools help Cozy solve members’ problems and win back their satisfaction: signs and a first-day guide (to show members the space rules), a Wi-Fi checklist (to handle every outage the same way) and an updated issue log (to give every case a next step, an owner and a date).
+A **root-cause analysis** found three reasons why members of Cozy, a coworking business, were unhappy, and **a solution for each one**: a follow-up process and call practice for complaints, space rules members can see, and set steps for Wi-Fi outages. They are Hear Them Out, a **scenario-based course** for front-desk staff, with an updated issue log that gives every case a next step, an owner and a date; signs and a first-day guide that show members the space rules; and a Wi-Fi checklist that helps staff handle every outage the same way.
 
 This repository holds the code of Hear Them Out, the course this project led to.
 
@@ -35,12 +35,11 @@ This repository holds the code of Hear Them Out, the course this project led to.
 
 Cozy’s members were growing less satisfied, and they gave the way Cozy handles complaints the lowest score of all.
 
-They felt **unheard** and, at times, even **treated unfairly**. Many of their complaints were **never followed up on or resolved**. **Four problems** came up the most:
+They felt **unheard** and, at times, even **treated unfairly**. Many of their complaints were **never followed up on or resolved**. **Three problems** came up the most:
 
-- Noise and phone calls in Focus, the silent zone
-- The shared kitchen and fridge
-- Wi-Fi outages
-- Complaint handling
+- Complaint handling (Issue log)
+- Members breaking space rules in Focus and the kitchen (Survey)
+- Wi-Fi outages (Survey)
 
 > “We’ll look into it.”
 >
