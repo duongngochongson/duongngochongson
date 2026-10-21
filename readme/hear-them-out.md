@@ -65,7 +65,7 @@ With the Behavior Engineering Model (BEM), I found three root causes:
 - Space rules members could not see
 - No set steps for Wi-Fi outages
 
-**How I sorted the causes.** I sorted each cause into the BEM’s **six cells**. For each cause, I asked **Mager and Pipe’s question**: could people do it if they had to? If so, the fix is in the work around them. If not, **practice** helps.
+**How I sorted the causes.** I sorted each cause into the BEM’s **six cells**. For each cause, I asked **Mager and Pipe’s question**: could people do it if they had to? If so, the fix is in the work around them. If not, **practice** helps. The evidence came from survey comments, the issue and outage logs, interviews with each shift, a visit to one space and public sources.
 
 - Environment: Information, Tools, Incentives
 - Person: Knowledge, Capacity, Motives
@@ -189,7 +189,9 @@ I began with **a mood board** of coworking spaces, phone call screens and front-
 
 I built Hear Them Out as a web app, so it runs in a browser on a computer or a phone.
 
-React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations. Sofia’s lines are **synthetic speech**, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member. **Browser tests** run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.
+The course logic works like an **Articulate Storyline** project, with **states, variables and triggers**. Each step of the course is a state, variables keep the learner’s choices, which decide the score Sofia gives Cozy in the survey, and triggers move the learner to the next step.
+
+In code, React draws the screens, XState runs these states and triggers, Zod checks the content and Motion runs the animations. Sofia’s lines are **synthetic speech**, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member. **Browser tests** run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.
 
 ## Results & takeaways
 

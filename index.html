@@ -148,7 +148,7 @@
         <h3 id="proj-wmu" data-vi="Why Members Are Unhappy">Why Members Are Unhappy</h3>
         <dl class="prs">
           <div><dt data-accent="a1" data-vi="VẤN ĐỀ">PROBLEM</dt><dd>Members of Cozy, a coworking business, grew less satisfied over one year, especially with the way complaints were handled.</dd></div>
-          <div><dt data-accent="a2" data-vi="GIẢI PHÁP">SOLUTION</dt><dd>Hear Them Out, a training course for front-desk staff that combines a branching scenario with a software tutorial, plus support tools for staff and members: an updated issue log, signs in the space, a first-day guide and a Wi-Fi checklist.</dd></div>
+          <div><dt data-accent="a2" data-vi="GIẢI PHÁP">SOLUTION</dt><dd>A solution for each of the three root causes: Hear Them Out, a course for front-desk staff that combines a branching scenario with a software tutorial, plus an updated issue log; signs in the space and a first-day guide for members; and a Wi-Fi checklist.</dd></div>
           <div><dt data-accent="a3" data-vi="MỤC TIÊU">GOAL</dt><dd>Raise member satisfaction to 4.0/5 within two quarters, with the complaint score rising from 2.7/5 to 3.8/5.</dd></div>
         </dl>
       </div>
@@ -263,7 +263,7 @@
       </div>
       <p class="keyline">With the Behavior Engineering Model (BEM), I found three root causes:</p>
       <ul><li>No follow-up process or call practice for complaints</li><li>Space rules members could not see</li><li>No set steps for Wi-Fi outages</li></ul>
-      <div class="method my-note"><div><div class="lab">HOW I SORTED THE CAUSES</div><p>I sorted each cause into the BEM’s <b>six cells</b>. For each cause, I asked <b>Mager and Pipe’s question</b>: could people do it if they had to? If so, the fix is in the work around them. If not, <b>practice</b> helps.</p></div><div class="sixbox" aria-label="The six cells of the BEM"><span class="sb-h">Environment</span><span class="sb-c">Information</span><span class="sb-c">Tools</span><span class="sb-c">Incentives</span><span class="sb-h">Person</span><span class="sb-c">Knowledge</span><span class="sb-c">Capacity</span><span class="sb-c">Motives</span></div></div>
+      <div class="method my-note"><div><div class="lab">HOW I SORTED THE CAUSES</div><p>I sorted each cause into the BEM’s <b>six cells</b>. For each cause, I asked <b>Mager and Pipe’s question</b>: could people do it if they had to? If so, the fix is in the work around them. If not, <b>practice</b> helps. The evidence came from survey comments, the issue and outage logs, interviews with each shift, a visit to one space and public sources.</p></div><div class="sixbox" aria-label="The six cells of the BEM"><span class="sb-h">Environment</span><span class="sb-c">Information</span><span class="sb-c">Tools</span><span class="sb-c">Incentives</span><span class="sb-h">Person</span><span class="sb-c">Knowledge</span><span class="sb-c">Capacity</span><span class="sb-c">Motives</span></div></div>
       <div class="folds">
         <details class="fold">
           <summary><span class="row-ic"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-phone"/></svg></span><span class="fold-name">No follow-up process or call practice for complaints</span><span class="row-tag"><span class="sixmini" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i></i><i></i></span><span class="tag">INFORMATION + TOOLS + KNOWLEDGE</span></span><span class="fold-chev" aria-hidden="true"><svg class="ic"><use href="work/frame/icons.svg#i-caretDown"/></svg></span></summary>
@@ -372,7 +372,8 @@
         <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-monitor"/></svg><h3 class="lab">DEVELOPMENT</h3></div>
       </div>
       <p class="keyline">I built Hear Them Out as a web app, so it runs in a browser on a computer or a phone.</p>
-      <p>React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations. Sofia’s lines are <b>synthetic speech</b>, also shown on screen, and in a <b>practice call</b> after the course, an AI model plays Omar, a member. <b>Browser tests</b> run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.</p>
+      <p>The course logic works like an <b>Articulate Storyline</b> project, with <b>states, variables and triggers</b>. Each step of the course is a state, variables keep the learner’s choices, which decide the score Sofia gives Cozy in the survey, and triggers move the learner to the next step.</p>
+      <p>In code, React draws the screens, XState runs these states and triggers, Zod checks the content and Motion runs the animations. Sofia’s lines are <b>synthetic speech</b>, also shown on screen, and in a <b>practice call</b> after the course, an AI model plays Omar, a member. <b>Browser tests</b> run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.</p>
     </section>
 
     <section class="cs" data-kind="goal">
