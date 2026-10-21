@@ -16,7 +16,7 @@ To look at it, run `python3 -m http.server` in the repo root. Work on a branch a
 - `index.html`: every page, in one file. A page is `<section class="page" data-page="..." data-title="..." hidden>` with a nav link (`data-nav`).
   - Hash routes: `#home`, `#portfolio`, `#portfolio/why-members-are-unhappy`, `#portfolio/delivery-scenario`, `#about`.
     Old `#work...` and `#portfolio/hear-them-out` links still work (`aliases` in `site.js`).
-  - The pop-up is one `<dialog class="doc">`. `<template>` blocks hold the credits and the CV placeholder.
+  - The pop-up is one `<dialog class="doc">`. `<template>` blocks hold the credits. The CV button is a link to the PDF on Google Drive, in a new tab.
   - `data-vi` is an element's Vietnamese text, beside its English in the markup. `site.js` swaps it in (`setLang`).
 - `styles.css`: the fonts (files in `assets/fonts`), the `:root` token block (colors, corners, lines, padding, gaps, type, motion) with the dark
   set under `:root[data-theme="dark"]`, then the rules by area: sidebar, main, project pages, pop-up, About, footer, small screens.
