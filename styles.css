@@ -514,10 +514,10 @@ p, dd, li {
 .shots.single { grid-template-columns: minmax(0, 1fr); }
 .shots.whole { align-items: start; }
 .shots.single .shot img, .shots.whole .shot img { aspect-ratio: auto var(--shape, 16 / 10); object-fit: contain; }
-/* the figure of the three causes is a <picture>: a stacked, narrower drawing on phones (the same 520px as its media query in index.html),
+/* the figure of the three causes is a <picture>: a stacked, narrower drawing on phones (the same 575px as its media query in index.html),
    the wide one elsewhere and in the pop-up; each keeps its own shape until it loads */
 .shot-causes img { --shape: 1440 / 1200; }
-@media (max-width: 520px) { .shot-causes img { --shape: 640 / 2544; } }
+@media (max-width: 575px) { .shot-causes img { --shape: 640 / 2544; } }
 @container case (max-width: 560px) { .shots, .shots.pair, .shots.whole { grid-template-columns: minmax(0, 1fr); } }
 
 /* A fold: a block that stays closed until its title row is pressed (a native <details class="fold">, inside .folds).
