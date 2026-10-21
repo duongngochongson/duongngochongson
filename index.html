@@ -174,9 +174,9 @@
      - the two-sentence summary (p.sum), the main buttons (.cta-row), then the three summary boxes (.summary: Audience,
        Responsibilities, Tools, each a .sum-box with a .cs-title and a <ul>);
      - full-width sections (section.cs): Problem, Goal, Finding the root causes, Solution, the course or module itself,
-       the design section, Development, Results & takeaways (when the project has them), and Documents & credits.
+       the design section, Development, Results (or Results & takeaways, when the project has them), and Documents & credits.
      Each section's data-kind gives its heading icon and the icons inside it one color: problem (orange: Problem,
-     Finding the root causes), goal (blue: Goal, Results & takeaways), made (green: Solution, the course or module,
+     Finding the root causes), goal (blue: Goal, Results, Results & takeaways), made (green: Solution, the course or module,
      the design section, Development) and docs (purple: Documents & credits).
      From the causes down, every block that is not a picture is a fold (details.fold, inside .folds), closed until it is
      opened. A dashed blue border marks my own notes (.method.my-note, .takeaways).
@@ -453,7 +453,7 @@
         <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-alert"/></svg><h3 class="lab">PROBLEM</h3></div>
       </div>
       <p class="keyline">At stops where nobody answers the door, too many parcels are not delivered on the first attempt.</p>
-      <p>When nobody answers the door, the driver decides where the parcel goes: a safe place, a neighbor or a pickup point. The choice depends on the handling code, the stop note and the customer’s answer on the phone, so it is <b>easy to get wrong</b>, and a wrong one means another trip or a <b>missing parcel</b>.</p>
+      <p>When nobody answers the door, the driver decides where the parcel goes: a safe place, a neighbor or a pickup point. The choice depends on the handling code, the stop note and the customer’s answer on the phone, so it is <b>easy to get wrong</b>, and a wrong one means another trip or a <b>missing parcel</b>. Stop data shows two patterns: more than half of these parcels go back to the depot, often without a call to the customer, and some parcels that are left sit where people on the street can see them.</p>
       <figure class="codes"><figcaption class="lab">WHERE EACH HANDLING CODE LETS A PARCEL GO</figcaption><table><tr><th scope="col"><span class="sr-only">Handling code</span></th><th scope="col"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-house"/></svg><span>Safe place at the house</span></th><th scope="col"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-users"/></svg><span>Neighbor</span></th><th scope="col"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-store"/></svg><span>Pickup point</span></th></tr><tr><th scope="row"><b>STD</b><span>Standard parcel</span></th><td class="yes" data-label="Safe place at the house"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-check"/></svg><span class="sr-only">Yes. </span><span>With a stop note or the customer’s OK</span></td><td class="yes" data-label="Neighbor"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-check"/></svg><span class="sr-only">Yes. </span><span>Allowed</span></td><td class="yes" data-label="Pickup point"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-check"/></svg><span class="sr-only">Yes. </span><span>Allowed</span></td></tr><tr><th scope="row"><b>SIG</b><span>Needs a signature</span></th><td class="no" data-label="Safe place at the house"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-close"/></svg><span class="sr-only">No. </span><span>Not allowed</span></td><td class="yes" data-label="Neighbor"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-check"/></svg><span class="sr-only">Yes. </span><span>A neighbor who signs, with the customer’s OK</span></td><td class="yes" data-label="Pickup point"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-check"/></svg><span class="sr-only">Yes. </span><span>Allowed</span></td></tr><tr><th scope="row"><b>AGE</b><span>Age-restricted</span></th><td class="no" data-label="Safe place at the house"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-close"/></svg><span class="sr-only">No. </span><span>Not allowed</span></td><td class="no" data-label="Neighbor"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-close"/></svg><span class="sr-only">No. </span><span>Not allowed</span></td><td class="yes" data-label="Pickup point"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-check"/></svg><span class="sr-only">Yes. </span><span>The customer shows photo ID</span></td></tr></table></figure>
     </section>
 
@@ -565,9 +565,18 @@
         <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-monitor"/></svg><h3 class="lab">DEVELOPMENT</h3></div>
       </div>
       <p class="keyline">I built the module as a web app that also runs in a learning management system (LMS).</p>
-      <p>React draws the screens, XState runs each slide’s logic, and Zod checks the content files. Each change on GitHub builds a new <b>SCORM 1.2 package</b>, so an LMS can run the module and save each driver’s progress and best score. Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.</p>
+      <p>React draws the screens, XState runs each slide’s logic, and Zod checks the content files. Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.</p>
+      <p>Each change on GitHub builds a new <b>SCORM 1.2 package</b>, so an LMS can run the module and save each driver’s progress and best score. I tested the package in <b>SCORM Cloud</b>: it reported the score and the passed status correctly, and a learner who left halfway came back on the same slide, with the same scores.</p>
     </section>
 
+    <section class="cs" data-kind="goal">
+      <div class="cs-head">
+        <div class="cs-title"><svg class="ic" aria-hidden="true"><use href="work/frame/icons.svg#i-thought"/></svg><h3 class="lab">RESULTS</h3></div>
+      </div>
+      <p class="keyline">I will know the module works when the LMS, the driver app and the claims data show it.</p>
+      <div class="measures"><table aria-label="How the module will be measured"><tr><th scope="col">Level</th><th scope="col">Measure</th><th scope="col">When</th></tr><tr><th scope="row"><b>1 Reaction</b></th><td data-label="Measure">Two questions on how ready the driver feels for the next shift</td><td data-label="When">After a pass</td></tr><tr><th scope="row"><b>2 Learning</b></th><td data-label="Measure">Score out of 100: a pass is 80 or more, with no broken rule on slide 7</td><td data-label="When">In the module, through SCORM</td></tr><tr><th scope="row"><b>3 Behavior</b></th><td data-label="Measure">The call is logged before the delivery status, and proof photos show the house number</td><td data-label="When">Weeks 2 to 8, from the driver app and a weekly photo audit</td></tr><tr><th scope="row"><b>4 Results</b></th><td data-label="Measure">First-attempt success from 45% to 65%, with claims at 0.5% or less</td><td data-label="When">Month 3, from delivery status and claims data</td></tr></table></div>
+      <p>The four levels follow Kirkpatrick’s model.</p>
+    </section>
 
     <section class="cs" data-kind="docs">
       <div class="cs-head">

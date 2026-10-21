@@ -34,7 +34,7 @@ This repository holds the code of the module.
 
 At stops where nobody answers the door, too many parcels are not delivered on the first attempt.
 
-When nobody answers the door, the driver decides where the parcel goes: a safe place, a neighbor or a pickup point. The choice depends on the handling code, the stop note and the customer’s answer on the phone, so it is **easy to get wrong**, and a wrong one means another trip or a **missing parcel**.
+When nobody answers the door, the driver decides where the parcel goes: a safe place, a neighbor or a pickup point. The choice depends on the handling code, the stop note and the customer’s answer on the phone, so it is **easy to get wrong**, and a wrong one means another trip or a **missing parcel**. Stop data shows two patterns: more than half of these parcels go back to the depot, often without a call to the customer, and some parcels that are left sit where people on the street can see them.
 
 Where each handling code lets a parcel go:
 
@@ -157,7 +157,22 @@ Three principles guide it: **readable on the street** (text of 16px or more, 7:1
 
 I built the module as a web app that also runs in a learning management system (LMS).
 
-React draws the screens, XState runs each slide’s logic, and Zod checks the content files. Each change on GitHub builds a new **SCORM 1.2 package**, so an LMS can run the module and save each driver’s progress and best score. Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.
+React draws the screens, XState runs each slide’s logic, and Zod checks the content files. Slide 4 has synthetic voices with captions, and on slide 5 an AI model plays a customer in a typed call.
+
+Each change on GitHub builds a new **SCORM 1.2 package**, so an LMS can run the module and save each driver’s progress and best score. I tested the package in **SCORM Cloud**: it reported the score and the passed status correctly, and a learner who left halfway came back on the same slide, with the same scores.
+
+## Results
+
+I will know the module works when the LMS, the driver app and the claims data show it.
+
+| Level | Measure | When |
+|---|---|---|
+| **1 Reaction** | Two questions on how ready the driver feels for the next shift | After a pass |
+| **2 Learning** | Score out of 100: a pass is 80 or more, with no broken rule on slide 7 | In the module, through SCORM |
+| **3 Behavior** | The call is logged before the delivery status, and proof photos show the house number | Weeks 2 to 8, from the driver app and a weekly photo audit |
+| **4 Results** | First-attempt success from 45% to 65%, with claims at 0.5% or less | Month 3, from delivery status and claims data |
+
+The four levels follow Kirkpatrick’s model.
 
 ## Documents & credits
 
