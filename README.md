@@ -16,7 +16,7 @@ My name is Son Duong, and I'm from Vietnam. I'm passionate about learning and ab
 
 ## Skillset
 
-`Needs analysis` `Action mapping` `Branching scenarios` `Learning evaluation` `Job aids` `Vibe-coded e-learning` `Data analysis`
+`Needs analysis` `Action mapping` `Branching scenarios` `Learning evaluation` `Job aids` `Vibe-coded e-learning` `LMS · SCORM & xAPI` `Data analysis`
 
 ## [About me](https://duongngochongson.vercel.app/#about)
 
