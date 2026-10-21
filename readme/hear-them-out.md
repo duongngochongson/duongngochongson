@@ -49,9 +49,13 @@ They felt **unheard** and, at times, even **treated unfairly**. Many of their co
 
 Given this, Cozy’s board set a goal to raise member satisfaction, especially the complaint score.
 
-Specifically, within two quarters, overall satisfaction should rise from 3.2/5 to **4.0/5**, and the complaint score from 2.7/5 to **3.8/5**. Each week, managers check that **9 in 10 complaints** have a dated next step.
+Specifically, within two quarters, overall satisfaction should rise from 3.2/5 to **4.0/5**, and the complaint score from 2.7/5 to **3.8/5**. Each week, managers check that **9 in 10 complaints** have a dated next step. Now, about half have a written next step.
 
 - **Overall member satisfaction**: Now **3.2/5**; **3.5/5** after the first quarter; Target **4.0/5**. Measured by Cozy’s quarterly member survey, from 1 (very dissatisfied) to 5 (very satisfied).
+
+![Overall satisfaction now 3.2/5. Three root causes, and a solution for each one. Row 1. Cells: Information + tools + knowledge. Cause: No follow-up process or call practice for complaints. How: Log changes, and the course Hear Them Out. Solution: A follow-up process and call practice for complaints. Row 2. Cells: Information. Cause: Space rules members could not see. How: Signs in the space, and Cozy in 60 seconds. Solution: Space rules members can see. Row 3. Cells: Information + tools. Cause: No set steps for Wi-Fi outages. How: The Wi-Fi Down card, and an automatic switch to the backup line. Solution: Set steps for Wi-Fi outages. Target within two quarters: 4.0/5 overall, and 3.8/5 for how Cozy handles complaints.](https://duongngochongson.vercel.app/assets/projects/wmu-causes.webp)
+
+_The overall picture: each root cause, its cells in the BEM and what Cozy changes to fix it._
 
 ## Finding the root causes
 

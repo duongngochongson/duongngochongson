@@ -8,6 +8,7 @@ It reads index.html and writes:
   readme/delivery-scenario.md    the README of the delivery-scenario repository (the Not-Home Delivery Stop page)
 
 Only text is copied. Pictures and screenshots stay on the site, and the README links to each of them (a link with its caption).
+One kind of picture is shown instead: a button marked data-embed (a figure that is words, like the three causes) becomes an image with its alt text and its caption under it.
 A block this script does not know stops the build with a message, and so does a missing piece of the page (a class that was
 renamed, a data-page route that is gone): the message names the data-page and the selector. Nothing is dropped without anyone noticing.
 A node that may be absent says so at the call site (optional=True).
@@ -209,6 +210,8 @@ def picture_md(btn):
     """A picture that opens in the pop-up: a link to the picture, with its caption (or its description) as the text."""
     img = btn.find(by_tag('img'), optional=True)
     cap = t(btn.find(by_class('shot-cap'), optional=True), optional=True) or clean(img.attrs.get('alt', '') if img is not None else '')
+    if 'data-embed' in btn.attrs and img is not None:   # a figure that is words in a picture (the three causes): shown, with its alt text, and its caption under it
+        return f'![{clean(img.attrs.get("alt", ""))}]({SITE}/{btn.attrs["data-image"]})\n\n_{cap}_'
     return f'[{cap}]({SITE}/{btn.attrs["data-image"]})'
 
 
