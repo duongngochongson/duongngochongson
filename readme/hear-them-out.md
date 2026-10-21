@@ -2,16 +2,17 @@
 
 _Concept project_
 
-Discover Hear Them Out, a **scenario-based course** that trains front-desk staff at Cozy, a coworking business, in what a **root-cause analysis** showed they needed: handling a complaint call, then following up with a clear process so no complaint gets missed. Besides the course, other support tools help Cozy solve members’ problems and win back their satisfaction: signs and a first-day guide (to show members the space rules), a Wi-Fi checklist (to handle every outage the same way) and an updated issue log (to give every case a next step, an owner and a date).
+A **root-cause analysis** found three reasons why members of Cozy, a coworking business, were unhappy, and **a solution for each one**: a follow-up process and call practice for complaints, space rules members can see, and set steps for Wi-Fi outages. They are Hear Them Out, a **scenario-based course** for front-desk staff, with an updated issue log that gives every case a next step, an owner and a date; signs and a first-day guide that show members the space rules; and a Wi-Fi checklist that helps staff handle every outage the same way.
 
 This repository holds the code of Hear Them Out, the course this project led to.
 
-[Try the course](https://hear-them-out.vercel.app/) · [Read the case study](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Case%20Study.dc.html) · [The project page](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
+[See the overall picture](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Why%20Members%20Are%20Unhappy%20Slides.pdf) · [Try the course](https://hear-them-out.vercel.app/) · [The project page](https://duongngochongson.vercel.app/#portfolio/why-members-are-unhappy)
 
 **Audience**
 
 - Front-desk staff at Cozy, a coworking business
 - 20 to 30 minutes for learning in quiet periods, on a computer or a phone
+- Cozy’s members, for the signs and the first-day guide
 
 **Responsibilities**
 
@@ -34,12 +35,11 @@ This repository holds the code of Hear Them Out, the course this project led to.
 
 Cozy’s members were growing less satisfied, and they gave the way Cozy handles complaints the lowest score of all.
 
-They felt **unheard** and, at times, even treated unfairly. Many of their complaints were never followed up on or resolved. Four problems came up the most:
+They felt **unheard** and, at times, even **treated unfairly**. Many of their complaints were **never followed up on or resolved**. **Three problems** came up the most:
 
-- Noise and phone calls in Focus, the silent zone
-- The shared kitchen and fridge
-- Wi-Fi outages
-- Complaint handling
+- Complaint handling (Issue log)
+- Members breaking space rules in Focus and the kitchen (Survey)
+- Wi-Fi outages (Survey)
 
 > “We’ll look into it.”
 >
@@ -49,9 +49,13 @@ They felt **unheard** and, at times, even treated unfairly. Many of their compla
 
 Given this, Cozy’s board set a goal to raise member satisfaction, especially the complaint score.
 
-Specifically, within two quarters, overall satisfaction should rise from 3.2/5 to **4.0/5**, and the complaint score from 2.7/5 to **3.8/5**. Each week, managers check that **9 in 10 complaints** have a dated next step.
+Specifically, within two quarters, overall satisfaction should rise from 3.2/5 to **4.0/5**, and the complaint score from 2.7/5 to **3.8/5**. Each week, managers check that **9 in 10 complaints** have a dated next step. Now, about half have a written next step.
 
 - **Overall member satisfaction**: Now **3.2/5**; **3.5/5** after the first quarter; Target **4.0/5**. Measured by Cozy’s quarterly member survey, from 1 (very dissatisfied) to 5 (very satisfied).
+
+![Overall satisfaction now 3.2/5. Three root causes, and a solution for each one. Row 1. Cells: Information + tools + knowledge. Cause: No follow-up process or call practice for complaints. How: Log changes, and the course Hear Them Out. Solution: A follow-up process and call practice for complaints. Row 2. Cells: Information. Cause: Space rules members could not see. How: Signs in the space, and Cozy in 60 seconds. Solution: Space rules members can see. Row 3. Cells: Information + tools. Cause: No set steps for Wi-Fi outages. How: The Wi-Fi Down card, and an automatic switch to the backup line. Solution: Set steps for Wi-Fi outages. Target within two quarters: 4.0/5 overall, and 3.8/5 for how Cozy handles complaints.](https://duongngochongson.vercel.app/assets/projects/wmu-causes.webp)
+
+_The overall picture: each root cause, its cells in the BEM and what Cozy changes to fix it._
 
 ## Finding the root causes
 
@@ -61,46 +65,47 @@ With the Behavior Engineering Model (BEM), I found three root causes:
 - Space rules members could not see
 - No set steps for Wi-Fi outages
 
-**How I sorted the causes.** I sorted each cause into the BEM’s **six cells** and checked the environment first, because changing it costs less than training. For each cause, I asked Mager and Pipe’s question: could people do it if they had to? If so, a course would not help.
+**How I sorted the causes.** I sorted each cause into the BEM’s **six cells**. For each cause, I asked **Mager and Pipe’s question**: could people do it if they had to? If so, the fix is in the work around them. If not, **practice** helps. The evidence came from survey comments, the issue and outage logs, interviews with each shift, a visit to one space and public sources.
 
 - Environment: Information, Tools, Incentives
 - Person: Knowledge, Capacity, Motives
 
 ### No follow-up process or call practice for complaints
 
-_Environment + knowledge_
+_Information + tools + knowledge_
 
-The log asked for no follow-up date or owner, and open cases passed between shifts by word of mouth. On calls, staff explained the rules first. Calming an upset member takes practice.
+The log asked for **no follow-up date or owner**, and open cases passed between shifts **by word of mouth**. On calls, staff **explained the rules first**. Calming an upset member **takes practice**.
 
 ### Space rules members could not see
 
 _Information_
 
-Focus and Flex, the zone for calls, looked the same, and the rules sat in the handbook. Members could follow the rules, so they need to see them where they work.
+Focus and Flex, the zone for calls, **looked the same**, and the rules **sat in the handbook**. Members could follow the rules, so they need to **see them where they work**.
 
 ### No set steps for Wi-Fi outages
 
 _Information + tools_
 
-Each shift handled an outage in its own order, and most waited for the cause before telling members. Staff could do each step, but outages are rare and stressful.
+Each shift handled an outage **in its own order**, and most **waited for the cause** before telling members. Staff could do each step, but outages are **rare and stressful**.
 
 ## Solution
 
-I matched each root cause with a solution, and only one of them is a course:
+I matched each root cause with a solution:
 
 ### A follow-up process and call practice for complaints
 
 _For front-desk staff and managers_
 
-**Hear Them Out** trains staff to handle a complaint call. Managers make the follow-up date and the owner required in the log, with a reminder and a check at each shift change.
+**Hear Them Out** trains staff to **handle a complaint call**. Managers make **the follow-up date and the owner required** in the log, with a reminder and **a check at each shift change**.
 
-[The log card, a job aid from the course](https://duongngochongson.vercel.app/assets/projects/wmu-log-card.webp)
+- [The call with Sofia in Hear Them Out, at its first decision](https://duongngochongson.vercel.app/assets/projects/wmu-call.webp)
+- [The log card, a job aid from the course](https://duongngochongson.vercel.app/assets/projects/wmu-log-card.webp)
 
 ### Space rules members can see
 
 _For members_
 
-A sign, zone tape and kitchen labels, and Cozy in 60 seconds, eight short screens that show a new member the same rules.
+**A sign, zone tape and kitchen labels**, and **Cozy in 60 seconds**, eight short screens that show a new member the same rules.
 
 [The Focus sign, the zone bands and the kitchen labels](https://duongngochongson.vercel.app/assets/projects/wmu-signs.webp)
 
@@ -108,7 +113,7 @@ A sign, zone tape and kitchen labels, and Cozy in 60 seconds, eight short screen
 
 _For front-desk staff and operations_
 
-A one-page checklist: tell members within **10 minutes**, send an update every **15 minutes** and give everyone the same compensation. The backup line also switches on by itself.
+A one-page checklist: tell members within **10 minutes**, send an update every **15 minutes** and give everyone **the same compensation**. The backup line also **switches on by itself**.
 
 [The Wi-Fi Down card](https://duongngochongson.vercel.app/assets/projects/wmu-wifi-card.webp)
 
@@ -116,9 +121,9 @@ A one-page checklist: tell members within **10 minutes**, send an update every *
 
 With action mapping, I chose five actions that resolve a complaint, and Hear Them Out practices all five in one call and its follow-up.
 
-Sofia, a member, calls because another member took a half-hour call next to her in Focus, two weeks after she reported calls there. The call follows **HEARD**, a five-step way of handling complaints, with one decision for each step. Son, a guide, describes her mood after each reply, because on the phone the learner cannot see her face.
+Sofia, a member, calls because another member took **a half-hour call next to her in Focus**, two weeks after she reported calls there. The call follows **HEARD**, a five-step way of handling complaints, with **one decision for each step**. Son, a guide, describes **her mood after each reply**, because on the phone the learner cannot see her face.
 
-Following **Merrill’s first principles**, the course starts with the call and leaves the rules for later.
+Following **Merrill’s first principles** and **Knowles’s andragogy**, the course starts with a call from the job and leaves the rules for later.
 
 ### Action map
 
@@ -146,7 +151,7 @@ Based on the shift interviews and the issue log.
 - **Resolve**: Agree on one next step, with an owner and a day
 - **Diagnose**: Keep the case open until she says it worked
 
-_Source: HEARD, a service recovery technique taught by the [Disney Institute](https://www.landscapemanagement.net/?p=72027)._
+_HEARD is a service recovery technique taught by the [Disney Institute](https://www.landscapemanagement.net/?p=72027)._
 
 ### Two parts of the course
 
@@ -171,24 +176,40 @@ _Source: HEARD, a service recovery technique taught by the [Disney Institute](ht
 
 I wrote the lines and screens in a text-based storyboard first, then designed the look of the course and the Cozy brand.
 
-Before building, I made **mockups of the 16 screens** and a clickable prototype, then cut the call from eight decisions to five, one for each step of HEARD.
+I began with **a mood board** of coworking spaces, phone call screens and front-desk software, since the course happens on **a phone** and **a desk computer**. I then set the look in **a style guide**: a dark ground, light paper boxes, an amber lamp color and **faces with a word for each mood**. Next, I made **mockups of the 16 screens** and **a clickable prototype** with **five decisions, one for each step of HEARD**, and refined them after the first round.
 
 [Storyboard: decision 1 of the call, with each option, Sofia’s reply and Son’s line.](https://duongngochongson.vercel.app/assets/projects/wmu-storyboard.webp)
 
-- [Before: eight decisions, and Sofia’s lines in dark bubbles.](https://duongngochongson.vercel.app/assets/projects/wmu-call-before.webp)
-- [After: five decisions, and her lines on light paper.](https://duongngochongson.vercel.app/assets/projects/wmu-call.webp)
+- [Before: Sofia’s lines in dark bubbles.](https://duongngochongson.vercel.app/assets/projects/wmu-call-before.webp)
+- [After: her lines on light paper.](https://duongngochongson.vercel.app/assets/projects/wmu-call.webp)
 
-[Style guide: the colors of the dark ground and the paper, each with its contrast.](https://duongngochongson.vercel.app/assets/projects/wmu-style-guide.webp)
+[Style guide: the colors, each with its value and role, and some of the icons.](https://duongngochongson.vercel.app/assets/projects/wmu-style-guide.webp)
 
 ## Development
 
 I built Hear Them Out as a web app, so it runs in a browser on a computer or a phone.
 
-React draws the screens, XState runs the course’s logic, Zod checks the content and Motion runs the animations. Sofia’s lines are synthetic speech, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member. **Browser tests** run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.
+The course logic works like an **Articulate Storyline** project, with **states, variables and triggers**. Each step of the course is a state, variables keep the learner’s choices, which decide the score Sofia gives Cozy in the survey, and triggers move the learner to the next step.
+
+In code, React draws the screens, XState runs these states and triggers, Zod checks the content and Motion runs the animations. Sofia’s lines are **synthetic speech**, also shown on screen, and in a **practice call** after the course, an AI model plays Omar, a member. **Browser tests** run through the course on a desktop, a laptop and a phone, to make sure it works smoothly on each.
 
 ## Results & takeaways
 
-I put a lot of time and effort into this project, and it taught me many lessons.
+I will know the solutions work when the member survey and the issue log show it.
+
+| Solution | Measure | When |
+|---|---|---|
+| **Follow-up process and call practice: the course** | First-try results for each step of HEARD, to show which step is hardest | In the course |
+| **Follow-up process and call practice: the log** | 9 in 10 complaints have a dated next step, and the member hears back by that date | Every week, in the log |
+| **Space rules members can see** | Complaints about the shared space per week, by zone and for the kitchen | Every week |
+| **Set steps for Wi-Fi outages** | Minutes to the first notice, and the same compensation on every shift, from the outage log | Every outage |
+| **All three solutions** | The complaint score: 3.2/5, then 3.8/5. Overall satisfaction: 3.5/5, then 4.0/5 | After each quarter, in the member survey |
+
+If the log reaches 9 in 10 but the complaint score stays at 3.2/5, staff are following up on time, so the next question is whether the options they offer meet members’ needs.
+
+The course measures Kirkpatrick’s levels 1 and 2, and the issue log and the member survey measure levels 3 and 4.
+
+I had put a lot of time and effort into this project, and it taught me many lessons.
 
 - **Plan slow, build fast.** Planning every line and screen before building felt slow at first, but it saved a lot of time later, when I had to change things.
 - **Plan for the unplanned.** However carefully I planned, small issues still came up that I only found after building the prototype, so I now leave buffer time to fix them.
@@ -196,7 +217,7 @@ I put a lot of time and effort into this project, and it taught me many lessons.
 
 ## Documents & credits
 
-[Try the course](https://hear-them-out.vercel.app/) · [Case study](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Case%20Study.dc.html) · [Storyboard](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Storyboard.dc.html) · [Design document](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Design%20Document.dc.html) · [Style guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Style%20Guide.dc.html) · [Diagrams](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Diagrams.html) · [Job aids](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Job%20Aids.dc.html) · [First-day guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Cozy%20in%2060%20Seconds.dc.html)
+[Try the course](https://hear-them-out.vercel.app/) · [Slides (PDF)](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Why%20Members%20Are%20Unhappy%20Slides.pdf) · [Case study](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Case%20Study.dc.html) · [Storyboard](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Storyboard.dc.html) · [Design document](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Design%20Document.dc.html) · [Style guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Style%20Guide.dc.html) · [Diagrams](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Diagrams.html) · [Job aids](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Job%20Aids.dc.html) · [First-day guide](https://duongngochongson.vercel.app/work/why-members-are-unhappy/Cozy%20in%2060%20Seconds.dc.html)
 
 ## Credits
 

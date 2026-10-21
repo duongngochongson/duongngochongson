@@ -74,6 +74,15 @@
   --cz-display-card: 600 17px/1.3 var(--cz-display);   /* the title of a box in a figure */
 }
 
+/* The dark ground behind the paper. It is here, and not in each page's helmet, because this file is linked
+   before the scripts: the page is dark from the first paint, before the runtime has drawn anything. */
+html, body { background: var(--cz-night); }
+
+/* The first line of a step in Cozy in 60 seconds takes focus when the step changes. Its focus ring hugs the words and is the blue of the
+   other focus rings (--cz-focus is the same blue as the project pages' ring). */
+[data-step-focus] { align-self: flex-start; }
+[data-step-focus]:focus-visible { outline: 2px solid var(--cz-focus); outline-offset: 4px; border-radius: 2px; }
+
 /* The kind of section decides its color (data-kind on the section, as on the project pages). */
 [data-kind="problem"] { --cz-kind-ink: var(--cz-problem-ink); --cz-kind-tint: var(--cz-problem-tint); --cz-kind-line: var(--cz-problem-line); }
 [data-kind="goal"]    { --cz-kind-ink: var(--cz-goal-ink);    --cz-kind-tint: var(--cz-goal-tint);    --cz-kind-line: var(--cz-goal-line); }

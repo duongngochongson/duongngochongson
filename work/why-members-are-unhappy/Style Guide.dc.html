@@ -4,21 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Style guide · Why Members Are Unhappy · Son Duong</title>
+<link rel="preload" href="../frame/fonts/Archivo-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../frame/fonts/IBMPlexSans-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="./doc-text.css">
+<link rel="stylesheet" href="../frame/fonts/fonts.css">
 <script src="./vendor/react.production.min.js"></script>
 <script src="./vendor/react-dom.production.min.js"></script>
 <script src="./support.js"></script>
 <script src="./doc-anchor.js"></script>
 <script src="./doc-type.js"></script>
-<link rel="stylesheet" href="./doc-text.css">
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="fonts/fonts.css">
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#1F1A12;-webkit-font-smoothing:antialiased}
+body{margin:0;-webkit-font-smoothing:antialiased}
 a{color:#1F1A12}
 a:hover{color:#8A5300}
 summary::-webkit-details-marker{display:none}
@@ -28,7 +30,7 @@ summary::-webkit-details-marker{display:none}
 <div style="background:var(--cz-night);min-height:100vh;padding:var(--cz-pad-shell);display:flex;justify-content:center;font-family:'IBM Plex Sans',sans-serif">
 <article style="width:100%;max-width:1240px;background:var(--cz-paper);border-radius:var(--cz-radius-box)">
 <dc-import name="DocProgress" hint-size="100%,4px"></dc-import>
-<dc-import name="DocHeader" project="Why Members Are Unhappy" doc-type="Style guide" doc-title="Hear Them Out" subtitle="One look for the course, Cozy Desk and Cozy's job aids and first-day guide." author="Son Duong" hint-size="100%,340px"></dc-import>
+<dc-import name="DocHeader" project="Why Members Are Unhappy" doc-type="Style guide" subtitle="One look for the course, Cozy Desk and Cozy's job aids and first-day guide." hint-size="100%,340px"></dc-import>
 <div style="display:flex;flex-wrap:wrap;align-items:flex-start;gap:clamp(24px,3vw,40px);padding:var(--cz-pad-page)">
 <div style="flex:1 1 220px;max-width:260px;min-width:200px;position:sticky;top:16px;align-self:start;z-index:5;max-height:calc(100vh - 32px);overflow:auto">
 <dc-import name="DocContents" items="{{ toc }}" hint-size="100%,360px"></dc-import>

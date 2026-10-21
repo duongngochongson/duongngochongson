@@ -8,11 +8,11 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="../frame/fonts/fonts.css">
 </helmet>
 <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
 <sc-if value="{{ hasImage }}" hint-placeholder-val="{{ true }}">
-<img src="{{ src }}" alt="{{ alt }}" style="display:block;width:100%;border:var(--cz-border);border-radius:var(--cz-radius-box);background:#F4EFE4">
+<img src="{{ src }}" alt="{{ alt }}" width="{{ imgW }}" height="{{ imgH }}" loading="lazy" decoding="async" style="display:block;width:100%;height:auto;border:var(--cz-border);border-radius:var(--cz-radius-box);background:#F4EFE4">
 </sc-if>
 <sc-if value="{{ empty }}">
 <div role="img" aria-label="{{ alt }}" style="background:#F4EFE4;border:var(--cz-border-empty);border-radius:var(--cz-radius-box);min-height:{{ minH }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:32px;text-align:center">
@@ -27,7 +27,7 @@
 </sc-if>
 </figure>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:700,&quot;height&quot;:320},&quot;num&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Figure 1&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;caption&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;alt&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;note&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;src&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;hrefLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Open it&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;minHeight&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:220,&quot;min&quot;:120,&quot;max&quot;:600,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:700,&quot;height&quot;:320},&quot;num&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Figure 1&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;caption&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;alt&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;note&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;src&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;href&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;hrefLabel&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Open it&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;imgWidth&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:4000,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;imgHeight&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:0,&quot;min&quot;:0,&quot;max&quot;:4000,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;},&quot;minHeight&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:220,&quot;min&quot;:120,&quot;max&quot;:600,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;}}">
 class Component extends DCLogic {
   renderVals() {
     const p = this.props;
@@ -38,6 +38,8 @@ class Component extends DCLogic {
       alt: p.alt ?? p.caption ?? '',
       note: p.note ?? p.caption ?? '',
       src,
+      imgW: p.imgWidth || undefined,    // the picture's own size, so the page keeps its space before the picture has loaded
+      imgH: p.imgHeight || undefined,
       hasImage: !!src,
       empty: !src,
       minH: (p.minHeight ?? 220) + 'px',

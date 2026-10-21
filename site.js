@@ -58,6 +58,7 @@
     const prev = dialog.querySelector('[data-doc-prev]');
     const next = dialog.querySelector('[data-doc-next]');
     const count = dialog.querySelector('[data-doc-count]');
+    const tools = dialog.querySelector('[data-doc-tools]');  // (previous and next, and zoom, in the middle of the bar)
     const say = document.createElement('div');  // inside the dialog: the page behind a modal dialog is inert, so a region there is not read
     say.className = 'sr-only';
     say.setAttribute('aria-live', 'polite');
@@ -131,17 +132,85 @@
       const big = document.createElement('img');
       big.src = src;
       big.alt = img ? img.alt : '';
+      big.draggable = false;  // (a drag pans a zoomed picture instead of lifting it out)
       wrap.append(big);
       body.replaceChildren(wrap);
+      zoom = 0;  // every picture opens whole
     }
+
+    // Zoom, for a picture: out, back to the whole picture, and in, by steps of its fitted size. Zoomed in, the picture takes
+    // its new size and the room around it scrolls (a mouse drags it, a finger pans it); the spot in the middle of the view
+    // stays in the middle as it grows or shrinks.
+    const zoomBox = dialog.querySelector('[data-doc-zoom]');
+    const zoomOut = dialog.querySelector('[data-zoom-out]');
+    const zoomFit = dialog.querySelector('[data-zoom-fit]');
+    const zoomIn = dialog.querySelector('[data-zoom-in]');
+    const STEPS = [1, 1.5, 2, 3, 4];
+    let zoom = 0, fitted = null;  // the step (0 is the whole picture), and the picture's size when whole
+    function zoomState() {
+      zoomOut.setAttribute('aria-label', vi() ? 'Thu nhỏ' : 'Zoom out');
+      zoomFit.setAttribute('aria-label', vi() ? 'Cả bức ảnh' : 'Whole picture');
+      zoomIn.setAttribute('aria-label', vi() ? 'Phóng to' : 'Zoom in');
+      zoomOut.setAttribute('aria-disabled', String(zoom === 0));
+      zoomFit.setAttribute('aria-disabled', String(zoom === 0));
+      zoomIn.setAttribute('aria-disabled', String(zoom === STEPS.length - 1));
+    }
+    function setZoom(to) {
+      const wrap = body.querySelector('.doc-picture');
+      const img = wrap && wrap.querySelector('img');
+      to = Math.max(0, Math.min(STEPS.length - 1, to));
+      if (!img || !img.naturalWidth || to === zoom) return;
+      if (zoom === 0) { const r = img.getBoundingClientRect(); fitted = { w: r.width, h: r.height }; }
+      const view = wrap.getBoundingClientRect();
+      const was = img.getBoundingClientRect();
+      // where the middle of the view is on the picture, as a share of its width and height
+      const fx = (view.left + wrap.clientWidth / 2 - was.left) / was.width;
+      const fy = (view.top + wrap.clientHeight / 2 - was.top) / was.height;
+      zoom = to;
+      wrap.classList.toggle('is-zoomed', zoom > 0);
+      img.style.width = zoom ? `${Math.round(fitted.w * STEPS[zoom])}px` : '';
+      img.style.height = zoom ? `${Math.round(fitted.h * STEPS[zoom])}px` : '';
+      if (zoom) {
+        const now = img.getBoundingClientRect();
+        wrap.scrollLeft += now.left + fx * now.width - (view.left + wrap.clientWidth / 2);
+        wrap.scrollTop += now.top + fy * now.height - (view.top + wrap.clientHeight / 2);
+      }
+      zoomState();
+      say.textContent = zoom ? `${Math.round(STEPS[zoom] * 100)}%` : (vi() ? 'Cả bức ảnh' : 'Whole picture');
+    }
+    zoomOut.addEventListener('click', () => setZoom(zoom - 1));
+    zoomFit.addEventListener('click', () => setZoom(0));
+    zoomIn.addEventListener('click', () => setZoom(zoom + 1));
+    // + and - zoom, 0 shows the whole picture (with Ctrl or Cmd, the browser's own zoom stays the browser's)
+    function zoomKey(e) {
+      if (!dialog.classList.contains('doc-pic') || e.altKey || e.ctrlKey || e.metaKey) return;
+      const by = { '+': 1, '=': 1, '-': -1, '_': -1 }[e.key];
+      if (by) { e.preventDefault(); setZoom(zoom + by); } else if (e.key === '0') { e.preventDefault(); setZoom(0); }
+    }
+    // a mouse drags a zoomed picture around
+    let drag = null;
+    body.addEventListener('pointerdown', e => {
+      const wrap = e.target.closest && e.target.closest('.doc-picture.is-zoomed');
+      if (!wrap || e.pointerType !== 'mouse' || e.button !== 0) return;
+      e.preventDefault();
+      drag = { x: e.clientX, y: e.clientY, left: wrap.scrollLeft, top: wrap.scrollTop, wrap };
+      wrap.classList.add('is-dragging');
+    });
+    window.addEventListener('pointermove', e => {
+      if (!drag) return;
+      drag.wrap.scrollLeft = drag.left - (e.clientX - drag.x);
+      drag.wrap.scrollTop = drag.top - (e.clientY - drag.y);
+    });
+    window.addEventListener('pointerup', () => {
+      if (!drag) return;
+      drag.wrap.classList.remove('is-dragging');
+      drag = null;
+    });
 
     function openTemplate(btn) {
       const tpl = document.getElementById(btn.dataset.doc);
       if (!tpl) return;
-      open({
-        heading: (vi() && tpl.dataset.titleVi) || tpl.dataset.title || btn.textContent.trim(),
-        label: (vi() && tpl.dataset.kickerVi) || tpl.dataset.kicker || ''
-      });
+      open({ heading: tpl.dataset.title || btn.textContent.trim(), label: tpl.dataset.kicker || '' });
       body.replaceChildren(tpl.content.cloneNode(true));
       if (vi()) body.querySelectorAll('[data-vi]').forEach(n => { n.innerHTML = n.dataset.vi; });
     }
@@ -156,6 +225,9 @@
       if (!dialog.open) return;
       body.scrollTop = 0;  // a move starts at the top of the picture or document
       nav.hidden = group.length < 2;  // a lone item, or one outside a section, has nothing to move to
+      zoomBox.hidden = !dialog.classList.contains('doc-pic');  // zoom is for pictures
+      tools.hidden = nav.hidden && zoomBox.hidden;
+      zoomState();
       prev.setAttribute('aria-label', vi() ? 'Trước' : 'Previous');
       next.setAttribute('aria-label', vi() ? 'Tiếp theo' : 'Next');
       count.textContent = `${at + 1} / ${group.length}`;
@@ -181,10 +253,11 @@
       e.preventDefault();
       move(by);
     }
-    document.addEventListener('keydown', e => { if (dialog.open) arrowKey(e); });
+    document.addEventListener('keydown', e => { if (dialog.open) { arrowKey(e); zoomKey(e); } });
     // A swipe across a picture moves too: sideways by 50px or more, and more sideways than up or down.
     let swipe = null;
-    body.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && body.querySelector('.doc-picture')) swipe = { x: e.clientX, y: e.clientY }; });
+    // (not while zoomed in: then a finger pans the picture)
+    body.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' && !zoom && body.querySelector('.doc-picture')) swipe = { x: e.clientX, y: e.clientY }; });
     body.addEventListener('pointerup', e => {
       if (!swipe) return;
       const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y;
@@ -223,7 +296,8 @@
     // (so selecting text and letting go outside the box keeps it open).
     // (around a picture, the dimmed page shows through the pop-up itself, so a press there counts as outside too)
     const outside = e => {
-      if (dialog.classList.contains('doc-pic') && e.target.matches && e.target.matches('.doc-inner, .doc-body, .doc-picture')) return true;
+      // (zoomed in, the picture's room is for panning, so only the space around it counts)
+      if (dialog.classList.contains('doc-pic') && e.target.matches && e.target.matches(zoom ? '.doc-inner, .doc-body' : '.doc-inner, .doc-body, .doc-picture')) return true;
       const r = dialog.getBoundingClientRect();
       return e.target === dialog && (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom);
     };
@@ -244,6 +318,7 @@
       group = [];
       at = 0;
       opener = null;
+      zoom = 0;
       say.textContent = '';
     });
   }
@@ -282,7 +357,14 @@
     store.set('theme', b.dataset.themeSet);
   }));
 
-  // Vietnamese only applies while its button is shown (it is hidden in index.html for now).
+  // Vietnamese only applies while its button is shown (it is hidden in index.html for now; the list of what is still English in the
+  // markup is there, at the button). Still English only in this script, and to do before the button goes back on:
+  // - the email note, 'Email copied' and 'Copy did not work' (the copy button below);
+  // - the pop-up's heading and label: openFrame, openImage and openTemplate take them from data-title and data-kicker as they are,
+  //   so each needs a Vietnamese attribute (for example data-title-vi) and a test of vi() like the ones for the loading text and the
+  //   Previous and Next buttons;
+  // - the page title in route() (data-title).
+  // Both lists leave out the documents in work/, which are English only.
   const viButton = document.querySelector('[data-lang="vi"]');
   if (viButton && !viButton.hidden && store.get('lang') === 'vi') setLang('vi');
   setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
@@ -417,7 +499,8 @@
     const tight = matchMedia('(max-height: 479px)');  // too little room for a stage: plain content reads better
     let open = false, frameId = 0, again = 0, maxY = 1, drawn = '', hold = 0;
     let moved = false;  // (the visitor has scrolled since the page opened: until then only the welcome shows, with its arrow)
-    const resizes = new ResizeObserver(() => remeasure());
+    // (guarded like the piles' observer below: without ResizeObserver the sizes are measured once, when the page opens)
+    const resizes = 'ResizeObserver' in window ? new ResizeObserver(() => remeasure()) : { observe() {}, disconnect() {} };
 
     const jump = y => {  // an instant scroll (the page scrolls smoothly otherwise)
       root.style.scrollBehavior = 'auto';
@@ -517,6 +600,7 @@
         change(to, from) {  // the old words fade out, the board flips (the picture changes with it), then the new words fade in
           if (from >= 0) items[from].classList.remove('is-pic');
           items[to].classList.add('is-pic');
+          fetchPhotos(items[to]);  // (its photos start loading as the board flips)
           return flip(to);
         },
         shown() {},
@@ -604,7 +688,6 @@
         if (from >= 0) items[from].classList.remove('is-on');
         fit(to);
         track.classList.add('is-live');
-        track.classList.toggle('is-last', to === items.length - 1);  // (the arrow that says there is more goes away on the last part)
         kind.change(to, from).then(() => {
           if (mine !== turn) return;
           busy = false;
@@ -637,7 +720,7 @@
         timers.forEach(clearTimeout);
         timers.clear();
         kind.stop();
-        track.classList.remove('is-stage', 'is-live', 'is-last', 'no-tween');
+        track.classList.remove('is-stage', 'is-live', 'no-tween');
         track.style.removeProperty('--travel');
         track.style.removeProperty('--card-h');
         items.forEach(p => { p.classList.remove('is-on'); p.style.removeProperty('--shift'); });
@@ -662,6 +745,7 @@
         const before = top ? stick : edge(mark);
         done = true;
         stop();
+        fetchPhotos(track, false);  // (plain content now: every photo of this stage gets its file, and loads as it nears the window)
         const after = edge(mark);  // (measured first: it lays the page out, and the scroll position settles)
         const goal = Math.max(0, scrollY + after - before);
         // The page is shorter now. With a tall window the scroll position that keeps the words where they were can be lower than the new
@@ -683,13 +767,25 @@
 
     // ---- the periods' photos ----
     // A photo shows when its file loads; if it does not, the print keeps its placeholder and the img is dropped.
+    // The first period's photo has its src in the markup. The others keep it in data-src, because a stage stacks the periods in one
+    // grid cell, so lazy loading would see them all at once: fetchPhotos sets the src when a period comes in (periodsKind.change),
+    // and for all of them at once when there is no stage (enter) or the stage is over (finish). In a stage they load now; in a plain
+    // list, lazy loading works again, so they load by position.
     page.querySelectorAll('.period-pic img').forEach(img => {
       const ok = () => img.parentElement.classList.add('has-photo');
       const no = () => img.remove();
       img.addEventListener('load', ok);
       img.addEventListener('error', no);
-      if (img.complete) (img.naturalWidth ? ok : no)();
+      if (img.getAttribute('src') && img.complete) (img.naturalWidth ? ok : no)();  // (no src yet: complete is true, and it would be dropped)
     });
+    function fetchPhotos(scope, now = true) {
+      scope.querySelectorAll('.period-pic img').forEach(img => {
+        if (now) img.loading = 'eager';  // (a lazy img with its src waits until it is near the window; a stage's are wanted now)
+        if (!img.dataset.src) return;
+        img.src = img.dataset.src;
+        img.removeAttribute('data-src');
+      });
+    }
     // A pile opens as far as the words beside it are tall: the room under the top print is shared between the others
     // (at least 18px each, so a short period still shows its photos apart, and at most about half a print, so a long period's
     // pile does not spread too far). styles.css, .period-pics and --fan.
@@ -796,6 +892,7 @@
       jump(0);
       waiting.forEach(w => { w.from = -Infinity; });  // (back on the page later, it comes in as soon as it is well up the window)
       if (!motion.matches && !tight.matches) stages.forEach(s => s.start());
+      else stages.forEach(s => fetchPhotos(s.track, false));  // no stage: the periods are a plain list, and each photo loads as it nears the window
       measureAll();
       render();
       addEventListener('scroll', onScroll, { passive: true });
