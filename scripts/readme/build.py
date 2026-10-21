@@ -298,6 +298,13 @@ def block_md(n):
                 out.append(f'  - {t(alt)}')
         out.append(f'- {t(mains[-1])}')
         return '\n'.join(out)
+    if 'measures' in c:   # the results' table (what is measured, and when): the same columns, in Markdown
+        trs = n.find_all(by_tag('tr'), minimum=2)
+        head = [t(th) for th in trs[0].elements()]
+        lines = ['| ' + ' | '.join(head) + ' |', '|' + '---|' * len(head)]
+        for tr in trs[1:]:
+            lines.append('| ' + ' | '.join(cell(t(x)) for x in tr.elements()) + ' |')
+        return '\n'.join(lines)
     if 'codes' in c:
         cap = tag_case(t(n.find(by_tag('figcaption'))))
         trs = n.find_all(by_tag('tr'), minimum=2)

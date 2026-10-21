@@ -195,6 +195,20 @@ In code, React draws the screens, XState runs these states and triggers, Zod che
 
 ## Results & takeaways
 
+I will know the solutions work when the member survey and the issue log show it.
+
+| Solution | Measure | When |
+|---|---|---|
+| **Follow-up process and call practice: the course** | First-try results for each step of HEARD, to show which step is hardest | In the course |
+| **Follow-up process and call practice: the log** | 9 in 10 complaints have a dated next step, and the member hears back by that date | Every week, in the log |
+| **Space rules members can see** | Complaints about the shared space per week, by zone and for the kitchen | Every week |
+| **Set steps for Wi-Fi outages** | Minutes to the first notice, and the same compensation on every shift, from the outage log | Every outage |
+| **All three solutions** | The complaint score: 3.2/5, then 3.8/5. Overall satisfaction: 3.5/5, then 4.0/5 | After each quarter, in the member survey |
+
+If the log reaches 9 in 10 but the complaint score stays at 3.2/5, staff are following up on time, so the next question is whether the options they offer meet members’ needs.
+
+The course measures Kirkpatrick’s levels 1 and 2, and the issue log and the member survey measure levels 3 and 4.
+
 I had put a lot of time and effort into this project, and it taught me many lessons.
 
 - **Plan slow, build fast.** Planning every line and screen before building felt slow at first, but it saved a lot of time later, when I had to change things.
