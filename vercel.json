@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/1-page", "destination": "/work/me-in-one-page/index.html" }
+    { "source": "/1-page", "destination": "/index.html" }
   ]
 }
