@@ -322,6 +322,15 @@
       zoom = 0;
       say.textContent = '';
     });
+    // /1-page (vercel.json serves this page there) opens the one-page summary in the pop-up; closing it puts the address back to /
+    const onePage = document.querySelector('[data-frame][data-bare]');
+    if (onePage && /^\/1-page\/?$/.test(location.pathname)) {
+      group = [onePage];
+      at = 0;
+      opener = onePage;
+      present(onePage, false);
+      dialog.addEventListener('close', () => history.replaceState(null, '', '/' + location.hash), { once: true });
+    }
   }
 
   // ---- language: English is in the markup, Vietnamese in data-vi ----
