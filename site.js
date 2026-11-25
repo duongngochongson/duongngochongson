@@ -23,6 +23,7 @@
   const aliases = { 'portfolio/hear-them-out': 'portfolio/why-members-are-unhappy' };
   const baseTitle = document.title;
   const dialog = document.querySelector('dialog.doc');
+  let openDeepLink = null;  // (set by the pop-up part when the address asks for a pop-up; run after the first route(), which closes any open pop-up)
   function route(e) {
     if (dialog && dialog.open) dialog.close();
     let key = location.hash.slice(1) || 'home';
@@ -324,13 +325,13 @@
     });
     // /1-page (vercel.json serves this page there) opens the one-page summary in the pop-up; closing it puts the address back to /
     const onePage = document.querySelector('[data-frame][data-bare]');
-    if (onePage && /^\/1-page\/?$/.test(location.pathname)) {
+    if (onePage && /^\/1-page\/?$/.test(location.pathname)) openDeepLink = () => {
       group = [onePage];
       at = 0;
       opener = onePage;
       present(onePage, false);
       dialog.addEventListener('close', () => history.replaceState(null, '', '/' + location.hash), { once: true });
-    }
+    };
   }
 
   // ---- language: English is in the markup, Vietnamese in data-vi ----
@@ -930,4 +931,5 @@
   })();
 
   route();
+  if (openDeepLink) openDeepLink();
 })();
