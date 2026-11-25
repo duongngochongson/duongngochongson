@@ -65,11 +65,12 @@
     dialog.append(say);
     let group = [], at = 0, opener = null;
 
-    function open({ heading, label, wide, picture }) {
+    function open({ heading, label, wide, picture, bare }) {
       title.textContent = heading || '';
       kicker.textContent = label || '';
       dialog.classList.toggle('doc-wide', !!wide);
       dialog.classList.toggle('doc-pic', !!picture);  // (a picture floats under the bar, fitted whole: styles.css)
+      dialog.classList.toggle('doc-bare', !!bare);  // (a page with no frame around it, and only a round close button: styles.css)
       body.scrollTop = 0;
       if (!dialog.open) dialog.showModal();
     }
@@ -111,7 +112,7 @@
 
     function openFrame(btn) {
       const href = new URL(btn.dataset.frame, location.href).href;
-      open({ heading: btn.dataset.title || btn.textContent.trim(), label: btn.dataset.kicker, wide: true });
+      open({ heading: btn.dataset.title || btn.textContent.trim(), label: btn.dataset.kicker, wide: true, bare: btn.hasAttribute('data-bare') });
       const loading = document.createElement('div');
       loading.className = 'doc-loading';
       loading.textContent = vi() ? 'Đang mở tài liệu…' : 'Opening the document…';
@@ -309,7 +310,7 @@
     });
     dialog.addEventListener('close', () => {
       clearTimeout(closeTimer);
-      dialog.classList.remove('is-closing', 'doc-wide', 'doc-pic');
+      dialog.classList.remove('is-closing', 'doc-wide', 'doc-pic', 'doc-bare');
       body.replaceChildren();
       // After moves, focus goes to the item last shown if it is on screen (not in a closed fold or a hidden page);
       // if not, it stays where the browser put it, on the button that opened the pop-up.
