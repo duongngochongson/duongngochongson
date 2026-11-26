@@ -88,6 +88,11 @@
       frame.classList.add('is-ready');
       const name = (doc.title || '').split(' · ')[0].trim();
       if (name) { title.textContent = name; frame.title = name; }  // the frame's name follows the document it shows
+      // A document can name where focus starts (data-start-focus, as the one-page summary does with its video), so Enter does not
+      // close the pop-up straight away; only while focus still sits on Close or the dialog, never after the visitor has moved it.
+      const start = doc.querySelector('[data-start-focus]');
+      const close = dialog.querySelector('[data-doc-close]');
+      if (start && [close, dialog, document.body].includes(document.activeElement)) start.focus({ preventScroll: true });
       doc.addEventListener('click', e => {
         const a = e.target.closest && e.target.closest('a[href]');
         if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
